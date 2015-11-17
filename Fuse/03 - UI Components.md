@@ -744,6 +744,7 @@ It is possible to animate properties based on absolute `ScrollView` position. Fo
 	</App>
 
 ## $(NativeViewHost)
+
 Some views are only available as native components, so how can we avoid the limitation of having to use the Native theme and combine these native views with our custom Fuse views? By compositing them with the NativeViewHost! As an example, here is a @(WebView) added with a NativeViewHost:
 
 ```
@@ -761,6 +762,7 @@ Note that views added in a NativeViewHost are always rendered _in front_ of your
 To achieve the opposite -Adding Fuse views in a Native theme- read on.
 
 ## $(GraphicsView)
+
 The `GraphicsView` is the counterpart to the @(NativeViewHost) and allows you to add Fuse views to an @(App) using the Native theme.
 
 ```

@@ -46,6 +46,7 @@ In this example, we use a @(Set) action to change the @(Alignment) of a @(Panel)
 $(MultiLayout) allows us to move @(Element:elements) between different @(Layout:layouts). This allows us to @(Move) elements between different locations in the visual tree, and also switch between certain layouts on the fly.
 
 ## $(Placeholder)
+
 The `Placeholder` element is used to reference other @(Element:elements) in the visual tree. A `Placeholder` is itself an @(Element) and it can have its own layout properties.
 
 The `Placeholder` is used when we want to define two different locations or layouts for the same @(Element). We use the placeholders `Target` property to reference the @(Element) we want to make a plceholder for. The @(Element) definition itself has to also be wrapped in a `Placeholder`. Think of it as an @(Element) being tossed from one `Placeholder` to another.
@@ -105,5 +106,6 @@ Here is a quick example, showing how we can move a @(Rectangle) from one @(Panel
 	</MultiLayoutPanel>
 
 Check out these examples for some inspiration on using @(LayoutAnimation) and @(MultiLayout).
+
 * [ScrollingAnimation](https://www.fusetools.com/developers/examples/scrollinganimation)
 * [Tabbar using MultiLayout](https://www.fusetools.com/developers/examples/tabsmultilayout)

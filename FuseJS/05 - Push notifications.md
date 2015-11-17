@@ -8,6 +8,7 @@ We are very interested in comments & requests you have on what we have so far so
 ## Setting up the client side
 
 ### Step 1.
+
 Include the Fuse push notification library by adding the following to your `.unoproj` file
 
     "Packages": [
@@ -17,6 +18,7 @@ Include the Fuse push notification library by adding the following to your `.uno
     ],
 
 ### Step 2. (Only for Android)
+
 Google notifications require a little extra info. See the `Server Side` section below. Also you will need the google play libraries. To use those with Fuse please [see here](/developers/guides/installinggoogleplayservices)
 
 Add the following to you `.unoproj`
@@ -39,14 +41,17 @@ Where the `SenderID` is the project ID from the `Google Developers Console`
 What happens when your app starts varies slightly on each platform, but by referencing the Fuse package the following happens:
 
 ### Android
+
 - 'Google Play' libraries are included in the build. (For info on getting the play libraries in Fuse click [here](/developers/guides/installinggoogleplayservices))
 - Your SenderID is added to the project's `Manifest.xml` file along with some other plumbing
 - When your app starts the app registers with the `GCM` service.
 
 ### iOS specific
+
 - When your app starts it registers with APNS. As all access is controlled through Apple's certificate system there is no extra info to provide (we will mention server side a bit later)
 
 ### Both Platforms
+
 - You get a callback telling you if the registration succeeded or failed.
 - The succeeded callback will contain your unique registration id (also called a token in iOS docs)
 - All future received push notifications will fire a callback containing the JSON of the notification.
@@ -121,5 +126,6 @@ The current implementation only guarantees the 'title' and 'body' entries will w
 
 Implementation Note:
 Google and Apple has different limits on the size of push notifications.
+
 - Google limits to 4096 bytes
 - Apple limits to 2048 bytes on iOS 8 and up but only 256 bytes on all earlier versions

@@ -210,6 +210,7 @@ The InterApp module is designed to simplify communication between apps.
 	var interApp = require('FuseJS/InterApp');
 
 Right now it handles two cases:
+
 - Request launching another app with a Uri
 - Receiving Uri launch requests from other apps
 
@@ -228,6 +229,7 @@ interApp.launchUri ('purple://some/uri')
 Is a callback telling you if another app launches your app with a Uri. To receive this first you need to give your app a custom Uri scheme. We can do this easily by adding the "UriScheme" element to the "Mobile" section of the unoproj file.
 
 After you have done that your "Mobile" section will look something like this
+
 ```
 "Mobile": {
   "UriScheme": "YourScheme",
@@ -253,6 +255,7 @@ interApp.onReceivedUri = function(uri) {
 ## Geolocation
 
 Get the geographic location of the user.
+
 ```
 var geoLocation = require('FuseJS/GeoLocation');
 ```
@@ -262,13 +265,16 @@ The location API have three possible ways of getting the location data.
 ### location
 
 If this or some other application recently requested a location update, this property will immediately get the last known position. If no location data is available this property returns `null`.
+
 ```
 if(geo.location != null)
     console.log(JSON.stringify(geo.location));
 ```
+
 ### Single update: getLocation(timeout)
 
 Get best possible position within the given timeout.
+
 ```
 var timeout = 2000;
 geoLocation.getLocation(timeout).then(function(location) {
@@ -279,6 +285,7 @@ geoLocation.getLocation(timeout).then(function(location) {
 ### Continues updates: onChanged, startListening, stopListening
 
 Start listening for continues position changes using the desired settings. Remember that getting a lot of location data at fast interval and accuracy will drain the battery fast.
+
 ```
 geoLocation.onChanged = function(location) {
     console.log(JSON.stringify(location));

@@ -11,6 +11,4 @@ Debugging of JavaScript in Fuse is currently only supported using Safari and iOS
 
 > ### Video introduction to Debugging
 
-<div class="embed-responsive embed-responsive-16by9">
-  <iframe width="420" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/EDjymiMxHSw"></iframe>
-</div>
+[YOUTUBE EDjymiMxHSw]

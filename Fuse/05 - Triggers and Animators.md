@@ -15,9 +15,7 @@ For example, here is a @(Panel) with a @(WhilePressed) trigger causing the panel
 
 > ### Video introduction to Triggers and Animators
 
-<div class="embed-responsive embed-responsive-16by9">
-  <iframe width="420" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/bT1npBvXEzw"></iframe>
-</div>
+[YOUTUBE bT1npBvXEzw]
 
 <!-- TODO:
 * Explain how triggers are a timeline, plays forwards/backwards, applies/unapplies -->

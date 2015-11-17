@@ -11,9 +11,7 @@ Observables can be used for asynchronous and reactive programming, greatly simpl
 
 > ## Video introduction to Observables
 
-<div class="embed-responsive embed-responsive-16by9">
-  <iframe width="420" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/mi8sWErrabI"></iframe>
-</div>
+[YOUTUBE mi8sWErrabI]
 
 ### How to import
 

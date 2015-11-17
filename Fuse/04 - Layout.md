@@ -5,13 +5,9 @@ are building with @(NativeTheme:native) elements or @(GraphicsTheme:graphics) ba
 
 > #### Video introduction to layout
 
-<div class="embed-responsive embed-responsive-16by9">
-  <iframe width="420" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/x6CueKzTK68"></iframe>
-</div>
+[YOUTUBE x6CueKzTK68]
 
-<div class="embed-responsive embed-responsive-16by9">
-  <iframe width="420" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/0hpL4KBfUy8"></iframe>
-</div>
+[YOUTUBE EDjymiMxHSw]
 
 ## $(Panels)
 
@@ -291,9 +287,7 @@ The @(StatusBarBackground) element is used to compensate for the status bar. It 
 
 > ### Video introduction to OS elements
 
-<div class="embed-responsive embed-responsive-16by9">
-  <iframe width="420" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/S_syTU44jzw"></iframe>
-</div>
+[YOUTUBE S_syTU44jzw]
 
 ### $(BottomBarBackground)
 The BottomBarBackground element is quite similar to the @(StatusBarBackground) in that it takes on the same size as certain OS specific elements. The BottomBarBackground will take on the same size as the keyboard (whenever it is visible). Certain Android devices have their home button on the screen instead of as a physical button. The BottomBarBackground will also take this into account when sizing itself.

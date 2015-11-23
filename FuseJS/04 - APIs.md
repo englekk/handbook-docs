@@ -257,7 +257,14 @@ Get the geographic location of the user.
 var geoLocation = require('FuseJS/GeoLocation');
 ```
 
-The location API have three possible ways of getting the location data.
+The location API have three possible ways of getting the location object described in the sections further down. The returned location object looks like this:
+```
+{
+    latitude :  59.91149,
+    longitude : 10.740902,
+    accuracy : 11
+}
+```
 
 ### location
 

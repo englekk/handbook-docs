@@ -99,8 +99,10 @@ For iOS you just include an `'aps'` entry in the notification's JSON
 
 ```
 'aps': {
-    'title': 'Well would ya look at that!',
-    'body': 'Hello from the server'
+    alert: {
+        'title': 'Well would ya look at that!',
+        'body': 'Hello from the server'
+    }
 },
 ```
 
@@ -110,8 +112,10 @@ For Android you can use exactly the same `'aps'` entry or the alternatively the 
 
 ```
 'notification': {
-    'title': 'Well would ya look at that!',
-    'body': 'Hello from the server'
+    alert: {
+        'title': 'Well would ya look at that!',
+        'body': 'Hello from the server'
+    }
 },
 ```
 

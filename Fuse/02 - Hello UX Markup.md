@@ -9,9 +9,7 @@ The main representation of both these things in Fuse is through the use of UX Ma
 
 UX Markup is an XML-based format that should be immediately familiar to anyone who has
 worked with similar formats. For an in-depth look at its quirks and detailed features, make
-sure you read:
-
-<!-- * TODO: Links to detailed UX specs -->
+sure you read the [UX Markup Guide](https://www.fusetools.com/learn/guides/uxmarkup).
 
 
 ## $(Creating apps) : $(App)

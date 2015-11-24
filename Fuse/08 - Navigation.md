@@ -283,3 +283,21 @@ It is quite possible to perform navigation through databinding.
 To do this, we databind the navigations `Active` property to a string in JavaScript. This string should correspond to the Name of the @(Page) we intend to navigate to.
 
 <!-- TODO: Create example where both pages and direct navigation is databound. (perhaps hierarchical?) -->
+
+
+## $(Navigation-specific controls)
+
+Fuse also comes with a set of controls that are made for navigation.
+While you are not required to use these, they have semantic value and provide a good starting point for styling your own controls.
+This being said, most of these add no functionality and exist only to be able to style them independently.
+
+
+### $(NavigationBar)
+
+A @(Panel) that is given a custom style in the @(BasicTheme).
+
+
+### $(BackButton)
+
+A @(Button) that is given a custom style in the @(BasicTheme).
+It enables/disables itself in response to a @(WhileCanGoBack) trigger, and triggers @(GoBack) when clicked.

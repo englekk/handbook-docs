@@ -4,13 +4,9 @@ Getting up and running with Fuse is super easy. First of all, [download the late
 
 ## $(Setup)
 
-We're always working hard on making this process smooth as silk, but occasionally things can still go wrong. If something happens, please let us know.
+We're always working hard on making this process smooth as silk, but occasionally things can still go wrong. If something iffy happens, please [let us know!](https://www.fusetools.com/contact)
 
-Setup instructions for OS X: https://www.fusetools.com/developers/guides/setup/install-osx
-
-Uninstall instructions for OS X: https://gist.github.com/Tapped/daa78c08882f33b0c7c3
-
-Setup instructions for Windows: https://www.fusetools.com/developers/guides/setup/install-win
+Setup instructions for [OS X](https://www.fusetools.com/developers/guides/setup/install-osx) and [Windows](https://www.fusetools.com/developers/guides/setup/install-win). There's also these [uninstall instructions for OS X](https://gist.github.com/Tapped/daa78c08882f33b0c7c3) if you need them.
 
 ## Tutorial
 

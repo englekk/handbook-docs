@@ -1,6 +1,6 @@
 # $(Getting Started)
 
-Getting up and running with Fuse is super easy. We'll just need to install a few things, then we're good to go!
+Getting up and running with Fuse is super easy. First of all, [download the latest version of Fuse!](https://www.fusetools.com/downloads)
 
 ## $(Setup)
 

@@ -72,15 +72,13 @@ If you are using Git for version control, you can put the following in your .git
 
 Live preview is a key feature of Fuse. You can live preview simultaneously on multiple devices (and in the desktop simulator), so you no longer need to build your project for specific devices between edits; just save and they will appear instantly on all of your devices.
 
-For instructions on how to enable iOS preview, go here: https://www.fusetools.com/developers/guides/previewandexport/devicepreview
-
-For instructions on how to enable preview on an Android device, go here: https://www.fusetools.com/developers/guides/previewandexport/devicepreview
+Follow these instructions to [enable iOS preview](https://www.fusetools.com/developers/guides/previewandexport/devicepreview) and [Android preview](https://www.fusetools.com/developers/guides/previewandexport/devicepreview).
 
 Starting a preview of your project on your desktop can be done in a couple of ways. If you have Sublime Text 3 installed with the supported plugin, you can right click on the UX-file and select "Begin Fuse preview" and select the "Local" option. Preview will then open the simulator, and it will sync automatically as you edit your files.
 
 Alternatively, you can navigate on the command line to your project root directory and type `fuse preview`.
 
-You can read more about starting Fuse preview on the desktop here: https://www.fusetools.com/developers/guides/previewandexport/toolpreview
+Read more about using [Fuse preview on the desktop](https://www.fusetools.com/developers/guides/previewandexport/toolpreview).
 
 ## Export
 

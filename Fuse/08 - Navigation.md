@@ -31,7 +31,7 @@ The @(LinearNavigation) is just one of several @(Navigation types:types of navig
 		<Panel Background="Green"/>
 	</Panel>
 
-This adds all the behavior we need for navigation, but this is not enough to let us swipe between pages. The pages dont know how to animate themselves when they @(EnteringAnimation:enter) or @(ExitingAnimation:exit). For that we use @(EnteringAnimation) and @(ExitingAnimation).
+This adds all the behavior we need for navigation, but this is not enough to let us swipe between pages. The pages don't know how to animate themselves when they @(EnteringAnimation:enter) or @(ExitingAnimation:exit). For that we use @(EnteringAnimation) and @(ExitingAnimation).
 
 
 	<Panel>
@@ -54,7 +54,7 @@ This adds all the behavior we need for navigation, but this is not enough to let
 Now the @(Panel:panels) will move to the side when they are navigate to and from by the width of their parent container.
 
 ## $(Page)
-When a @(Panel) contains a @(Navigation) behavior, all its direct children act as pages in that navigation context. Since we usually want to style our pages a bit differently thatn the rest of our @(Panel:panels), Fuse comes with a `Page` type which we can use instead. The `Page` type is almost no different than a @(Panel), but comes with a `Title` property for convenience.
+When a @(Panel) contains a @(Navigation) behavior, all its direct children act as pages in that navigation context. Since we usually want to style our pages a bit differently than the rest of our @(Panel:panels), Fuse comes with a `Page` type which we can use instead. The `Page` type is almost no different than a @(Panel), but comes with a `Title` property for convenience.
 
 It also lets us differentiate between pages and normal panels when styling our app.
 
@@ -115,7 +115,7 @@ In the following example, we have a @(DockPanel) with a @(Panel) and a @(PageCon
 </DockPanel>
 ```
 
-`Navigation="myNav"` establishes the navigation context for this node and its descendents. It can be placed on any node, and overriden on the children. Any binding, gesture, or otherwise that refers to a navigation will now refer to this one.
+`Navigation="myNav"` establishes the navigation context for this node and its descendants. It can be placed on any node, and overridden on the children. Any binding, gesture, or otherwise that refers to a navigation will now refer to this one.
 
 To show the title of the page we use the `{Page title}` binding:
 
@@ -152,7 +152,7 @@ With these on each page we can create a `PageIndicator` that uses images for the
 There are three navigation types, and they have quite different behaviors and use cases. Each of them inherit from the `Navigation` base type.
 
 ### $(LinearNavigation)
-`LinearNavigation` is used when each page should be layed out linearly. So with a swipe navigation, one would start from page 1, swipe to page 2, then page 3 and so on. Navigating directly to page 3 from page 1 would cause a quick visit to page 2 on the way.
+`LinearNavigation` is used when each page should be laid out linearly. So with a swipe navigation, one would start from page 1, swipe to page 2, then page 3 and so on. Navigating directly to page 3 from page 1 would cause a quick visit to page 2 on the way.
 
 ### $(DirectNavigation)
 With `DirectNavigation` there is no implicit flow between pages. Any @(Page) can be directly navigated to from any other @(Page). If we have 5 pages in our @(Navigation), there would be no scrolling over the other pages when navigating from page 1 to page 5 as there would be with a @(LinearNavigation).
@@ -323,14 +323,14 @@ Can have the values `Down`, `Right`, `Left` and `Up`. These values indicate whic
 Can have the values `Closed`, `Open` and `Short`.
 `Closed` means that when one reaches the first or last page, one cannot swipe further.
 `Open` means that when one reaches the first or last page, one can swipe further as much as is possible. This does not mean that its possible to navigate to an undefined @(Page) however.
-`Short` acts similarly to `Open` except that one can only swipe a a short distance beond the first or last page.
+`Short` acts similarly to `Open` except that one can only swipe a a short distance beyond the first or last page.
 
 ### $(VelocityThreshold)
 `VelocityThreshold` is used to decide how fast one has to swipe a page in order for it to be interpreted as a navigation. This means that one does not have to swipe the whole page away, but can get away with a short but fast flick gesture.
 
 
 ## Databind active page
-It is quite possible to perform navigation through databinding.
-To do this, we databind the navigations `Active` property to a string in JavaScript. This string should correspond to the Name of the @(Page) we intend to navigate to.
+It is quite possible to perform navigation through data-binding.
+To do this, we data-bind the navigations `Active` property to a string in JavaScript. This string should correspond to the Name of the @(Page) we intend to navigate to.
 
 <!-- TODO: Create example where both pages and direct navigation is databound. (perhaps hierarchical?) -->

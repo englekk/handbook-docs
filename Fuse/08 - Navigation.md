@@ -157,7 +157,7 @@ There are three navigation types, and they have quite different behaviors and us
 ### $(DirectNavigation)
 With `DirectNavigation` there is no implicit flow between pages. Any @(Page) can be directly navigated to from any other @(Page). If we have 5 pages in our @(Navigation), there would be no scrolling over the other pages when navigating from page 1 to page 5 as there would be with a @(LinearNavigation).
 
-### $(Hierarchical navigation)
+### $(HierarchicalNavigation)
 A `HierarchicalNavigation` is commonly used when there is a hierarchical flow of pages. This is commonly found in the settings apps on iOS and Android devices. One first picks a topic, then a subtopic and so on, taking us deeper into the hierarchy of options. Navigating in this context means pushing a page onto a stack of pages. For each navigation there is a natural back navigation which takes us back the the page navigated from.
 
 > ## $(EdgeNavigator)
@@ -212,7 +212,7 @@ The `WhileCanGoForward` trigger is active whenever navigating forward is possibl
 ### $(NavigateTo)
 
 `NavigateTo` navigates to a specific @(Page:page), specified by the `Target` property. Below is an example using a @(PageControl).
-	
+
 	<PageControl ux:Name="nav">
 		<Page ux:Name="page1">
 			<Button Text="Go to page 2" Alignment="Center">

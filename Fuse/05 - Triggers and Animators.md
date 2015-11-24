@@ -350,6 +350,12 @@ Permanently changes the value of a property. If you want to just change it tempo
 </Clicked>
 ```
 
+Set may also be invoked using its `Target` and `Value` properties.
+
+```
+<Set Target="color.Color" Value="#f00" />
+```
+
 > ### $(Callback)
 
 The `Callback` action is used to call a JavaScript function (see @(Data Binding)) when a trigger is activated.

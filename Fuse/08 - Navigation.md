@@ -289,15 +289,18 @@ To do this, we databind the navigations `Active` property to a string in JavaScr
 
 Fuse also comes with a set of controls that are made for navigation.
 While you are not required to use these, they have semantic value and provide a good starting point for styling your own controls.
-This being said, most of these add no functionality and exist only to be able to style them independently.
+This being said, most of these controls add no functionality and exist only to be able to style them independently.
 
 
 ### $(NavigationBar)
 
-A @(Panel) that is given a custom style in the @(BasicTheme).
+Represents a navigation bar that you would generally find at the top of the screen.
+It is typically used for displaying the title of a page, navigation-related buttons, and/or other context-sensitive elements.
+Even so, it doesn't provide any actual functionality, and is merely a @(Panel) that is styled by the @(BasicTheme).
 
 
 ### $(BackButton)
 
-A @(Button) that is given a custom style in the @(BasicTheme).
+`BackButton` has the style and behavior of a typical "Go Back"-button.
+It is intended to be used inside of a @(NavigationBar), although in practice it may be placed anywhere.
 It enables/disables itself in response to a @(WhileCanGoBack) trigger, and triggers @(GoBack) when clicked.

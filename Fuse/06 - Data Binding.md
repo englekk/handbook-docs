@@ -121,7 +121,7 @@ contexts for each child node.
 
 The data binding system in Fuse from an @(Uno) implementation point of view is called `Fuse.Reactive`. It consists of a set of interfaces (primarily `IObservable`) that can be implemented on top of any data source in @(Uno) code, which in turn can be used as @(Data Context) on nodes in Fuse. Fuse provdides out-of-the-box implementations on top of @(Observable) in @(FuseJS).
 
-In the @(Fuse Roadmap:roadmap for Fuse), we are planning to provide observable data types for Swift, Java and other languages that can be used for databinding directly in UX markup.
+We are planning to provide observable data types for Swift, Java and other languages that can be used for databinding directly in UX markup.
 
 Users who write @(Uno) code can implement `IObservable` by hand to use Fuse's data binding system on top of custom native data sources.
 

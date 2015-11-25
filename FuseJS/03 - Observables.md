@@ -79,7 +79,7 @@ Yes, it's magic.
 
 ### $(Value operators)
 
-#### $(value)
+#### $(Observable.value:value)
 
 Gets or sets the current value of the @(Observable).
 
@@ -93,35 +93,35 @@ It is most often used with single value Observables, although this is not a requ
 
 ### List operators
 
-#### $(length:length)
+#### $(Observable.length:length)
 
 Returns the number of values in the @(Observable)
 
 	var fruits = Observable('Orange', 'Apple', 'Pear');
 	Console.Log(fruits.length); //output: 3
 
-#### $(getAt:getAt(index))
+#### $(Observable.getAt:getAt(index))
 
 Returns the value at the given `index`
 
 	var seasons = Observable('Summer', 'Fall', 'Winter', 'Spring');
 	Console.Log(seasons.getAt(2)); //output: 'Winter'
 
-#### $(add:add(value))
+#### $(Observable.add:add(value))
 
 Adds `value` to the @(Observable:observables) list of values.
 
 	var colors = Observable('Red', 'Green');
 	colors.add('Blue');
 
-#### $(remove:remove(value))
+#### $(Observable.remove:remove(value))
 
 Removes the first occurence of `value` from the @(Observable:observables) list of values.
 
 	var shapes = Observable('Round', 'Square', 'Rectangular');
 	shapes.remove('Rectangular');
 
-#### $(tryRemove:tryRemove(value))
+#### $(Observable.tryRemove:tryRemove(value))
 
 Tries to remove the first occurence of `value` from the @(Observable:observables) list of values.
 Returns true if successful, and false otherwise.
@@ -131,7 +131,14 @@ Returns true if successful, and false otherwise.
 		Console.Log("success");
 	}
 
-#### $(removeWhere:removeWhere(func))
+#### $(Observable.removeAt:removeAt(index))
+
+Remove the value at the given `index`.
+
+	var shapes = Observable('Round', 'Square', 'Rectangular');
+	shapes.removeAt(2);
+
+#### $(Observable.removeWhere:removeWhere(func))
 
 Removes all values for which `func` is true.
 
@@ -144,7 +151,7 @@ Removes all values for which `func` is true.
 		return place.temperature < 20;
 	}); //Removes Sydney from the list
 
-#### $(forEach:forEach(func))
+#### $(Observable.forEach:forEach(func))
 
 Invokes `func` on every value in the @(Observable).
 
@@ -153,43 +160,42 @@ Invokes `func` on every value in the @(Observable).
 		Console.Log(number + " is a nice number!");
 	});
 
-#### $(replaceAt:replaceAt(index, value))
+#### $(Observable.replaceAt:replaceAt(index, value))
 
 Replaces the value at `index` with `value`
 
 	var ingredients = Observable('sugar', 'milk', 'potato');
 	ingredients.replaceAt(2, 'flour'); //Replaces 'potato' with 'flour'
 
-#### $(replaceAll:replaceAll(array))
+#### $(Observable.replaceAll:replaceAll(array))
 
 Replaces the Observables values with values from the `array`.
 
 	var colors = Observable("Red", "Green", "Blue");
 	colors.replaceAll(["Orange", "Cyan", "Pink"]);
 
-#### $(clear:clear())
+#### $(Observable.clear:clear())
 
 Removes all values from the @(Observable).
 
 	var colors = Observable("Red", "Green");
 	colors.clear();
 
-#### $(indexOf:indexOf(value))
+#### $(Observable.indexOf:indexOf(value))
 
 Returns the index of the first occurrence of `value`.
 
 	var seasons = Observable("Summer", "Fall", "Winter", "Spring");
 	var index = seasons.indexOf("Winter"); // 2
 
-
-#### $(contains:contains(value))
+#### $(Observable.contains:contains(value))
 
 Returns true if `value` exists in the `var`.
 
 	Observable seasons = Observable("Summer", "Fall", "Winter", "Spring");
 	var winterExists = seasons.contains("Winter"); // true
 
-#### $(refreshAll:refreshAll(newValues, compareFunc, updateFunc, mapFunc))
+#### $(Observable.refreshAll:refreshAll(newValues, compareFunc, updateFunc, mapFunc))
 
 Updates all items in the @(Observable) with the values from `newValues`.
 `compareFunc` is used to determine whether two items are equal. `updateFunc` is used to update an existing item with new values when a match is found by `compareFunc`.
@@ -227,7 +233,7 @@ FuseJS comes with set of reactive operators that return @(Observable:Observables
 
 > Note! It is important to understand that the result of a reactive operator will only be computed if the resulting `Observable` is *consumed*, i.e. databound and its value is needed. If you @(map(func)) over an `Observable` collection and try to `console.log` from the mapping function, these contents might not be displayed because the resulting `Observable` is not databound. If you run into this problem, you can manually add a subscriber for debugging purposes, as described @(addSubscriber:here).
 
-#### $(where:where(condition))
+#### $(Observable.where:where(condition))
 
 Returns a new @(Observable) with only the values for which `condition` returns true.
 
@@ -246,7 +252,7 @@ The new @(Observable:observable) observes the old @(Observable:observable), and 
 
 If the `condition` returns an `Observable`, the `where` operator will also observe the condition.
 
-#### $(map:map(func))
+#### $(Observable.map:map(func))
 
 Invokes `func` on every value in the @(Observable) returning a new @(Observable) with the results.
 
@@ -257,7 +263,7 @@ Invokes `func` on every value in the @(Observable) returning a new @(Observable)
 
 The values of `roots` becomes the square root of the numbers in `numbers`. The values in `numbers` remain unchanged.
 
-#### $(count:count())
+#### $(Observable.count:count())
 
 Returns the number of values in the @(Observable) as an observable number. Whenever an item is added or removed from the @(Observable), the `count` changes.
 
@@ -266,7 +272,7 @@ Returns the number of values in the @(Observable) as an observable number. Whene
 	    "Documenting the documenter");
 	numBooks = books.count(); //result: 3
 
-#### $(countCondition:count(condition))
+#### $(Observable.countCondition:count(condition))
 
 Returns an observable number of values for which `condition` is true.
 
@@ -279,7 +285,7 @@ Returns an observable number of values for which `condition` is true.
 		return x.isDone;
 	}); // 2
 
-#### $(not:not())
+#### $(Observable.not:not())
 
 Returns an @(Observable) that has the inverse value of the @(Observable) you are calling it on. If the @(Observable) is `true`, the returned one will be `false`, and vice versa.
 
@@ -287,10 +293,10 @@ Returns an @(Observable) that has the inverse value of the @(Observable) you are
 	trueValue = falseValue.not();
 
 <!--
-#### $(inner:inner())
+#### $(Observable.inner:inner())
 TODO: Write inner -->
 
-#### $(filter:filter(condition))
+#### $(Observable.filter:filter(condition))
 
 Returns an observable that will only propagate values that pass the given `condition`, otherwise it retains its previous value.
 
@@ -298,7 +304,7 @@ This method only considers the first (single) value of an observable.
 
 <!-- TODO: Make example -->
 
-#### $(expand:expand(func))
+#### $(Observable.expand:expand(func))
 
 When an @(Observable) contains only a single array, expand will return an @(Observable) containing the values from that array.
 
@@ -307,12 +313,12 @@ Observable([1,2,3]).expand() -> Observable(1,2,3)
 
 ### Subscribing to updates
 
-#### $(addSubscriber:addSubscriber(func))
+#### $(Observable.addSubscriber:addSubscriber(func))
 
 To manually react to changes in an @(Observable), one can use the `addSubscriber` method.
 `func` will be run whenever the @(Observable) changes.
 
-#### $(removeSubscriber:removeSubscriber(func))
+#### $(Observable.removeSubscriber:removeSubscriber(func))
 
 When you are done consuming the values from the Observable, it is important to clean up by removing
 the subscription, otherwise we can accumulate memory garbage over time:
@@ -321,11 +327,11 @@ the subscription, otherwise we can accumulate memory garbage over time:
 
 ### Other
 
-#### $(depend:depend())
+#### $(Observable.depend:depend())
 
-#### $(failed:failed(message))
+#### $(Observable.failed:failed(message))
 
-#### $(setValueExclusive:setValueExclusive(value, excludingObserver))
+#### $(Observable.setValueExclusive:setValueExclusive(value, excludingObserver))
 
 Sets the value of the @(Observable) without notifying `excludingObserver`
 
@@ -339,7 +345,7 @@ Sets the value of the @(Observable) without notifying `excludingObserver`
 
 	observable.setValueExclusive(2, shouldNotGetNotification);
 
-#### $(toString:toString())
+#### $(Observable.toString:toString())
 
 Returns a string representation of an observable and its contents.
 
@@ -347,6 +353,7 @@ Returns a string representation of an observable and its contents.
 	testObservable.toString(); // "(observable) 1,two,3"
 
 ## Topics
+
 <!-- TODO: Fill inn here!! -->
 
 Observables can be used for a lot of things:

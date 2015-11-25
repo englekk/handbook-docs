@@ -31,7 +31,7 @@ The @(LinearNavigation) is just one of several @(Navigation types:types of navig
 		<Panel Background="Green"/>
 	</Panel>
 
-This adds all the behavior we need for navigation, but this is not enough to let us swipe between pages. The pages dont know how to animate themselves when they @(EnteringAnimation:enter) or @(ExitingAnimation:exit). For that we use @(EnteringAnimation) and @(ExitingAnimation).
+This adds all the behavior we need for navigation, but this is not enough to let us swipe between pages. The pages don't know how to animate themselves when they @(EnteringAnimation:enter) or @(ExitingAnimation:exit). For that we use @(EnteringAnimation) and @(ExitingAnimation).
 
 
 	<Panel>
@@ -55,7 +55,7 @@ Now the @(Panel:panels) will move to the side when they are navigate to and from
 
 ## $(Page)
 
-When a @(Panel) contains a @(Navigation) behavior, all its direct children act as pages in that navigation context. Since we usually want to style our pages a bit differently thatn the rest of our @(Panel:panels), Fuse comes with a `Page` type which we can use instead. The `Page` type is almost no different than a @(Panel), but comes with a `Title` property for convenience.
+When a @(Panel) contains a @(Navigation) behavior, all its direct children act as pages in that navigation context. Since we usually want to style our pages a bit differently than the rest of our @(Panel:panels), Fuse comes with a `Page` type which we can use instead. The `Page` type is almost no different than a @(Panel), but comes with a `Title` property for convenience.
 
 It also lets us differentiate between pages and normal panels when styling our app.
 
@@ -118,7 +118,7 @@ In the following example, we have a @(DockPanel) with a @(Panel) and a @(PageCon
 </DockPanel>
 ```
 
-`Navigation="myNav"` establishes the navigation context for this node and its descendents. It can be placed on any node, and overriden on the children. Any binding, gesture, or otherwise that refers to a navigation will now refer to this one.
+`Navigation="myNav"` establishes the navigation context for this node and its descendants. It can be placed on any node, and overridden on the children. Any binding, gesture, or otherwise that refers to a navigation will now refer to this one.
 
 To show the title of the page we use the `{Page title}` binding:
 
@@ -157,13 +157,13 @@ There are three navigation types, and they have quite different behaviors and us
 
 ### $(LinearNavigation)
 
-`LinearNavigation` is used when each page should be layed out linearly. So with a swipe navigation, one would start from page 1, swipe to page 2, then page 3 and so on. Navigating directly to page 3 from page 1 would cause a quick visit to page 2 on the way.
+`LinearNavigation` is used when each page should be laid out linearly. So with a swipe navigation, one would start from page 1, swipe to page 2, then page 3 and so on. Navigating directly to page 3 from page 1 would cause a quick visit to page 2 on the way.
 
 ### $(DirectNavigation)
 
 With `DirectNavigation` there is no implicit flow between pages. Any @(Page) can be directly navigated to from any other @(Page). If we have 5 pages in our @(Navigation), there would be no scrolling over the other pages when navigating from page 1 to page 5 as there would be with a @(LinearNavigation).
 
-### $(Hierarchical navigation)
+### $(HierarchicalNavigation)
 
 A `HierarchicalNavigation` is commonly used when there is a hierarchical flow of pages. This is commonly found in the settings apps on iOS and Android devices. One first picks a topic, then a subtopic and so on, taking us deeper into the hierarchy of options. Navigating in this context means pushing a page onto a stack of pages. For each navigation there is a natural back navigation which takes us back the the page navigated from.
 
@@ -182,14 +182,65 @@ A `HierarchicalNavigation` is commonly used when there is a hierarchical flow of
 
 Note that setting the @(Background) of the second @(Panel) in this example is of significance, as it enables hit testing of the inner @(Panel). You could alternatively set the @(HitTestMode) of the @(EdgeNavigator) to be @(HitTestMode.LocalBoundsAndChildren). Normally this isn't an issue, as the inner panel will have content that is hit testable.
 
-<!-- TODO: Document - GoBack and - GoForward ? -->
+## $(Controlling navigation)
+
+Fuse provides several @(Actions:actions) that allow you to perform @(Navigation:navigation).
+
+All navigation-related @(Actions:actions) have a `Context` property that lets you specify the navigation context to perform the action on.
+If `Context` is not specified, it will look for a parent element with a `Navigation` behavior and use that.
+
+### @(GoBack)
+
+The behavior of `GoBack` depends on the type of navigation context it's performed on:
+
+- @(LinearNavigation) – Navigates to the page occurring before the current page.
+- @(HierarchicalNavigation) – Navigates one level up in the hierarchy, i.e. the page most recently navigated to.
+- @(DirectNavigation) – Does nothing.
+
+> ### $(WhileCanGoBack)
+
+The `WhileCanGoBack` trigger is active whenever navigating backward is possible.
+
+
+### @(GoForward)
+
+As with @(GoBack), `GoForward` is also context-sensitive:
+
+- @(LinearNavigation) – Navigates to the page occurring after the current page.
+- @(HierarchicalNavigation) – Navigates one level down in the hierarchy, i.e. the last page the user has @(GoBack:gone back) from.
+- @(DirectNavigation) – Does nothing.
+
+
+> ### $(WhileCanGoForward)
+
+The `WhileCanGoForward` trigger is active whenever navigating forward is possible.
+
+
+### $(NavigateTo)
+
+`NavigateTo` navigates to a specific @(Page:page), specified by the `Target` property. Below is an example using a @(PageControl).
+
+	<PageControl ux:Name="nav">
+		<Page ux:Name="page1">
+			<Button Text="Go to page 2" Alignment="Center">
+				<Clicked>
+					<NavigateTo Target="page2" />
+				</Clicked>
+			</Button>
+		</Page>
+		<Page ux:Name="page2">
+			<Text Alignment="Center">
+				Welcome to page 2!
+			</Text>
+		</Page>
+	</PageControl>
 
 
 ## $(EnteringAnimation) / $(ExitingAnimation)
 
 As seen above, Entering- and ExitingAnimation are used to specify how pages and elements behave when they are being navigated to and from. There is no default behavior for elements when using `Navigation` so unless a @(PageControl) is being used (which does apply a style with Entering- and ExitingAnimation to @(Page:pages)) one has to add these in order to define what a navigation actually means for a page.
 
-@(PageControl) applied the following style to @(Page:pages):
+@(PageControl) applies the following style to @(Page:pages):
 
 	<Style>
 		<Page>
@@ -287,7 +338,7 @@ Can have the values `Closed`, `Open` and `Short`.
 
 `Closed` means that when one reaches the first or last page, one cannot swipe further.
 `Open` means that when one reaches the first or last page, one can swipe further as much as is possible. This does not mean that its possible to navigate to an undefined @(Page) however.
-`Short` acts similarly to `Open` except that one can only swipe a a short distance beond the first or last page.
+`Short` acts similarly to `Open` except that one can only swipe a a short distance beyond the first or last page.
 
 ### $(VelocityThreshold)
 
@@ -296,7 +347,7 @@ Can have the values `Closed`, `Open` and `Short`.
 
 ## Databind active page
 
-It is quite possible to perform navigation through databinding.
-To do this, we databind the navigations `Active` property to a string in JavaScript. This string should correspond to the Name of the @(Page) we intend to navigate to.
+It is quite possible to perform navigation through data-binding.
+To do this, we data-bind the navigations `Active` property to a string in JavaScript. This string should correspond to the Name of the @(Page) we intend to navigate to.
 
 <!-- TODO: Create example where both pages and direct navigation is databound. (perhaps hierarchical?) -->

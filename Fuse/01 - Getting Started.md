@@ -1,16 +1,12 @@
 # $(Getting Started)
 
-Getting up and running with Fuse is super easy. We'll just need to install a few things, then we're good to go!
+Getting up and running with Fuse is super easy. First of all, [download the latest version of Fuse!](https://www.fusetools.com/downloads)
 
 ## $(Setup)
 
-We're always working hard on making this process smooth as silk, but occasionally things can still go wrong. If something happens, please let us know.
+We're always working hard on making this process smooth as silk, but occasionally things can still go wrong. If something iffy happens, please [let us know!](https://www.fusetools.com/contact)
 
-Setup instructions for OS X: https://www.fusetools.com/developers/guides/setup/install-osx
-
-Uninstall instructions for OS X: https://gist.github.com/Tapped/daa78c08882f33b0c7c3
-
-Setup instructions for Windows: https://www.fusetools.com/developers/guides/setup/install-win
+Setup instructions for [OS X](https://www.fusetools.com/developers/guides/setup/install-osx) and [Windows](https://www.fusetools.com/developers/guides/setup/install-win). There's also these [uninstall instructions for OS X](https://gist.github.com/Tapped/daa78c08882f33b0c7c3) if you need them.
 
 ## Tutorial
 
@@ -18,10 +14,9 @@ We suggest you start by [following our tutorial](https://www.fusetools.com/devel
 
 ## $(Project structure)
 
-After having created a new project, either by using the dashboard or the `fuse` command line command, you will find three files in the project directory:
+After having created a new project, either by using the dashboard or the `fuse` command line command, you will find two files in the project directory:
 
 - `ProjectName.unoproj` - This is the project file, and basically keeps track of which files compose the project, which packages it depends on and also other handy values like your api keys.
-- `devices.json` - When previewing your code, Fuse needs to know which devices you would like to simulate. The `devices.json`-file contains definitions for quite a few devices you are likely to want to deploy your app to. If none of the shipped device definitions match what you intend to ship to, feel free to add your own here. This does not affect what real devices your project can run on.
 - `MainView.ux` - This is the main starting point for your app, mainly because it contains the `App`-tag. Under normal circumstances you will delete most of the contents of this file, but feel free to examine the default application and see what is needed to make a bare bones surface with some controls.
 
 Note: JavaScript do not need to be referenced from the `unoproj`-file. JavaScript files are referenced directly from UX.
@@ -77,15 +72,13 @@ If you are using Git for version control, you can put the following in your .git
 
 Live preview is a key feature of Fuse. You can live preview simultaneously on multiple devices (and in the desktop simulator), so you no longer need to build your project for specific devices between edits; just save and they will appear instantly on all of your devices.
 
-For instructions on how to enable iOS preview, go here: https://www.fusetools.com/developers/guides/previewandexport/devicepreview
-
-For instructions on how to enable preview on an Android device, go here: https://www.fusetools.com/developers/guides/previewandexport/devicepreview
+Follow these instructions to [enable iOS preview](https://www.fusetools.com/developers/guides/previewandexport/devicepreview) and [Android preview](https://www.fusetools.com/developers/guides/previewandexport/devicepreview).
 
 Starting a preview of your project on your desktop can be done in a couple of ways. If you have Sublime Text 3 installed with the supported plugin, you can right click on the UX-file and select "Begin Fuse preview" and select the "Local" option. Preview will then open the simulator, and it will sync automatically as you edit your files.
 
 Alternatively, you can navigate on the command line to your project root directory and type `fuse preview`.
 
-You can read more about starting Fuse preview on the desktop here: https://www.fusetools.com/developers/guides/previewandexport/toolpreview
+Read more about using [Fuse preview on the desktop](https://www.fusetools.com/developers/guides/previewandexport/toolpreview).
 
 ## Export
 

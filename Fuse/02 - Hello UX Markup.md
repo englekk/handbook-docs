@@ -7,9 +7,7 @@ Fuse can be used in two primary ways:
 
 The main representation of both these things in Fuse is through the use of UX Markup.
 
-UX Markup is an XML-based format that should be immediately familiar to anyone who has
-worked with similar formats. For an in-depth look at its quirks and detailed features, make
-sure you read the [UX Markup Guide](https://www.fusetools.com/learn/guides/uxmarkup).
+UX Markup is an XML-based file format. Anyone with even a passing experience reading XML will find it immediately familiar. For an in-depth look at its detailed features, read the [UX Markup Guide](https://www.fusetools.com/learn/guides/uxmarkup).
 
 
 ## $(Creating apps) : $(App)

@@ -19,6 +19,7 @@ Make sure the `.unoproj` file contains the `Android` package:
 
 You can then start using the Android APIs in your Uno code.
 Here is an example of how to access the system sounds using the `RingtoneManager`:
+
 ```
 using global::Android.android.media;
 using global::Android.android.app;
@@ -54,6 +55,7 @@ Make sure the `.unoproj`file contains the `Experimental.iOS` and `ObjC` packages
 ```
 
 Now we can implement the previous Android sound example for iOS as well:
+
 ```
 using global::iOS.AudioToolbox;
 

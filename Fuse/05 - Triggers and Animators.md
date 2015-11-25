@@ -5,6 +5,7 @@ Triggers provide a declarative way of creating animations with Fuse. At their mo
 @(Trigger)s are behaviors that live on a `Node` or UI @(Element), listen to events and perform animations and @(actions) in response.
 
 For example, here is a @(Panel) with a @(WhilePressed) trigger causing the panel to rotate 90 degrees with a bouncy animation.
+
 ```
 <Panel>
 	<WhilePressed>
@@ -15,9 +16,7 @@ For example, here is a @(Panel) with a @(WhilePressed) trigger causing the panel
 
 > ### Video introduction to Triggers and Animators
 
-<div class="embed-responsive embed-responsive-16by9">
-  <iframe width="420" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/bT1npBvXEzw"></iframe>
-</div>
+[YOUTUBE bT1npBvXEzw]
 
 <!-- TODO:
 * Explain how triggers are a timeline, plays forwards/backwards, applies/unapplies -->
@@ -36,19 +35,24 @@ Animators are used to specify which and how @(Element:elements) are to be animat
 There are five pairs of properties which are important for controlling the exact result of an animation.
 
 ### $(Target)/Value
+
 The `Target` property is used to identify the property which we intend to animate.
 The `Value` property is the value of the result of an animation.
 
 Because the task of setting a target and value is so common, UX has a special syntax for this. Instead of
+
 ```
 <Change Target="target.Property" Value="Value"/>
 ```
+
 one can do the following:
+
 ```
 <Change target.Property="Value"/>
 ```
 
 ### $(Duration)/$(DurationBack)
+
 Animations can have different behavior when animating forward and backward. When a trigger is activated, the animation is said to play forward. When the trigger is deactivated, the animation is played backward. Duration is used to set the duration for the animation. One can set a different duration for the backward animation by using the `DurationBack` property.
 
 When there are multiple @(Animators:animators) inside a trigger, the total duration of the trigger will be the longest duration among the animators.
@@ -63,7 +67,9 @@ In the following example, the total duration of the @(WhileTrue) trigger will be
 ```
 
 ### $(Delay)/$(DelayBack)
+
 Setting the `Delay` property results in the actual animation being delayed by that amount of seconds. `DelayBack` is used to set a different delay on the backward animation. The total duration of the animation becomes the delay + the duration. The following @(Change:change) animator has a total duration of 7 seconds. It waits 5 seconds after being activated and then animates its @(Target) over 2 seconds.
+
 ```
 <Change Delay="5" Duration="2" someElement.Height="100"/>
 ```
@@ -71,12 +77,15 @@ Setting the `Delay` property results in the actual animation being delayed by th
 ### $(Easing)/$(EasingBack)
 
 Fuse comes with a standard set of predefined easing curves. Easing curves are used to control how an animation progresses over time. The default easing is set to `Linear`. With linear easing, the animation progresses at the same speed over its entire duration. This usually appears quite unnatural and fake. To gain a more natural feel, we can change the easing to `QuadraticInOut`, like so:
+
 ```
 <Change Easing="QuadraticInOut" Duration="2" someElement.Property="SomeValue"/>
 ```
+
 This animator will progress slowly in the beginning, faster in the middle, and then slow again in the end.
 
 The following easing curves are defined:
+
 - $(Linear)
 - $(Quadratic)
 - $(Cubic)
@@ -91,6 +100,7 @@ The following easing curves are defined:
 
 They each have three different versions: [easing]In, [easing]Out and [easing]InOut.
 Assign easing to an animator like so:
+
 ```
 <Move Easing="CubicIn" X="5" Y="10" Duration="0.5"/>
 <Scale Easing="BounceOut" Factor="1.5" Duration="0.2"/>
@@ -122,6 +132,7 @@ The `Move` animator is used to move an element. `Move` does not affect layout, s
 Sometimes, one wants an element to move relative to its own size or some other elements size. To control this, we can use the @(RelativeTo) property.
 
 $(RelativeTo) can be set to the following values:
+
 - `Local`(default): Moves the set amount of points in the X and/or Y direction.
 - `Size`: Moves the set amount times the size of the element. So X="1" moves the element by its entire width in the X direction.
 - `ParentSize`: Same as `Size` but uses the elements parents size instead.
@@ -130,6 +141,7 @@ $(RelativeTo) can be set to the following values:
 
 `<Move X="0.5" RelativeTo="Size"/>` will move the element by half of its own width in the x-direction.
 Move corresponds to adding a @(Translation) on the element and using @(Change) to animate its X and Y values. The following two examples give the same result.
+
 ```
 <Panel>
 	<WhilePressed>
@@ -137,6 +149,7 @@ Move corresponds to adding a @(Translation) on the element and using @(Change) t
 	</WhilePressed>
 </Panel>
 ```
+
 ```
 <Panel>
 	<Translation ux:Name="someTranslation"/>
@@ -155,7 +168,9 @@ Move corresponds to adding a @(Translation) on the element and using @(Change) t
 ```
 
 ### $(Rotate)
+
 `Rotate` rotates an Element and is equal to adding a @(Rotation) and animating it with a @(Change).
+
 ```
 <Rotate Degrees="90" Duration="0.5"/>
 ```
@@ -181,6 +196,7 @@ When used in concert with @(LayoutAnimation), `Resize` allows you to animate the
 You may also specify a `Duration` to control the length of the animation.
 
 ### $(Spin)
+
 `Spin` continuously rotates an element, given a `Frequency` measured in full rotations per second.
 
 	<Panel>
@@ -193,6 +209,7 @@ As with @(Cycle), you may also specify a `Duration` to control the length of the
 
 
 > ## Transforms
+
 All @(Element:elements) can have transforms applied to them in order to move, scale or rotate.
 It is worth mentioning that the order of these transforms affects the order of when they are applied to the element, and therefore can lead to different results.
 
@@ -204,7 +221,6 @@ It is worth mentioning that the order of these transforms affects the order of w
 </Panel>
 ```
 
-
 ```
 <Panel Width="100" Height="50">
 	<Rotation Degrees="45"/>
@@ -212,10 +228,10 @@ It is worth mentioning that the order of these transforms affects the order of w
 </Panel>
 ```
 
-
 The two examples have quite different results. In the first case, the panel is first moved 100 points to the right and then rotated 45 degrees. In the other case, the panel is first rotated 45 degrees. The positive `X`-direction is now 45 degrees downward, and so our panel ends up being moved toward the bottom right.
 
 ### $(Keyframe)
+
 <!--AUTH:-->
 There are situations where we don't simply want to animate from point a to point b. For the cases where we want to specify several steps for an animation, we can use @(Keyframe:keyframes).
 
@@ -249,7 +265,9 @@ This time we use `TimeDelta` instead of time. With `TimeDelta` we can specify ti
 <!-- TODO: Interpolation -->
 
 ### $(Translation)
+
 `Translation` moves the element in the specified X, Y, and Z direction. The follwing example shows a @(Rectangle) which is moved 100 points in the X-direction and 50 points in the Y-direction.
+
 ```
 <Rectangle Width="50" Height="50">
 	<Translation X="100" Y="50"/>
@@ -267,12 +285,13 @@ The coordinates default to being relative to the elements original position(`Tra
 Additionally, `IsFlat` will return true if the `Translation` only translates on the X and Y axis.
 
 ### $(Scaling)
+
 `Scaling` enlarges or shrinks the element by the factor specified. The following example will make the @(Rectangle) twice as big as the original size:
+
 ```
 <Rectangle Width="100" Height="100">
 	<Scaling Factor="2"/>
 </Rectangle>
-
 ```
 
 `Scaling` can be utilized using:
@@ -286,7 +305,9 @@ While the property `IsFlat` exists, it will allways return true as `Scaling` can
 <!-- TODO: Document Vector -->
 
 ### $(Rotation)
+
 `Rotation` rotates the element by the degrees specified. Here is an example of a rectangle which is rotated by 90 degrees.
+
 ```
 <Rectangle Width="100" Height="50">
 	<Rotation Degrees="90"/>
@@ -311,6 +332,7 @@ While the effect is strictly 2D, the `IsFlat` property is there for consistency 
 ## $(Attractor)
 
 The `Attractor` is used to give a more natural movement to animations. It acts as an intermediary between an animator and its target. An `Attractor` will continuously animate its target towards its `Value` using a simple form of physics simulation. We can combine this behavior with animation by animating the attractor's `Value` property.
+
 ```
 <Panel ux:Name="somePanel">
 	<Translation ux:Name="someTranslation"/>
@@ -397,6 +419,7 @@ Tells a @(Navigation:navigation context) or a @(WebView) to step backward in its
 
 
 > ### $(Toggle)
+
 `Toggle` is used to toggle a boolean value between `true` and `false`. If inside a @(Switch) it will toggle the value of the @(Switch). `Toggle` can also be used to activate/deactive @(WhileTrue) and @(WhileFalse) triggers like so:
 
 ```
@@ -411,6 +434,7 @@ Tells a @(Navigation:navigation context) or a @(WebView) to step backward in its
 ```
 
 > ### $(BringIntoView)
+
 The `BringIntoView` action is used together with the @(ScrollView) control. By setting its `TargetNode` property, we can instruct the @(ScrollView) to go to a position so that that that `Node` becomes visible.
 
 This example shows how to use `BringIntoView` to make a @(ScrollView) automatically scroll between the top and the bottom by clicking a button:
@@ -452,6 +476,7 @@ AUTH: TODO: Do we need to discuss Z-ordering? -->
 ## WebView-specific triggers & actions
 
 ### $(PageBeginLoading)
+
 Triggers once the @(WebView) begins loading new content.
 
 ```
@@ -463,9 +488,11 @@ Triggers once the @(WebView) begins loading new content.
 ```
 
 ### $(WhilePageLoading)
+
 Becomes active when a @(WebView) Url changes, and stays active until it has completed loading content.
 
 ### $(PageLoaded)
+
 Triggers once the @(WebView) has completed loading content from its current Url.
 
 ```
@@ -477,11 +504,13 @@ Triggers once the @(WebView) has completed loading content from its current Url.
 ```
 
 ### $(Reload)
+
 The `Reload` action lets you tell a given WebView to reload its current location.
 
 `<Reload WebView="myWebView" />`
 
 ### $(LoadUrl)
+
 The `LoadUrl` action lets you tell a given WebView to navigate to a location.
 
 `<LoadUrl WebView="myWebView" Url="http://mypage.com" />`
@@ -545,7 +574,9 @@ Note that of course return is optional. If you don't return anything from your e
 State groups allow you to define completely custom states, with custom events.
 
 ### $(State)
+
 A `State` consists of a set of @(Animators:animators) inside a `State` object. It acts as a normal @(Trigger), but is activated by its containing @(StateGroup).
+
 ```
 <State>
 	<Rotate Degrees="200" Duration="0.4"/>
@@ -554,9 +585,11 @@ A `State` consists of a set of @(Animators:animators) inside a `State` object. I
 ```
 
 ### $(StateGroup)
+
 A `StateGroup` is used to group a set of @(State:states) together and switch between them. `StateGroup` has an `Active` property, which is used to assign which @(State) is currently active in that group. One can also specify the `TransitionType`, which can be either `Exclusive` or `Parallel`. `Exclusive` means that each state will have to be fully deactivated before the next state becomes active. `Parallel` means that as one state deactivates, the next one will become active and whatever properties they animate will be interpolated between them.
 
 Here is an example of how to use a `StateGroup` to switch the color of a @(Rectangle) between three states:
+
 ```
 <StackPanel>
 	<Panel Width="100" Height="100">
@@ -598,9 +631,11 @@ Here is an example of how to use a `StateGroup` to switch the color of a @(Recta
 These triggers react to data changes, either from data binding or from the control context.
 
 ### $(WhileTrue)
+
 `WhileTrue` is active while its `Value` property is `True` and inactive while it's false.
 
 ### $(WhileFalse)
+
 `WhileFalse` is active while its `Value` property is `False` and inactive while it's true.
 
 <!-- ### WhileFailed
@@ -611,7 +646,9 @@ TODO: I dont know what it does -->
 Following are triggers which react to pointer gestures.
 
 ### $(WhilePressed)
+
 `WhilePressed` is active while its containing element is being pressed and the pointer is inside its bounds.
+
 ```
 <Panel Width="50" Height="50">
 	<WhilePressed>
@@ -621,6 +658,7 @@ Following are triggers which react to pointer gestures.
 ```
 
 ### $(Clicked)
+
 `Clicked` is activated in response to a click @(Gestures:gesture). What constitutes a click-event can be platform specific, but usually means that the pointer was pressed and released within the bounds of the containing element.
 
 * Note: `Clicked`-triggers can be placed on any @(Element), not just @(Button:buttons).
@@ -634,15 +672,19 @@ Following are triggers which react to pointer gestures.
 ```
 
 ### $(Tapped)
+
 The `Tapped`-trigger is quite similar to the @(Clicked)-trigger. Where a click just means that the pointer has to be pressed and released on the element, a tap means that the pointer has to be released within a certain time after the pointer is pressed.
 
 ### $(DoubleClicked)
+
 `DoubleClicked` is activated when the element has been @(Clicked) twice within a certain timeframe.
 
 ### $(DoubleTapped)
+
 As with @(DoubleClicked), `DoubleTapped` is activated when the element has been @(Tapped) twice within a certain timeframe.
 
 ### $(WhileHovering)
+
 `WhileHovering` is active while the pointer is within the bounds if its containing @(Element).
 
 * Note: `WhileHovering` only has value when the device supports a hovering pointer, like the mouse pointer on desktop machines. For most smart phones this trigger won't have much value.
@@ -650,6 +692,7 @@ As with @(DoubleClicked), `DoubleTapped` is activated when the element has been 
 ## $(Control triggers)
 
 ### $(WhileEnabled)
+
 The `WhileEnabled` trigger is active whenever its containing @(Element:elements) `IsEnabled` property is set to `True`.
 
 ```
@@ -661,6 +704,7 @@ The `WhileEnabled` trigger is active whenever its containing @(Element:elements)
 ```
 
 ### $(WhileDisabled)
+
 The `WhileDisabled` trigger is active whenever its containing @(Element:elements) `IsEnabled` property is set to `False`.
 
 
@@ -682,6 +726,7 @@ In the following example, we place a red @(Panel) if on an Android device and a 
 ```
 
 ### $(WhileKeyboardVisible)
+
 `WhileKeyboardVisible` is active whenever the on-screen keyboard is visible.
 
 <!-- TODO: Example -->
@@ -713,11 +758,13 @@ The `LayoutAnimation` is triggered in response to a layout change. A layout chan
 <!-- TODO: Example -->
 
 ### $(RemovingAnimation)
+
 `RemovingAnimation` is similar to @(AddingAnimation), but is triggered whenever an @(Element) is being removed from the visual tree.
 
 `RemoveAnimation` is similar to @(AddingAnimation) but is triggered whenever the element is removed from its parent. `RemoveAnimation` progresses normally from 0 to 1 over the specified @(Duration).
 
 In the following example, a rectangle will move in from the right side by the width of its parent container over one second when it is added to the visual tree by the @(Switch). It will move out to the left by the same distance when it is removed.
+
 ```
 <App Theme="Basic" ClearColor="#eeeeeeff">
 	<StackPanel Background="#ddd" Margin="10">
@@ -749,6 +796,7 @@ In the following example, a rectangle will move in from the right side by the wi
 `ScrollingAnimation` lets us create animations in response to a @(ScrollView) being scrolled. By using the `From` and `To` properties one can define an interval on the @(ScrollView) where the trigger gets activated.
 
 In the following example, we use `ScrollingAnimation` to @(Scale) the @(ScrollView) as it is being scrolled.
+
 ```
 <ScrollView>
 	<StackPanel Background="#ddd" Margin="10">
@@ -769,6 +817,7 @@ In the following example, we use `ScrollingAnimation` to @(Scale) the @(ScrollVi
 `WhileScrollable` is used to animate based on whether a @(ScrollView) can be scrolled or not. Use the `ScrollDirections` property to filter the activation based which directions we care about.
 
 `ScrollDirections` can take on any one of the following values:
+
 - All
 - Both
 - Down
@@ -779,6 +828,7 @@ In the following example, we use `ScrollingAnimation` to @(Scale) the @(ScrollVi
 - Vertical
 
 In the following example, our background changes color when we reach the bottom of our @(ScrollView):
+
 ```
 <ScrollViewer>
 	<SolidColor ux:Name="color" Color="#000"/>

@@ -54,6 +54,7 @@ AUTH: Buggy?
 -->
 
 ## $(ForceField triggers)
+
 `ForceField` triggers are used to animate based on whether an @(Element) is affected by a `ForceField` rule or not.
 
 - ForceField - The `ForceField` needed to enter to activate this @(Trigger).
@@ -64,6 +65,7 @@ AUTH: Buggy?
 Being a pulse trigger, means that the @(Animation:animations)/@(Actions:actions) inside the trigger will be played forwards and then backwards in one continuous run. One can modify the `Threshold` property to specify how close the @(Element) has to be to activate the trigger.
 
 ### $(ExitedForceField)
+
 `ExitedForceField` works like @(EnteredForceField), but activates when elements leave the specified `ForceField`.
 
 ### $(InForceFieldAnimation)

@@ -54,11 +54,13 @@ This adds all the behavior we need for navigation, but this is not enough to let
 Now the @(Panel:panels) will move to the side when they are navigate to and from by the width of their parent container.
 
 ## $(Page)
+
 When a @(Panel) contains a @(Navigation) behavior, all its direct children act as pages in that navigation context. Since we usually want to style our pages a bit differently than the rest of our @(Panel:panels), Fuse comes with a `Page` type which we can use instead. The `Page` type is almost no different than a @(Panel), but comes with a `Title` property for convenience.
 
 It also lets us differentiate between pages and normal panels when styling our app.
 
 ## $(PageControl)
+
 Since swiping between pages is such a common thing to see in apps, Fuse has a wrapper @(Control) for exactly this.
 
 We actually already built most of the behavior of the `PageControl` from scratch in @(Basic navigation). One difference to note is that the `PageControl` styles @(Page:pages), and not @(Panel:panels), so it should be used like this:
@@ -69,6 +71,7 @@ We actually already built most of the behavior of the `PageControl` from scratch
 	</PageControl>
 
 ### $(PageIndicator)
+
 The `PageIndicator` can be used together with @(PageControl) to show clearly which page is selected. The following example has four pages in a @(PageControl) and a circle docked to the bottom for each @(Page). When a @(Page) becomes `Active` its corresponding indicator is scaled by a factor of 1.3.
 
 	<DockPanel>
@@ -149,15 +152,19 @@ With these on each page we can create a `PageIndicator` that uses images for the
 <!-- todo: Write about Factory -->
 
 ## $(Navigation types)
+
 There are three navigation types, and they have quite different behaviors and use cases. Each of them inherit from the `Navigation` base type.
 
 ### $(LinearNavigation)
+
 `LinearNavigation` is used when each page should be laid out linearly. So with a swipe navigation, one would start from page 1, swipe to page 2, then page 3 and so on. Navigating directly to page 3 from page 1 would cause a quick visit to page 2 on the way.
 
 ### $(DirectNavigation)
+
 With `DirectNavigation` there is no implicit flow between pages. Any @(Page) can be directly navigated to from any other @(Page). If we have 5 pages in our @(Navigation), there would be no scrolling over the other pages when navigating from page 1 to page 5 as there would be with a @(LinearNavigation).
 
 ### $(HierarchicalNavigation)
+
 A `HierarchicalNavigation` is commonly used when there is a hierarchical flow of pages. This is commonly found in the settings apps on iOS and Android devices. One first picks a topic, then a subtopic and so on, taking us deeper into the hierarchy of options. Navigating in this context means pushing a page onto a stack of pages. For each navigation there is a natural back navigation which takes us back the the page navigated from.
 
 > ## $(EdgeNavigator)
@@ -230,6 +237,7 @@ The `WhileCanGoForward` trigger is active whenever navigating forward is possibl
 
 
 ## $(EnteringAnimation) / $(ExitingAnimation)
+
 As seen above, Entering- and ExitingAnimation are used to specify how pages and elements behave when they are being navigated to and from. There is no default behavior for elements when using `Navigation` so unless a @(PageControl) is being used (which does apply a style with Entering- and ExitingAnimation to @(Page:pages)) one has to add these in order to define what a navigation actually means for a page.
 
 @(PageControl) applies the following style to @(Page:pages):
@@ -261,6 +269,7 @@ There are of course no limits to what can be animated while navigating. The foll
 	</Style>
 
 ## $(ActivatingAnimation)
+
 `ActivatingAnimation` is triggered as at page is navigated to and from (when it is becoming the active page). As a @(Page) is navigated to, any `ActivatingAnimation` is triggered. The animation progresses from 0 as the page is entering and becomes 1 when the page is done entering. As the page exits `ActivatingAnimation` progresses from 1 back to 0.
 
 Here is a more advanced use of @(EnteringAnimation:Entering-), @(ExitingAnimation:Exiting-) and @(ActivatingAnimation):
@@ -299,9 +308,11 @@ Here is a more advanced use of @(EnteringAnimation:Entering-), @(ExitingAnimatio
 <!-- TODO: Document whats going on? -->
 
 ## $(WhileActive)
+
 `WhileActive` animates as a page is becoming active.
 
 ## $(WhileInactive)
+
 `WhileInactive` animates as a page is becoming inactive.
 
 <!--
@@ -313,23 +324,29 @@ TODO
 TODO -->
 
 ## $(SwipeNavigate)
+
 `SwipeNavigate` is used to connect swiping gestures to @(Navigation).
 `SwipeNavigate` has three properties which modify its behavior: @(SwipeDirection), @(SwipeEnds) and @(VelocityThreshold).
 
 ### $(SwipeDirection)
+
 Can have the values `Down`, `Right`, `Left` and `Up`. These values indicate which direction one swipes in order to navigate to the next page.
 
 ### $(SwipeEnds)
+
 Can have the values `Closed`, `Open` and `Short`.
+
 `Closed` means that when one reaches the first or last page, one cannot swipe further.
 `Open` means that when one reaches the first or last page, one can swipe further as much as is possible. This does not mean that its possible to navigate to an undefined @(Page) however.
 `Short` acts similarly to `Open` except that one can only swipe a a short distance beyond the first or last page.
 
 ### $(VelocityThreshold)
+
 `VelocityThreshold` is used to decide how fast one has to swipe a page in order for it to be interpreted as a navigation. This means that one does not have to swipe the whole page away, but can get away with a short but fast flick gesture.
 
 
 ## Databind active page
+
 It is quite possible to perform navigation through data-binding.
 To do this, we data-bind the navigations `Active` property to a string in JavaScript. This string should correspond to the Name of the @(Page) we intend to navigate to.
 

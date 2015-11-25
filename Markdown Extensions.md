@@ -16,13 +16,13 @@ shorthand in references, i.e.
 
 * The links names and labels are case insensitive.
 
- * Any code within `code` blocks (indented or triple backticks) should automatically have keywords linked to defined keywords.
-
 ```
 > ## Title
 ```
 
 Indicates a collapsible section where only the title is visible
+
+* Any code within `code` blocks (indented or triple backticks) should automatically have keywords linked to defined keywords.
 
 # Planned features
 

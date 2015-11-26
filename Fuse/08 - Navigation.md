@@ -254,7 +254,7 @@ Fuse provides several @(Actions:actions) that allow you to perform @(Navigation:
 All navigation-related @(Actions:actions) have a `Context` property that lets you specify the navigation context to perform the action on.
 If `Context` is not specified, it will look for a parent element with a `Navigation` behavior and use that.
 
-### @(GoBack)
+### GoBack
 
 The behavior of `GoBack` depends on the type of navigation context it's performed on:
 
@@ -266,8 +266,7 @@ The behavior of `GoBack` depends on the type of navigation context it's performe
 
 The `WhileCanGoBack` trigger is active whenever navigating backward is possible.
 
-
-### @(GoForward)
+### GoForward
 
 As with @(GoBack), `GoForward` is also context-sensitive:
 

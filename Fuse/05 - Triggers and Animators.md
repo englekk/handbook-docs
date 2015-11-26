@@ -372,10 +372,11 @@ Permanently changes the value of a property. If you want to just change it tempo
 </Clicked>
 ```
 
-Set may also be invoked using its `Target` and `Value` properties.
+Set may also be invoked using its `Target` and `Value` properties. The following lines are equivalent:
 
 ```
 <Set Target="color.Color" Value="#f00" />
+<Set color.Color="#f00" />
 ```
 
 > ### $(Callback)

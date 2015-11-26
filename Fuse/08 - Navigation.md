@@ -167,6 +167,69 @@ With `DirectNavigation` there is no implicit flow between pages. Any @(Page) can
 
 A `HierarchicalNavigation` is commonly used when there is a hierarchical flow of pages. This is commonly found in the settings apps on iOS and Android devices. One first picks a topic, then a subtopic and so on, taking us deeper into the hierarchy of options. Navigating in this context means pushing a page onto a stack of pages. For each navigation there is a natural back navigation which takes us back the the page navigated from.
 
+Below is an example that demonstrates usage of `HierarchicalNavigation` in conjunction with @(NavigateTo), @(GoBack), @(GoForward), and @(WhileCanGoForward):
+
+```
+<Panel>
+	<HierarchicalNavigation ux:Name="nav" ReuseExistingNode="false" Active="mainPage" />
+
+	<Style>
+		<Page>
+			<EnteringAnimation>
+				<Move X="1" RelativeTo="ParentSize" />
+			</EnteringAnimation>
+			<ExitingAnimation>
+				<Move X="-1" RelativeTo="ParentSize" />
+			</ExitingAnimation>
+		</Page>
+	</Style>
+
+	<Page ux:Name="mainPage">
+		<StackPanel>
+			<Button Text="Page 1">
+				<Clicked>
+					<NavigateTo Target="subPage1" />
+				</Clicked>
+			</Button>
+			<Button Text="Page 2">
+				<Clicked>
+					<NavigateTo Target="subPage2" />
+				</Clicked>
+			</Button>
+			<WhileCanGoForward>
+				<Button Text="Go Forward">
+					<Clicked>
+						<GoForward />
+					</Clicked>
+				</Button>
+			</WhileCanGoForward>
+		</StackPanel>
+	</Page>
+
+	<Page ux:Name="subPage1">
+		<StackPanel>
+			<Text>Welcome to page 1!</Text>
+			<Button Text="Go Back">
+				<Clicked>
+					<GoBack />
+				</Clicked>
+			</Button>
+		</StackPanel>
+	</Page>
+
+	<Page ux:Name="subPage2">
+		<StackPanel>
+			<Text>Welcome to page 2!</Text>
+			<Button Text="Go Back">
+				<Clicked>
+					<GoBack />
+				</Clicked>
+			</Button>
+		</StackPanel>
+	</Page>
+</Panel>
+```
+
 > ## $(EdgeNavigator)
 
 `EdgeNavigator` is designed to allow you to dock content on the edge of a @(Panel), typically used in full screen.

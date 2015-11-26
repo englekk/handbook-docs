@@ -167,7 +167,9 @@ With `DirectNavigation` there is no implicit flow between pages. Any @(Page) can
 
 A `HierarchicalNavigation` is commonly used when there is a hierarchical flow of pages. This is commonly found in the settings apps on iOS and Android devices. One first picks a topic, then a subtopic and so on, taking us deeper into the hierarchy of options. Navigating in this context means pushing a page onto a stack of pages. For each navigation there is a natural back navigation which takes us back the the page navigated from.
 
-Below is an example that demonstrates usage of `HierarchicalNavigation` in conjunction with @(NavigateTo), @(GoBack), @(GoForward), and @(WhileCanGoForward):
+> ### HierarchicalNavigation example
+
+This is an example that demonstrates usage of `HierarchicalNavigation` in conjunction with @(NavigateTo), @(GoBack), @(GoForward), and @(WhileCanGoForward).
 
 ```
 <Panel>

@@ -227,14 +227,14 @@ Video come with a set of properties that can be used to configure it or control 
 - `Position`: the current position of the video in seconds
 - `IsLooping`: a `bool` specifying if the video should loop or not, default is `false`
 
-### $(Useful triggers that can be used with Video)
+### $(Video-Triggers:Useful triggers that can be used with Video)
 
 	<Video>
-		<WhilePlaying />	<!-- Active while the video is playing -->
-		<WhilePaused />		<!-- Active while the video is paused -->
-		<WhileCompleted />	<!-- Active while the video is done playing -->
-		<WhileLoading />	<!-- Active while the video is loading -->
-		<WhileFailed />		<!-- Active if the video failed to load or an error occured -->
+		<WhilePlaying />    <!-- Active while the video is playing -->
+		<WhilePaused />     <!-- Active while the video is paused -->
+		<WhileCompleted />  <!-- Active while the video is done playing -->
+		<WhileLoading />    <!-- Active while the video is loading -->
+		<WhileFailed />     <!-- Active if the video failed to load or an error occured -->
 	</Video>
 
 ### Supported platforms

@@ -237,9 +237,6 @@ Video come with a set of properties that can be used to configure it or control 
 		<WhileFailed />     <!-- Active if the video failed to load or an error occured -->
 	</Video>
 
-### Supported platforms
-
-Video is currently only supported on iOS and Android. Support for video playback on other platforms is in our roadmap
 
 ### Supported formats
 
@@ -700,9 +697,9 @@ A Placeholder value can be added if you want some default string to be displayed
 	<TextInput PlaceholderText="My placeholder text" />
 
 And it can also have a separate color
-	
+
 	<TextInput PlaceholderText="My placeholder text" PlaceholderColor="#eee" />
-	
+
 
 <!--
 - WhileFocused TODO: I am not sure what exactly this is supposed to demonstrate

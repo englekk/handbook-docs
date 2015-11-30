@@ -241,9 +241,10 @@ Video come with a set of properties that can be used to configure it or control 
 ### Supported formats
 
 Video is implemented by using the videodecoder provided by the export target and therefore supports whatever the platform supports.
-Be aware that Android and iOS might not share support for some formats
+Be aware that Windows, OS X, Android and iOS might not share support for some formats
 - [Android supported formats](http://developer.android.com/guide/appendix/media-formats.html)
-- [iOS supported formats (found under 'public.movie')](https://developer.apple.com/library/mac/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html)
+- [iOS and OS X supported formats (found under 'public.movie')](https://developer.apple.com/library/mac/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html)
+- [Windows supported formats](https://msdn.microsoft.com/en-us/library/windows/desktop/dd407173(v=vs.85).aspx)
 
 > ### $(Video example)
 

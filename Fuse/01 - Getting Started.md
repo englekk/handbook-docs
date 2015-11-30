@@ -33,7 +33,7 @@ To divide the solution into multiple projects and reference them from the `unopr
 ]
 ```
 
-To add/remove package references in the `unoproj`-file:
+To add/remove references to one of the standard packages shipping with Fuse :
 
 ```
 "Packages": [

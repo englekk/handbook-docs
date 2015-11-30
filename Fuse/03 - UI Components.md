@@ -244,7 +244,7 @@ Video is implemented by using the videodecoder provided by the export target and
 Be aware that Windows, OS X, Android and iOS might not share support for some formats
 - [Android supported formats](http://developer.android.com/guide/appendix/media-formats.html)
 - [iOS and OS X supported formats (found under 'public.movie')](https://developer.apple.com/library/mac/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html)
-- [Windows supported formats](https://msdn.microsoft.com/en-us/library/windows/desktop/dd407173(v=vs.85).aspx)
+- [Windows supported formats](https://msdn.microsoft.com/en-us/library/windows/desktop/dd407173%28v=vs.85%29.aspx)
 
 > ### $(Video example)
 

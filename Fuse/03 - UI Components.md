@@ -344,14 +344,6 @@ It is possible to use other kinds of brushes to fill shapes. For example:
 
 Here, we created a `Circle` that has been filled with an `ImageFill`-brush, great for creating a typical profile picture in a social app. Then under it, we created a @(Rectangle) that has a nice and subtle `LinearGradient`.
 
-Instead of `StartPoint` and `EndPoint`, you can also specify an angle. This can either be in radians using the `Angle` property, or in degrees using the `AngleDegrees` property.
-
-	<LinearGradient Angle="2.4" />
-
-	             or
-
-	<LinearGradient AngleDegrees="45">
-
 ### $(Stroke:Strokes)
 
 Strokes accept a brush the same way a @(Fill) does:
@@ -438,6 +430,14 @@ You can describe a `LinearGradient`-brush using `LinearGradient` and `GradientSt
 	</LinearGradient>
 
 The `StartPoint` and `EndPoint` are both X and Y offsets within the @(Shapes:Shape) the brush is used in, so you can specify a diagonal brush by using `StartPoint="0,0" EndPoint="1,1"`.
+
+Instead of `StartPoint` and `EndPoint`, you can also specify an angle. This can either be in radians using the `Angle` property, or in degrees using the `AngleDegrees` property.
+
+	<LinearGradient Angle="2.4" />
+
+	             or
+
+	<LinearGradient AngleDegrees="45">
 
 ## $(Button)
 

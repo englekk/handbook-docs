@@ -910,6 +910,13 @@ Valid values for `Layer` are:
 - `Layout`
 - `Overlay`
 
+## About $(Control:Controls)
+
+In Fuse, we use the word _control_ to describe a UI component that has a semantic function, but could vary largely in visual appearance.
+
+For example, @(Button) defines certain properties and events, such as @(Clicked), but what a button looks and feels like may be very different between different @(Theme:themes) or @(Style:styles).
+
+
 ## $(Effects)
 
 Fuse has the ability to render a set of visual effects that can be added to most controls. It is important to understand that in order for these to work, you need to be in graphics mode; native themes are limited in their ability to render these effects.
@@ -1006,9 +1013,3 @@ The `Mask` effects accepts the following properties:
 If you use a white image with alpha channel, `RGBA` and `Alpha` will have the same result.
 
 The mask will always stretch itself to match the size of the element to be masked.
-
-### About $(Control:Controls)
-
-In Fuse, we use the word _control_ to describe a UI component that has a semantic function, but could vary largely in visual appearance.
-
-For example, @(Button) defines certain properties and events, such as @(Clicked), but what a button looks and feels like may be very different between different @(Theme:themes) or @(Style:styles).

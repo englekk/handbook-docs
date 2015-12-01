@@ -474,6 +474,51 @@ This example shows how to use `BringIntoView` to make a @(ScrollView) automatica
 <!--  ### $(BringToFront)
 AUTH: TODO: Do we need to discuss Z-ordering? -->
 
+## Native actions
+
+Fuse comes with a set of actions that invoke OS-specific behavior, such as dialing a phone number or vibrating the device.
+
+### $(LaunchUri)
+
+Requests the operating system to launch a [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
+
+	<LaunchUri Uri="https://www.fusetools.com" />
+
+An URI can be anything from a URL to a custom URI scheme registered by an app. The underlying OS is responsible for handling the request.
+For instance, [here is a list of common URI schemes](http://www.iana.org/assignments/uri-schemes) that are registered with The Internet Assigned Numbers Authority (IANA).
+
+### $(LaunchEmail)
+
+Launches the default email app, and starts composing a message.
+
+	<LaunchEmail To="contact@fusetools.com" />
+
+`LaunchEmail` accepts the following properties:
+
+- `To` – The email address(es) of the recipient
+- `CarbonCopy` – The email address(es) of whom to send a carbon copy
+- `BlindCarbonCopy` – The email address(es) of whom to send a blind carbon copy
+- `Subject` – The subject of the email
+- `Message` – The body text of the email
+
+### $(LaunchMaps)
+
+Launches the default maps app, given a latitude/longitude pair.
+
+	<LaunchMaps Latitude="35.673813" Longitude="-36.780810" />
+
+### $(Call)
+
+Issues a phone call to the specified number.
+
+	<Call Number="123 45 678" />
+
+### $(Vibrate)
+
+Vibrates the device for a given number of seconds.
+
+	<Vibrate Duration="0.8" />
+
 ## WebView-specific triggers & actions
 
 ### $(PageBeginLoading)

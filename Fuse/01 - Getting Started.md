@@ -102,7 +102,7 @@ This will open the built project in Xcode. If you select your device from the pu
 
 > ### Exporting to Android
 
-To export to Android, you go to the project root and type:
+You must first have installed [the Android SDK/NDK packages](https://www.fusetools.com/learn/guides/preview-and-export-android) (just as you would for preview). You can then go to the project root and type:
 
 `fuse build --target=Android --run`
 

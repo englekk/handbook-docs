@@ -14,6 +14,8 @@ If you have tested a library and found it to work/not work/a work-around, please
 The following third party JavaScript libraries are tested and known to work
 
 * [Parse SDK](https://parse.com/docs/js/guide)
+* [lodash](https://lodash.com)
+* [bluebird](https://github.com/petkaantonov/bluebird)
 * [Moment.js](http://momentjs.com)
 
 <!-- TODO: Add this section as we uncover incompatible libraries

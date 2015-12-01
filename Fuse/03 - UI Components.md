@@ -237,6 +237,12 @@ Video come with a set of properties that can be used to configure it or control 
 		<WhileFailed />     <!-- Active if the video failed to load or an error occured -->
 	</Video>
 
+### $(Video-Actions:Useful actions that can be used to control Video)
+Fuse comes with a set of actions that can be used to control video playback. They all have a common `Target` property that specifies which $(Video) element they control.
+
+	<Pause />      <!-- Pauses playback, leaving the current position as-is -->
+	<Stop />       <!-- Stops playback and returns to the beginning of the video -->
+	<Resume />     <!-- Resumes playback from the current position -->
 
 ### Supported formats
 

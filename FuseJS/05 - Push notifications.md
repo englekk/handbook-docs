@@ -1,4 +1,4 @@
-# Fuse Push Notifications
+# Push Notifications
 
 Fuse provides support for push-notifications from Google's Cloud Messaging (GCM) and Apple' Push Notification Service (APNS).
 

@@ -233,7 +233,7 @@ After you have done that your "Mobile" section will look something like this
 ```
 "Mobile": {
   "UriScheme": "YourScheme",
-  "Orientations": "Auto",
+  ...
 },
 ```
 
@@ -244,7 +244,7 @@ If your app is already open `onReceivedUri` will just fire. Your app may momenta
 To use the callback in your javascript code you can simply do the following:
 
 ```
-var interApp = require('FuseJS/InterApp1);
+var interApp = require('FuseJS/InterApp');
 
 interApp.onReceivedUri = function(uri) {
     console.log ("js recieved Uri: " + uri);

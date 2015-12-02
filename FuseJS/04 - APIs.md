@@ -9,7 +9,7 @@ TODO for the below: write some basic inline docs & examples, then point to the M
 ## Polyfills
 
 FuseJS executes in a (minimum) EcmaScript 5.1 environment on all supported platforms.
-There is no web browser involved, FuseJS only provides a subset of the browser's standard libraries. FuseJS provides polyfills for some features (typically browser features) that are mainly provided to make $(third party libraries) work. These implementations are not neccessarily complete at this point, but check the @(FuseJS Roadmap) to see what the status is for development.
+There is no web browser involved, FuseJS only provides a subset of the browser's standard libraries. FuseJS provides polyfills for some features (typically browser features) that are mainly provided to make $(third party libraries) work. These implementations are not neccessarily complete at this point so please report any bug and feature requests in the [forums](https://www.fusetools.com/community/forums).
 
 ## $(fetch)
 

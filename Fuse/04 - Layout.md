@@ -39,7 +39,15 @@ The StackPanel places its children in a stack. The default layout is a vertical 
 </StackPanel>
 ```
 
-Additionally, one can use the `ItemSpacing` property to make some space between elements, as an alternative to setting a margin on the elements.
+Additionally, one can use the `ItemSpacing` property to make some space between elements, as an alternative to setting a margin on the elements. The following example shows three Panels in a `StackPanel`, spaced using the `ItemSpacing` property:
+
+```
+<StackPanel ItemSpacing="20">
+	<Panel Height="100" Background="Red"/>
+	<Panel Height="100" Background="Green"/>
+	<Panel Height="100" Background="Blue"/>
+</StackPanel>
+```
 
 ## $(Grid)
 

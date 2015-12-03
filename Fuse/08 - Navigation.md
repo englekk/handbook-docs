@@ -71,16 +71,16 @@ We actually already built most of the behavior of the `PageControl` from scratch
 	<Page Background="Blue"/>
 </PageControl>
 ```
-	
-`PageControl` has a few properties you might be interrested in:
+
+`PageControl` has a few properties that might be of interest:
 
 * `Active` - The currently active page
-* `CanGoBack` - `true` if you can navigate backwards
-* `CanGoForward` - `true` if you can navigate forward
+* `CanGoBack` - `true` if it is possible to navigate backward
+* `CanGoForward` - `true` if it is possible to navigate forward
 * `PageCount` - Current page number
 * `PageProgress` - Progress in the navigation from 0.0 to the amount of pages minus one.
 
-One interresting feature is the fact that you can set the active `Page` in a `PageControl` by name using the `Active` property, referencing to the wanted `Page` by `Name`. In the following example, We have a 3-page app, and a button that allways returns the user to the first page.
+You can set the active `Page` in a `PageControl` by assigning the `Active` property to the name of your `Page`. In the following example, We have a 3-page app, and a button that always returns the user to the first page.
 
 ```
 <App Theme="Basic" Background="#eeeeeeff">
@@ -91,7 +91,7 @@ One interresting feature is the fact that you can set the active `Page` in a `Pa
       function clickHandler() {
 		  currentPage.value = "Page1";
       }
-      module.exports={
+      module.exports = {
 		  clickHandler: clickHandler,
 		  currentPage: currentPage
       };
@@ -106,7 +106,7 @@ One interresting feature is the fact that you can set the active `Page` in a `Pa
 </App>
 ```
 
-The [Pages using JavaScript](https://www.fusetools.com/community/examples/pageslist) example is a good example of the `Active` property in use.
+The [Pages using JavaScript](https://www.fusetools.com/community/examples/pageslist) example shows this in practice.
 
 ### $(PageIndicator)
 

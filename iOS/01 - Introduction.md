@@ -1,3 +1,5 @@
+<documentProperties pageTitle="Learn iOS" />
+
 # $(learn-iOS:Introduction)
 
 * TODO: link to preview & export

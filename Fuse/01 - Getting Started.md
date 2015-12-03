@@ -1,3 +1,5 @@
+<documentProperties pageTitle="Learn Fuse" />
+
 # $(Getting Started)
 
 Getting up and running with Fuse is super easy. First of all, [download the latest version of Fuse!](https://www.fusetools.com/downloads)

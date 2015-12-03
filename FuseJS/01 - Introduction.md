@@ -1,3 +1,5 @@
+<documentProperties pageTitle="Learn FuseJS" />
+
 # Introduction
 
 $(FuseJS) is a $(JavaScript) framework for writing cross-platform mobile app business logic.

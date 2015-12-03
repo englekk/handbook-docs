@@ -139,6 +139,8 @@ $(RelativeTo) can be set to the following values:
 - `LayoutChange`: Used in response to a @(LayoutAnimation) to move the element by the amount of a layout change.
 - `Keyboard`: Moves the element relative to the size of the eyboard.
 
+Additionally, if you set `RelativeTo` to `Size` or `ParentSize`, you can move the element relative to the size of another element set by the `RelativeElement` property.
+
 `<Move X="0.5" RelativeTo="Size"/>` will move the element by half of its own width in the x-direction.
 Move corresponds to adding a @(Translation) on the element and using @(Change) to animate its X and Y values. The following two examples give the same result.
 
@@ -163,6 +165,8 @@ Move corresponds to adding a @(Translation) on the element and using @(Change) t
 
 `Scale` works in the same way as @(Move) except that it scales the element. Note that scale doesn't actually change the elements size. This means that the rest of the UI layout wont be affected and the animation is guaranteed to be fast.
 
+You can scale an element uniformly along all axes by using the `Factor` property. Alternatively, you can also scale on a per-axis basis using `Vector` or `X`, `Y`, and `Z`.
+
 ```
 <Scale Factor="2" Duration="0.4"/>
 ```
@@ -174,6 +178,8 @@ Move corresponds to adding a @(Translation) on the element and using @(Change) t
 ```
 <Rotate Degrees="90" Duration="0.5"/>
 ```
+
+Using the `Degrees` property rotates the element around the Z-axis. Alternatively, you can use `DegreesX`, `DegreesY`, and `DegreesZ` to rotate the element around a specifix axis. However, you will propabily not need this.
 
 ### $(Resize)
 
@@ -207,6 +213,53 @@ You may also specify a `Duration` to control the length of the animation.
 
 As with @(Cycle), you may also specify a `Duration` to control the length of the animation.
 
+### $(Skew)
+
+`Skew` allows you to animate a skew transform on an element.
+
+```
+<Skew DegreesX="30" Duration="0.4"/>
+```
+
+You can use `DegreesX` and `DegreesY` to skew on one axis, or `DegreesXY` and `XY` to skew on both axes in degrees or radians, respectively.
+
+### $(Keyframe:Keyframes)
+<!--AUTH:-->
+There are situations where we don't simply want to animate from point a to point b. For the cases where we want to specify several steps for an animation, we can use @(Keyframe:keyframes).
+
+```
+<Move RelativeTo="ParentSize">
+	<Keyframe X="10" Time="0.5"/>
+	<Keyframe X="15" Time="1"/>
+	<Keyframe X="5" Time="2"/>
+</Move>
+```
+
+This @(Move) animator will first animate X to 10 over 0.5 second, then from 10 to 15 over 0.5 second. Finally, it will go from an X of 15 to 5 over 1 second.
+Here is an example of using @(Keyframe:keyframes) with a @(Change) animator:
+
+	<Page>
+		<SolidColor ux:Name="background" Color="#f00"/>
+		<ActivatingAnimation>
+			<Change Target="background.Color">
+				<Keyframe Value="#0f0" TimeDelta="0.25"/>
+				<Keyframe Value="#f00" TimeDelta="0.25"/>
+				<Keyframe Value="#ff0" TimeDelta="0.25"/>
+				<Keyframe Value="#0ff" TimeDelta="0.25"/>
+			</Change>
+		</ActivatingAnimation>
+	</Page>
+
+This time we use `TimeDelta` instead of time. With `TimeDelta` we can specify time as a relative term instead of absolute. This means that the order of the @(Keyframe:keyframes) matter, but it lets us reason about the keyframes in terms of their duration instead of their absolute time on the timeline.
+<!-- TODO: Interpolation -->
+
+### $(Nothing)
+
+All animations for a `Trigger` share a common timeline, which ends when the last animation has completed. In some rare cases, you may want to artificially extend the timeline. This can be done using `Nothing`. Logically, it is a blank animation with a set length, forcing the length of the timeline to be at least the duration of the `Nothing`. 
+
+```
+<Nothing Duration="1" />
+```
 
 > ## Transforms
 
@@ -229,40 +282,6 @@ It is worth mentioning that the order of these transforms affects the order of w
 ```
 
 The two examples have quite different results. In the first case, the panel is first moved 100 points to the right and then rotated 45 degrees. In the other case, the panel is first rotated 45 degrees. The positive `X`-direction is now 45 degrees downward, and so our panel ends up being moved toward the bottom right.
-
-### $(Keyframe)
-
-<!--AUTH:-->
-There are situations where we don't simply want to animate from point a to point b. For the cases where we want to specify several steps for an animation, we can use @(Keyframe:keyframes).
-
-
-```
-<Move RelativeTo="ParentSize">
-	<Keyframe X="10" Time="0.5"/>
-	<Keyframe X="15" Time="1"/>
-	<Keyframe X="5" Time="2"/>
-</Move>
-```
-
-
-This @(Move) animator will first animate X to 10 over 0.5 second, then from 10 to 15 over 0.5 second. Finally, it will go from an X of 15 to 5 over 1 second.
-Here is an example of using @(Keyframe:keyframes) with a @(Change) animator:
-
-	<Page>
-		<SolidColor ux:Name="background" Color="#f00"/>
-		<ActivatingAnimation>
-			<Change Target="background.Color">
-				<Keyframe Value="#0f0" TimeDelta="0.25"/>
-				<Keyframe Value="#f00" TimeDelta="0.25"/>
-				<Keyframe Value="#ff0" TimeDelta="0.25"/>
-				<Keyframe Value="#0ff" TimeDelta="0.25"/>
-			</Change>
-		</ActivatingAnimation>
-	</Page>
-
-This time we use `TimeDelta` instead of time. With `TimeDelta` we can specify time as a relative term instead of absolute. This means that the order of the @(Keyframe:keyframes) matter, but it lets us reason about the keyframes in terms of their duration instead of their absolute time on the timeline.
-
-<!-- TODO: Interpolation -->
 
 ### $(Translation)
 
@@ -350,10 +369,7 @@ Triggers can contain actions too, which are one-off events that fire at a partic
 
 Note that actions, contrary to @(Animators:animators) are not reversible. This means it is not neccessarily possible to return to the @(rest state) if the trigger is reversed.
 
-### $(Action.Delay:Delay)
-
-Like @(Animators:animators), `Actions` can have a `Delay`. This specifies a number of seconds from the @(Trigger) is activated to the `Action` is fired.
-
+Like @(Animators:animators), `Actions` can have a `Delay`. This specifies a number of seconds from the @(Trigger) is activated to the `Action` is fired. However, unlike `Animators`, they can also have a property called `AtProgress` which can be set to a value between 0 and 1. It has a similar function as `Delay`, but is instead relative to the full @(Duration) of the @(Trigger). Setting `AtProgress` to 0, means the action is fired as soon as the @(Trigger) is actiated. Setting it to 0.5 means it is fired half way through and so on.
 
 ### $(Action.AtProgress:AtProgress)
 

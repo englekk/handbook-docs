@@ -65,10 +65,48 @@ Since swiping between pages is such a common thing to see in apps, Fuse has a wr
 
 We actually already built most of the behavior of the `PageControl` from scratch in @(Basic navigation). One difference to note is that the `PageControl` styles @(Page:pages), and not @(Panel:panels), so it should be used like this:
 
-	<PageControl>
-		<Page Background="Red"/>
-		<Page Background="Blue"/>
-	</PageControl>
+```
+<PageControl>
+	<Page Background="Red"/>
+	<Page Background="Blue"/>
+</PageControl>
+```
+	
+`PageControl` has a few properties you might be interrested in:
+
+* `Active` - The currently active page
+* `CanGoBack` - `true` if you can navigate backwards
+* `CanGoForward` - `true` if you can navigate forward
+* `PageCount` - Current page number
+* `PageProgress` - Progress in the navigation from 0.0 to the amount of pages minus one.
+
+One interresting feature is the fact that you can set the active `Page` in a `PageControl` by name using the `Active` property, referencing to the wanted `Page` by `Name`. In the following example, We have a 3-page app, and a button that allways returns the user to the first page.
+
+```
+<App Theme="Basic" Background="#eeeeeeff">
+  <DockPanel>
+    <JavaScript>
+      var Observable = require("FuseJS/Observable");
+      var currentPage = Observable("Page1");
+      function clickHandler() {
+		  currentPage.value = "Page1";
+      }
+      module.exports={
+		  clickHandler: clickHandler,
+		  currentPage: currentPage
+      };
+    </JavaScript>
+    <PageControl Active="{currentPage}" Dock="Fill">
+      <Page Name="Page1" Background="Red"/>
+      <Page Name="Page2" Background="Green"/>
+      <Page Name="Page3" Background="Blue"/>
+    </PageControl>
+    <Button Text="Home" Clicked="{clickHandler}" Dock="Bottom"/>
+  </DockPanel>
+</App>
+```
+
+The [Pages using JavaScript](https://www.fusetools.com/community/examples/pageslist) example is a good example of the `Active` property in use.
 
 ### $(PageIndicator)
 

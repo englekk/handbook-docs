@@ -19,7 +19,7 @@ __Header.ux__:
 	<!-- Setting 'ux:Class' is superfluous in this case,
 		 as it is implicitly set on the root element in
 		 a UX-file, but included here for clarity -->
-	<Text ux:Class="Header FontSize="22" />
+	<Text ux:Class="Header" FontSize="22" />
 
 __MainView.ux__:
 

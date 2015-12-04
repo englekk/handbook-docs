@@ -61,7 +61,7 @@ AUTH: Buggy?
 
 ### $(EnteredForceField)
 
-`EnteredForceField` is a pulse triger which which activates when the @(Element) enters the specified `ForceField`.
+`EnteredForceField` is a pulse trigger which which activates when the @(Element) enters the specified `ForceField`.
 Being a pulse trigger, means that the @(Animation:animations)/@(Actions:actions) inside the trigger will be played forwards and then backwards in one continuous run. One can modify the `Threshold` property to specify how close the @(Element) has to be to activate the trigger.
 
 ### $(ExitedForceField)

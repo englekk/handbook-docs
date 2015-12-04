@@ -157,16 +157,16 @@ through the `Basic` theme.
 		<td>
 			<b>iOS Navigation</b>
 		</td>
-		<td><b>N/A</b></td>
+		<td class="feature__n-a">N/A</td>
 		<td class="feature__planned">Planned</td>
-		<td><b>N/A</b></td>
+		<td class="feature__n-a">N/A</td>
 	</tr>
 
 	<tr>
 		<td>
 			<b>Android Material Design Navigation</b>
 		</td>
-		<td><b>N/A</b></td>
+		<td class="feature__n-a">N/A</td>
 		<td class="feature__planned">Planned</td>
 		<td class="feature__backlog">Backlog</td>
 	</tr>
@@ -186,8 +186,8 @@ through the `Basic` theme.
 		<td>
 			<b>Push Notifications</b>
 		</td>
-		<td><b>N/A</b></td>
+		<td class="feature__n-a">N/A</td>
 		<td class="feature__planned">Planned</td>
-		<td><b>N/A</b></td>
+		<td class="feature__n-a">N/A</td>
 	</tr>
 </table>

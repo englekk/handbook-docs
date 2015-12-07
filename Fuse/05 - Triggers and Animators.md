@@ -136,7 +136,8 @@ $(RelativeTo) can be set to the following values:
 - `Local`(default): Moves the set amount of points in the X and/or Y direction.
 - `Size`: Moves the set amount times the size of the element. So X="1" moves the element by its entire width in the X direction.
 - `ParentSize`: Same as `Size` but uses the elements parents size instead.
-- `LayoutChange`: Used in response to a @(LayoutAnimation) to move the element by the amount of a layout change.
+- `PositionChange`: Used in response to a @(LayoutAnimation) to move the element by the amount of change in position within it's parent.
+- `WorldPositionChange`: Used in response to a @(LayoutAnimation) to move the element by the amount of change in position relative to the entire display.
 - `Keyboard`: Moves the element relative to the size of the eyboard.
 
 `<Move X="0.5" RelativeTo="Size"/>` will move the element by half of its own width in the x-direction.
@@ -179,7 +180,10 @@ Move corresponds to adding a @(Translation) on the element and using @(Change) t
 
 When used in concert with @(LayoutAnimation), `Resize` allows you to animate the size of an element:
 
-	 <Resize RelativeTo="LayoutChange" Duration="0.5" Easing="CircularInOut" />
+```
+<Resize RelativeTo="SizeChange" Duration="0.5" Easing="CircularInOut" />
+```
+
 
 
 ### $(Cycle)

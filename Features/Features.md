@@ -32,7 +32,11 @@ This Dashboard is updated for each release.
 </table>
 
 
-## Generic UX Components
+## Basic UX Components
+
+Basic UX components are the fundamental building blocks for creating cross-platform app screens. These components work
+across all themes, in both `Native` mode and `Graphics` mode. Appearance of certain controls (such as Button) may vary in different
+themes.
 
 <table>
 	<tr>
@@ -44,7 +48,7 @@ This Dashboard is updated for each release.
 	<tr>
 		<td>
 			<b>Layout Controls</b>
-			Define flexible, responsive layout for your app screens.
+			<p>Define flexible, responsive layout for your app screens.<p>
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
@@ -53,7 +57,7 @@ This Dashboard is updated for each release.
 	<tr>
 		<td>
 			<b>Shapes</b>
-			Build UI designs with fast vector shapes to easily adapt your design to any screen size and density. 
+			<p>Build UI designs with fast vector shapes to easily adapt your design to any screen size and density.<p>
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
@@ -62,7 +66,7 @@ This Dashboard is updated for each release.
 	<tr>
 		<td>
 			<b>Image</b>
-			Display images and icons with multi-density support to adapt to any screen.
+			<p>Display images and icons with multi-density support to adapt to any screen.<p>
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
@@ -71,41 +75,23 @@ This Dashboard is updated for each release.
 	<tr>
 		<td>
 			<b>Video</b>
-			Play videos, either as a media player or as part of your UI design.
+			<p>Play videos, either as a media player or as part of your UI design.<p>
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__planned">Planned</td>
 		<td class="feature__planned">Planned</td>
+	</tr>
+	<tr>
+		<td>@(Navigation)</td>
+		<p>General purpose, cross-platform navigation system, which lets you add custom gesture-driven anmiated navigation to any part of your app.</p>
+		<td class="feature__mature">Mature</td>
+		<td class="feature__mature">Mature</td>
+		<td class="feature__mature">Mature</td>
 	</tr>
 	<tr>
 		<td>
 			<b>TextEdit</b>
-			A plain, unthemed text input field.
-		</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
-</table>
-
-
-## Native UX Components
-
-Native UX Controls are built-in UI controls offered by the OS of the target platform, exposed as easy to use UX markup components. 
-
-Their features, function and appearence may vary between platforms. Some of the controls also have implementations in Graphics mode, e.g.
-through the `Basic` theme.
-
-<table>
-	<tr>
-		<td></td>
-		<td><b>Native iOS</b></td>
-		<td><b>Native Android</b></td>
-		<td><b>Basic Theme</b></td>
-	</tr>
-	<tr>
-		<td>
-			<b>Button</b>
+			<p>A plain, unthemed text input field.</p>
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
@@ -122,6 +108,14 @@ through the `Basic` theme.
 	</tr>
 	<tr>
 		<td>
+			<b>Button</b>
+		</td>
+		<td class="feature__mature">Mature</td>
+		<td class="feature__mature">Mature</td>
+		<td class="feature__mature">Mature</td>
+	</tr>
+	<tr>
+		<td>
 			<b>Slider</b>
 		</td>
 		<td class="feature__mature">Mature</td>
@@ -130,11 +124,30 @@ through the `Basic` theme.
 	</tr>
 	<tr>
 		<td>
+			<b>Switch</b>
+		</td>
+		<td class="feature__mature">Mature</td>
+		<td class="feature__mature">Mature</td>
+		<td class="feature__mature">Mature</td>
+	</tr>
+
+</table>
+
+
+## Advanced UX Components
+
+These more advanced native components are available in fuse through `Native` theme, or inside a `NativeViewHost`. They are
+not available in `Graphics` theme, and can not interact with the Fuse effect system.
+
+Their features, function and appearence may vary between platforms.
+
+<table>
+	<tr>
+		<td>
 			<b>WebView</b>
 		</td>
 		<td class="feature__experimental">Experimental</td>
 		<td class="feature__experimental">Experimental</td>
-		<td class="feature__n-a">N/A</td>
 	</tr>
 	<tr>
 		<td>
@@ -142,7 +155,6 @@ through the `Basic` theme.
 		</td>
 		<td class="feature__experimental">Experimental</td>
 		<td class="feature__planned">Planned</td>
-		<td class="feature__n-a">N/A</td>
 	</tr>
 	<tr>
 		<td>
@@ -150,7 +162,6 @@ through the `Basic` theme.
 		</td>
 		<td class="feature__planned">Planned</td>
 		<td class="feature__planned">Planned</td>
-		<td class="feature__n-a">N/A</td>
 	</tr>
 
 	<tr>
@@ -159,7 +170,6 @@ through the `Basic` theme.
 		</td>
 		<td class="feature__n-a">N/A</td>
 		<td class="feature__planned">Planned</td>
-		<td class="feature__n-a">N/A</td>
 	</tr>
 
 	<tr>
@@ -168,7 +178,6 @@ through the `Basic` theme.
 		</td>
 		<td class="feature__n-a">N/A</td>
 		<td class="feature__planned">Planned</td>
-		<td class="feature__backlog">Backlog</td>
 	</tr>
 </table>
 
@@ -189,5 +198,31 @@ through the `Basic` theme.
 		<td class="feature__n-a">N/A</td>
 		<td class="feature__planned">Planned</td>
 		<td class="feature__n-a">N/A</td>
+	</tr>
+</table>
+
+
+## Fuse Tools
+
+<table>
+	<tr>
+		<td></td>
+		<td><b>Status</b></td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Fuse CLI Tools</b>
+			<p>The `fuse` command for creating, building and previewing Fuse projects</p>
+		</td>
+		<td class="feature__mature">Mature</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Sketch Importer</b>
+			<p>The `fuse import` command automatically creates and updates UX classes and image resources from a .sketch file</p>
+		</td>
+		<td class="feature__experimental">Experimental</td>
 	</tr>
 </table>

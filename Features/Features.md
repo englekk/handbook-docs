@@ -47,7 +47,7 @@ themes.
 	</tr>
 	<tr>
 		<td>
-			<b>Layout Controls</b>
+			@(Layout)
 			<p>Define flexible, responsive layout for your app screens.<p>
 		</td>
 		<td class="feature__mature">Mature</td>
@@ -56,7 +56,7 @@ themes.
 	</tr>
 	<tr>
 		<td>
-			<b>Shapes</b>
+			@(Shapes)
 			<p>Build UI designs with fast vector shapes to easily adapt your design to any screen size and density.<p>
 		</td>
 		<td class="feature__mature">Mature</td>
@@ -65,7 +65,7 @@ themes.
 	</tr>
 	<tr>
 		<td>
-			<b>Image</b>
+			@(Image)
 			<p>Display images and icons with multi-density support to adapt to any screen.<p>
 		</td>
 		<td class="feature__mature">Mature</td>
@@ -74,7 +74,7 @@ themes.
 	</tr>
 	<tr>
 		<td>
-			<b>Video</b>
+			@(Video)
 			<p>Play videos, either as a media player or as part of your UI design.<p>
 		</td>
 		<td class="feature__mature">Mature</td>
@@ -82,15 +82,17 @@ themes.
 		<td class="feature__planned">Planned</td>
 	</tr>
 	<tr>
-		<td>@(Navigation)</td>
-		<p>General purpose, cross-platform navigation system, which lets you add custom gesture-driven anmiated navigation to any part of your app.</p>
+		<td>
+			@(Navigation)
+			<p>General purpose, cross-platform navigation system, which lets you add custom gesture-driven anmiated navigation to any part of your app.</p>
+		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
 	</tr>
 	<tr>
 		<td>
-			<b>TextEdit</b>
+			@(TextEdit)
 			<p>A plain, unthemed text input field.</p>
 		</td>
 		<td class="feature__mature">Mature</td>
@@ -99,7 +101,7 @@ themes.
 	</tr>
 	<tr>
 		<td>
-			<b>TextInput</b>
+			@(TextInput)
 			<p>A text input field decorated with look and feel from the Theme.</p>
 		</td>
 		<td class="feature__mature">Mature</td>
@@ -108,7 +110,8 @@ themes.
 	</tr>
 	<tr>
 		<td>
-			<b>Button</b>
+			@(Button)
+			<p>Basic clickable control.</p>
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
@@ -116,7 +119,8 @@ themes.
 	</tr>
 	<tr>
 		<td>
-			<b>Slider</b>
+			@(Slider)
+			<p>Lets you specify a numeric value with a track and knob</p>
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
@@ -124,7 +128,8 @@ themes.
 	</tr>
 	<tr>
 		<td>
-			<b>Switch</b>
+			@(Switch)
+			<p>Lets you specify an on/off boolean value.</p>
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
@@ -144,21 +149,24 @@ Their features, function and appearence may vary between platforms.
 <table>
 	<tr>
 		<td>
-			<b>WebView</b>
+			@(WebView)
+			<p>Display a web browser in your app, or create parts of your app using HTML5.</p>
 		</td>
 		<td class="feature__experimental">Experimental</td>
 		<td class="feature__experimental">Experimental</td>
 	</tr>
 	<tr>
 		<td>
-			<b>MapView</b>
+			@(MapView)
+			<p>Display the OS' native maps</p>
 		</td>
 		<td class="feature__experimental">Experimental</td>
 		<td class="feature__planned">Planned</td>
 	</tr>
 	<tr>
 		<td>
-			<b>DatePicker</b>
+			@(DatePicker)
+			<p>Display the OS' native date picker</p>
 		</td>
 		<td class="feature__planned">Planned</td>
 		<td class="feature__planned">Planned</td>
@@ -166,7 +174,8 @@ Their features, function and appearence may vary between platforms.
 
 	<tr>
 		<td>
-			<b>iOS Navigation</b>
+			<u>iOS Navigation</u>
+			<p>Create a native navigation system based on iOS' built-in navigator controls and native transitions.</p>
 		</td>
 		<td class="feature__n-a">N/A</td>
 		<td class="feature__planned">Planned</td>
@@ -175,6 +184,7 @@ Their features, function and appearence may vary between platforms.
 	<tr>
 		<td>
 			<b>Android Material Design Navigation</b>
+			<p>Create a native navigation system based on the Material Design compoent pack provided by Google.</p>
 		</td>
 		<td class="feature__n-a">N/A</td>
 		<td class="feature__planned">Planned</td>
@@ -193,14 +203,186 @@ Their features, function and appearence may vary between platforms.
 
 	<tr>
 		<td>
+			<b>XMLHttpRequest</b>
+		</td>
+		<td class="feature__mature">Mature</td>
+		<td class="feature__mature">Mature</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>fetch (Promise-based HTTP)</b>
+		</td>
+		<td class="feature__mature">Mature</td>
+		<td class="feature__mature">Mature</td>
+	</tr>
+
+	<tr>
+		<td>
 			<b>Push Notifications</b>
 		</td>
-		<td class="feature__n-a">N/A</td>
-		<td class="feature__planned">Planned</td>
-		<td class="feature__n-a">N/A</td>
+		<td class="feature__experimental">Experimental</td>
+		<td class="feature__experimental">Experimental</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>System Notifications</b>
+		</td>
+		<td class="feature__experimental">Experimental</td>
+		<td class="feature__experimental">Experimental</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Camera (take photo)</b>
+		</td>
+		<td class="feature__experimental">Experimental</td>
+		<td class="feature__experimental">Experimental</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Geolocation</b>
+		</td>
+		<td class="feature__experimental">Experimental</td>
+		<td class="feature__experimental">Experimental</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Local Storage</b>
+		</td>
+		<td class="feature__experimental">Experimental</td>
+		<td class="feature__experimental">Experimental</td>
 	</tr>
 </table>
 
+## Native Interop
+
+Fuse has several ways in which you can interop with native APIs, existing native code and third-party SDKs.
+
+<table>
+	<tr>
+		<td></td>
+		<td><b>iOS</b></td>
+		<td><b>Android</b></td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Foreign Code</b>
+			<p>Put native Java, Objective-C and C++ code directly in your Fuse project, and expose new functionality to FuseJS.</p>
+		</td>
+		<td class="feature__planned">In progress (0.10)</td>
+		<td class="feature__planned">In progress (0.10)</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Uno Inline Foreign Code</b>
+			<p>Put native Java, Objective-C and C++ code directly in your Fuse project, and expose new functionality to FuseJS.</p>
+		</td>
+		<td class="feature__planned">In progress (0.10)</td>
+		<td class="feature__planned">In progress (0.10)</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Uno Native API Bindings</b>
+			<p>Call any Android and iOS API directly from Uno in plain syntax.</p>
+		</td>
+		<td class="feature__mature">Mature</td>
+		<td class="feature__mature">Mature</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Uno Extension Layer (UXL)</b>
+			<p>Various low-level methods of advanced interop between Uno and the native target language.</p>
+		</td>
+		<td class="feature__mature">Mature</td>
+		<td class="feature__mature">Mature</td>
+	</tr>
+</table>
+
+
+## Real-time Graphics Effects
+
+Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to apply artistic GPU effects to UI elements in real time. This gives designers a new realm of new possibilities to shape visual expressions, animations and transitions. 
+
+
+
+<table>
+	<tr>
+		<td></td>
+		<td><b>Graphics Mode</b></td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Blur</b>
+			<p>Apply real-time blur to any UI element.</p>
+		</td>
+		<td class="feature__mature">Mature</td>
+	</tr>
+
+	
+
+	<tr>
+		<td>
+			<b>DropShadow</b>
+			<p>Put real-time soft drop shadows on any UI element.</p>
+		</td>
+		<td class="feature__mature">Mature</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Desaturate</b>
+			<p>Put real-time soft drop shadows on any UI element.</p>
+		</td>
+		<td class="feature__mature">Mature</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>HalfTone</b>
+			<p>Applies a configurable halftone pattern to any UI element.</p>
+		</td>
+		<td class="feature__mature">Experimental</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Glass</b>
+			<p>Apply real-time blur and color grading to the background of any UI element.</p>
+		</td>
+		<td class="feature__planned">Planned</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>ColorCorrect</b>
+			<p>Apply artistic color correction to any UI element in real time.</p>
+		</td>
+		<td class="feature__planned">Planned</td>
+	</tr>
+</table>
+
+
+> Note that GPU effects have a performance cost, and not all combinations and parameters. Applied and configured with care, all effects can be done in smooth 60 FPS even on low end devices. It is not recommended to use effects for essential features in your app, as you may need to disable them on weak devices.
+
+The Fuse effect system is completely general, and you can easily create custom effects with Uno code. Fork one of the existing effects and or extend the Fuse.Effects class to create your own GPU shader effects. 
+
+<table>
+	<tr>
+		<td>
+			<b>Custom Shader Effects</b>
+		</td>
+		<td class="feature__mature">Mature</td>
+	</tr>
+</table>
 
 ## Fuse Tools
 

@@ -18,8 +18,12 @@ This Dashboard is updated for each release.
 		<td>Feature is shipped in some form, but may be incomplete. Documentation is limited and often only available a particular group of testers. The API or behavior is likely to change in the future based on feedback from testing. If you are using an experimental feature, make sure to check the changelog for updates when upgrading Fuse. </td>
 	</tr>
 	<tr>
+		<td class="feature__planned">In progress</td>
+		<td>The feature is currently being worked on</td>
+	</tr>
+	<tr>
 		<td class="feature__planned">Planned</td>
-		<td>The feature is currently being worked on, or we plan to start working on it quite soon.</td>
+		<td>We plan to start working on it quite soon.</td>
 	</tr>
 	<tr>
 		<td class="feature__backlog">Backlog</td>
@@ -32,9 +36,9 @@ This Dashboard is updated for each release.
 </table>
 
 
-## Basic UX Components
+## Generic UX Components
 
-Basic UX components are the fundamental building blocks for creating cross-platform app screens. These components work
+These UX components are the basic building blocks for creating cross-platform app screens. These components work
 across all themes, in both `Native` mode and `Graphics` mode. Appearance of certain controls (such as Button) may vary in different
 themes.
 
@@ -81,10 +85,11 @@ themes.
 		<td class="feature__planned">Planned</td>
 		<td class="feature__planned">Planned</td>
 	</tr>
+
 	<tr>
 		<td>
 			@(Navigation)
-			<p>General purpose, cross-platform navigation system, which lets you add custom gesture-driven anmiated navigation to any part of your app.</p>
+			<p>General purpose, cross-platform navigation system, which lets you add custom gesture-driven animiated navigation to any part of your app.</p>
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
@@ -135,18 +140,32 @@ themes.
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
 	</tr>
+	<tr>
+		<td>
+			@(CameraFeed)
+			<p>Display a live feed from the device's camera as a UI element.</p>
+		</td>
+		<td class="feature__planned">Planned</td>
+		<td class="feature__n-a">N/A</td>
+		<td class="feature__n-a">N/A</td>
+	</tr>
 
 </table>
 
 
-## Advanced UX Components
+## Native UX Components
 
-These more advanced native components are available in fuse through `Native` theme, or inside a `NativeViewHost`. They are
+These components are available in fuse through `Native` theme, or inside a `NativeViewHost`. They are
 not available in `Graphics` theme, and can not interact with the Fuse effect system.
 
-Their features, function and appearence may vary between platforms.
+Their features, function and appearance may vary between platforms.
 
 <table>
+	<tr>
+		<td></td>
+		<td><b>iOS</b></td>
+		<td><b>Android</b></td>
+	</tr>
 	<tr>
 		<td>
 			@(WebView)
@@ -163,6 +182,7 @@ Their features, function and appearence may vary between platforms.
 		<td class="feature__experimental">Experimental</td>
 		<td class="feature__planned">Planned</td>
 	</tr>
+
 	<tr>
 		<td>
 			@(DatePicker)
@@ -262,7 +282,7 @@ Their features, function and appearence may vary between platforms.
 
 Fuse has several ways in which you can interop with native APIs, existing native code and third-party SDKs.
 
-<table>
+<table name="nativeinterop">
 	<tr>
 		<td></td>
 		<td><b>iOS</b></td>
@@ -281,7 +301,7 @@ Fuse has several ways in which you can interop with native APIs, existing native
 	<tr>
 		<td>
 			<b>Uno Inline Foreign Code</b>
-			<p>Put native Java, Objective-C and C++ code directly in your Fuse project, and expose new functionality to FuseJS.</p>
+			<p>Implement Uno methods directly in a native platform language: Java, Objective-C or C++.</p>
 		</td>
 		<td class="feature__planned">In progress (0.10)</td>
 		<td class="feature__planned">In progress (0.10)</td>
@@ -306,10 +326,53 @@ Fuse has several ways in which you can interop with native APIs, existing native
 	</tr>
 </table>
 
+## Third-party library wrappers
+
+Fuse will wrap the most popular 3rd party SDKs into easy to use UX/JS APIs. Many third-party JavaScript SDKs will just work as-is.
+
+<b>SDKs and APIs not officially wrapped by Fuse can still be used through <a href="#nativeinterop">Native Interop</a></b>
+
+<table>
+	<tr>
+		<td></td>
+		<td><b>iOS</b></td>
+		<td><b>Android</b></td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Parse (JavaScript SDK)</b>
+			<p>Data, push and analytics for your app through cliend-side JS.</p>
+		</td>
+		<td class="feature__mature">Works as-is</td>
+		<td class="feature__mature">Works as-is</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Facebook SDK Wrapper</b>
+			<p>Basic features from the Facebook SDKs exposed as FuseJS APIs and UX Markup components.</p>
+		</td>
+		<td class="feature__planned">Planned</td>
+		<td class="feature__planned">Planned</td>
+	</tr>
+	<tr>
+		<td>
+			<b>SQLite Wrapper</b>
+			<p>Local on-device database wrapper</p>
+		</td>
+		<td class="feature__planned">Planned</td>
+		<td class="feature__planned">Planned</td>
+	</tr>
+</table>
+
+> Missing something? Please post a <a href="https://www.fusetools.com/community">feature request in the forums</a>
+
+
 
 ## Real-time Graphics Effects
 
-Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to apply artistic GPU effects to UI elements in real time. This gives designers a new realm of new possibilities to shape visual expressions, animations and transitions. 
+Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to apply artistic GPU effects to UI elements in real-time. This gives designers a new realm of new possibilities to shape visual expressions, animations and transitions. 
 
 
 
@@ -340,7 +403,7 @@ Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to
 	<tr>
 		<td>
 			<b>Desaturate</b>
-			<p>Put real-time soft drop shadows on any UI element.</p>
+			<p>Fade any element into grayscale as a permanent or transition effect.</p>
 		</td>
 		<td class="feature__mature">Mature</td>
 	</tr>
@@ -364,7 +427,7 @@ Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to
 	<tr>
 		<td>
 			<b>ColorCorrect</b>
-			<p>Apply artistic color correction to any UI element in real time.</p>
+			<p>Apply artistic color correction to any UI element in real-time.</p>
 		</td>
 		<td class="feature__planned">Planned</td>
 	</tr>
@@ -379,7 +442,7 @@ Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to
 </table>
 
 
-> Note that GPU effects have a performance cost, and not all combinations and parameters. Applied and configured with care, all effects can be done in smooth 60 FPS even on low end devices. It is not recommended to use effects for essential features in your app, as you may need to disable them on weak devices.
+> Note that GPU effects have a performance cost, and not all combinations and parameters. Applied and configured with care, all effects can be done in smooth 60 FPS even on low-end devices. It is not recommended to use effects for essential features in your app, as you may need to disable them on weak devices.
 
 
 
@@ -401,16 +464,34 @@ Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to
 
 	<tr>
 		<td>
+			<b>Fuse Desktop Preview Engine</b>
+			<p>Preview your apps on Mac or Windows, with smooth 60FPS performance. Does not require an iOS or Android emulator.</p>
+		</td>
+		<td class="feature__mature">Mature</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Fuse On-Device Preview Engine</b>
+			<p>Preview your apps live on physical iOS and Android devices.</p>
+		</td>
+		<td class="feature__mature">Mature</td>
+	</tr>
+
+	<tr>
+		<td>
 			<b>Fuse Monitor</b>
 			<p>Gather all output and diagnostics information from apps running in preview on desktop, on device or in emulators.</p>
 		</td>
 		<td class="feature__experimental">Experimental</td>
 	</tr>
 
+
+
 	<tr>
 		<td>
 			<b>Fuse Inspector</b>
-			<p>Tweak UX parameters in real time with visual controls.</p>
+			<p>Tweak UX parameters in real-time with visual controls.</p>
 		</td>
 		<td class="feature__experimental">Experimental</td>
 	</tr>

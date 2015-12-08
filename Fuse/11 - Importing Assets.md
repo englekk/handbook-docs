@@ -91,7 +91,7 @@ Fuse can also generate a app layout based on the imported resource library, so y
 
 You do this by specifying the `--app` or (`--overwrite-app`) options to `fuse import`. Example:
 
-	fuse import --app MyDesign.ux MyDesign.sketch
+	fuse import MyDesign.sketch --app MyDesign.ux
 
 This will generate `MyDesign.ux` which will contain an @App tag, with a @PageControl, and one @Page for each *artboard* in your sketch file.
 
@@ -109,7 +109,7 @@ The names of the classes remain the same, as long as Sketch layers have not been
 
 You can control the image densities Fuse generates when importing the Sketch document by passing options to the import command. For example:
 
-	fuse import --1x --1.5x --2x MyDesign.sketch
+	fuse import MyDesign.sketch --1x --1.5x --2x
 
 Will import all image assets in 1.0, 1.5 and 2.0 density, respectively. If you don't specify anything, Fuse defaults to rendering 1.0 and 2.0 densities.
 

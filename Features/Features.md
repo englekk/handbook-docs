@@ -177,8 +177,8 @@ Their features, function and appearence may vary between platforms.
 			<u>iOS Navigation</u>
 			<p>Create a native navigation system based on iOS' built-in navigator controls and native transitions.</p>
 		</td>
-		<td class="feature__n-a">N/A</td>
 		<td class="feature__planned">Planned</td>
+		<td class="feature__n-a">N/A</td>
 	</tr>
 
 	<tr>
@@ -368,21 +368,20 @@ Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to
 		</td>
 		<td class="feature__planned">Planned</td>
 	</tr>
+
+	<tr>
+		<td>
+			<b>Custom Shader Effects</b>
+			<p>The Fuse effect system is completely general, and you can easily create custom effects with Uno code. Fork one of the existing effects and or extend the Fuse.Effects class to create your own GPU shader effects.</p>
+		</td>
+		<td class="feature__mature">Mature</td>
+	</tr>
 </table>
 
 
 > Note that GPU effects have a performance cost, and not all combinations and parameters. Applied and configured with care, all effects can be done in smooth 60 FPS even on low end devices. It is not recommended to use effects for essential features in your app, as you may need to disable them on weak devices.
 
-The Fuse effect system is completely general, and you can easily create custom effects with Uno code. Fork one of the existing effects and or extend the Fuse.Effects class to create your own GPU shader effects. 
 
-<table>
-	<tr>
-		<td>
-			<b>Custom Shader Effects</b>
-		</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
-</table>
 
 ## Fuse Tools
 
@@ -402,9 +401,33 @@ The Fuse effect system is completely general, and you can easily create custom e
 
 	<tr>
 		<td>
+			<b>Fuse Monitor</b>
+			<p>Gather all output and diagnostics information from apps running in preview on desktop, on device or in emulators.</p>
+		</td>
+		<td class="feature__experimental">Experimental</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Fuse Inspector</b>
+			<p>Tweak UX parameters in real time with visual controls.</p>
+		</td>
+		<td class="feature__experimental">Experimental</td>
+	</tr>
+
+	<tr>
+		<td>
 			<b>Sketch Importer</b>
 			<p>The `fuse import` command automatically creates and updates UX classes and image resources from a .sketch file</p>
 		</td>
 		<td class="feature__experimental">Experimental</td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Fuse Profiler</b>
+			<p>Visualize performance data in real-time for UX markup nodes to easily identify UI performance bottlenecks.</p>
+		</td>
+		<td class="feature__planned">In progress</td>
 	</tr>
 </table>

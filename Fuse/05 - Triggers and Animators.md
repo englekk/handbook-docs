@@ -708,6 +708,28 @@ The `WhileEnabled` trigger is active whenever its containing @(Element:elements)
 
 The `WhileDisabled` trigger is active whenever its containing @(Element:elements) `IsEnabled` property is set to `False`.
 
+## $(Focus triggers and actions)
+
+### $(WhileFocused)
+
+The `WhileFocused` trigger is active whenever its containing @(Element:element) is in focus.
+
+### $(WhileNotFocused)
+
+The opposite to @(WhileFocused), active whenever its containing @(Element:element) is _not_ in focus.
+
+### $(WhileFocusWithin)
+
+`WhileFocusWithin` is active whenever a child of its containing @(Element:element) is in focus.
+
+### $(GiveFocus)
+
+`GiveFocus` is an action that gives focus to its containing @(Element:element) when activated.
+It also accepts a `Target` property, which specifies what element to give focus to.
+
+### $(ReleaseFocus)
+
+When activated, `ReleaseFocus` removes focus from the currently focused @(Element:element).
 
 ## $(Platform triggers)
 

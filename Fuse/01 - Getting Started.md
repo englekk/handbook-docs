@@ -4,6 +4,12 @@
 
 Getting up and running with Fuse is super easy. First of all, [download the latest version of Fuse!](https://www.fusetools.com/downloads)
 
+## $(What is Fuse?)
+
+Fuse is a way to create native, cross-platform mobile apps for iOS and Android. You express your user interfaces in markup (which we call "UX") which makes it easy to make animated and responsive UIs. Your business logic is written in JavaScript which is interpreted, and all rendering is compiled to native code for optimal performance. You can choose between real native UI elements, cross platform elements or make your own. Fuse is not a "black box", but a fully customizable toolkit.
+
+While you're developing your app, your changes are reflected in real time both on your computer and on your devices, with no need to recompile or re-deploy. Fuse is not just a prototyping tool, it is a fully-fledged app development tool that creates Android and iOS apps, with no need for further coding in XCode or Android studio. Apps built purely with Fuse are already in app stores today, and more and more apps are being developed every day.
+
 ## $(Setup)
 
 We're always working hard on making this process smooth as silk, but occasionally things can still go wrong. If something iffy happens, please [let us know!](https://www.fusetools.com/contact)

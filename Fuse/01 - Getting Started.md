@@ -8,7 +8,7 @@ Getting up and running with Fuse is super easy. First of all, [download the late
 
 Fuse is a toolkit that developers and designers use to create native, cross-platform mobile apps for iOS and Android.
 
-You express your user interfaces in markup (which we call "UX") which makes it easy to make animated and responsive UIs. **Your business logic is written in JavaScript** which is interpreted, and **all rendering is compiled to native code for optimal performance.** You can choose between **real native UI elements, cross platform elements** or make your own. Fuse is not a "black box", but a fully customizable toolkit and can be extended using Uno (a C#-dialect). Fuse does _not_ generate HTML5/hybrid apps, but fully native mobile apps.
+You express your user interfaces in markup (which we call "UX") which makes it easy to make animated and responsive UIs. Your app logic is written in JavaScript which is interpreted, and **all rendering is compiled to native code for optimal performance.** You can choose between real native UI elements and customizable cross platform elements. Fuse is not a "black box", but a flexible toolkit and can be extended using Uno (a C#-dialect). Fuse does _not_ generate HTML5/hybrid apps, it exports fully native mobile apps.
 
 While you're developing your app, **your changes are reflected in real time** both on your computer and on your devices, with **no need to recompile or re-deploy.** While it's wonderful to prototype in Fuse, it is _not_ a prototyping tool, it is a fully-fledged app development tool that with no need for further coding in XCode or Android studio. Apps built purely with Fuse are already in app stores today, and more and more apps are being developed every day.
 

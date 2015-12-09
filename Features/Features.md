@@ -443,7 +443,7 @@ Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to
 	<tr>
 		<td>
 			<b>Custom Shader Effects</b>
-			<p>The Fuse effect system is generalized and you can easily create custom effects with Uno code. Fork one of the existing effects and or extend the [Fuse.Effects](/uno/api/fuse/effects/effect) class to create GPU shader effects.</p>
+			<p>The Fuse effect system is generalized and you can easily create custom effects with Uno code. Fork one of the existing effects and or extend the [Fuse.Effects](/learn/uno/api/fuse/effects/effect) class to create GPU shader effects.</p>
 		</td>
 		<td class="feature__mature">Mature</td>
 	</tr>

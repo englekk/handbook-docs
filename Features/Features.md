@@ -11,11 +11,11 @@ This overview is updated for each release. **Latest update: 9th of December 2015
 <table>
 	<tr>
 		<td class="feature__mature">Mature</td>
-		<td>The feature is done, tested, documented and can be used generally in production apps. If you run into problems with features marked as **Mature**, the Fuse team will deal with bug reports quickly. </td>
+		<td>The feature is done, tested, documented and can generally be used in production apps. If you run into problems with features marked as **Mature**, the Fuse team will deal with bug reports quickly. </td>
 	</tr>
 	<tr>
 		<td class="feature__experimental">Experimental</td>
-		<td>The feature is shipped in some form, but may be incomplete. Documentation can be limited or only available a particular group of testers. The API or behavior is subject to change in the future based on feedback from testing. If you are using an experimental feature, make sure to check the changelog for updates when upgrading Fuse. </td>
+		<td>The feature is shipped in some form, but may be incomplete. Documentation can be limited or only available to a particular group of testers. The API or behavior is subject to change in the future based on feedback from testing. If you are using an experimental feature, make sure to check the changelog for updates when upgrading Fuse. </td>
 	</tr>
 	<tr>
 		<td class="feature__planned">In progress</td>
@@ -39,7 +39,7 @@ This overview is updated for each release. **Latest update: 9th of December 2015
 ## Cross-platform UX Components
 
 These UX components are the basic building blocks for creating cross-platform app screens. These components work
-across all themes, in both `Native` mode and `Graphics` mode. Appearance of certain controls (such as Button) may vary in different
+across all themes, in both `Native` mode and `Graphics` mode. The look & feel of certain controls (such as Button) may vary in different
 themes.
 
 <table>
@@ -61,7 +61,7 @@ themes.
 	<tr>
 		<td>
 			@(Shapes)
-			<p>Build UI designs with fast vector shapes to easily adapt your design to any screen size and density.<p>
+			<p>Build UI designs with basic (but fast) vector shapes to easily adapt your design to any screen size and density.<p>
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
@@ -89,7 +89,7 @@ themes.
 	<tr>
 		<td>
 			@(Navigation)
-			<p>General purpose, cross-platform navigation system, which lets you add custom gesture-driven animated navigation to any part of your app.</p>
+			<p>General purpose, cross-platform navigation system which lets you add custom gesture-driven animated navigation to any part of your app.</p>
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
@@ -97,7 +97,7 @@ themes.
 	</tr>
 	<tr>
 		<td>
-			@(TextEdit)
+			TextEdit
 			<p>A plain text input field without a theme or styling.</p>
 		</td>
 		<td class="feature__mature">Mature</td>
@@ -142,7 +142,7 @@ themes.
 	</tr>
 	<tr>
 		<td>
-			@(CameraFeed)
+			CameraFeed
 			<p>Display a live feed from the device camera as a UI element.</p>
 		</td>
 		<td class="feature__planned">Planned</td>
@@ -156,7 +156,7 @@ themes.
 ## Native UX Components
 
 These components are available in Fuse through the `Native` theme, or inside a `NativeViewHost`. They are
-not available in `Graphics` theme, and can not interact with the Fuse effect system.
+not available in `Graphics` themes, and can not interact with the Fuse effect system.
 
 Their features, function and appearance may vary between platforms.
 
@@ -176,7 +176,7 @@ Their features, function and appearance may vary between platforms.
 	</tr>
 	<tr>
 		<td>
-			@(MapView)
+			MapView
 			<p>Display the OS native maps.</p>
 		</td>
 		<td class="feature__experimental">Experimental</td>
@@ -185,8 +185,8 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			@(DatePicker)
-			<p>Display the OS native date picker.</p>
+			DatePicker
+			<p>Display the native OS date picker.</p>
 		</td>
 		<td class="feature__planned">Planned</td>
 		<td class="feature__planned">Planned</td>
@@ -219,6 +219,14 @@ Their features, function and appearance may vary between platforms.
 		<td></td>
 		<td><b>Native iOS</b></td>
 		<td><b>Native Android</b></td>
+	</tr>
+
+	<tr>
+		<td>
+			<b>Observables - Reactive data binding</b>
+		</td>
+		<td class="feature__mature">Mature</td>
+		<td class="feature__mature">Mature</td>
 	</tr>
 
 	<tr>
@@ -319,7 +327,7 @@ Fuse has several ways in which you can interop with native APIs, existing native
 	<tr>
 		<td>
 			<b>Uno Extension Layer (UXL)</b>
-			<p>Various low-level methods of advanced interop between Uno and the native target language.</p>
+			<p>Various low-level methods for advanced interop between Uno and the native target language.</p>
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
@@ -330,7 +338,7 @@ Fuse has several ways in which you can interop with native APIs, existing native
 
 Fuse will wrap the most popular 3rd party SDKs into easy to use UX/JS APIs. Many third-party JavaScript SDKs will work out of the box.
 
-<b>SDKs and APIs not officially wrapped by Fuse can still be used through <a href="#nativeinterop">Native Interop</a></b>
+<b>SDKs and APIs not officially wrapped by Fuse can still be used through <a href="#native-interop">Native Interop</a></b>
 
 <table>
 	<tr>
@@ -366,7 +374,7 @@ Fuse will wrap the most popular 3rd party SDKs into easy to use UX/JS APIs. Many
 	</tr>
 </table>
 
-> Missing something? Please post a <a href="https://www.fusetools.com/community">feature request in the forums</a>
+> Missing something? Please post a <a href="https://www.fusetools.com/community/forums/feature_requests">feature request in the forums</a>
 
 
 
@@ -413,7 +421,7 @@ Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to
 			<b>HalfTone</b>
 			<p>Applies a configurable halftone pattern to any UI element.</p>
 		</td>
-		<td class="feature__mature">Experimental</td>
+		<td class="feature__experimental">Experimental</td>
 	</tr>
 
 	<tr>
@@ -435,14 +443,14 @@ Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to
 	<tr>
 		<td>
 			<b>Custom Shader Effects</b>
-			<p>The Fuse effect system is completely general, and you can easily create custom effects with Uno code. Fork one of the existing effects and or extend the Fuse.Effects class to create GPU shader effects.</p>
+			<p>The Fuse effect system is generalized and you can easily create custom effects with Uno code. Fork one of the existing effects and or extend the [Fuse.Effects](/uno/api/fuse/effects/effect) class to create GPU shader effects.</p>
 		</td>
 		<td class="feature__mature">Mature</td>
 	</tr>
 </table>
 
 
-> Note that GPU effects have a performance cost, and not all combinations and parameters. Applied and configured with care, all effects can be done in 60 FPS even on low-end devices. It is not recommended to use effects for essential features in your app, as you may need to disable them on weak devices.
+> Note that GPU effects have a performance cost and all combinations and parameters might not be suitable for all devices. However, applied with care all effects can be done in 60 FPS even on low-end devices. It is not recommended to use effects for essential features in your app, as you may need to disable them on less powerful devices.
 
 
 

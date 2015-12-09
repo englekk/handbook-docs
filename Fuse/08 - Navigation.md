@@ -347,7 +347,7 @@ As seen above, Entering- and ExitingAnimation are used to specify how pages and 
 	<Style>
 		<Page>
 			<EnteringAnimation>
-				<Move X="-1" RelativeTo="ParentSize"/>
+				<Move X="-1" RelativeTo="ParentSize" Duration="0.5"/>
 			</EnteringAnimation>
 			<ExitingAnimation>
 				<Move X="1" RelativeTo="ParentSize" Duration="0.5"/>
@@ -362,10 +362,12 @@ There are of course no limits to what can be animated while navigating. The foll
 	<Style>
 		<Page>
 			<EnteringAnimation>
-				<Move X="-1" RelativeTo="ParentSize"/>
+				<Move X="-1" RelativeTo="ParentSize" Duration="0.5"/>
+				<Scale Factor="0.2" Duration="0.5"/>
 			</EnteringAnimation>
 			<ExitingAnimation>
 				<Move X="1" RelativeTo="ParentSize" Duration="0.5"/>
+				<Scale Factor="0.6" Duration="0.5"/>
 			</ExitingAnimation>
 		</Page>
 	</Style>

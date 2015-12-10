@@ -223,7 +223,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			@(Observables) - Reactive data binding
+			@(Observable) - Reactive data binding
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>

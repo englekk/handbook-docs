@@ -231,7 +231,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			<b>XMLHttpRequest</b>
+			<a href="http://fusetools-web-dev.herokuapp.com/learn/fusejs#xmlhttprequest">XMLHttpRequest</a>
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
@@ -239,7 +239,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			<b>fetch (Promise-based HTTP)</b>
+			@(fetch) (Promise-based HTTP)
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
@@ -247,7 +247,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			<b>Push Notifications</b>
+			<a href="http://fusetools-web-dev.herokuapp.com/learn/fusejs#push-notifications">Push Notifications</a>
 		</td>
 		<td class="feature__experimental">Experimental</td>
 		<td class="feature__experimental">Experimental</td>
@@ -255,7 +255,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			<b>System Notifications</b>
+			<a href="http://fusetools-web-dev.herokuapp.com/learn/fusejs#the-notification">System Notifications</a>
 		</td>
 		<td class="feature__experimental">Experimental</td>
 		<td class="feature__experimental">Experimental</td>
@@ -263,7 +263,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			<b>Take photo with device camera</b>
+			<a href="http://fusetools-web-dev.herokuapp.com/learn/fusejs#takepicture-function">Take photo with device camera</a>
 		</td>
 		<td class="feature__experimental">Experimental</td>
 		<td class="feature__experimental">Experimental</td>
@@ -271,7 +271,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			<b>Geolocation</b>
+			<a href="http://fusetools-web-dev.herokuapp.com/learn/fusejs#geolocation">Geolocation</a>
 		</td>
 		<td class="feature__experimental">Experimental</td>
 		<td class="feature__experimental">Experimental</td>
@@ -279,7 +279,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			<b>Local Storage</b>
+			<a href="http://fusetools-web-dev.herokuapp.com/learn/fusejs#storage">Local Storage</a>
 		</td>
 		<td class="feature__experimental">Experimental</td>
 		<td class="feature__experimental">Experimental</td>

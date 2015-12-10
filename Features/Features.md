@@ -231,7 +231,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			<a href="http://fusetools-web-dev.herokuapp.com/learn/fusejs#xmlhttprequest">XMLHttpRequest</a>
+			<a href="/learn/fusejs#xmlhttprequest">XMLHttpRequest</a>
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>
@@ -247,7 +247,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			<a href="http://fusetools-web-dev.herokuapp.com/learn/fusejs#push-notifications">Push Notifications</a>
+			<a href="/learn/fusejs#push-notifications">Push Notifications</a>
 		</td>
 		<td class="feature__experimental">Experimental</td>
 		<td class="feature__experimental">Experimental</td>
@@ -255,7 +255,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			<a href="http://fusetools-web-dev.herokuapp.com/learn/fusejs#the-notification">System Notifications</a>
+			<a href="/learn/fusejs#the-notification">System Notifications</a>
 		</td>
 		<td class="feature__experimental">Experimental</td>
 		<td class="feature__experimental">Experimental</td>
@@ -263,7 +263,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			<a href="http://fusetools-web-dev.herokuapp.com/learn/fusejs#takepicture-function">Take photo with device camera</a>
+			<a href="/learn/fusejs#takepicture-function">Take photo with device camera</a>
 		</td>
 		<td class="feature__experimental">Experimental</td>
 		<td class="feature__experimental">Experimental</td>
@@ -271,7 +271,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			<a href="http://fusetools-web-dev.herokuapp.com/learn/fusejs#geolocation">Geolocation</a>
+			<a href="/learn/fusejs#geolocation">Geolocation</a>
 		</td>
 		<td class="feature__experimental">Experimental</td>
 		<td class="feature__experimental">Experimental</td>
@@ -279,7 +279,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			<a href="http://fusetools-web-dev.herokuapp.com/learn/fusejs#storage">Local Storage</a>
+			<a href="/learn/fusejs#storage">Local Storage</a>
 		</td>
 		<td class="feature__experimental">Experimental</td>
 		<td class="feature__experimental">Experimental</td>
@@ -326,7 +326,7 @@ Fuse has several ways in which you can interop with native APIs, existing native
 
 	<tr>
 		<td>
-			<b>Uno Extension Layer (UXL)</b>
+			<a href="/learn/guides/uxl-handbook">Uno Extension Layer (UXL)</a>
 			<p>Various low-level methods for advanced interop between Uno and the native target language.</p>
 		</td>
 		<td class="feature__mature">Mature</td>

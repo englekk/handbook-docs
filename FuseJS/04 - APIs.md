@@ -274,13 +274,13 @@ The location API have three possible ways of getting the location object describ
 If this or some other application recently requested a location update, this property will immediately get the last known position. If no location data is available this property returns `null`.
 
 ```
-if(geo.location != null)
-    console.log(JSON.stringify(geo.location));
+if(geoLocation.location != null)
+    console.log(JSON.stringify(geoLocation.location));
 ```
 
 ### Single update: getLocation(timeout)
 
-Get best possible position within the given timeout.
+Get most accurate position possible within the given timeout.
 
 ```
 var timeout = 2000;
@@ -289,14 +289,16 @@ geoLocation.getLocation(timeout).then(function(location) {
 });
 ```
 
-### Continues updates: onChanged, startListening, stopListening
+### Continuous updates: onChanged, startListening, stopListening
 
-Start listening for continues position changes using the desired settings. Remember that getting a lot of location data at fast interval and accuracy will drain the battery fast.
+Start listening for position changes continuously using the specified settings.
+Keep in mind that getting a lot of location data with a short interval and high accuracy will drain the battery fast.
 
 ```
 geoLocation.onChanged = function(location) {
     console.log(JSON.stringify(location));
 };
+
 var minimumReportInterval = 1000, desiredAccuracyInMeters = 10;
 geoLocation.startListening(minimumReportInterval, desiredAccuracyInMeters);
 

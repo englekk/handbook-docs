@@ -687,6 +687,69 @@ These triggers react to data changes, either from data binding or from the contr
 <!-- ### WhileFailed
 TODO: I dont know what it does -->
 
+## $(User events)
+
+User events are intended for sending messages between components of your application.
+They may be sent and received from UX, Uno, and JavaScript.
+
+### $(UserEvent)
+
+User events are attached to the node they are declared in, and only that node and its children can raise and handle the event.
+
+	<App>
+		<UserEvent Name="MyEvent"/>
+		...
+
+This creates an event with the name `MyEvent`.
+By putting this `UserEvent` in `App` we are essentially making it an app-wide event, since every child of App can raise and respond to this event.
+
+### $(RaiseUserEvent:Raising user events from UX)
+
+To raise a @(UserEvent:user event) from UX, use the `RaiseUserEvent` action.
+
+	<Button>
+		<Clicked>
+			<RaiseUserEvent Name="MyEvent" />
+		</Clicked>
+	</Button>
+
+For information on how to raise user events from JavaScript, see the @(UserEvents-js:FuseJS UserEvents) documentation.
+
+### $(UserEventArg:Passing arguments)
+
+A $(UserEvent:user event) may also include a number of arguments that can be read from either JavaScript or Uno.
+
+	<RaiseUserEvent Name="MyEvent">
+		<UserEventArg Name="message" Value="Hello from UX!" />
+	</RaiseUserEvent>
+
+`UserEventArg` also accepts `IntValue`, `FloatValue`, `StringValue` or `BoolValue` in place of `Value`.
+
+### $(OnUserEvent:Responding to user events)
+
+To respond to a @(UserEvent:user event), use the `OnUserEvent` trigger.
+
+	<OnUserEvent Name="MyEvent">
+		...
+	</OnUserEvent>
+
+By default, `OnUserEvent` will only listen for events that are declared in one of its ancestor nodes.
+If you want to listen for events coming from anywhere, set the `Filter` property to `Global`.
+
+`OnUserEvent` also lets you attach a JavaScript handler to the event.
+
+	<OnUserEvent Name="MyEvent" Handler="{myHandler}" />
+
+The handler function can then read the @(UserEventArg:arguments) that were passed with the event.
+
+```js
+var myHandler = function(args) {
+	console.log(args.message);
+}
+
+module.exports = { myHandler: myHandler }
+```
+
 ## $(Gestures)
 
 Following are triggers which react to pointer gestures.

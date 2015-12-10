@@ -251,6 +251,29 @@ interApp.onReceivedUri = function(uri) {
 };
 ```
 
+## $(UserEvents-js:UserEvents)
+
+The `UserEvents` module allows you to raise @(User events:user events) from JavaScript.
+
+	var UserEvents = require('FuseJS/UserEvents');
+
+	// Raise an event
+	UserEvents.raise("MyEvent");
+
+	// Raise an event with arguments
+	UserEvents.raise("MyEvent", {
+		message: "Hello from JS!"
+	});
+
+At the moment events raised from JavaScript are global only, and not associated with a node.
+We are working to correct this, however in the meantime you need to put a global filter on the handler to respond to an event raised from JavaScript:
+
+	<OnUserEvent Name="MyEvent" Filter="Global">
+		...
+	</OnUserEvent>
+
+_Note_: User events can also be responded to from within JavaScript, see @(OnUserEvent).
+
 
 ## Geolocation
 

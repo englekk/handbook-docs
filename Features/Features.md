@@ -43,113 +43,116 @@ across all themes, in both `Native` mode and `Graphics` mode. The look & feel of
 themes.
 
 <table>
-	<tr>
-		<td></td>
-		<td><b>Graphics Mode</b></td>
-		<td><b>Native iOS</b></td>
-		<td><b>Native Android</b></td>
-	</tr>
-	<tr>
-		<td>
-			@(Layout)
-			<p>Define flexible, responsive layout for your app screens.<p>
-		</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
-	<tr>
-		<td>
-			@(Shapes)
-			<p>Build UI designs with basic (but fast) vector shapes to easily adapt your design to any screen size and density.<p>
-		</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
-	<tr>
-		<td>
-			@(Image)
-			<p>Display images and icons with multi-density support to adapt to any screen size and density.<p>
-		</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
-	<tr>
-		<td>
-			@(Video)
-			<p>Play videos, either as a media player or as part of your UI design.<p>
-		</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__planned">Planned</td>
-		<td class="feature__planned">Planned</td>
-	</tr>
+	<thead>
+		<tr>
+			<th></th>
+			<th><b>Graphics Mode</b></th>
+			<th><b>Native iOS</b></th>
+			<th><b>Native Android</b></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				@(Layout)
+				<p>Define flexible, responsive layout for your app screens.<p>
+			</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
+		<tr>
+			<td>
+				@(Shapes)
+				<p>Build UI designs with basic (but fast) vector shapes to easily adapt your design to any screen size and density.<p>
+			</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
+		<tr>
+			<td>
+				@(Image)
+				<p>Display images and icons with multi-density support to adapt to any screen size and density.<p>
+			</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
+		<tr>
+			<td>
+				@(Video)
+				<p>Play videos, either as a media player or as part of your UI design.<p>
+			</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__planned">Planned</td>
+			<td class="feature__planned">Planned</td>
+		</tr>
 
-	<tr>
-		<td>
-			@(Navigation)
-			<p>General purpose, cross-platform navigation system which lets you add custom gesture-driven animated navigation to any part of your app.</p>
-		</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
-	<tr>
-		<td>
-			TextEdit
-			<p>A plain text input field without a theme or styling.</p>
-		</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
-	<tr>
-		<td>
-			@(TextInput)
-			<p>A text input field decorated with look and feel from the theme.</p>
-		</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
-	<tr>
-		<td>
-			@(Button)
-			<p>Basic clickable control.</p>
-		</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
-	<tr>
-		<td>
-			@(Slider)
-			<p>Lets you specify a numeric value with a track and knob.</p>
-		</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
-	<tr>
-		<td>
-			@(Switch)
-			<p>Lets you specify an on/off boolean value.</p>
-		</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
-	<tr>
-		<td>
-			CameraFeed
-			<p>Display a live feed from the device camera as a UI element.</p>
-		</td>
-		<td class="feature__planned">Planned</td>
-		<td class="feature__n-a">N/A</td>
-		<td class="feature__n-a">N/A</td>
-	</tr>
-
+		<tr>
+			<td>
+				@(Navigation)
+				<p>General purpose, cross-platform navigation system which lets you add custom gesture-driven animated navigation to any part of your app.</p>
+			</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
+		<tr>
+			<td>
+				TextEdit
+				<p>A plain text input field without a theme or styling.</p>
+			</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
+		<tr>
+			<td>
+				@(TextInput)
+				<p>A text input field decorated with look and feel from the theme.</p>
+			</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
+		<tr>
+			<td>
+				@(Button)
+				<p>Basic clickable control.</p>
+			</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
+		<tr>
+			<td>
+				@(Slider)
+				<p>Lets you specify a numeric value with a track and knob.</p>
+			</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
+		<tr>
+			<td>
+				@(Switch)
+				<p>Lets you specify an on/off boolean value.</p>
+			</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
+		<tr>
+			<td>
+				CameraFeed
+				<p>Display a live feed from the device camera as a UI element.</p>
+			</td>
+			<td class="feature__planned">Planned</td>
+			<td class="feature__n-a">N/A</td>
+			<td class="feature__n-a">N/A</td>
+		</tr>
+	</tbody>
 </table>
 
 
@@ -161,129 +164,137 @@ not available in `Graphics` themes, and can not interact with the Fuse effect sy
 Their features, function and appearance may vary between platforms.
 
 <table>
-	<tr>
-		<td></td>
-		<td><b>iOS</b></td>
-		<td><b>Android</b></td>
-	</tr>
-	<tr>
-		<td>
-			@(WebView)
-			<p>Display a browser in your app, or create certain parts of your app using HTML5.</p>
-		</td>
-		<td class="feature__experimental">Experimental</td>
-		<td class="feature__experimental">Experimental</td>
-	</tr>
-	<tr>
-		<td>
-			MapView
-			<p>Display the OS native maps.</p>
-		</td>
-		<td class="feature__experimental">Experimental</td>
-		<td class="feature__planned">Planned</td>
-	</tr>
+	<thead>
+		<tr>
+			<th></th>
+			<th><b>iOS</b></th>
+			<th><b>Android</b></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				@(WebView)
+				<p>Display a browser in your app, or create certain parts of your app using HTML5.</p>
+			</td>
+			<td class="feature__experimental">Experimental</td>
+			<td class="feature__experimental">Experimental</td>
+		</tr>
+		<tr>
+			<td>
+				MapView
+				<p>Display the OS native maps.</p>
+			</td>
+			<td class="feature__experimental">Experimental</td>
+			<td class="feature__planned">Planned</td>
+		</tr>
 
-	<tr>
-		<td>
-			DatePicker
-			<p>Display the native OS date picker.</p>
-		</td>
-		<td class="feature__planned">Planned</td>
-		<td class="feature__planned">Planned</td>
-	</tr>
+		<tr>
+			<td>
+				DatePicker
+				<p>Display the native OS date picker.</p>
+			</td>
+			<td class="feature__planned">Planned</td>
+			<td class="feature__planned">Planned</td>
+		</tr>
 
-	<tr>
-		<td>
-			iOS Navigation
-			<p>Create a native navigation system based on the iOS built-in navigator controls and native transitions.</p>
-		</td>
-		<td class="feature__planned">Planned</td>
-		<td class="feature__n-a">N/A</td>
-	</tr>
+		<tr>
+			<td>
+				iOS Navigation
+				<p>Create a native navigation system based on the iOS built-in navigator controls and native transitions.</p>
+			</td>
+			<td class="feature__planned">Planned</td>
+			<td class="feature__n-a">N/A</td>
+		</tr>
 
-	<tr>
-		<td>
-			Android Material Design Navigation
-			<p>Create a native navigation system based on the Material Design component pack provided by Google.</p>
-		</td>
-		<td class="feature__n-a">N/A</td>
-		<td class="feature__planned">Planned</td>
-	</tr>
+		<tr>
+			<td>
+				Android Material Design Navigation
+				<p>Create a native navigation system based on the Material Design component pack provided by Google.</p>
+			</td>
+			<td class="feature__n-a">N/A</td>
+			<td class="feature__planned">Planned</td>
+		</tr>
+	</tbody>
 </table>
 
 
 ## FuseJS Features
 
 <table>
-	<tr>
-		<td></td>
-		<td><b>Native iOS</b></td>
-		<td><b>Native Android</b></td>
-	</tr>
+	<thead>
+		<tr>
+			<th></th>
+			<th><b>Native iOS</b></th>
+			<th><b>Native Android</b></th>
+		</tr>
+	</thead>
 
-	<tr>
-		<td>
-			@(Observable) - Reactive data binding
-		</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
+	<tbody>
+		<tr>
+			<td>
+				@(Observable) - Reactive data binding
+			</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
 
-	<tr>
-		<td>
-			<a href="/learn/fusejs#xmlhttprequest">XMLHttpRequest</a>
-		</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
+		<tr>
+			<td>
+				<a href="/learn/fusejs#xmlhttprequest">XMLHttpRequest</a>
+			</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
 
-	<tr>
-		<td>
-			@(fetch) (Promise-based HTTP)
-		</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
+		<tr>
+			<td>
+				@(fetch) (Promise-based HTTP)
+			</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
 
-	<tr>
-		<td>
-			<a href="/learn/fusejs#push-notifications">Push Notifications</a>
-		</td>
-		<td class="feature__experimental">Experimental</td>
-		<td class="feature__experimental">Experimental</td>
-	</tr>
+		<tr>
+			<td>
+				<a href="/learn/fusejs#push-notifications">Push Notifications</a>
+			</td>
+			<td class="feature__experimental">Experimental</td>
+			<td class="feature__experimental">Experimental</td>
+		</tr>
 
-	<tr>
-		<td>
-			<a href="/learn/fusejs#the-notification">System Notifications</a>
-		</td>
-		<td class="feature__experimental">Experimental</td>
-		<td class="feature__experimental">Experimental</td>
-	</tr>
+		<tr>
+			<td>
+				<a href="/learn/fusejs#the-notification">System Notifications</a>
+			</td>
+			<td class="feature__experimental">Experimental</td>
+			<td class="feature__experimental">Experimental</td>
+		</tr>
 
-	<tr>
-		<td>
-			<a href="/learn/fusejs#takepicture-function">Take photo with device camera</a>
-		</td>
-		<td class="feature__experimental">Experimental</td>
-		<td class="feature__experimental">Experimental</td>
-	</tr>
+		<tr>
+			<td>
+				<a href="/learn/fusejs#takepicture-function">Take photo with device camera</a>
+			</td>
+			<td class="feature__experimental">Experimental</td>
+			<td class="feature__experimental">Experimental</td>
+		</tr>
 
-	<tr>
-		<td>
-			<a href="/learn/fusejs#geolocation">Geolocation</a>
-		</td>
-		<td class="feature__experimental">Experimental</td>
-		<td class="feature__experimental">Experimental</td>
-	</tr>
+		<tr>
+			<td>
+				<a href="/learn/fusejs#geolocation">Geolocation</a>
+			</td>
+			<td class="feature__experimental">Experimental</td>
+			<td class="feature__experimental">Experimental</td>
+		</tr>
 
-	<tr>
-		<td>
-			<a href="/learn/fusejs#storage">Local Storage</a>
-		</td>
-		<td class="feature__experimental">Experimental</td>
-		<td class="feature__experimental">Experimental</td>
-	</tr>
+		<tr>
+			<td>
+				<a href="/learn/fusejs#storage">Local Storage</a>
+			</td>
+			<td class="feature__experimental">Experimental</td>
+			<td class="feature__experimental">Experimental</td>
+		</tr>
+	</tbody>
 </table>
 
 ## Native Interop
@@ -291,47 +302,51 @@ Their features, function and appearance may vary between platforms.
 Fuse has several ways in which you can interop with native APIs, existing native code and third-party SDKs.
 
 <table name="nativeinterop">
-	<tr>
-		<td></td>
-		<td><b>iOS</b></td>
-		<td><b>Android</b></td>
-	</tr>
+	<thead>
+		<tr>
+			<th></th>
+			<th><b>iOS</b></th>
+			<th><b>Android</b></th>
+		</tr>
+	</thead>
 
-	<tr>
-		<td>
-			<b>Foreign Code</b>
-			<p>Put native Java, Objective-C and C++ code directly in your Fuse project, and expose new functionality to FuseJS.</p>
-		</td>
-		<td class="feature__planned">In progress</td>
-		<td class="feature__planned">In progress</td>
-	</tr>
+	<tbody>
+		<tr>
+			<td>
+				<b>Foreign Code</b>
+				<p>Put native Java, Objective-C and C++ code directly in your Fuse project, and expose new functionality to FuseJS.</p>
+			</td>
+			<td class="feature__planned">In progress</td>
+			<td class="feature__planned">In progress</td>
+		</tr>
 
-	<tr>
-		<td>
-			<b>Uno Inline Foreign Code</b>
-			<p>Implement Uno methods directly in a native platform language: Java, Objective-C or C++.</p>
-		</td>
-		<td class="feature__planned">In progress</td>
-		<td class="feature__planned">In progress</td>
-	</tr>
+		<tr>
+			<td>
+				<b>Uno Inline Foreign Code</b>
+				<p>Implement Uno methods directly in a native platform language: Java, Objective-C or C++.</p>
+			</td>
+			<td class="feature__planned">In progress</td>
+			<td class="feature__planned">In progress</td>
+		</tr>
 
-	<tr>
-		<td>
-			<b>Uno Native API Bindings</b>
-			<p>Call any Android and iOS API directly from Uno in plain syntax.</p>
-		</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
+		<tr>
+			<td>
+				<b>Uno Native API Bindings</b>
+				<p>Call any Android and iOS API directly from Uno in plain syntax.</p>
+			</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
 
-	<tr>
-		<td>
-			<a href="/learn/guides/uxl-handbook">Uno Extension Layer (UXL)</a>
-			<p>Various low-level methods for advanced interop between Uno and the native target language.</p>
-		</td>
-		<td class="feature__mature">Mature</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
+		<tr>
+			<td>
+				<a href="/learn/guides/uxl-handbook">Uno Extension Layer (UXL)</a>
+				<p>Various low-level methods for advanced interop between Uno and the native target language.</p>
+			</td>
+			<td class="feature__mature">Mature</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
+	</tbody>
 </table>
 
 ## Third-party library wrappers
@@ -341,37 +356,41 @@ Fuse will wrap the most popular 3rd party SDKs into easy to use UX/JS APIs. Many
 <b>SDKs and APIs not officially wrapped by Fuse can still be used through <a href="#native-interop">Native Interop</a></b>
 
 <table>
-	<tr>
-		<td></td>
-		<td><b>iOS</b></td>
-		<td><b>Android</b></td>
-	</tr>
+	<thead>
+		<tr>
+			<th></th>
+			<th><b>iOS</b></th>
+			<th><b>Android</b></th>
+		</tr>
+	</thead>
 
-	<tr>
-		<td>
-			<b>Parse (JavaScript SDK)</b>
-			<p>Data, push and analytics for your app through cliend-side JS.</p>
-		</td>
-		<td class="feature__mature">Works as-is</td>
-		<td class="feature__mature">Works as-is</td>
-	</tr>
+	<tbody>
+		<tr>
+			<td>
+				<b>Parse (JavaScript SDK)</b>
+				<p>Data, push and analytics for your app through cliend-side JS.</p>
+			</td>
+			<td class="feature__mature">Works as-is</td>
+			<td class="feature__mature">Works as-is</td>
+		</tr>
 
-	<tr>
-		<td>
-			<b>Facebook SDK Wrapper</b>
-			<p>Basic features from the Facebook SDKs exposed as FuseJS APIs and UX Markup components.</p>
-		</td>
-		<td class="feature__planned">Planned</td>
-		<td class="feature__planned">Planned</td>
-	</tr>
-	<tr>
-		<td>
-			<b>SQLite Wrapper</b>
-			<p>Local on-device database wrapper</p>
-		</td>
-		<td class="feature__planned">Planned</td>
-		<td class="feature__planned">Planned</td>
-	</tr>
+		<tr>
+			<td>
+				<b>Facebook SDK Wrapper</b>
+				<p>Basic features from the Facebook SDKs exposed as FuseJS APIs and UX Markup components.</p>
+			</td>
+			<td class="feature__planned">Planned</td>
+			<td class="feature__planned">Planned</td>
+		</tr>
+		<tr>
+			<td>
+				<b>SQLite Wrapper</b>
+				<p>Local on-device database wrapper</p>
+			</td>
+			<td class="feature__planned">Planned</td>
+			<td class="feature__planned">Planned</td>
+		</tr>
+	</tbody>
 </table>
 
 > Missing something? Please make a <a href="https://www.fusetools.com/community/forums/feature_requests">feature request in our forums</a>.
@@ -380,73 +399,67 @@ Fuse will wrap the most popular 3rd party SDKs into easy to use UX/JS APIs. Many
 
 ## Real-time Graphics Effects
 
-Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to apply GPU effects to UI elements in real-time. This gives designers a new realm of new possibilities to shape visual expressions, animations and transitions. 
-
-
+Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to apply GPU effects to UI elements in real-time. This gives designers a new realm of new possibilities to shape visual expressions, animations and transitions.
 
 <table>
-	<tr>
-		<td></td>
-		<td><b>Graphics Mode</b></td>
-	</tr>
+	<thead>
+		<tr>
+			<th></th>
+			<th><b>Graphics Mode</b></th>
+		</tr>
+	</thead>
 
-	<tr>
-		<td>
-			<b>Blur</b>
-			<p>Apply real-time blur to any UI element.</p>
-		</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
-
-	
-
-	<tr>
-		<td>
-			<b>DropShadow</b>
-			<p>Put real-time soft drop shadows on any UI element.</p>
-		</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
-
-	<tr>
-		<td>
-			<b>Desaturate</b>
-			<p>Fade any element into grayscale as a transition or permanent effect.</p>
-		</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
-
-	<tr>
-		<td>
-			<b>HalfTone</b>
-			<p>Applies a configurable halftone pattern to any UI element.</p>
-		</td>
-		<td class="feature__experimental">Experimental</td>
-	</tr>
-
-	<tr>
-		<td>
-			<b>Glass</b>
-			<p>Apply real-time blur and color grading to the background of any UI element to give it the appearance of 				glass.</p>
-		</td>
-		<td class="feature__planned">Planned</td>
-	</tr>
-
-	<tr>
-		<td>
-			<b>ColorCorrect</b>
-			<p>Apply color correction to any UI element in real-time.</p>
-		</td>
-		<td class="feature__planned">Planned</td>
-	</tr>
-
-	<tr>
-		<td>
-			<b>Custom Shader Effects</b>
-			<p>The Fuse effect system is generalized and you can easily create custom effects with Uno code. Fork one of the existing effects and or extend the [Fuse.Effects](/learn/uno/api/fuse/effects/effect) class to create GPU shader effects.</p>
-		</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
+	<tbody>
+		<tr>
+			<td>
+				<b>Blur</b>
+				<p>Apply real-time blur to any UI element.</p>
+			</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
+		<tr>
+			<td>
+				<b>DropShadow</b>
+				<p>Put real-time soft drop shadows on any UI element.</p>
+			</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
+		<tr>
+			<td>
+				<b>Desaturate</b>
+				<p>Fade any element into grayscale as a transition or permanent effect.</p>
+			</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
+		<tr>
+			<td>
+				<b>HalfTone</b>
+				<p>Applies a configurable halftone pattern to any UI element.</p>
+			</td>
+			<td class="feature__experimental">Experimental</td>
+		</tr>
+		<tr>
+			<td>
+				<b>Glass</b>
+				<p>Apply real-time blur and color grading to the background of any UI element to give it the appearance of 				glass.</p>
+			</td>
+			<td class="feature__planned">Planned</td>
+		</tr>
+		<tr>
+			<td>
+				<b>ColorCorrect</b>
+				<p>Apply color correction to any UI element in real-time.</p>
+			</td>
+			<td class="feature__planned">Planned</td>
+		</tr>
+		<tr>
+			<td>
+				<b>Custom Shader Effects</b>
+				<p>The Fuse effect system is generalized and you can easily create custom effects with Uno code. Fork one of the existing effects and or extend the [Fuse.Effects](/learn/uno/api/fuse/effects/effect) class to create GPU shader effects.</p>
+			</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
+	</tbody>
 </table>
 
 
@@ -457,68 +470,72 @@ Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to
 ## Fuse Tools
 
 <table>
-	<tr>
-		<td></td>
-		<td><b>Status</b></td>
-	</tr>
+	<thead>
+		<tr>
+			<th></th>
+			<th><b>Status</b></th>
+		</tr>
+	</thead>
 
-	<tr>
-		<td>
-			<b>Fuse CLI Tools</b>
-			<p>The `fuse` command for creating, building and previewing Fuse projects</p>
-		</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
+	<tbody>
+		<tr>
+			<td>
+				<b>Fuse CLI Tools</b>
+				<p>The `fuse` command for creating, building and previewing Fuse projects</p>
+			</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
 
-	<tr>
-		<td>
-			<b>Fuse Desktop Preview</b>
-			<p>Preview your apps on OS X and Windows with smooth, 60 FPS performance. Does not require the iOS or Android 			emulator/simulator.</p>
-		</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
+		<tr>
+			<td>
+				<b>Fuse Desktop Preview</b>
+				<p>Preview your apps on OS X and Windows with smooth, 60 FPS performance. Does not require the iOS or Android 			emulator/simulator.</p>
+			</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
 
-	<tr>
-		<td>
-			<b>Fuse On-Device Preview</b>
-			<p>Preview your apps live on physical iOS and Android devices.</p>
-		</td>
-		<td class="feature__mature">Mature</td>
-	</tr>
+		<tr>
+			<td>
+				<b>Fuse On-Device Preview</b>
+				<p>Preview your apps live on physical iOS and Android devices.</p>
+			</td>
+			<td class="feature__mature">Mature</td>
+		</tr>
 
-	<tr>
-		<td>
-			<b>Fuse Monitor</b>
-			<p>Gather all output and diagnostics information from apps running in preview on desktop, on device or in emulators.</p>
-		</td>
-		<td class="feature__experimental">Experimental</td>
-	</tr>
+		<tr>
+			<td>
+				<b>Fuse Monitor</b>
+				<p>Gather all output and diagnostics information from apps running in preview on desktop, on device or in emulators.</p>
+			</td>
+			<td class="feature__experimental">Experimental</td>
+		</tr>
 
 
 
-	<tr>
-		<td>
-			<b>Fuse Inspector</b>
-			<p>Tweak UX parameters in real-time with visual controls.</p>
-		</td>
-		<td class="feature__experimental">Experimental</td>
-	</tr>
+		<tr>
+			<td>
+				<b>Fuse Inspector</b>
+				<p>Tweak UX parameters in real-time with visual controls.</p>
+			</td>
+			<td class="feature__experimental">Experimental</td>
+		</tr>
 
-	<tr>
-		<td>
-			<b>Sketch Importer</b>
-			<p>The `fuse import` command automatically creates and updates UX classes and image resources from a .sketch file.</p>
-		</td>
-		<td class="feature__experimental">Experimental</td>
-	</tr>
+		<tr>
+			<td>
+				<b>Sketch Importer</b>
+				<p>The `fuse import` command automatically creates and updates UX classes and image resources from a .sketch file.</p>
+			</td>
+			<td class="feature__experimental">Experimental</td>
+		</tr>
 
-	<tr>
-		<td>
-			<b>Fuse Profiler</b>
-			<p>Visualize performance data in real-time for UX markup nodes to easily identify UI performance bottlenecks.</p>
-		</td>
-		<td class="feature__planned">In progress</td>
-	</tr>
+		<tr>
+			<td>
+				<b>Fuse Profiler</b>
+				<p>Visualize performance data in real-time for UX markup nodes to easily identify UI performance bottlenecks.</p>
+			</td>
+			<td class="feature__planned">In progress</td>
+		</tr>
+	</tbody>
 </table>
 
 # Something missing?

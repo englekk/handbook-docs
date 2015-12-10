@@ -369,7 +369,7 @@ Triggers can contain actions too, which are one-off events that fire at a partic
 
 Note that actions, contrary to @(Animators:animators) are not reversible. This means it is not neccessarily possible to return to the @(rest state) if the trigger is reversed.
 
-Like @(Animators:animators), `Actions` can have a `Delay`. This specifies a number of seconds from the @(Trigger) is activated to the `Action` is fired. However, unlike `Animators`, they can also have a property called `AtProgress` which can be set to a value between 0 and 1. It has a similar function as `Delay`, but is instead relative to the full @(Duration) of the @(Trigger). Setting `AtProgress` to 0, means the action is fired as soon as the @(Trigger) is actiated. Setting it to 0.5 means it is fired half way through and so on.
+Like @(Animators:animators), `Actions` can have a `Delay`. This specifies a number of seconds from the @(Trigger) is activated to the `Action` is fired. However, unlike `Animators`, they also have a property called `AtProgress` which can be set to a value between 0 and 1. It has a similar function as `Delay`, but is instead relative to the full @(Duration) of the @(Trigger). Setting `AtProgress` to 0, means the action is fired as soon as the @(Trigger) is actiated. Setting it to 0.5 means it is fired half way through and so on.
 
 ### $(Action.AtProgress:AtProgress)
 

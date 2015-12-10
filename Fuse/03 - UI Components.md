@@ -110,20 +110,21 @@ It is possible to tint an `Image` by using the `Color`-property. Note, that this
 
 This will turn a white icon red.
 
+<!-- Removed due to resampleMode being broken ATM
 > ### Custom resample mode
 
-In some cases, like when showing images with low resolution, you may want to have control over the resample mode. this is doable using the `ResampleMode` property. With it, you have the following choices:
+In some cases, like when showing images with low resolution, you may need to take control over the resample mode. this is doable using the `ResampleMode` property. With it, you have the following choices:
 
-* Linear
-* Mipmap
-* Nearest
+* Linear - samples the color linearly based on the closest samples on the image
+* Mipmap - samples the color based 
+* Nearest - samples the color closest to the intended sample point
 
 In the following example, we are using an `Image` with the `Nearest` resample mode in order to draw images with low resolution, like pixel art, without getting a blurry image:
 
 ```
 <Image ResampleMode="Nearest" File="Art.png" />
 ```
-
+-->
 ### $(StretchMode)
 
 When added to a container, an `Image` will by default try to show as much of itself as possible. If the image isn't the same aspect as its container, there will be parts of the container that will not be covered.

@@ -194,7 +194,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			<u>iOS Navigation</u>
+			iOS Navigation
 			<p>Create a native navigation system based on the iOS built-in navigator controls and native transitions.</p>
 		</td>
 		<td class="feature__planned">Planned</td>
@@ -203,7 +203,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			<u>Android Material Design Navigation</u>
+			Android Material Design Navigation
 			<p>Create a native navigation system based on the Material Design component pack provided by Google.</p>
 		</td>
 		<td class="feature__n-a">N/A</td>
@@ -223,7 +223,7 @@ Their features, function and appearance may vary between platforms.
 
 	<tr>
 		<td>
-			<b>Observables - Reactive data binding</b>
+			@(Observables) - Reactive data binding
 		</td>
 		<td class="feature__mature">Mature</td>
 		<td class="feature__mature">Mature</td>

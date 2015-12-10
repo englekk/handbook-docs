@@ -374,7 +374,7 @@ Fuse will wrap the most popular 3rd party SDKs into easy to use UX/JS APIs. Many
 	</tr>
 </table>
 
-> Missing something? Please post a <a href="https://www.fusetools.com/community/forums/feature_requests">feature request in the forums</a>
+> Missing something? Please make a <a href="https://www.fusetools.com/community/forums/feature_requests">feature request in our forums</a>.
 
 
 
@@ -520,3 +520,7 @@ Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to
 		<td class="feature__planned">In progress</td>
 	</tr>
 </table>
+
+# Something missing?
+
+If there's something that's not on our feature roadmap that you feel should be, then don't be shy and please let us know by making a a <a href="https://www.fusetools.com/community/forums/feature_requests">feature request!</a> We're more than happy to hear from you.

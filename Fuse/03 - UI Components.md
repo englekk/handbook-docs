@@ -896,13 +896,11 @@ If you intend to have the `Image` clip to its parent size, simply add $(ClipToBo
 
 Now, the `Image` will not overflow the bounds of the `Panel`.
 
-> ### $(Opacity)
+### $(Opacity)
 
 You can set the transparency of objects using the `Opacity`-property.
 
-	<Panel>
-		<Opacity Value="0.5" />
-	</Panel>
+	<Panel Opacity="0.5"/>
 
 When the `Opacity` is set to 0.0, the element is fully transparent and will no longer respond to @(HitTestMode:HitTests). When the `Opacity` is set to 1.0, the element will be at its default state.
 

@@ -339,7 +339,7 @@ Fuse has several ways in which you can interop with native APIs, existing native
 
 		<tr>
 			<td>
-				<b>Uno Native API Bindings</b>
+				<b><a href="https://www.fusetools.com/learn/uno#working-with-native-apis-from-uno">Uno Native API Bindings</a></b>
 				<p>Call any Android and iOS API directly from Uno in plain syntax.</p>
 			</td>
 			<td class="feature__mature">Mature</td>
@@ -392,7 +392,7 @@ Fuse will wrap the most popular 3rd party SDKs into easy to use UX/JS APIs. Many
 		</tr>
 		<tr>
 			<td>
-				<b><a href="https://github.com/bolav/fuse-sqlite">SQLite Wrapper</a></b>
+				<a href="https://github.com/bolav/fuse-sqlite">SQLite Wrapper</a>
 				<p>Local on-device database wrapper.<em>The current experimental implementation is provided by a third party, full integration into Fuse is planned.</em></p>
 			</td>
 			<td class="feature__experimental">Experimental</td>

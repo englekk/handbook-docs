@@ -294,6 +294,14 @@ Their features, function and appearance may vary between platforms.
 			<td class="feature__experimental">Experimental</td>
 			<td class="feature__experimental">Experimental</td>
 		</tr>
+
+		<tr>
+			<td>
+				<a href="/learn/fusejs#storage">WebSocket</a>
+			</td>
+			<td class="feature__planned">In progress</td>
+			<td class="feature__planned">In progress</td>
+		</tr>
 	</tbody>
 </table>
 

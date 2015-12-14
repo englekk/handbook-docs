@@ -186,7 +186,7 @@ Their features, function and appearance may vary between platforms.
 				<p>Display the OS native maps.</p>
 			</td>
 			<td class="feature__experimental">Experimental</td>
-			<td class="feature__planned">Planned</td>
+			<td class="feature__planned">In progress</td>
 		</tr>
 
 		<tr>

@@ -116,7 +116,7 @@ This will turn a white icon red.
 In some cases, like when showing images with low resolution, you may need to take control over the resample mode. this is doable using the `ResampleMode` property. With it, you have the following choices:
 
 * Linear - samples the color linearly based on the closest samples on the image
-* Mipmap - samples the color based 
+* Mipmap - samples the color from the mipmap that closest matches the resolution of the image on-screen
 * Nearest - samples the color closest to the intended sample point
 
 In the following example, we are using an `Image` with the `Nearest` resample mode in order to draw images with low resolution, like pixel art, without getting a blurry image:

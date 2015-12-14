@@ -196,9 +196,9 @@ Allows you to use the devices vibration functionality.
 
 User it like so:
 
-	vibration.vibrate(200);
+	vibration.vibrate(0.8);
 
-Vibrates for 200 milliseconds.
+Vibrates for 0.8 seconds.
 
 <!-- TODO: Document localstorage -->
 

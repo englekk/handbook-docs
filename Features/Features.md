@@ -339,7 +339,7 @@ Fuse has several ways in which you can interop with native APIs, existing native
 
 		<tr>
 			<td>
-				<b><a href="https://www.fusetools.com/learn/uno#working-with-native-apis-from-uno">Uno Native API Bindings</a></b>
+				<a href="https://www.fusetools.com/learn/uno#working-with-native-apis-from-uno">Uno Native API Bindings</a>
 				<p>Call any Android and iOS API directly from Uno in plain syntax.</p>
 			</td>
 			<td class="feature__mature">Mature</td>

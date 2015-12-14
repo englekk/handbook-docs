@@ -392,11 +392,11 @@ Fuse will wrap the most popular 3rd party SDKs into easy to use UX/JS APIs. Many
 		</tr>
 		<tr>
 			<td>
-				<b>SQLite Wrapper</b>
-				<p>Local on-device database wrapper</p>
+				<b><a href="https://github.com/bolav/fuse-sqlite">SQLite Wrapper</a></b>
+				<p>Local on-device database wrapper.<em>The current experimental implementation is provided by a third party, full integration into Fuse is planned.</em></p>
 			</td>
-			<td class="feature__planned">Planned</td>
-			<td class="feature__planned">Planned</td>
+			<td class="feature__experimental">Experimental</td>
+			<td class="feature__experimental">Experimental</td>
 		</tr>
 	</tbody>
 </table>

@@ -17,6 +17,7 @@ The following third party JavaScript libraries are tested and known to work
 * [lodash](https://lodash.com)
 * [bluebird](https://github.com/petkaantonov/bluebird)
 * [Moment.js](http://momentjs.com)
+* [Syncano](https://github.com/Syncano/syncano-js)
 
 <!-- TODO: Add this section as we uncover incompatible libraries
 ## Known incompatibilities

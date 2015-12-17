@@ -440,6 +440,14 @@ Tells a @(Navigation:navigation context) or a @(WebView) to step backward in its
 
 <!-- For further detail about `GoBack` in the context of @(Navigation:navigation), see @(Controlling navigation). -->
 
+### $(ScrollableGoto)
+
+Tells a @(ScrollView:scrollable) element to go to either a specific position on the scrollable, or an offset to the current position. It accepts the following properties:
+
+* `Position` - specifies an absolute position in the scrollable to navigate to
+* `RelativePosition` - specifies a position relative to the current position that is to be navigated to.
+
+If both are specified, `Position` will be dominant.
 
 > ### $(Toggle)
 
@@ -742,6 +750,10 @@ Following are triggers which react to pointer gestures.
 ### $(Tapped)
 
 The `Tapped`-trigger is quite similar to the @(Clicked)-trigger. Where a click just means that the pointer has to be pressed and released on the element, a tap means that the pointer has to be released within a certain time after the pointer is pressed.
+
+### $(LongPressed)
+
+`LongPressed` will activate if the parent element has been pressed for longer than 0.5 seconds.
 
 ### $(DoubleClicked)
 

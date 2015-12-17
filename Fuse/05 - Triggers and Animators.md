@@ -735,6 +735,26 @@ As with @(DoubleClicked), `DoubleTapped` is activated when the element has been 
 
 * Note: `WhileHovering` only has value when the device supports a hovering pointer, like the mouse pointer on desktop machines. For most smart phones this trigger won't have much value.
 
+## $(Viewport triggers)
+
+These triggers react when something happens to the app.
+
+### $(WhileWindowLandscape)
+
+The `WhileWindowLandscape` trigger is active whenever the app's viewport width is larger than it's height. The following example changes the App's background color depending on its orientation:
+
+```
+<App ux:Name="app" Theme="Basic" Background="#FFF">
+     <WhileWindowLandscape>
+         <Change app.ClearColor="0,0,1,1" Duration="1" />
+     </WhileWindowLandscape>
+</App>
+```
+
+### $(WhileWindowPortrait)
+
+The `WhileWindowPortrait` trigger is active whenever the app's viewport height is larger than, or equal to, the width.
+
 ## $(Control triggers)
 
 ### $(WhileEnabled)

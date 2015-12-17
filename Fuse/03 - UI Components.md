@@ -125,6 +125,7 @@ In the following example, we are using an `Image` with the `Nearest` resample mo
 <Image ResampleMode="Nearest" File="Art.png" />
 ```
 -->
+
 ### $(StretchMode)
 
 When added to a container, an `Image` will by default try to show as much of itself as possible. If the image isn't the same aspect as its container, there will be parts of the container that will not be covered.
@@ -268,6 +269,7 @@ Fuse comes with a set of actions that can be used to control video playback. The
 
 Video is implemented by using the videodecoder provided by the export target and therefore supports whatever the platform supports.
 Be aware that Windows, OS X, Android and iOS might not share support for some formats
+
 - [Android supported formats](http://developer.android.com/guide/appendix/media-formats.html)
 - [iOS and OS X supported formats (found under 'public.movie')](https://developer.apple.com/library/mac/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html)
 - [Windows supported formats](https://msdn.microsoft.com/en-us/library/windows/desktop/dd407173%28v=vs.85%29.aspx)

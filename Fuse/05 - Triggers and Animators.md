@@ -224,7 +224,7 @@ As with @(Cycle), you may also specify a `Duration` to control the length of the
 You can use `DegreesX` and `DegreesY` to skew on one axis, or `DegreesXY` and `XY` to skew on both axes in degrees or radians, respectively.
 
 ### $(Keyframe:Keyframes)
-<!--AUTH:-->
+
 There are situations where we don't simply want to animate from point a to point b. For the cases where we want to specify several steps for an animation, we can use @(Keyframe:keyframes).
 
 ```
@@ -255,7 +255,7 @@ This time we use `TimeDelta` instead of time. With `TimeDelta` we can specify ti
 
 ### $(Nothing)
 
-All animations for a `Trigger` share a common timeline, which ends when the last animation has completed. In some rare cases, you may want to artificially extend the timeline. This can be done using `Nothing`. Logically, it is a blank animation with a set length, forcing the length of the timeline to be at least the duration of the `Nothing`. 
+All animations for a `Trigger` share a common timeline, which ends when the last animation has completed. In some rare cases, you may want to artificially extend the timeline. This can be done using `Nothing`. Logically, it is a blank animation with a set length, forcing the length of the timeline to be at least the duration of the `Nothing`.
 
 ```
 <Nothing Duration="1" />

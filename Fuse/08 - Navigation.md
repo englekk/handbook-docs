@@ -131,7 +131,7 @@ The `PageIndicator` can be used together with @(PageControl) to show clearly whi
 
 It is mandatory to set a value for the @(PageIndicator:page indicators) `Navigation` property. In this case we simply set it to be the @(PageControl).
 
-Another thing to note is that the `PageIndicator` uses a `Factory` to create an indicator for each page. In the example above, we use a @(Circle) with the @(ux:Generate) property set to `Factory` and the @(ux:Binding) property set to to page indicators `DotFactory` property.
+Another thing to note is that the `PageIndicator` uses a `Factory` to create an indicator for each page. In the example above, we use a @(Circle) with the @(ux:Generate) property set to `Factory` and the @(ux:Binding) property set to the page indicator's `DotFactory` property as our "template". If nothing is set, the $(PageIndicator:page indicator) will default to using a `PageIndicatorDot`, a simple dot template that will do the trick in many cases.
 
 ## {Page} Binding
 

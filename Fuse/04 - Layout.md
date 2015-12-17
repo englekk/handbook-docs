@@ -107,6 +107,8 @@ The Orientation property can be used to make a vertical `WrapPanel` like so:
 </WrapPanel>
 ```
 
+You can also specify the maximum area the WrapPanel will allocate an element by using the `ItemWidth` and `ItemHeight` properties.
+
 <!-- TODO: Illustration -->
 
 ## $(DockPanel)
@@ -338,3 +340,4 @@ You also have the option to not take the size of the keyboard into account:
 > ### $(ClientPanel)
 
 `ClientPanel` is a @(DockPanel) with both a @(StatusBarBackground) and a @(BottomBarBackground) docked to its top and bottom edges, respectively. It is included for convenience.
+

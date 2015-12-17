@@ -154,6 +154,84 @@ Note that any other setting than `DownOnly` might create pixel artifacts, as the
 
 You can also set the @(StretchMode) for the contents, which defaults to `Uniform`.
 
+## $(The Layout property)
+<!-- TODO: find a better title -->
+
+In the previous sections, we've been talking about different types of @(Panel:panels) and how they perform layout on their children.
+Under the hood, these are regular @(Panel:panels) that have been assigned a `Layout`.
+
+Layouts control how a @(Panel) should lay out its children.
+Fuse comes with several which are listed below, together with their corresponding panel types.
+
+- @(StackPanel) - $(StackLayout)
+- @(Grid) - $(GridLayout)
+- @(DockPanel) - $(DockLayout)
+- @(WrapPanel) - $(WrapLayout)
+
+This means that the following snippets are equivalent to each other:
+
+```
+<StackPanel>
+	...
+</StackPanel>
+```
+
+```
+<Panel>
+	<StackLayout />
+	...
+</Panel>
+```
+
+As we can tell from the last snippet, layouts are automatically bound to the `Layout` property.
+
+## $(ColumnLayout)
+
+`ColumnLayout` lays out the children of a @(Panel) by dividing them into columns. The number of columns can be adjusted with the `ColumnCount` property.
+It attempts to keep the height of the columns somewhat balanced by placing children in the shortest column available after laying out their previous siblings.
+
+	<Panel>
+		<ColumnLayout ColumnCount="3" />
+
+		<Style>
+			<Panel Background="#2c3e50" Margin="5" />
+			<Text TextColor="#fff" Alignment="Center" TextAlignment="Center" FontSize="20" />
+		</Style>
+
+		<Panel Height="200">
+			<Text>1</Text>
+		</Panel>
+
+		<Panel Height="100">
+			<Text>2</Text>
+		</Panel>
+
+		<Panel Height="300">
+			<Text>3</Text>
+		</Panel>
+
+		<Panel Height="150">
+			<Text>4</Text>
+		</Panel>
+
+		<Panel Height="200">
+			<Text>5</Text>
+		</Panel>
+	</Panel>
+
+In this example we have divided five @(Panel:panels) of different heights into three columns.
+The animation below shows the result of this, and what would happen if we were to resize the third @(Panel:panel).
+
+[VIDEO ../media/ColumnLayout.mp4]
+
+You can also lay out the children in rows instead of columns by setting the `Orientation` property to `Horizontal`.
+
+A full example that uses `ColumnLayout` can be found [here](https://www.fusetools.com/examples/gallery).
+
+> ## $(DefaultLayout)
+
+`DefaultLayout` is the default layout of a @(Panel).
+
 ## Element Layout
 
 <!-- TODO: Link to video -->

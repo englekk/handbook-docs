@@ -136,7 +136,8 @@ $(RelativeTo) can be set to the following values:
 - `Local`(default): Moves the set amount of points in the X and/or Y direction.
 - `Size`: Moves the set amount times the size of the element. So X="1" moves the element by its entire width in the X direction.
 - `ParentSize`: Same as `Size` but uses the elements parents size instead.
-- `LayoutChange`: Used in response to a @(LayoutAnimation) to move the element by the amount of a layout change.
+- `PositionChange`: Used in response to a @(LayoutAnimation) to move the element by the amount of change in position within it's parent.
+- `WorldPositionChange`: Used in response to a @(LayoutAnimation) to move the element by the amount of change in position relative to the entire display.
 - `Keyboard`: Moves the element relative to the size of the eyboard.
 
 Additionally, if you set `RelativeTo` to `Size` or `ParentSize`, you can move the element relative to the size of another element set by the `RelativeElement` property.
@@ -171,6 +172,8 @@ You can scale an element uniformly along all axes by using the `Factor` property
 <Scale Factor="2" Duration="0.4"/>
 ```
 
+`Scale` can be used relative to something using the `RelativeTo` property. At the moment the only value for this is `SizeChange`, which Scales relative to the change in size of the element.
+
 ### $(Rotate)
 
 `Rotate` rotates an Element and is equal to adding a @(Rotation) and animating it with a @(Change).
@@ -185,8 +188,11 @@ Using the `Degrees` property rotates the element around the Z-axis. Alternativel
 
 When used in concert with @(LayoutAnimation), `Resize` allows you to animate the size of an element:
 
-	 <Resize RelativeTo="LayoutChange" Duration="0.5" Easing="CircularInOut" />
+```
+<Resize RelativeTo="SizeChange" Duration="0.5" Easing="CircularInOut" />
+```
 
+The only value `Resize` has for `RelativeTo` at the moment is `SizeChange`, which resizes relative to the change in size of the element.
 
 ### $(Cycle)
 

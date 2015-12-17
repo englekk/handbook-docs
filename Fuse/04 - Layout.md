@@ -31,11 +31,21 @@ Note that the element order in a `Panel` is the same as the layer order in popul
 
 ## $(StackPanel)
 
-The StackPanel places its children in a stack. The default layout is a vertical stack, but one can use the $(Orientation) property to specify that the stack should be layed out horizontally.
+The StackPanel places its children in a stack. The default layout is a vertical stack, but one can use the `Orientation` property to specify that the stack should be layed out horizontally.
 
 ```
 <StackPanel Orientation="Horizontal">
 	... elements ...
+</StackPanel>
+```
+
+Additionally, one can use the `ItemSpacing` property to make some space between elements, as an alternative to setting a margin on the elements. The following example shows three Panels in a `StackPanel`, spaced using the `ItemSpacing` property:
+
+```
+<StackPanel ItemSpacing="20">
+	<Panel Height="100" Background="Red"/>
+	<Panel Height="100" Background="Green"/>
+	<Panel Height="100" Background="Blue"/>
 </StackPanel>
 ```
 

@@ -49,7 +49,7 @@ public class MyPanel : Panel { ... }
 
 ## ux:Property
 
-In most cases, when creating custom classes, we need to be able to define an API. This can be done through UX using the ux:Property syntax.
+In most cases, when creating custom classes, we need to be able to define some interface to that class. This can be done through UX using the ux:Property syntax.
 
 __MyButton.ux__:
 

@@ -18,19 +18,6 @@ To add a `Style` to a `Node`:
 
 The `Text` instances created at the level where the `Style` is introduced _or below_ will be affected by the `Style`. In this case, adding the `Style` will have the same appearance as adding the `FontSize` to all the `Text`-elements separately.
 
-## Styling Class Resources
-
-When introducing @(Class Resources) you create _new types_:
-
-	<Text ux:Class="Header" />
-	<Style>
-		<Header FontSize="22" />
-	</Style>
-	<Header>Welcome</Header>
-	<Text>This document will change your life.</Text>
-
-In this case we've introduced a new _semantic class_ when we create `Header`, as the properties are the same as the default `Text` properties, but we've created another class that can be styled separately.
-
 ## $(Theme)
 
 The `Theme` property of `App` decides whether your app is set up with *native UI controls* or *OpenGL ES powered graphics* as the root-level presentation technology, as well as the default look and feel of @(control).

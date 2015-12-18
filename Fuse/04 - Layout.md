@@ -117,6 +117,8 @@ The Orientation property can be used to make a vertical `WrapPanel` like so:
 </WrapPanel>
 ```
 
+You can also specify the maximum area the WrapPanel will allocate an element by using the `ItemWidth` and `ItemHeight` properties.
+
 <!-- TODO: Illustration -->
 
 ## $(DockPanel)

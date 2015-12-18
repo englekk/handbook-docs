@@ -1,6 +1,6 @@
 # $(Creating custom UI components)
 
-## $(ux:Class)
+## ux:Class
 
 You can introduce a new _class_ at any point in your code using ux:Class. The following code creates a class called `Header`, which inherits from `Text`.
 
@@ -47,7 +47,7 @@ would be equal to the following Uno-class:
 public class MyPanel : Panel { ... }
 ```
 
-## $(ux:Property)
+## ux:Property
 
 In most cases, when creating custom classes, we need to be able to define an API. This can be done through UX using the ux:Property syntax.
 

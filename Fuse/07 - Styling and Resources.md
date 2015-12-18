@@ -2,46 +2,6 @@
 
 In Fuse, styling refers to setting properties such as fonts, colors, margins and appearances in a consistent way throughout your app.
 
-## $(Class Resources)
-
-You can introduce a _Class Resource_ at any point in your code:
-
-	<Text ux:Class="Header" FontSize="22" />
-	<Header>Welcome</Header>
-	<Text>This document will change your life.</Text>
-	<Header>Introduction</Header>
-	<Text>Are we there yet?</Text>
-
-In this case, the `Header`-class will be a distinctly different class from `Text`, although it inherits from it so all properties on `Text` will be available on `Header`. Note that the Class Resource can be defined in a separate file, and often is:
-
-__Header.ux__:
-
-	<!-- Setting 'ux:Class' is superfluous in this case,
-		 as it is implicitly set on the root element in
-		 a UX-file, but included here for clarity -->
-	<Text ux:Class="Header" FontSize="22" />
-
-__MainView.ux__:
-
-	<Header>Welcome</Header>
-
-Class Resources can be as complex as you want:
-
-	<Image ux:Class="BurgerIcon">
-		<MultiDensityImageSource>
-			<FileImageSource File="Burger.png" Density="1"/>
-			<FileImageSource File="Burger.png@2x.png" Density="2"/>
-		</MultiDenistyImageSoruce>
-	</Image>
-
-	<!-- ... -->
-
-	<Panel>
-		<BurgerIcon />
-	</Panel>
-
-Class Resources can also contain their own logic using @(Triggers:Trigger) and @(Actions).
-
 ## $(Style)
 
 To add a `Style` to a `Node`:

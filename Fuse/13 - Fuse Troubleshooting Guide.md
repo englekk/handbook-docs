@@ -23,6 +23,15 @@
 - If that did not help, please try logging out of and back in to Windows / OS X.
 - If that did not help, please try to reboot your computer.
 
+### Symptom
+- While previewing on an iOS or Android device, you get the message "Failed to connect"
+
+### Solution
+- Make sure your device has WiFi enabled
+- Make sure your device is connected to the same WiFi as the computer running Fuse 
+- If your computer is running a firewall (such as Windows Firewall), make sure Fuse is allowed to accept incoming connections
+- If you still have the problem, quit Fuse from the tray / menu bar icon and re-start preview
+
 ## Sublime plugin does not work
 
 ### Symptom

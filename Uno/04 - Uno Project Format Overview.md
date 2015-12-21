@@ -13,11 +13,11 @@ A default Uno Project file template looks like this:
     {
       "BuildDirectory": ".build",
       "CacheDirectory": ".cache",
-      "RootNamespace": "$(QIdentifier)",
+      "RootNamespace": "\$(QIdentifier)",
       "ReferenceUnoCore": true,
       "Version": "0.0.0",
       "VersionCount": 1,
-      "Title": "$(Name)",
+      "Title": "\$(Name)",
       "Copyright": "Copyright (C) 2015",
       "Publisher": "[Publisher]",
       "Mobile": {
@@ -27,38 +27,38 @@ A default Uno Project file template looks like this:
         "Orientations": "Auto"
       },
       "Android": {
-        "ApplicationLabel": "$(Title)",
-        "VersionCode": "$(VersionCount)",
-        "VersionName": "$(Version)",
-        "Description": "$(Description)",
+        "ApplicationLabel": "\$(Title)",
+        "VersionCode": "\$(VersionCount)",
+        "VersionName": "\$(Version)",
+        "Description": "\$(Description)",
         "Icons": {
-          "LDPI": "$(Icon)",
-          "MDPI": "$(Icon)",
-          "HDPI": "$(Icon)",
-          "XHDPI": "$(Icon)",
-          "XXHDPI": "$(Icon)",
-          "XXXHDPI": "$(Icon)"
+          "LDPI": "\$(Icon)",
+          "MDPI": "\$(Icon)",
+          "HDPI": "\$(Icon)",
+          "XHDPI": "\$(Icon)",
+          "XXHDPI": "\$(Icon)",
+          "XXXHDPI": "\$(Icon)"
         }
       },
       "iOS": {
         "Icons": {
-          "iPhone_29_2x": "$(Icon)",
-          "iPhone_29_3x": "$(Icon)",
-          "iPhone_40_2x": "$(Icon)",
-          "iPhone_40_3x": "$(Icon)",
-          "iPhone_60_2x": "$(Icon)",
-          "iPhone_60_3x": "$(Icon)",
-          "iPad_29_1x": "$(Icon)",
-          "iPad_29_2x": "$(Icon)",
-          "iPad_40_1x": "$(Icon)",
-          "iPad_40_2x": "$(Icon)",
-          "iPad_76_1x": "$(Icon)",
-          "iPad_76_2x": "$(Icon)"
+          "iPhone_29_2x": "\$(Icon)",
+          "iPhone_29_3x": "\$(Icon)",
+          "iPhone_40_2x": "\$(Icon)",
+          "iPhone_40_3x": "\$(Icon)",
+          "iPhone_60_2x": "\$(Icon)",
+          "iPhone_60_3x": "\$(Icon)",
+          "iPad_29_1x": "\$(Icon)",
+          "iPad_29_2x": "\$(Icon)",
+          "iPad_40_1x": "\$(Icon)",
+          "iPad_40_2x": "\$(Icon)",
+          "iPad_76_1x": "\$(Icon)",
+          "iPad_76_2x": "\$(Icon)"
         }
       },
       "HTML": {
-        "Title": "$(Title)",
-        "Favicon": "$(Icon)"
+        "Title": "\$(Title)",
+        "Favicon": "\$(Icon)"
       },
       "InternalsVisibleTo": [],
       "Packages": [

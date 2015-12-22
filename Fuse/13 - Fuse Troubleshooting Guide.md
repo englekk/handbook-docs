@@ -45,6 +45,7 @@
  - `C:\ProgramData\Uno\SDKs\AndroidSDK\platform-tools` (Windows)
  - `/usr/share/uno/SDKs/AndroidSDK/platform-tools` (OS X)
 - (Windows) Check that you have the latest drivers for your device
+- If your device still doesn't show up in `adb devices`, please search the web for solutions for your specific device. Fuse (like other Android development tools) depends on a working connection to your device in order to work.
 
 ## Sublime plugin does not work
 

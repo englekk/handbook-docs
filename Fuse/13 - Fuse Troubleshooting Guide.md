@@ -32,6 +32,20 @@
 - If your computer is running a firewall (such as Windows Firewall), make sure Fuse is allowed to accept incoming connections
 - If you still have the problem, quit Fuse from the tray / menu bar icon and re-start preview
 
+## Cannot preview or export to Android
+
+### Symptom
+- The Android build gets stuck at "Trying to uninstall existing version of APK"
+- The build finishes with "ERROR: No android devices found."
+
+### Solution
+- Check that the device is connected with a USB cable
+- Check that usb debugging is enabled on your device (Search the web for "enable usb debugging &lt;your device name&gt;")
+- Check that your device shows up in `adb devices`. `adb` can usually be found in
+ - `C:\ProgramData\Uno\SDKs\AndroidSDK\platform-tools` (Windows)
+ - `/usr/share/uno/SDKs/AndroidSDK/platform-tools` (OS X)
+- (Windows) Check that you have the latest drivers for your device
+
 ## Sublime plugin does not work
 
 ### Symptom

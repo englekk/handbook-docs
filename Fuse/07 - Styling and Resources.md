@@ -54,6 +54,8 @@ The resource will then be available to any nodes below it in the tree where it i
 
 ### $(Localization)
 
+> *Warning* : The feature that allows placing resources inside triggers, as seen below, is no yet rolled out, as of 0.9.5, but coming soon!
+
 Localization of strings, values, icons and other resources can be easily acheived with *resources*.
 
 	<Match Value="{language}">

@@ -289,12 +289,12 @@ Note that setting the @(Background) of the second @(Panel) in this example is of
 
 Fuse provides several @(Actions:actions) that allow you to perform @(Navigation:navigation).
 
-All navigation-related @(Actions:actions) have a `Context` property that lets you specify the navigation context to perform the action on.
-If `Context` is not specified, it will look for a parent element with a `Navigation` behavior and use that.
+All navigation-related @(Actions:actions) have a `Target` property that lets you specify the navigation context to perform the action on.
+If `Target` is not specified, it will look for a parent element with a `Navigation` behavior and use that.
 
 ### GoBack
 
-The behavior of `GoBack` depends on the type of navigation context it's performed on:
+The behavior of `GoBack` depends on the type of navigation context (`Target`) it's performed on:
 
 - @(LinearNavigation) – Navigates to the page occurring before the current page.
 - @(HierarchicalNavigation) – Navigates one level up in the hierarchy, i.e. the page most recently navigated to.

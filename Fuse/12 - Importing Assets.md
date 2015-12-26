@@ -41,7 +41,7 @@ Import may take a while, depending on the amount of assets in your document.
 
 As an alternative to using the terminal, you can drag-and-drop your `.sketch` file into a Fuse preview window. This will copy the sketch file to your project's root folder (if it isn't there already) and then do the same thing. Any existing `.sketch` file with the same name will be overwritten.
 
-### Resource library ($(.sketch.ux))
+### Resource library 
 
 When import is done - if all went well - Fuse has generated a file called `MyDesign.sketch.ux` next to your `.sketch` file. Open it in your text editor to see what's inside.
 

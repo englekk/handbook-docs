@@ -16,6 +16,7 @@ To start off, we make a set of @(Panel:panels) which represents our @(Page:pages
 
 Currently this is just a @(Panel) with three @(Panel:panels) inside it. To make our swipe navigation possible, we need to add three things.
 
+
 - A @(Navigation) behavior
 - A @(SwipeNavigate) behavior
 - Entering- and ExitingAnimation to our Panels

@@ -633,10 +633,15 @@ It is also possible to databind the slider position:
 		</StackPanel>
 	</App>
 
-## $(TextInput)
+## $(TextInput) and $(TextEdit)
 
-Fuse provides a `TextInput`-control to allow for user input of text:
+Fuse provides two different controls for entering and editing text:
 
+
+* `TextInput` is a text decorated text editor according to the current @(Theme).
+* `TextEdit` is plain text editor with no visual decoration, otherwise identical to `TextInput`.
+
+In the following examples, both `TextInput` and `TextEdit` can be used interchangeably:
 
 	<JavaScript>
 		var valueChanged = function (args) {

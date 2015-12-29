@@ -638,7 +638,7 @@ It is also possible to databind the slider position:
 Fuse provides two different controls for entering and editing text:
 
 
-* `TextInput` is a text decorated text editor according to the current @(Theme).
+* `TextInput` is a text editor decorated according to the current @(Theme).
 * `TextEdit` is plain text editor with no visual decoration, otherwise identical to `TextInput`.
 
 In the following examples, both `TextInput` and `TextEdit` can be used interchangeably:

@@ -583,6 +583,20 @@ The `LoadUrl` action lets you tell a given WebView to navigate to a location.
 
 `<LoadUrl TargetNode="myWebView" Url="http://mypage.com" />`
 
+### $(LoadHtml)
+
+The `LoadHtml` action lets you feed a given WebView with raw HTML to display when triggered, alongside a base url to set the HTML's context. This is either done by pointing the action's `Source` attribute to a databound HTML string, or by wrapping an @(HTML) and putting the HTML in the node body, like this:
+
+```XML
+<LoadHtml TargetNode="myWebView" BaseUrl="http://my.domain">
+	<HTML>
+		<![CDATA[
+			<h1>Boom!</h1>
+		]]>
+	</HTML>
+</LoadHtml>
+```
+
 > ### $(EvaluateJS)
 
 The WebView offers limited execution of arbitrary JavaScript in the currently loaded web environment. This is done with the `<EvaluateJS/>` action. Let's look at a simplified example.

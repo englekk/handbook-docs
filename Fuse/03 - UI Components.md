@@ -831,11 +831,11 @@ As with the @(NativeViewHost) note that depth ordering will behave differently w
 
 To include web content Fuse offers a native WebView component for Android and iOS. The WebView is native only, and as such needs to be contained in a @(NativeViewHost) if you wish to use it with Graphics themes.
 
-The WebView can be used to present web content over the http protocol, and hooks into some useful triggers for building a customized browsing experience, such as @(PageBeginLoading), @(WhilePageLoading) and @(PageLoaded). Navigation triggers like @(GoBack) and @(GoForward) are complemented with WebView-specific ones, like @(Reload) and @(LoadUrl). It can also be used to feed a @(ProgressAnimation).
+The WebView can be used to present web content either over the http protocol or by loading HTML as a string, and hooks into some useful triggers for building a customized browsing experience, such as @(PageBeginLoading), @(WhilePageLoading) and @(PageLoaded). Navigation triggers like @(GoBack) and @(GoForward) are complemented with WebView-specific ones, like @(Reload), @(LoadUrl) and @(LoadHtml). It can also be used to feed a @(ProgressAnimation).
 
-Of particular notice is the @(EvaluateJS) trigger, which allows arbitrary JavaScript to be run in the WebView's context and the resulting data be fed back into Fuse:
+The @(EvaluateJS) trigger is noteworthy, since it allows arbitrary JavaScript to be run in the WebView's context and the resulting data be fed back into Fuse:
 
-```
+```XML
 <App Theme="Native" Background="#333">
 	<JavaScript>
 			module.exports = {
@@ -863,6 +863,30 @@ Of particular notice is the @(EvaluateJS) trigger, which allows arbitrary JavaSc
 </App>
 ```
 
+WebViews can also be fed raw HTML to display by wrapping an @(HTML) node or via the @(LoadHtml) trigger action:
+
+`<LoadHtml TargetNode="myWebView" BaseUrl="http://my.domain" Source="{html}"/>`
+
+### $(HTML)
+`<HTML/>` is a semantic utility node used to feed a @(WebView) component or a @(LoadHtml) action with raw HTML:
+
+```XML
+<WebView>
+	<HTML>
+		<![CDATA[
+			<h1>Boom!</h1>
+		]]>
+	</HTML>
+</WebView>
+
+<LoadHtml>
+	<HTML>
+		<![CDATA[
+			<h1>Bang!</h1>
+		]]>
+	</HTML>
+</LoadHtml>
+```
 
 ## $(Element)
 

@@ -192,7 +192,13 @@ With these on each page we can create a `PageIndicator` that uses images for the
 
 ## $(Navigation types)
 
-There are three navigation types, and they have quite different behaviors and use cases. Each of them inherit from the `Navigation` base type.
+There are three navigation types, and they have quite different behaviors and use cases. Each of them inherit from the `Navigation` base type, and therefore share a few properties:
+
+* `Active` - contains the @(Node) which is currently navigated to.
+* `CanGoBack` - is `true` if you can navigate back.
+* `CanGoForward` - is `true` if you can navigate forward.
+* `PageCount` -  contains the number of pages the `Navigation` can navigate between
+* `PageProgress` - contains how far the `Navigation` has navigated, from 0.0 to `PageCount` - 1
 
 ### $(LinearNavigation)
 

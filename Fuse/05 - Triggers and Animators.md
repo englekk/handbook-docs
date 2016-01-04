@@ -496,6 +496,12 @@ This example shows how to use `BringIntoView` to make a @(ScrollView) automatica
 <!--  ### $(BringToFront)
 AUTH: TODO: Do we need to discuss Z-ordering? -->
 
+### $(ToggleNavigation)
+
+Toggles a `Navigation`. This is currently only supported in @(EdgeNavigation), and will do nothing if used on another type of navigation.
+
+Used on an `EdgeNavigation`, it will set and unset the active element. This will make the element to be navigated appear or dissapear.
+
 ## Native actions
 
 Fuse comes with a set of actions that invoke OS-specific behavior, such as dialing a phone number or vibrating the device.

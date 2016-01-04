@@ -496,7 +496,7 @@ This example shows how to use `BringIntoView` to make a @(ScrollView) automatica
 <!--  ### $(BringToFront)
 AUTH: TODO: Do we need to discuss Z-ordering? -->
 
-### $(ToggleNavigation)
+### $(NavigateToggle)
 
 Toggles a `Navigation`. This is currently only supported in @(EdgeNavigation), and will do nothing if used on another type of navigation.
 

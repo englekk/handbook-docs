@@ -423,9 +423,9 @@ The `Callback` action is used to call a JavaScript function (see @(Data Binding)
 
 Tells a @(Navigation:navigation context) or a @(WebView) to step forward in its navigation history.
 
-	<GoForward Context="myNavigation" />
+	<GoForward TargetNode="myNavigation" />
 
-	<GoForward WebView="myWebView" />
+	<GoForward TargetNode="myWebView" />
 
 <!-- For further detail about `GoForward` in the context of @(Navigation:navigation), see @(Controlling navigation). -->
 
@@ -434,9 +434,9 @@ Tells a @(Navigation:navigation context) or a @(WebView) to step forward in its 
 
 Tells a @(Navigation:navigation context) or a @(WebView) to step backward in its navigation history.
 
-	<GoBack Context="myNavigation" />
+	<GoBack TargetNode="myNavigation" />
 
-	<GoBack WebView="myWebView" />
+	<GoBack TargetNode="myWebView" />
 
 <!-- For further detail about `GoBack` in the context of @(Navigation:navigation), see @(Controlling navigation). -->
 
@@ -575,13 +575,13 @@ Triggers once the @(WebView) has completed loading content from its current Url.
 
 The `Reload` action lets you tell a given WebView to reload its current location.
 
-`<Reload WebView="myWebView" />`
+`<Reload TargetNode="myWebView" />`
 
 ### $(LoadUrl)
 
 The `LoadUrl` action lets you tell a given WebView to navigate to a location.
 
-`<LoadUrl WebView="myWebView" Url="http://mypage.com" />`
+`<LoadUrl TargetNode="myWebView" Url="http://mypage.com" />`
 
 > ### $(EvaluateJS)
 

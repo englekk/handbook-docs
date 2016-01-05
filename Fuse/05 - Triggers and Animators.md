@@ -881,6 +881,10 @@ In the following example, a rectangle will move in from the right side by the wi
 
 `ActivatingAnimation` allows for animating based on which @(Page) is active. `ActivatingAnimation` will progress from 0 to 1 as a @(Page) is being navigated to. If @(SwipeNavigate) is used, one can observe that `ActivatingAnimation` progressed from 0 as soon as the @(Page) is entering, stays at 1 as long as the @(Page) is active, and then progresses towards 0 again as the @(Page) is exiting.
 
+### $(DeactivatingAnimation)
+
+`DeactivatingAnimation` is just like the `ActivatingAnimation`, except for the fact that the progress is reversed. That means that progress will progress from 1 to 0 as a @(Page) loads, and 0 to 1 as it leaves.
+
 ### $(ScrollingAnimation)
 
 `ScrollingAnimation` lets us create animations in response to a @(ScrollView) being scrolled. By using the `From` and `To` properties one can define an interval on the @(ScrollView) where the trigger gets activated.

@@ -883,7 +883,7 @@ In the following example, a rectangle will move in from the right side by the wi
 
 ### $(DeactivatingAnimation)
 
-`DeactivatingAnimation` is just like the `ActivatingAnimation`, except for the fact that the progress is reversed. That means that progress will progress from 1 to 0 as a @(Page) loads, and 0 to 1 as it leaves.
+`DeactivatingAnimation` is just like the `ActivatingAnimation`, except that the progress is reversed. That means that the trigger will progress from 1 to 0 as a @(Page) activates, and 0 to 1 as it deactivates.
 
 ### $(ScrollingAnimation)
 

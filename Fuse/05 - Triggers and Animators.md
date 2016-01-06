@@ -757,6 +757,111 @@ As with @(DoubleClicked), `DoubleTapped` is activated when the element has been 
 
 * Note: `WhileHovering` only has value when the device supports a hovering pointer, like the mouse pointer on desktop machines. For most smart phones this trigger won't have much value.
 
+### $(SwipeGesture:Swipe gestures)
+
+We use the `SwipeGesture` behavior when we want an element to handle swipe gestures.
+
+```
+<Panel>
+	<SwipeGesture Direction="Right" Length="100" SwipeType="Active" />
+</Panel>
+```
+
+- `Direction="Right"` specifies that this should be a swipe-to-the-right gesture.
+- `Length="100"` means that the swipe has a length of 100 points in the specified `Direction`.
+- `SwipeType="Active"` indicates that this should be a two-state swipe gesture that toggles between an inactive/active state.
+
+`SwipeGesture` accepts the following properties:
+
+- `Direction` specifies the direction of the swipe.
+	Possible values are `Left`, `Up`, `Right` and `Down`.
+- `Edge` can be used instead of `Direction`, and specifies an edge of the element that can be swiped from.
+	Possible values are `Left`, `Top`, `Right` and `Bottom`.
+- `HitSize` only applies when `Edge` is used, and specifies how far from the edge we can start swiping for it to be recognized.
+- `Length` specifies, in points, how far we can swipe in the specified `Direction`.
+- `LengthNode` can be used instead of `Length`. It references another element that should be measured to determine the length of the swipe.
+- `SwipeType`
+	- `Active` indicates that swiping should toggle between an inactive/active state.
+	- `Simple` indicates that swiping invokes a single, momentary action.
+
+The `SwipeGesture` behavior has no effect on its own. We need to apply our own triggers and animators to respond to the gesture.
+In the following sub-sections we will go through different triggers and actions we can use to respond to and control @(SwipeGesture:SwipeGestures).
+
+* Note: Since you have the possibility to attach multiple swipe gestures on the same element, the related triggers need to know which one you are referring to.
+We are therefore required to set the `Source` property of all swipe-related triggers to the @(SwipeGesture) it should respond to.
+
+#### $(SwipingAnimation)
+
+`SwipingAnimation` performs animation in response to an element being swiped.
+The most common use case of is to move the element along with the pointer.
+
+	<Panel Width="100" Height="100" Background="#000">
+		<SwipeGesture ux:Name="swipe" Direction="Right" Length="200" />
+		<SwipingAnimation Source="swipe">
+			<Move X="200" />
+		</SwipingAnimation>
+	</Panel>
+
+Instead of using a fixed length for the swipe we may also determine it from the size of another element.
+This is achieved using the `LengthNode` property of @(SwipeGesture), and in this case the `RelativeNode` property of @(Move) as well.
+
+	<Panel ux:Name="parentContainer" Margin="40">
+		<Panel Width="60" Height="60" Background="#000" Alignment="Left">
+			<SwipeGesture ux:Name="swipe" Direction="Right" Type="Active" LengthNode="parentContainer" />
+			<SwipingAnimation Source="swipe">
+				<Move X="1" RelativeTo="Size" RelativeNode="parentContainer" />
+			</SwipingAnimation>
+		</Panel>
+	</Panel>
+
+#### $(Swiped)
+
+`Swiped` is a pulse trigger that is invoked when a swipe has occurred.
+
+	<Panel Width="100" Height="100">
+		<SwipeGesture ux:Name="swipe" Direction="Up" Length="50" Type="Simple" />
+		<Swiped Source="swipe">
+			<Scale Factor="1.5" Duration="0.4" DurationBack="0.2" />
+		</Swiped>
+	</Panel>
+
+By default, `Swiped` will only trigger when swiping to the primary swipe direction (when it enters the active state).
+For instance, if the @(SwipeGesture) has `Direction="Left"` it only triggers on a `Left` swipe and ignores the matching closing swipe.
+We can control this behavior by setting the `How` property to either `ToActive` (default), `ToInactive` or `ToEither`.
+
+#### $(WhileSwipeActive)
+
+`WhileSwipeActive` is active whenever a @(SwipeGesture) is active (when the user has swiped it "open").
+
+	<Panel Width="100" Height="100">
+		<SwipeGesture ux:Name="swipe" Direction="Up" Length="50" Type="Simple" />
+		<WhileSwipeActive Source="swipe">
+			<Scale Factor="1.5" Duration="0.4" DurationBack="0.2" />
+		</WhileSwipeActive>
+	</Panel>
+
+#### $(SetSwipeActive) and $(ToggleSwipeActive)
+
+We can control the state of `Active` type @(SwipeGesture:SwipeGestures) by using the `SetSwipeActive` and `ToggleSwipeActive` actions.
+
+	<SwipeGesture ux:Name="swipe" Direction="Right" Length="100" Type="Active" />
+	...
+	<StackPanel>
+		<Button Text="Close">
+			<Clicked>
+				<SetSwipeActive Target="swipe" Value="false" />
+			</Clicked>
+		</Button>
+
+		<Button Text="Toggle">
+			<Clicked>
+				<ToggleSwipeActive Target="swipe" />
+			</Clicked>
+		</Button>
+	</StackPanel>
+
+If we wish to bypass the animation, `SetSwipeActive` lets us do that by setting `Bypass="true"`.
+
 ## $(Control triggers)
 
 ### $(WhileEnabled)

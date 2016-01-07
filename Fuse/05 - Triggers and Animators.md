@@ -500,7 +500,7 @@ AUTH: TODO: Do we need to discuss Z-ordering? -->
 
 Toggles a `Navigation`. This is currently only supported in @(EdgeNavigation), and will do nothing if used on another type of navigation.
 
-Used on an `EdgeNavigation`, it will set and unset the active element. This will make the element to be navigated appear or dissapear.
+Used on an `EdgeNavigation`, it will navigate to and from a target specified by using the `Target` property.
 
 ## Native actions
 

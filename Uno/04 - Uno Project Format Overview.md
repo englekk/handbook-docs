@@ -173,3 +173,7 @@ This file can be created using the command:
 
 Note that only release builds are signed using the specified key. Debug builds are automatically signed using a debug key.
 (`keytool` is found in Android SDK.)
+
+## $(iOS signing:Signing for iOS)
+
+Run `uno build --target=iOS --configuration=Release -adebug` from the Terminal/command line and then [follow the regular procedure for adding your signing certificate](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/ConfiguringYourApp/ConfiguringYourApp.html#//apple_ref/doc/uid/TP40012582-CH28-SW1) and then [submitting your app](https://developer.apple.com/library/ios/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html#//apple_ref/doc/uid/TP40011225-CH33) to the Apple App Store.

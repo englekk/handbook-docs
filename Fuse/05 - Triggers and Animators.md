@@ -782,7 +782,7 @@ We use the `SwipeGesture` behavior when we want an element to handle swipe gestu
 - `LengthNode` can be used instead of `Length`. It references another element that should be measured to determine the length of the swipe.
 - `SwipeType`
 	- `Active` indicates that swiping should toggle between an inactive/active state.
-	- `Simple` indicates that swiping invokes a single, momentary action.
+	- `Simple` indicates that swiping should invoke a single, momentary action.
 
 The `SwipeGesture` behavior has no effect on its own. We need to apply our own triggers and animators to respond to the gesture.
 In the following sub-sections we will go through different triggers and actions we can use to respond to and control @(SwipeGesture:SwipeGestures).
@@ -793,7 +793,7 @@ We are therefore required to set the `Source` property of all swipe-related trig
 #### $(SwipingAnimation)
 
 `SwipingAnimation` performs animation in response to an element being swiped.
-The most common use case of is to move the element along with the pointer.
+The most common use case is to move the element along with the pointer.
 
 	<Panel Width="100" Height="100" Background="#000">
 		<SwipeGesture ux:Name="swipe" Direction="Right" Length="200" />

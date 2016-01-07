@@ -141,38 +141,41 @@ node per object in the data source.
 Observable add/remove operations on the `Items` collection can be animated using @(AddingAnimation), @(RemovingAnimation) and @(LayoutAnimation)
 
 It is also possible to nest `Each` behaviors:
-	
-	<JavaScript>
-		var Observable = require("FuseJS/Observable");
 
-		module.exports = {
-			items: [ 
-				{ 
-					inner: [ 
-						{ child: "John" },
-						{ child: "Paul" } 
-					]
-				}, 
-				{ 
-					inner: [ 
-						{ child: "Ringo" }, 
-						{ child: "George" }
-					]
-				}
-			]			
-		};
-	</JavaScript>
-	<ScrollViewer>
-		<StackPanel>
-			<Each Items="{items}">
-				<StackPanel Orientation="Horizontal">
-					<Each Items="{inner}">
-						<Text Value="{child}" Margin="10" />
-					</Each>
-				</StackPanel>
-			</Each>
-		</StackPanel>
-	</ScrollViewer>
+```
+<JavaScript>
+	var Observable = require("FuseJS/Observable");
+	module.exports = {
+		items: [ 
+			{ 
+				inner: [ 
+					{ child: "John" },
+					{ child: "Paul" } 
+				]
+			}, 
+			{ 
+				inner: [ 
+					{ child: "Ringo" }, 
+					{ child: "George" }
+				]
+			}
+		]			
+	};
+</JavaScript>
+<ScrollViewer>
+	<StackPanel>
+		<Each Items="{items}">
+			<StackPanel Orientation="Horizontal">
+				<Each Items="{inner}">
+					<Text Value="{child}" Margin="10" />
+				</Each>
+			</StackPanel>
+		</Each>
+	</StackPanel>
+</ScrollViewer>
+```
+
+You can get the number of items being iterated over using the `Count` property.
 
 > Note: it is not possible to nest two `Each` behaviors directly inside each other without an intermediary container, like `Panel` or `StackPanel` as above.
 

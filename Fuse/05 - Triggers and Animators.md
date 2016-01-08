@@ -725,6 +725,8 @@ User events are attached to the node they are declared in, and only that node an
 This creates an event with the name `MyEvent`.
 By putting this `UserEvent` in `App` we are essentially making it an app-wide event, since every child of App can raise and respond to this event.
 
+* Note: Make sure you add "Fuse.UserEvents" to your .unoproj file.
+
 ### $(RaiseUserEvent:Raising user events from UX)
 
 To raise a @(UserEvent:user event) from UX, use the `RaiseUserEvent` action.
@@ -1133,4 +1135,3 @@ TODO: Show examples of
 * Triggers within triggers
 * Elements/nodes within triggers
 * Styles within triggers (? not sure if this is currently possible) -->
-

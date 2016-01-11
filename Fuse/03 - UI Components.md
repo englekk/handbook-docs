@@ -261,9 +261,12 @@ Video comes with a set of properties that can be used to configure it or control
 ### $(Video-Actions:Useful actions that can be used to control Video)
 Fuse comes with a set of actions that can be used to control video playback. They all have a common `Target` property that specifies which $(Video) element they control.
 
-	<Pause />      <!-- Pauses playback, leaving the current position as-is -->
-	<Stop />       <!-- Stops playback and returns to the beginning of the video -->
-	<Resume />     <!-- Resumes playback from the current position -->
+```
+<Pause />                   <!-- Pauses playback, leaving the current position as-is -->
+<Stop />                    <!-- Stops playback and returns to the beginning of the video -->
+<Resume />                  <!-- Resumes playback from the current position -->
+<PlayTo Progress="..." />   <!-- Plays until the time specified by the Progress property -->
+```
 
 ### Supported formats
 

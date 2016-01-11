@@ -131,6 +131,26 @@ If you explicitly want to add specific resolutions, you can override specialized
 }
 ```
 
+## $(iOS launch images)
+
+To set defaul launch images on iOS, you use the `LaunchImages` property, like so:
+
+```
+  "iOS": {
+    "LaunchImages": {
+      "iPhone_Portrait_2x": "...",   // 640x960
+      "iPhone_Portrait_R4": "...",   // 640x1136
+      "iPhone_Portrait_R47": "...",  // 750x1334
+      "iPhone_Portrait_R55": "...",  // 1242x2208
+      "iPhone_Landscape_R55": "...", // 2208x1242
+      "iPad_Portrait_1x": "...",     // 768x1024
+      "iPad_Portrait_2x": "...",     // 1536x2048
+      "iPad_Landscape_1x": "...",    // 1024x768
+      "iPad_Landscape_2x": "..."     // 2048x1536
+    }
+  }
+```
+
 ## $(Android signing:Signing for Android)
 
 A Uno Project set up for signing can look like this:
@@ -153,3 +173,7 @@ This file can be created using the command:
 
 Note that only release builds are signed using the specified key. Debug builds are automatically signed using a debug key.
 (`keytool` is found in Android SDK.)
+
+## $(iOS signing:Signing for iOS)
+
+Run `uno build --target=iOS --configuration=Release -adebug` from the Terminal/command line and then [follow the regular procedure for adding your signing certificate](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/ConfiguringYourApp/ConfiguringYourApp.html#//apple_ref/doc/uid/TP40012582-CH28-SW1) and then [submitting your app](https://developer.apple.com/library/ios/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html#//apple_ref/doc/uid/TP40011225-CH33) to the Apple App Store.

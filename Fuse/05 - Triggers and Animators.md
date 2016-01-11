@@ -381,6 +381,19 @@ Like @(Animators:animators), `Actions` can have a `Delay`. This specifies a numb
 
 `Actions` also has a property called `AtProgress` which can be set to a value between 0 and 1. It has a similar function as `Delay`, but is instead relative to the full @(Duration) of the @(Trigger). Setting `AtProgress` to 0, means the action is fired as soon as the @(Trigger) is actiated. Setting it to 0.5 means it is fired half way through and so on.
 
+### $(DebugAction)
+
+`DebugAction` lets you print a message to the Monitor/terminal when activated.
+It is the equivalent of calling `debug_log` from Uno or JavaScript.
+
+```
+<Button>
+	<Clicked>
+		<DebugAction Message="Clicked!" />
+	</Clicked>
+</Button>
+```
+
 > ### $(Set)
 
 Permanently changes the value of a property. If you want to just change it temporarily, use @(Change). When using `Set` on a property, the value will not be reverted back when the containing trigger is deactivated. In the following example we change the color of a rectangle by setting the value of its `SolidColor` @(Element). Multiple activations of the @(Clicked) trigger won't have any additional effect.

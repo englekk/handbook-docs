@@ -493,8 +493,25 @@ This example shows how to use `BringIntoView` to make a @(ScrollView) automatica
 </App>
 ```
 
-<!--  ### $(BringToFront)
-AUTH: TODO: Do we need to discuss Z-ordering? -->
+### $(BringToFront)
+
+UX is generally structured such that elements defined higher up in the document are drawn on top.
+This is done to mimic popular graphics packages such as Photoshop's layer behaviour.
+With `BringToFront`, one can bring the element specified by the `Target` property to the front of its siblings.
+
+* Note: `BringToFront` only makes the element the frontmost in its parent, not the entire UX tree.
+
+```
+<DockPanel>
+	<Panel Background="#F00" />
+	<Panel ux:Name="bluePanel" Background="#00F" />
+	<Button Text="Blue to front!" Dock="Bottom">
+		<Clicked>
+			<BringToFront Target="bluePanel" />
+		</Clicked>
+	</Button>
+</DockPanel>
+```
 
 ## Native actions
 

@@ -846,17 +846,18 @@ The @(EvaluateJS) trigger is noteworthy, since it allows arbitrary JavaScript to
 	</JavaScript>
 	<DockPanel>
 		<StatusBarBackground Dock="Top"/>
-
-		<WebView Dock="Fill" Url="http://www.google.com">
-			<PageLoaded>
-				<EvaluateJS Handler="{onPageLoaded}">
-					var result = {
-						url : document.location.href
-					};
-					return result;
-				</EvaluateJS>
-			</PageLoaded>
-		</WebView>
+		<NativeViewHost>
+			<WebView Dock="Fill" Url="http://www.google.com">
+				<PageLoaded>
+					<EvaluateJS Handler="{onPageLoaded}">
+						var result = {
+							url : document.location.href
+						};
+						return result;
+					</EvaluateJS>
+				</PageLoaded>
+			</WebView>
+		</NativeViewHost>
 
 		<BottomBarBackground Dock="Bottom" />
 	</DockPanel>
@@ -871,13 +872,15 @@ WebViews can also be fed raw HTML to display by wrapping an @(HTML) node or via 
 `<HTML/>` is a semantic utility node used to feed a @(WebView) component or a @(LoadHtml) action with raw HTML:
 
 ```XML
-<WebView>
-	<HTML>
-		<![CDATA[
-			<h1>Boom!</h1>
-		]]>
-	</HTML>
-</WebView>
+<NativeViewHost>
+	<WebView>
+		<HTML>
+			<![CDATA[
+				<h1>Boom!</h1>
+			]]>
+		</HTML>
+	</WebView>
+</NativeViewHost>
 
 <LoadHtml>
 	<HTML>

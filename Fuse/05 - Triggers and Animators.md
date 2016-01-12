@@ -548,11 +548,13 @@ Vibrates the device for a given number of seconds.
 Triggers once the @(WebView) begins loading new content.
 
 ```
-<WebView Url="http://fusetools.com">
-	<PageBeginLoading>
-		<DebugAction Message="Page began to load!"/>
-	</PageBeginLoading>
-</WebView>
+<NativeViewHost>
+	<WebView Url="http://fusetools.com">
+		<PageBeginLoading>
+			<DebugAction Message="Page began to load!"/>
+		</PageBeginLoading>
+	</WebView>
+</NativeViewHost>
 ```
 
 ### $(WhilePageLoading)
@@ -564,11 +566,13 @@ Becomes active when a @(WebView) Url changes, and stays active until it has comp
 Triggers once the @(WebView) has completed loading content from its current Url.
 
 ```
-<WebView Url="http://fusetools.com">
-	<PageLoaded>
-		<DebugAction Message="Arrived at page!"/>
-	</PageLoaded>
-</WebView>
+<NativeViewHost>
+	<WebView Url="http://fusetools.com">
+		<PageLoaded>
+			<DebugAction Message="Arrived at page!"/>
+		</PageLoaded>
+	</WebView>
+</NativeViewHost>
 ```
 
 ### $(Reload)

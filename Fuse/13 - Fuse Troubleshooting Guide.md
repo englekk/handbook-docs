@@ -1,20 +1,20 @@
 # $(Fuse Troubleshooting Guide)
 
-## Cannot connect to daemon
+## Connection issues
 
-### Symptom
+### A network error occurred
 
-- You get a message `fuse: A network error occurred: Could not resolve host '<your hostname>' Please check your network setup and try again.`
+You get a message saying `fuse: A network error occurred: Could not resolve host '<your hostname>' Please check your network setup and try again.`
 
-### Solution
+#### Solution
 
-- You have an issue with your network. Try doing `ping $(hostname)` in a terminal. If you get an error message, you have to fix your network setup before you continue.
+There is an issue with your network. Try doing `ping $(hostname)` in a terminal. If you get an error message, you have to fix your network setup before you continue.
 
-### Symptom
+### FailedToConnectToDaemon
 
-- You get a stack trace with `FailedToConnectToDaemon` somewhere in it
+You get a stack trace with `FailedToConnectToDaemon` somewhere in it
  
-### Solution
+#### Solution
 
 - First, try to stop the Fuse daemon.
  - Windows: Right click on the Fuse icon in the tray, click "Exit"
@@ -23,10 +23,11 @@
 - If that did not help, please try logging out of and back in to Windows / OS X.
 - If that did not help, please try to reboot your computer.
 
-### Symptom
-- While previewing on an iOS or Android device, you get the message "Failed to connect"
+### Preview - Failed to connect
 
-### Solution
+While previewing on an iOS or Android device, you get the message "Failed to connect"
+
+#### Solution
 - Make sure your device has WiFi enabled
 - Make sure your device is connected to the same WiFi as the computer running Fuse 
 - If your computer is running a firewall (such as Windows Firewall), make sure Fuse is allowed to accept incoming connections
@@ -34,39 +35,38 @@
 
 ## Cannot preview or export to Android
 
-### Symptom
+### Symptoms
 - The Android build gets stuck at "Trying to uninstall existing version of APK"
 - The build finishes with "ERROR: No android devices found."
 
-### Solution
+#### Solution
 - Check that the device is connected with a USB cable
-- Check that usb debugging is enabled on your device (Search the web for "enable usb debugging &lt;your device name&gt;")
+- Check that usb debugging is enabled on your device. Doing this can differ between different devices and OS versions so you may have to search for the specific instructions for your device, but the second point [here](http://developer.android.com/tools/device.html#setting-up) is a good place to start.
 - Check that your device shows up in `adb devices`. `adb` can usually be found in
  - `C:\ProgramData\Uno\SDKs\AndroidSDK\platform-tools` (Windows)
  - `/usr/share/uno/SDKs/AndroidSDK/platform-tools` (OS X)
-- (Windows) Check that you have the latest drivers for your device
-- If your device still doesn't show up in `adb devices`, please search the web for solutions for your specific device. Fuse (like other Android development tools) depends on a working connection to your device in order to work.
+- If you are on Windows you should check that you have the latest USB drivers for your device. You can read more about thise [here](http://developer.android.com/tools/extras/oem-usb.html)
 
 ## Sublime plugin does not work
 
-### Symptom
+### Symptoms
 
 - You get the message "Error loading: Packages/Fuse/UX.tmLanguage"
 - You don't get syntax highlighting in Sublime
 
-### Solution
+#### Solution
 
 - Open the dashboard, click "Sublime Text Setup" and follow the wizard.
 - If that didn't work, delete the files staring with `Fuse` in `%APPDATA%\Sublime Text 3\Installed Packages` (Windows) or `~/Library/Application Support/Sublime Text 3/Installed Packages` (OS X), and try the wizard again.
 
 ## My Uno code is not run/updated in preview
 
-### Symptom
+### Symptoms
 
 - Changes to your Uno code is not reflected in preview
 - Your Uno code is not executed in preview
 
-### Explanation
+#### Explanation
 
 - Unlike ux/js, Uno-code is not refreshed when you save and auto-refresh preview, you'll have to restart Fuse. A better solution for this is coming soon.
  - Windows: Right click on the Fuse icon in the tray, click "Exit"
@@ -76,10 +76,12 @@
 
 ## Preview says "Oops! Something went wrong here"
 
-### Symptom
+When previewing your app, the "Oops! Something went wrong here" screen appears.
 
-- When previewing your app, the "Oops! Something went wrong here" screen appears.
+#### Solution
 
-### Solution
+- Open the Fuse [Monitor](https://www.fusetools.com/learn/guides/preview-and-export-monitor) to see details about the problem.
 
-- Open the Fuse Monitor from the Tray or Dashboard to see details about the problem.
+## Local preview does not start on Windows
+
+If the console output contains `GL_VERSION: 1.1.0` and `GL_RENDERER: GDI Generic` the problem is most likely missing / outdated OpenGL drivers. Upgrade to the most recent drivers for your graphics adapter and try again.

@@ -487,7 +487,7 @@ In Fuse, pretty much anything can easily be made @(Clicked:clickable) (and @(Tap
 		</Rectangle>
 	</App>
 
-Depending on where you started the preview process from, you'll see the `Message` output when you click the `Rectangle`.
+When you click the rectangle the `Message` output will show up in the [Monitor](https://www.fusetools.com/learn/guides/preview-and-export-monitor) if you are running in preview mode. It will also show up in the standard device logs or, if you started the preview process from the commandline, in the standard console.
 
 
 ### $(Event triggers)

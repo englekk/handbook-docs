@@ -106,9 +106,9 @@ When running preview, Fuse will create a shell application on your device that c
 
 On iOS, you need to have a machine running OS X and Xcode installed (as for preview). You also need an Apple developer account. In the project root, simply type:
 
-`fuse build --target=iOS --run`
+`fuse build --target=iOS --run` to build and run the app.
 
-This will open the built project in Xcode. If you select your device from the pulldown list of available output targets and press the "run" button, the application will deploy to your device and run.
+If you instead want to open the generated project in Xcode you simply do `fuse build --target=iOS -adebug`
 
 > ### Exporting to Android
 

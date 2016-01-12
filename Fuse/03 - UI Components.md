@@ -921,8 +921,6 @@ Valid values for `HitTestMode` are:
 - $(HitTestMode.LocalBoundsAndChildren:LocalBoundsAndChildren) - Hit testing will include the bounds of the element and its children
 - $(HitTestMode.LocalVisualAndChildren:LocalVisualAndChildren) - Hit testing will include the appearance of the element and its children
 
-Note that if you set the @(Opacity) of an element below or equal its `HitTestOpacityThreshold` (which defaults to being 0), hit testing will be disabled for that object. This means that you can click an element as you fade it out, but it will stop accepting clicks at a certain point.
-
 ### $(ClipToBounds)
 
 Normally, when laying out an element inside the other, the inner element can freely live outside the parent element:
@@ -949,7 +947,7 @@ You can set the transparency of objects using the `Opacity`-property.
 
 	<Panel Opacity="0.5"/>
 
-When the `Opacity` is set to 0.0, the element is fully transparent and will no longer respond to @(HitTestMode:HitTests). When the `Opacity` is set to 1.0, the element will be at its default state.
+When the `Opacity` is set to 0.0, the element is fully transparent but will still respond to @(HitTestMode:hit tests). When the `Opacity` is set to 1.0, the element will be at its default state.
 
 > ### Layers
 

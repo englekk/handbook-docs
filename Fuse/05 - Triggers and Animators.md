@@ -128,8 +128,18 @@ One can also animate such properties as `Width`, `Height` and `Margin`, but beca
 
 ### $(Move)
 
-The `Move` animator is used to move an element. `Move` does not affect layout, so the element will just get an offset from its actual location. By default, `<Move X="10"/>` will move the element by 10 points.
-Sometimes, one wants an element to move relative to its own size or some other elements size. To control this, we can use the @(RelativeTo) property.
+The `Move` animator is used to move an element. `Move` does not affect layout, so the element will just get an offset from its actual location.
+
+	<Move X="50" />
+
+When triggered, this will move the element by 50 points in the X direction.
+
+You may want for an element to move relative to its own size or some other elements size.
+To achieve this we can use the @(RelativeTo) property, for instance:
+
+	<Move X="0.5" RelativeTo="Size" />
+
+When triggered, this will move the element by half of its own width in the X-direction.
 
 $(RelativeTo) can be set to the following values:
 
@@ -140,9 +150,14 @@ $(RelativeTo) can be set to the following values:
 - `WorldPositionChange`: Used in response to a @(LayoutAnimation) to move the element by the amount of change in position relative to the entire display.
 - `Keyboard`: Moves the element relative to the size of the eyboard.
 
-Additionally, if you set `RelativeTo` to `Size` or `ParentSize`, you can move the element relative to the size of another element set by the `RelativeElement` property.
+The `RelativeNode` property lets you move an element relative to another. In that case, you may use the following `RelativeTo` modes:
 
-`<Move X="0.5" RelativeTo="Size"/>` will move the element by half of its own width in the x-direction.
+- `Size`: Works the same way it would without `RelativeNode`, but measures the size of the `RelativeNode` instead.
+- `ParentSize`: Same as `Size` but measures the `RelativeNode`'s parent size instead.
+- `PositionOffset`: Moves the element to be in the same position as the element specified by `RelativeNode`.
+  The offset is measured as the difference in `ActualPosition` between the two elements.
+- `TransformOriginOffset`: Works like `PositionOffset`, but insted measures the difference in `TransformOrigin`.
+
 Move corresponds to adding a @(Translation) on the element and using @(Change) to animate its X and Y values. The following two examples give the same result.
 
 ```
@@ -172,7 +187,10 @@ You can scale an element uniformly along all axes by using the `Factor` property
 <Scale Factor="2" Duration="0.4"/>
 ```
 
-`Scale` can be used relative to something using the `RelativeTo` property. At the moment the only value for this is `SizeChange`, which Scales relative to the change in size of the element.
+`Scale` can be used relative to something using the `RelativeTo` property, which accepts the following values:
+
+- `SizeChange`: When used together with @(LayoutAnimation), scales relative to the change in size of the element.
+- `SizeFactor`: Scales to the size of the element specified by `RelativeNode`.
 
 ### $(Rotate)
 
@@ -492,6 +510,30 @@ This example shows how to use `BringIntoView` to make a @(ScrollView) automatica
 	</DockPanel>
 </App>
 ```
+
+> ### $(TransitionLayout)
+
+The `TransitionLayout` action lets you create a temporary layout change.
+This can be used to do visual layout transitions without needing actual layout changes.
+
+It has no noticeable effect on its own, and needs to be combined with a @(LayoutAnimation).
+The @(LayoutAnimation) will then be triggered by this action.
+
+	<DockPanel>
+		<Panel Dock="Top" Height="20" ux:Name="originElement" />
+
+		<Button Height="100" Dock="Bottom" Text="Transition!">
+			<LayoutAnimation>
+				<Move X="1" Y="1" RelativeTo="WorldPositionChange" Duration="1" />
+				<Resize X="1" Y="1" RelativeTo="SizeChange" Duration="1" />
+			</LayoutAnimation>
+			<Clicked>
+				<TransitionLayout From="originElement" />
+			</Clicked>
+		</Button>
+	</DockPanel>
+
+When clicked, the @(Button) in this example will perform a transition over 1 second from the position and size of `originElement` (top edge of the @(DockPanel)) to its actual position and size (bottom edge of the @(DockPanel)).
 
 <!--  ### $(BringToFront)
 AUTH: TODO: Do we need to discuss Z-ordering? -->

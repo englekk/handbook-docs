@@ -381,7 +381,7 @@ Like @(Animators:animators), `Actions` can have a `Delay`. This specifies a numb
 
 `Actions` also has a property called `AtProgress` which can be set to a value between 0 and 1. It has a similar function as `Delay`, but is instead relative to the full @(Duration) of the @(Trigger). Setting `AtProgress` to 0, means the action is fired as soon as the @(Trigger) is actiated. Setting it to 0.5 means it is fired half way through and so on.
 
-> ### $(Set)
+### $(Set)
 
 Permanently changes the value of a property. If you want to just change it temporarily, use @(Change). When using `Set` on a property, the value will not be reverted back when the containing trigger is deactivated. In the following example we change the color of a rectangle by setting the value of its `SolidColor` @(Element). Multiple activations of the @(Clicked) trigger won't have any additional effect.
 
@@ -401,7 +401,7 @@ Set may also be invoked using its `Target` and `Value` properties. The following
 <Set color.Color="#f00" />
 ```
 
-> ### $(Callback)
+### $(Callback)
 
 The `Callback` action is used to call a JavaScript function (see @(Data Binding)) when a trigger is activated.
 
@@ -441,7 +441,7 @@ Tells a @(Navigation:navigation context) or a @(WebView) to step backward in its
 <!-- For further detail about `GoBack` in the context of @(Navigation:navigation), see @(Controlling navigation). -->
 
 
-> ### $(Toggle)
+### $(Toggle)
 
 `Toggle` is used to toggle a boolean value between `true` and `false`. If inside a @(Switch) it will toggle the value of the @(Switch). `Toggle` can also be used to activate/deactive @(WhileTrue) and @(WhileFalse) triggers like so:
 
@@ -456,7 +456,7 @@ Tells a @(Navigation:navigation context) or a @(WebView) to step backward in its
 </Panel>
 ```
 
-> ### $(BringIntoView)
+### $(BringIntoView)
 
 The `BringIntoView` action is used together with the @(ScrollView) control. By setting its `TargetNode` property, we can instruct the @(ScrollView) to go to a position so that that that `Node` becomes visible.
 

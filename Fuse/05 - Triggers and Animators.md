@@ -456,6 +456,20 @@ Tells a @(Navigation:navigation context) or a @(WebView) to step backward in its
 </Panel>
 ```
 
+### $(Pulse)
+
+`Pulse` is used to momentarily trigger a `WhileTrue`, `WhileFalse` or `Timeline`.
+
+	<Button Text="Pulse">
+		<WhileTrue ux:Name="pulseMe" Value="false">
+			<Scale Factor="1.5" Duration="0.2" />
+		</WhileTrue>
+
+		<Clicked>
+			<Pulse Target="pulseMe" />
+		</Clicked>
+	</Button>
+
 > ### $(BringIntoView)
 
 The `BringIntoView` action is used together with the @(ScrollView) control. By setting its `TargetNode` property, we can instruct the @(ScrollView) to go to a position so that that that `Node` becomes visible.

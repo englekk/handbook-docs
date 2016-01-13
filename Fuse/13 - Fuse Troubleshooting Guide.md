@@ -45,7 +45,7 @@ While previewing on an iOS or Android device, you get the message "Failed to con
 - Check that your device shows up in `adb devices`. `adb` can usually be found in
  - `C:\ProgramData\Uno\SDKs\AndroidSDK\platform-tools` (Windows)
  - `/usr/share/uno/SDKs/AndroidSDK/platform-tools` (OS X)
-- If you are on Windows you should check that you have the latest USB drivers for your device. You can read more about thise [here](http://developer.android.com/tools/extras/oem-usb.html)
+- If you are on Windows you should check that you have the latest USB drivers for your device. You can read more about this [here](http://developer.android.com/tools/extras/oem-usb.html)
 
 ## Sublime plugin does not work
 

@@ -426,13 +426,18 @@ Here is a more advanced use of @(EnteringAnimation:Entering-), @(ExitingAnimatio
 
 `WhileInactive` animates as a page is becoming inactive.
 
-<!--
+
 ## $(WhileInEnterState)
-TODO
+
+This does the same as @(WhileInactive), but differs in that it has a negative progress value if the panel it is bound to is after the current panel in the list of navigatable panels(e.g it is _after_ the current panel).
+
 ## $(WhileInExitState)
-TODO
+
+This also mostly does the same as @(WhileActive), but differs by having a negative value if it is after the currently navigated panel in the list of navigatable panels, just like @(WhileInEnterState).
+
 ## $(WhileNavigating)
-TODO -->
+
+This will be on as long as the user is currently navigating in between two panels. It does not provide progress.
 
 ## $(SwipeNavigate)
 

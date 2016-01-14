@@ -343,6 +343,12 @@ There are 6 different properties that can be used to control this in different w
 
 Note that using for example both @(StartAngle) and @(StartAngleDegrees) on the same @(Circle) will have an undefined behavior.
 
+>### $(Ellipse)
+
+Use `Ellipse` when you want a @(Circle) of non-constant radius.
+
+	<Ellipse Width="100" Height="50" Fill="#f00" />
+
 ### $(Fill:Fills)
 
 We've seen that shapes accept simple `Fill` properties:

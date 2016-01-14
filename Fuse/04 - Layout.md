@@ -34,16 +34,6 @@ The `Panel` has a few properties you might be interrested in:
 * `Layout` - specifies a Layout for the `Panel`. A `StackPanel` is for example primarily just a `Panel` with a `StackLayout` controller. Check out @(The Layout property:layout) for more detail.
 * `Children` - contains a list of all child nodes of the `Panel`. This may for example come in handy when manipulating nodes with uno.
 
-> ### $(Layout:Setting the layout of a Panel manually)
-
-You can manually set the layout of a panel by adding a layout tag to the panel. The following example sets the `Layout` of a `Panel` to be that of a `Grid`:
-
-```
-<Panel>
-      <GridLayout />
-</Panel>
-```
-
 ## $(StackPanel)
 
 The StackPanel places its children in a stack. The default layout is a vertical stack, but one can use the $(Orientation) property to specify that the stack should be layed out horizontally.

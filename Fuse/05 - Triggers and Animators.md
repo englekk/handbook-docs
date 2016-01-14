@@ -644,7 +644,7 @@ result; // using return here is invalid JS
 To make this feel better and allow return, we currently inject the user's JS in the form of a function:
 
 ```JavaScript
-(USER_JS)();
+(function() { USER_JS })();
 ```
 
 ### Reading the result value

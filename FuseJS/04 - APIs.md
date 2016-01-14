@@ -54,9 +54,13 @@ FuseJS has support for promises, go here for more information:
 
 > ### $(setTimeout)
 
-To call a function in 2 seconds:
+For the sake of compatibility with javascript APIs that rely on functions from standard browser APIs, we include `setTimeout` as a way to schedule tasks. To call a function in 2 seconds:
 
-	setTimeout(function() { alert("Alert"); }, 2000);
+```
+setTimeout(function() { alert("Alert"); }, 2000);
+```
+
+Please note that `FuseJS/Timer` is the preferred way of doing this, and that `setTimeout` is only included for the sake of compatability.
 
 You can also use `setTimeout` to create loops:
 
@@ -125,7 +129,33 @@ Synchronously read data from a file in the application folder:
 
 Delete a file from the application folder, returning `true` on a success:
 
-	var wasDeleted = storage.deleteSync("filename.txt");
+```
+var wasDeleted = storage.deleteSync("filename.txt");
+```
+
+## $(Timer)
+
+You can schedule tasks to be run later using the `Timer` API:
+
+```
+var Timer = require('FuseJS/Timer');
+var timer = Timer.create(function(){
+	doTask();
+}, 1000, true);
+```
+
+`Timer.Create` requires three arguments:
+
+* The function to be run when the timer has reached the specified time.
+* The amount of time to wait before running the function, in milliseconds.
+* If the timer repeats or not. `true` will repeat the timer.
+
+When called, it will return an id corresponding to the created timer. This can be used to delete the timer, like this:
+
+```
+Timer.delete(timer);
+```
+
 
 ## $(Lifecycle)
 
@@ -331,3 +361,4 @@ function stop() {
    geoLocation.stopListening();
 }
 ```
+

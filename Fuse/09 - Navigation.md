@@ -16,7 +16,6 @@ To start off, we make a set of @(Panel:panels) which represents our @(Page:pages
 
 Currently this is just a @(Panel) with three @(Panel:panels) inside it. To make our swipe navigation possible, we need to add three things.
 
-
 - A @(Navigation) behavior
 - A @(SwipeNavigate) behavior
 - Entering- and ExitingAnimation to our Panels
@@ -192,12 +191,12 @@ With these on each page we can create a `PageIndicator` that uses images for the
 
 ## $(Navigation types)
 
-There are three navigation types, and they have quite different behaviors and use cases. Each of them inherit from the `Navigation` base type, and therefore share a few properties:
+There are several navigation types, and they have quite different behaviors and use cases. Each of them inherit from the `Navigation` base type, and therefore share a few properties:
 
 * `Active` - The currently active page
 * `CanGoBack` - `true` if it is possible to navigate backward
 * `CanGoForward` - `true` if it is possible to navigate forward
-* `PageCount` - Current page number
+* `PageCount` - The number of pages
 * `PageProgress` - Progress in the navigation from 0.0 to the amount of pages minus one.
 
 ### $(LinearNavigation)
@@ -277,20 +276,43 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 </Panel>
 ```
 
-> ## $(EdgeNavigator)
+### $(EdgeNavigator)
 
-`EdgeNavigator` is designed to allow you to dock content on the edge of a @(Panel), typically used in full screen.
+`EdgeNavigator` is used when the intent is to navigate a menu in from a side, as shown in our [Social media example](https://www.fusetools.com/examples/social-media-screen). It is used by encasing the content you want inside the navigatable area in an `EdgeNavigator` element, and setting the `Edge` property on a @(Panel) to tell the navigator which edge you want said panel to navigate in from.
 
-	<EdgeNavigator>
-		<Panel Width="150" EdgeNavigation.Edge="Left" Background="#f63" />
-		<Panel Background="#fff>
+```
+<EdgeNavigator>
+	<Panel Width="150" Edge="Left" Background="#f63" />
+	<Panel Background="#fff>
 		<Text Alignment="Center">
 			This is an example of EdgeNavigator!
 		</Text>
-		</Panel>
-	</EdgeNavigator>
+	</Panel>
+</EdgeNavigator>
+
+```
 
 Note that setting the @(Background) of the second @(Panel) in this example is of significance, as it enables hit testing of the inner @(Panel). You could alternatively set the @(HitTestMode) of the @(EdgeNavigator) to be @(HitTestMode.LocalBoundsAndChildren). Normally this isn't an issue, as the inner panel will have content that is hit testable.
+
+
+### $(EdgeNavigation)
+
+While @(EdgeNavigator) will do the job in most cases, you might be interested in using `EdgeNavigation` if you are not happy with the behaviour of the `EdgeNavigator`(you might e.g. want to change the default animation). The following example wil re-create the effect `EdgeNavigator` provides, but with more customisability:
+
+```
+<App Theme="Basic">
+	<DockPanel>
+		<EdgeNavigation />
+		<Panel Width="150" Background="#0F0" Edge="Left" Alignment="Left">
+			<EnteringAnimation>
+				<Move X="-1" RelativeTo="Size" />
+			</EnteringAnimation>
+		</Panel>
+		<Panel Background="#F00" />
+	</DockPanel>
+</App>
+```
+
 
 ## $(Controlling navigation)
 

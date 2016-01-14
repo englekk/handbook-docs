@@ -463,8 +463,11 @@ This will be on as long as the user is currently navigating in between two panel
 
 ## $(SwipeNavigate)
 
-`SwipeNavigate` is used to connect swiping gestures to @(Navigation).
-`SwipeNavigate` has three properties which modify its behavior: @(SwipeDirection), @(SwipeEnds) and @(VelocityThreshold).
+`SwipeNavigate` is used to connect swiping gestures to @(Navigation). This is used internally by @(EdgeNavigator), but you would be interested in it e.g. if you want horizontally stacked pages. `SwipeNavigate` has three properties which modify its behavior:
+
+* @(SwipeDirection) - Specifies the direction the user has to swipe in order to navigate "forwards".
+* @(SwipeEnds) - Decides how the animation handles there not being a next or previous element to navigate to. `Closed` hard-limits the animation to the end of the last element, `Open` lets the user swipe unhindered, `Short` adds resistance to the animation, effectively slowing the animation down the further the user swipes.
+* @(VelocityThreshold) - Minimum velocity required to snap to the next element. 
 
 ### $(SwipeDirection)
 

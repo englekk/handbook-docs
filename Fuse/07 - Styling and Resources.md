@@ -46,7 +46,18 @@ Once you've created a `ux:Global` alias, you can refer to your font by just the 
 
 To declare a Dynamic Resource, simply:
 
+```
 	<string ux:Key="WelcomeMessage" ux:Value="Hello!">
+```
+
+In addition to objects, the following types are currently supported:
+
+* string - `"string"`
+* bool - `true` or `false`
+* float - `1`, `0.2`, `.2`
+* float2 - `1, 1`
+* float3 - `0, 1, 0.2`
+* float4 - `1, 2, 3.2, 1`
 
 The resource will then be available to any nodes below it in the tree where it is defined. It can then be used as:
 

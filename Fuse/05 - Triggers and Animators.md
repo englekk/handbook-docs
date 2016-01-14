@@ -500,7 +500,7 @@ AUTH: TODO: Do we need to discuss Z-ordering? -->
 
 Toggles a `Navigation`. This is currently only supported in @(EdgeNavigation), and will do nothing if used on another type of navigation.
 
-Used on an `EdgeNavigation`, it will navigate to and from a target specified by using the `Target` property.
+Used on an `EdgeNavigation`, it will navigate to and from a @(Panel) with `EdgeNavigation.Edge` set, specified by using the `Target` property.
 
 ## Native actions
 

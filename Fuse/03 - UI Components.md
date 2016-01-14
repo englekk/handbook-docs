@@ -346,7 +346,14 @@ There are 6 different properties that can be used to control this in different w
 
 Note that using for example both @(StartAngle) and @(StartAngleDegrees) on the same @(Circle) will have an undefined behavior.
 
-### $(Fill:Fills)
+### Styling a shape
+
+In order to style shapes, we provide two properties:
+
+* `Fill` - Styles the background of a shape
+* `Stroke` - Styles the border of a shape
+
+#### $(Fill:Fills)
 
 We've seen that shapes accept simple `Fill` properties:
 
@@ -369,7 +376,7 @@ It is possible to use other kinds of brushes to fill shapes. For example:
 
 Here, we created a `Circle` that has been filled with an `ImageFill`-brush, great for creating a typical profile picture in a social app. Then under it, we created a @(Rectangle) that has a nice and subtle `LinearGradient`.
 
-### $(Stroke:Strokes)
+#### $(Stroke:Strokes)
 
 Strokes accept a brush the same way a @(Fill) does:
 
@@ -396,7 +403,7 @@ It can also be set to be a @(SolidColor:SolidColor-brush) using the `Brush`-prop
 	</Rectangle>
 
 
-#### $(StrokeAlignment)
+##### $(StrokeAlignment)
 
 The @(Stroke) can be aligned:
 
@@ -404,7 +411,7 @@ The @(Stroke) can be aligned:
 
 Valid values are `Center`, `Inside` and `Outside`.
 
-#### $(Stroke.Offset)
+##### $(Stroke.Offset)
 
 The @(Stroke) of a @(Shapes:Shape) can be `Offset`:
 
@@ -415,37 +422,66 @@ The @(Stroke) of a @(Shapes:Shape) can be `Offset`:
 A positive `Offset` will make the `Stroke` appear outside the `Shape` while a negative `Offset` will make it appear inside.
 
 
-## Brushes
+### $(Brush:Brushes)
 
-Fuse comes with different brush types that can be used as @(Stroke) and @(Fill) in @(Shapes).
+A `Brush` is a definition of how something is colored. It can either be applied directly to a @(Shape)'s `Fill` property, or applied to a @(Stroke) to style the border of a shape.
 
-### $(SolidColor)
+This is how you would use brush to style the fill of a shape. Notice that the `SolidColor` brush binds to the rectangle's `Fill` property:
+
+```
+<Rectangle>
+	<SolidColor Color="#f00" />
+</Rectangle>
+```
+
+This is how you would use a brush to style the border of a shape:
+
+```
+<Rectangle>
+	<Stroke>
+		<SolidColor Color="#0f0" />
+	</Stroke>
+</Rectangle>
+```
+
+#### $(SolidColor)
 
 If you want to make a simple continuous color, you can use a `SolidColor`:
 
-	<SolidColor Color="#00f" />
+```
+<SolidColor Color="#00f" />
+```
 
 This will create a brush that can be assigned to any place that accepts a brush, for example a @(Rectangle):
 
-	<Rectangle>
-		<SolidColor Color="#00f" />
-	</Rectangle>
-
+```
+<Rectangle>
+	<SolidColor Color="#00f" />
+</Rectangle>
+```
+	
 Note that this is equivalent of writing:
 
-	<Rectangle Fill="#00f" />
+```
+<Rectangle Fill="#00f" />
+```
 
-### $(ImageFill)
+> #### $(IsCompletelyTransparent:Finding out if a SolidColor is completely transparent)
 
-You can fill a @(Shapes:Shape) with an image using `ImageFill`:
+The `IsCompletelyTransparent` property will be true if the alpha value of the color is 0.
 
-	<Circle Width="160" Height="160">
-		<ImageFill File="Portrait.png" />
-	</Circle>
 
-The same way @(Image) allows you to, `ImageFill` lets you set @(StretchMode).
+#### $(ImageFill)
 
-### $(LinearGradient)
+`ImageFill` is a @(Brush) that fills the parent @(Shape) with an image. It is like an @(Image) in a lot of ways, but it has a very important difference: the `ImageFill` is a brush, and is supposed to style a shape, and does therefore not work by itself. The following example will fill a `Circle` with an image loaded from the file `Portrait.png`:
+
+```
+<Circle Width="160" Height="160">
+	<ImageFill File="Portrait.png" />
+</Circle>
+```
+
+#### $(LinearGradient)
 
 You can describe a `LinearGradient`-brush using `LinearGradient` and `GradientStop`. For example, to create a grey ramp that is white in the top and black in the bottom:
 

@@ -981,6 +981,28 @@ We can control the state of `Active` type @(SwipeGesture:SwipeGestures) by using
 
 If we wish to bypass the animation, `SetSwipeActive` lets us do that by setting `Bypass="true"`.
 
+### $(WhileWindowSize)
+
+The `WhileWindowSize` trigger has three float2-properties that control it's behavior:
+
+ * `GreaterThan`
+ * `LessThan`
+ * `EqualTo`
+
+
+These properties have to be larger than 0, and are conditions the app viewport has to conform to in order for the trigger to be active. The following is an example that changes the background color of an app if the viewport size is greater than a certain size:
+
+```
+<App Theme="Basic">
+  <Panel>
+     <SolidColor ux:Name="coloredPanel" Color="#F00" />
+     <WhileWindowSize GreaterThan="400,400">
+       <Change coloredPanel.Color="#0F0" Duration=".5"/>
+     </WhileWindowSize>
+  </Panel>
+</App>
+```
+
 ## $(Control triggers)
 
 ### $(WhileEnabled)

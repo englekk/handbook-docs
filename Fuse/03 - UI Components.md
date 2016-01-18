@@ -346,6 +346,15 @@ There are 6 different properties that can be used to control this in different w
 
 Note that using for example both @(StartAngle) and @(StartAngleDegrees) on the same @(Circle) will have an undefined behavior.
 
+>### $(RegularPolygon)
+
+A `RegularPolygon` is a convex shape in which all angles are equal, and all sides have equal length.
+Triangles, hexagons and octagons are all regular polygons.
+The number of sides can be controlled with the `Sides` property.
+
+	<RegularPolygon Sides="6" Fill="#000" Width="50" Height="50" />
+
+
 ### Styling a shape
 
 In order to style shapes, we provide two properties:

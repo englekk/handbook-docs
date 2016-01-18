@@ -424,7 +424,7 @@ A positive `Offset` will make the `Stroke` appear outside the `Shape` while a ne
 
 ### $(Brush:Brushes)
 
-A `Brush` is a definition of how something is colored. It can either be applied directly to a @(Shape)'s `Fill` property, or applied to a @(Stroke) to style the border of a shape.
+A `Brush` is a definition of how something is colored. It can either be applied directly to a @(Shapes) `Fill` property, or applied to a @(Stroke) to style the border of a shape.
 
 This is how you would use brush to style the fill of a shape. Notice that the `SolidColor` brush binds to the rectangle's `Fill` property:
 
@@ -459,7 +459,7 @@ This will create a brush that can be assigned to any place that accepts a brush,
 	<SolidColor Color="#00f" />
 </Rectangle>
 ```
-	
+
 Note that this is equivalent of writing:
 
 ```
@@ -473,7 +473,7 @@ The `IsCompletelyTransparent` property will be true if the alpha value of the co
 
 #### $(ImageFill)
 
-`ImageFill` is a @(Brush) that fills the parent @(Shape) with an image. It is like an @(Image) in a lot of ways, but it has a very important difference: the `ImageFill` is a brush, and is supposed to style a shape, and does therefore not work by itself. The following example will fill a `Circle` with an image loaded from the file `Portrait.png`:
+`ImageFill` is a @(Brush) that fills the parent @(Shapes:shape) with an image. It is like an @(Image) in a lot of ways, but it has a very important difference: the `ImageFill` is a brush, and is supposed to style a shape, and does therefore not work by itself. The following example will fill a `Circle` with an image loaded from the file `Portrait.png`:
 
 ```
 <Circle Width="160" Height="160">

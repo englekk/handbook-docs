@@ -768,7 +768,11 @@ A `State` consists of a set of @(Animators:animators) inside a `State` object. I
 
 ### $(StateGroup)
 
-A `StateGroup` is used to group a set of @(State:states) together and switch between them. `StateGroup` has an `Active` property, which is used to assign which @(State) is currently active in that group. One can also specify the `TransitionType`, which can be either `Exclusive` or `Parallel`. `Exclusive` means that each state will have to be fully deactivated before the next state becomes active. `Parallel` means that as one state deactivates, the next one will become active and whatever properties they animate will be interpolated between them.
+A `StateGroup` is used to group a set of @(State:states) together and switch between them.
+`StateGroup` has an `Active` property, which is used to assign which @(State) is currently active in that group.
+One can also specify the `TransitionType`, which can be either `Exclusive` or `Parallel`.
+`Exclusive` means that each state will have to be fully deactivated before the next state becomes active.
+`Parallel` means that as one state deactivates, the next one will become active and whatever properties they animate will be interpolated between them.
 
 Here is an example of how to use a `StateGroup` to switch the color of a @(Rectangle) between three states:
 

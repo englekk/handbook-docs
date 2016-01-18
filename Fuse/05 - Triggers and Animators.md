@@ -170,7 +170,7 @@ Move corresponds to adding a @(Translation) on the element and using @(Change) t
 
 ```
 <Panel>
-	<Translation ux:Name="someTranslation"/>
+	<Translation ux:Name="someTranslation"/>Transition
 	<WhilePressed>
 		<Change someTranslation.X="100" Duration="0.2"/>
 	</WhilePressed>
@@ -591,7 +591,6 @@ Used on an `EdgeNavigation`, it will navigate to and from a @(Panel) with `EdgeN
 
 <!--  ### $(BringToFront)
 AUTH: TODO: Do we need to discuss Z-ordering? -->
->>>>>>> remotes/origin/sebbert/feature-NewRelativeToModes
 
 ## Native actions
 

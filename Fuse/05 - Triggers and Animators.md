@@ -1063,6 +1063,26 @@ These properties have to be larger than 0, and are conditions the app viewport h
 </App>
 ```
 
+## $(Viewport triggers)
+
+These triggers react when something happens to the app.
+
+### $(WhileWindowLandscape)
+
+The `WhileWindowLandscape` trigger is active whenever the app's viewport width is larger than it's height. The following example changes the App's background color depending on its orientation:
+
+```
+<App ux:Name="app" Theme="Basic" Background="#FFF">
+     <WhileWindowLandscape>
+         <Change app.ClearColor="0,0,1,1" Duration="1" />
+     </WhileWindowLandscape>
+</App>
+```
+
+### $(WhileWindowPortrait)
+
+The `WhileWindowPortrait` trigger is active whenever the app's viewport height is larger than, or equal to, the width.
+
 ## $(Control triggers)
 
 ### $(WhileEnabled)

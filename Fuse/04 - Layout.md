@@ -375,6 +375,17 @@ When a @(Panel) places its children, it assumes that the "center" of that elemen
 
 This puts the elements anchor in the middle of its left edge.
 
+### $(LayoutMaster)
+
+You can make an element inherit the layout of another using the `LayoutMaster` property.
+
+	<StackPanel>
+		<Rectangle ux:Name="master" Height="150" Background="#f00a" />
+		<Rectangle LayoutMaster="master" Background="#00fa" />
+	</StackPanel>
+
+The above example will result in two overlapping @(Rectangle:Rectangles).
+
 ## $(Absolute positioning) $(X:) $(Y:)
 
 If we want to give our elements an explicit position, we can assign their `X` and `Y` properties. The `X` property will move the element relative to the left side of its container, while the `Y` property moves it relative to the top.

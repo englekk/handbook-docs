@@ -54,8 +54,6 @@ The resource will then be available to any nodes below it in the tree where it i
 
 ### $(Localization)
 
-> *Warning* : The feature that allows placing resources inside triggers, as seen below, is no yet rolled out, as of 0.9.5, but coming soon!
-
 Localization of strings, values, icons and other resources can be easily achieved with *resources*.
 
     <StateGroup Active="{language}">
@@ -72,7 +70,7 @@ Localization of strings, values, icons and other resources can be easily achieve
 
 Then, instead of specifying the greeting string directly throughout the app, we can use a resource binding instead:
 
-	<Text Value="{Resource Greeting}" />
+	<Text Value="{Resource hello}" />
 
 * Note that we here use `ResourceString` instead of `string`. `ResourceString` is actually a behavior, which applies its value as a resource when rooted, which is why we can use it with a `StateGroup`.
 

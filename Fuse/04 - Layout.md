@@ -370,10 +370,26 @@ This rectangle will be exactly 200 pixels wide, which means it will be smaller w
 When a @(Panel) places its children, it assumes that the "center" of that element is in the middle. However, if we want the element to be placed as if its "center" was along its left side, we could use the @(Anchor) property like so:
 
 ```
-<Rectangle Anchor="0,50%"/>
+<Rectangle Anchor="0%,50%"/>
 ```
 
 This puts the elements anchor in the middle of its left edge.
+
+### $(TransformOrigin)
+
+The `TransformOrigin` property specifies the origin of transformation used by
+transformation behaviors and animators, such as @(Move), @(Scale), @(Rotation), @(Scaling), etc.
+
+It accepts the following values:
+
+- $(TransformOrigin.Center:Center) _(default)_ – Transforms originate at the center of the element
+- $(TransformOrigin.TopLeft:TopLeft) – Transforms originate at the top left corner of the element
+- $(TransformOrigin.Anchor:Anchor) – Transforms originate around the point specified by the @(Anchor) property.
+
+<!-- AUTH: Wait for docs on Viewport
+- $(TransformOrigin.HorizontalBoxCenter:HorizontalBoxCenter) – Simulates the effect of the element being the front-facing side of a cube in 3D space, using the width of the element for determining the depth of the cube. Without the element being in a @(Viewport) this will have no illusion of depth, effectively rendering it useless.
+- $(TransformOrigin.VerticalBoxCenter:VerticalBoxCenter) – The same as @(TransformOrigin.HorizontalBoxCenter), except that it uses the height of the element for determining depth.
+-->
 
 ## $(Absolute positioning) $(X:) $(Y:)
 

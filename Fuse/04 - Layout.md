@@ -375,11 +375,11 @@ When a @(Panel) places its children, it assumes that the "center" of that elemen
 
 This puts the elements anchor in the middle of its left edge.
 
-## $(Absolute positioning) $(X:) $(Y:)
+### $(Absolute positioning) $(X:) $(Y:)
 
 If we want to give our elements an explicit position, we can assign their `X` and `Y` properties. The `X` property will move the element relative to the left side of its container, while the `Y` property moves it relative to the top.
 
-Be aware that absolute positioning elements should generally be avoided in favor of using layout rules. This is because when real data is used, the absolute values used might no longer be meaningfull.
+Be aware that absolute positioning elements should generally be avoided in favor of using layout rules. This is because when real data is used, the absolute values used might no longer be meaningful.
 
 
 ## Status bars

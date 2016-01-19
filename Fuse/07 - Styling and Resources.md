@@ -56,20 +56,25 @@ The resource will then be available to any nodes below it in the tree where it i
 
 > *Warning* : The feature that allows placing resources inside triggers, as seen below, is no yet rolled out, as of 0.9.5, but coming soon!
 
-Localization of strings, values, icons and other resources can be easily acheived with *resources*.
+Localization of strings, values, icons and other resources can be easily achieved with *resources*.
 
-	<Match Value="{language}">
-		<Case Value="English">
-			<string ux:Key="Greeting" ux:Value="Hello, world!" />
-		</Case>
-		<Case Value="Norwegian">
-			<string ux:Key="Greeting" ux:Value="Hei, verden!" />
-		</Case>
-	</Match>
+    <StateGroup Active="{language}">
+		<State Name="norwegian">
+			<ResourceString Key="hello" Value="hei"/>
+		</State>
+		<State Name="english">
+			<ResourceString Key="hello" Value="hello"/>
+		</State>
+		<State Name="spanish">
+			<ResourceString Key="hello" Value="hola"/>
+		</State>
+	</StateGroup>
 
 Then, instead of specifying the greeting string directly throughout the app, we can use a resource binding instead:
 
 	<Text Value="{Resource Greeting}" />
+
+* Note that we here use `ResourceString` instead of `string`. `ResourceString` is actually a behavior, which applies its value as a resource when rooted, which is why we can use it with a `StateGroup`.
 
 
 <!--## The anatomy of controls

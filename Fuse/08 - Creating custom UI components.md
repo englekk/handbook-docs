@@ -81,3 +81,4 @@ __MainView.ux__:
 ```
 
 - Note: ux:Property currently only works for atomic types (eg. float4, bool and string) and not for complex class types. This will be improved in an upcoming version.
+- Note: property-bindings require that the source and target properties are of identical types.

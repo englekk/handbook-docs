@@ -54,6 +54,22 @@ We can also query the number of values in the list through the `.length` propert
 
 See the full list of @(Observable.Members) to see what's possible with observable lists.
 
+#### Data types with Observables
+
+Observables can be used to supply all the basic types; number, string, boolean, as well as vector types. Number, string and boolean are created using their usual JavaScript literals:
+
+```
+var obsNumber = Observable(10.5);
+var obsString = Observable("hello");
+var obsBool = Observable(true);
+```
+
+For data-bindings requiring vector types (e.g. colors), one can use JavaScript arrays:
+
+```
+var obsRedColor = Observable([1,0,0,1]);
+var obsWhiteAndBlack = Observable([1,1,1,1], [0,0,0,1]);
+```
 
 #### Observable functions
 When an `Observable` is initialized with a function as its only argument, the `.value`

@@ -166,13 +166,12 @@ A Uno Project set up for signing can look like this:
 
 A file named `release.keystore` is expected to be found in the same folder as the project.
 
-This file can be created using the command:
+This file can be created using the command (`keytool` is found in Android SDK.):
 
     keytool -genkey -v -keystore release.keystore \
         -alias application -keyalg RSA -keysize 2048 -validity 10000
 
-Note that only release builds are signed using the specified key. Debug builds are automatically signed using a debug key.
-(`keytool` is found in Android SDK.)
+Note that only release builds are signed using the specified key. Debug builds are automatically signed using a debug key. To do a release build, use `uno build --target=android --configuration=Release`. 
 
 ## $(iOS signing:Signing for iOS)
 

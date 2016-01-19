@@ -381,6 +381,25 @@ If we want to give our elements an explicit position, we can assign their `X` an
 
 Be aware that absolute positioning elements should generally be avoided in favor of using layout rules. This is because when real data is used, the absolute values used might no longer be meaningfull.
 
+> ## $(Viewport)
+
+The `Viewport` element allows you to perform 3D transformations with perspective projection.
+In its current state, `Viewport` is quite limited.
+It has to be placed directly in your `<App>` with the rest of your app inside a child @(Panel), and cannot handle node-local perspectives.
+
+The `Perspective` property controls how far away the camera is from the `Z = 0` plane (where everything is drawn by default), in points.
+
+	<App Theme="Basic">
+		<Viewport Perspective="400">
+			<Panel>
+				<Rectangle Width="200" Height="200" Background="#2ecc71">
+					<Clicked>
+						<Rotate DegreesX="360" Duration="1.5" Easing="QuadraticInOut" DurationBack="0" />
+					</Clicked>
+				</Rectangle>
+			</Panel>
+		</Viewport>
+	</App>
 
 ## Status bars
 

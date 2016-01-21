@@ -379,12 +379,43 @@ This puts the elements anchor in the middle of its left edge.
 
 You can make an element inherit the layout of another using the `LayoutMaster` property.
 
-	<StackPanel>
-		<Rectangle ux:Name="master" Height="150" Background="#f00a" />
-		<Rectangle LayoutMaster="master" Background="#00fa" />
-	</StackPanel>
+```
+<StackPanel>
+	<Rectangle ux:Name="master" Height="150" Background="#f00a" />
+	<Rectangle LayoutMaster="master" Background="#00fa" />
+</StackPanel>
+```
 
 The above example will result in two overlapping @(Rectangle:Rectangles).
+
+When the `LayoutMaster` of an element is changed, any @(LayoutAnimation:LayoutAnimations) on that element will be activated.
+
+```
+<Rectangle ux:Name="selection" LayoutMaster="target1">
+	<Stroke Width="2" Brush="#3498db" Offset="2" />
+	<LayoutAnimation>
+		<Move RelativeTo="WorldPositionChange" X="1" Y="1" Duration="0.3" Easing="CubicInOut" />
+		<Resize RelativeTo="SizeChange" X="1" Y="1" Duration="0.3" Easing="CubicInOut" />
+	</LayoutAnimation>
+</Rectangle>
+
+<StackPanel>
+	<Panel ux:Name="target1" Margin="10" Height="50" Background="#eee">
+		<Text Alignment="Center">Click me</Text>
+		<Clicked>
+			<Set selection.LayoutMaster="target1" />
+		</Clicked>
+	</Panel>
+	<Panel ux:Name="target2" Width="150" Height="100" Background="#eee">
+		<Text Alignment="Center">Me too!</Text>
+		<Clicked>
+			<Set selection.LayoutMaster="target2" />
+		</Clicked>
+	</Panel>
+</StackPanel>
+```
+
+The above example illustrates how `LayoutMaster` can be used to implement a moving selection rectangle. It consists of two panels that, when clicked, animate the `selection` @(Rectangle) to inherit their size and position.
 
 ## $(Absolute positioning) $(X:) $(Y:)
 

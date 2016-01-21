@@ -97,7 +97,7 @@ By default, elements are placed in the grid by the order they appear in the UX, 
 
 The `WrapPanel` lays out its children one after the other and wraps around whenever it reaches the end. One can specify which direction the elements are layed out in by assigning the $(FlowDirection) property. FlowDirection can either be `LeftToRight` or `RightToLeft`.
 
-The following WrapPanel lays out its children horizontally from right ro left.
+The following WrapPanel lays out its children horizontally from right to left.
 
 ```
 <WrapPanel FlowDirection="RightToLeft">
@@ -282,7 +282,7 @@ Alignment can be assigned to any one of the following values:
 - $(Center)
 - $(CenterRight)
 - $(BottomLeft)
-- $(BottomCenterter)
+- $(BottomCenter)
 - $(BottomRight)
 
 If you don't assign an `Alignment` explicitly, the default alignment will be to stretch the control as much as the parent control requests. For a normal `Panel`, this means that the child control will try to fill the parent `Panel`, but other containing controls might ask the children to behave differently.

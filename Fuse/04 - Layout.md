@@ -385,11 +385,8 @@ It accepts the following values:
 - $(TransformOrigin.Center:Center) _(default)_ – Transforms originate at the center of the element
 - $(TransformOrigin.TopLeft:TopLeft) – Transforms originate at the top left corner of the element
 - $(TransformOrigin.Anchor:Anchor) – Transforms originate around the point specified by the @(Anchor) property.
-
-<!-- AUTH: Wait for docs on Viewport
 - $(TransformOrigin.HorizontalBoxCenter:HorizontalBoxCenter) – Simulates the effect of the element being the front-facing side of a cube in 3D space, using the width of the element for determining the depth of the cube. Without the element being in a @(Viewport) this will have no illusion of depth, effectively rendering it useless.
 - $(TransformOrigin.VerticalBoxCenter:VerticalBoxCenter) – The same as @(TransformOrigin.HorizontalBoxCenter), except that it uses the height of the element for determining depth.
--->
 
 ### $(Absolute positioning) $(X:) $(Y:)
 
@@ -400,7 +397,7 @@ Be aware that absolute positioning elements should generally be avoided in favor
 > ## $(Viewport)
 
 The `Viewport` element allows you to perform 3D transformations with perspective projection.
-In its current state, `Viewport` is quite limited.
+In its current state, `Viewport` is somewhat limited.
 It has to be placed directly in your `<App>` with the rest of your app inside a child @(Panel), and cannot handle node-local perspectives.
 
 The `Perspective` property controls how far away the camera is from the `Z = 0` plane (where everything is drawn by default), in points.

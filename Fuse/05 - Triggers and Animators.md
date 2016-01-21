@@ -633,7 +633,7 @@ Issues a phone call to the specified number.
 
 ### $(Vibrate)
 
-Vibrates the device for a given number of seconds.
+Vibrates the device for a given number of seconds. Note: iOS will not honor any specified duration, as this is not an option in the native iOS API.
 
 	<Vibrate Duration="0.8" />
 

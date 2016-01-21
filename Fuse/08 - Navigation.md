@@ -80,7 +80,7 @@ We actually already built most of the behavior of the `PageControl` from scratch
 * `PageCount` - Number of pages
 * `PageProgress` - Progress in the navigation from 0.0 to the amount of pages minus one.
 
-One interresting feature is the fact that you can set the active `Page` in a `PageControl` by name using the `Active` property, referencing to the wanted `Page` by `Name`. In the following example, We have a 3-page app, and a button that always returns the user to the first page.
+One interesting feature is the fact that you can set the active `Page` in a `PageControl` by name using the `Active` property, referencing to the wanted `Page` by `Name`. In the following example, We have a 3-page app, and a button that always returns the user to the first page.
 
 ```
 <App Theme="Basic" Background="#eeeeeeff">

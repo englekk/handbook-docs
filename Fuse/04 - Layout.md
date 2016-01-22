@@ -388,6 +388,14 @@ It accepts the following values:
 - $(TransformOrigin.HorizontalBoxCenter:HorizontalBoxCenter) – Simulates the effect of the element being the front-facing side of a cube in 3D space, using the width of the element for determining the depth of the cube. Without the element being in a @(Viewport) this will have no illusion of depth, effectively rendering it useless.
 - $(TransformOrigin.VerticalBoxCenter:VerticalBoxCenter) – The same as @(TransformOrigin.HorizontalBoxCenter), except that it uses the height of the element for determining depth.
 
+> #### Using Anchor to set an arbitrary transform origin
+
+```
+<Rectangle X="50%" Y="50%" Anchor="0%,50%" TransformOrigin="Anchor"/>
+```
+
+The above example creates a rectangle who’s left edge center is placed in the middle of the parent. When rotated it will then be rotated around this point.
+
 ### $(Absolute positioning) $(X:) $(Y:)
 
 If we want to give our elements an explicit position, we can assign their `X` and `Y` properties. The `X` property will move the element relative to the left side of its container, while the `Y` property moves it relative to the top.

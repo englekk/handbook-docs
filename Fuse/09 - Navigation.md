@@ -252,7 +252,7 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 		</StackPanel>
 	</Page>
 
-	<Page ux:Name="subPage1">
+	<Page ux:Name="subPage1" ux:AutoBind="false">
 		<StackPanel>
 			<Text>Welcome to page 1!</Text>
 			<Button Text="Go Back">
@@ -263,7 +263,7 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 		</StackPanel>
 	</Page>
 
-	<Page ux:Name="subPage2">
+	<Page ux:Name="subPage2" ux:AutoBind="false">
 		<StackPanel>
 			<Text>Welcome to page 2!</Text>
 			<Button Text="Go Back">
@@ -467,7 +467,7 @@ This will be on as long as the user is currently navigating in between two panel
 
 * @(SwipeDirection) - Specifies the direction the user has to swipe in order to navigate "forwards".
 * @(SwipeEnds) - Decides how the animation handles there not being a next or previous element to navigate to. `Closed` hard-limits the animation to the end of the last element, `Open` lets the user swipe unhindered, `Short` adds resistance to the animation, effectively slowing the animation down the further the user swipes.
-* @(VelocityThreshold) - Minimum velocity required to snap to the next element. 
+* @(VelocityThreshold) - Minimum velocity required to snap to the next element.
 
 ### $(SwipeDirection)
 

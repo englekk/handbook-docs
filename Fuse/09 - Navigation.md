@@ -283,7 +283,7 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 ```
 <EdgeNavigator>
 	<Panel Width="150" Edge="Left" Background="#f63" />
-	<Panel Background="#fff>
+	<Panel Background="#fff">
 		<Text Alignment="Center">
 			This is an example of EdgeNavigator!
 		</Text>

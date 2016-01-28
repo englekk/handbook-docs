@@ -1282,11 +1282,42 @@ In the following example, our background changes color when we reach the bottom 
 </Slider>
 ```
 
-<!-- ## $(Timeline)
+### $(Timeline)
 
-TODO: Might need edaqua for this one.
+The `Timeline` allows for a nice way of grouping several animations together and separating them from the interaction logic. It can be played by animating its `TargetProgress` property between 0 and 1.
 
-Timelines are used to create custom animations that can be played, paused, seeked etc. in response to events.-->
+Here is an example of how we can use a timeline to animate several properties on a rectangle (its width and color), and then play between the start and end of this `Timeline` by clicking two buttons.
+
+```
+<App Theme="Basic">
+	<StackPanel>
+		<Rectangle ux:Name="rect" Height="40" Width="100%">
+			<SolidColor ux:Name="color" Color="#f00" />
+		</Rectangle>
+		<Grid ColumnCount="2">
+			<Button Text="Red">
+				<Clicked>
+					<Set timeline.TargetProgress="0" />
+				</Clicked>
+			</Button>
+			<Button Text="Green">
+				<Clicked>
+					<Set timeline.TargetProgress="1" />
+				</Clicked>
+			</Button>
+		</Grid>
+
+		<Timeline ux:Name="timeline">
+			<Change Target="rect.Width">
+				<Keyframe Value="10" Time="0.3"/>
+				<Keyframe Value="100" Time="0.6"/>
+			</Change>
+			<Change color.Color="#0f0" Duration="0.3" Delay="0.3"/>
+		</Timeline>
+	</StackPanel>
+</App>
+```
+
 
 <!-- ## Advanced trigger usage
 

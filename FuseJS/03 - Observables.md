@@ -268,7 +268,7 @@ The new @(Observable:observable) observes the old @(Observable:observable), and 
 
 If the `condition` returns an `Observable`, the `where` operator will also observe the condition.
 
-#### $(Observable.map:map(func))
+#### $(Observable.map:map(func(item)))
 
 Invokes `func` on every value in the @(Observable) returning a new @(Observable) with the results.
 
@@ -278,6 +278,17 @@ Invokes `func` on every value in the @(Observable) returning a new @(Observable)
 	});
 
 The values of `roots` becomes the square root of the numbers in `numbers`. The values in `numbers` remain unchanged.
+
+#### $(Observable.mapi:map(func(item, index)
+
+Invokes `func` on every value in the @(Observable) returning a new @(Observable) with the results.
+
+	var numbers = Observable("this", "item", "is");
+	var roots = numbers.map(function(item, index) {
+		return item + " has the index nr: " + index;
+	});
+
+When Observable.map is used with a function which takes two arguments, the second argument is the index of that item in the @(Observable).
 
 #### $(Observable.count:count())
 

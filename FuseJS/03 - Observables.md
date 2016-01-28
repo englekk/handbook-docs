@@ -167,7 +167,7 @@ Removes all values for which `func` is true.
 		return place.temperature < 20;
 	}); //Removes Sydney from the list
 
-#### $(Observable.forEach:forEach(func))
+#### $(Observable.forEach(func(item)):forEach(func(item)))
 
 Invokes `func` on every value in the @(Observable).
 
@@ -175,6 +175,17 @@ Invokes `func` on every value in the @(Observable).
 	numbers.forEach(function(number) {
 		Console.Log(number + " is a nice number!");
 	});
+
+#### $(Observable.forEach(func(item,index)):forEach(func(item,index)))
+
+Invokes `func` on every value in the @(Observable).
+
+	var numbers = Observable(10, 2, 50, 3);
+	numbers.forEach(function(number, index) {
+		Console.Log(number + " has the index: " + index);
+	});
+
+If `func` accepts two arguments, the second argument is the index of that item in the @(Observable).
 
 #### $(Observable.replaceAt:replaceAt(index, value))
 

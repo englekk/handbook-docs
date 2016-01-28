@@ -167,7 +167,7 @@ Removes all values for which `func` is true.
 		return place.temperature < 20;
 	}); //Removes Sydney from the list
 
-#### $(Observable.forEach(func(item)):forEach(func(item)))
+#### $(Observable.forEach:forEach(func(item)))
 
 Invokes `func` on every value in the @(Observable).
 
@@ -176,7 +176,7 @@ Invokes `func` on every value in the @(Observable).
 		Console.Log(number + " is a nice number!");
 	});
 
-#### $(Observable.forEach(func(item,index)):forEach(func(item,index)))
+#### forEach(func(item,index))
 
 Invokes `func` on every value in the @(Observable).
 
@@ -290,7 +290,7 @@ Invokes `func` on every value in the @(Observable) returning a new @(Observable)
 
 The values of `roots` becomes the square root of the numbers in `numbers`. The values in `numbers` remain unchanged.
 
-#### $(Observable.mapi:map(func(item, index)
+#### $(Observable.mapi:map(func(item, index)))
 
 Invokes `func` on every value in the @(Observable) returning a new @(Observable) with the results.
 

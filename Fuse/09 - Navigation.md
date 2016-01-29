@@ -323,7 +323,7 @@ If `Target` is not specified, it will look for a parent element with a `Navigati
 
 ### GoBack
 
-The behavior of `GoBack` depends on the type of navigation context (`Target`) it's performed on:
+The behavior of `GoBack` depends on the type of navigation context (`TargetNode`) it's performed on:
 
 - @(LinearNavigation) – Navigates to the page occurring before the current page.
 - @(HierarchicalNavigation) – Navigates one level up in the hierarchy, i.e. the page most recently navigated to.

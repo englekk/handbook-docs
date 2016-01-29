@@ -54,31 +54,31 @@ In most cases, when creating custom classes, we need to be able to define some i
 __MyButton.ux__:
 
 ```
-<Panel ux:Class="MyButton" ux:Name="self" Text="MyButton" CornerRadius="10"
-       BackgroundColor="#f00" >
-    <string ux:Property="Text" />
+
+<Panel ux:Class="MyButton" ux:Name="self" Text="Click me!" Fill="#f00" TextColor="#000">
+    <string ux:Property="Text"/>
     <float4 ux:Property="CornerRadius" />
-    <float4 ux:Property="BackgroundColor" />
-    <float4 ux:Property="TextColor"  />
+    <Brush ux:Property="Fill" />
+    <float4 ux:Property="TextColor"/>
     <Text Alignment="Center" TextColor="{Property self.TextColor}" Value="{Property self.Text}"/>
-    <Rectangle Layer="Background" CornerRadius="{Property self.CornerRadius}">
-        <SolidColor Color="{Property self.BackgroundColor}"/>
-    </Rectangle>
+    <Rectangle Layer="Background" CornerRadius="{Property self.CornerRadius}" Fill="{Property self.Fill}" /
 </Panel>
 ```
 
-Here we have created a new class called MyButton. We expose four properties (Text, CornerRadius, BackgroundColor and TextColor). These properties can then be bound to within our ux:Class using the `{Property self.PropName}` syntax.
+Here we have created a new class called MyButton. We expose four properties (Text, CornerRadius, Fill and TextColor). These properties can then be bound to within our ux:Class using the `{Property self.PropName}` syntax.
 
 When we instantiate our class, we can then access these properties directly:
 
 __MainView.ux__:
 ```
 <App>
-	<Panel>
-		<MyButton CornerRadius="20" Text="MyText" TextColor="#fff"
-			      BackgroundColor="#5C6BC0 " Width="200" Height="50"/>
-	</Panel>
+	<MyButton CornerRadius="20" Text="MyText" TextColor="#fff" Width="200" Height="50">
+		<LinearGradient ux:Binding="Fill">
+			<GradientStop Color="#0f0" Offset="0" />
+			<GradientStop Color="#0f0" Offset="0" />
+		</LinearGradient>
+	</MyButton>
 </App>
 ```
 
-- Note: ux:Property currently only works for atomic types (eg. float4, bool and string) and not for complex class types. This will be improved in an upcoming version.
+Note that you can set properties of reference type (such as `Brush`) by using `ux:Binding`. In the above example, we create a `LinearGradient` and use that as `Fill`.

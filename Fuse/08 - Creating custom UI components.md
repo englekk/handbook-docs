@@ -54,14 +54,14 @@ In most cases, when creating custom classes, we need to be able to define some i
 __MyButton.ux__:
 
 ```
-
-<Panel ux:Class="MyButton" ux:Name="self" Text="Click me!" Fill="#f00" TextColor="#000">
-    <string ux:Property="Text"/>
-    <float4 ux:Property="CornerRadius" />
-    <Brush ux:Property="Fill" />
-    <float4 ux:Property="TextColor"/>
-    <Text Alignment="Center" TextColor="{Property self.TextColor}" Value="{Property self.Text}"/>
-    <Rectangle Layer="Background" CornerRadius="{Property self.CornerRadius}" Fill="{Property self.Fill}" /
+<Panel ux:Class="MyButton" ux:Name="self" Text="Click me!"
+	   Fill="#f00" TextColor="#000" CornerRadius="10">
+	<string ux:Property="Text"/>
+	<float4 ux:Property="CornerRadius" />
+	<Brush ux:Property="Fill" />
+	<float4 ux:Property="TextColor"/>
+	<Text Alignment="Center" TextColor="{Property self.TextColor}" Value="{Property self.Text}"/>
+	<Rectangle Layer="Background" CornerRadius="{Property self.CornerRadius}" Fill="{Property self.Fill}" />
 </Panel>
 ```
 
@@ -70,13 +70,15 @@ Here we have created a new class called MyButton. We expose four properties (Tex
 When we instantiate our class, we can then access these properties directly:
 
 __MainView.ux__:
+
 ```
 <App>
-	<MyButton CornerRadius="20" Text="MyText" TextColor="#fff" Width="200" Height="50">
+	<MyButton CornerRadius="20" Text="MyText"
+	          TextColor="#fff" Width="200" Height="50">
 		<LinearGradient ux:Binding="Fill">
 			<GradientStop Color="#0f0" Offset="0" />
-			<GradientStop Color="#0f0" Offset="0" />
-		</LinearGradient>
+			<GradientStop Color="#00f" Offset="1" />
+	    </LinearGradient>
 	</MyButton>
 </App>
 ```

@@ -418,11 +418,11 @@ It can also be set to be a @(SolidColor:SolidColor-brush) using the `Brush`-prop
 	</Rectangle>
 
 
-##### $(StrokeAlignment)
+##### $(StrokeAlignment:Alignment)
 
 The @(Stroke) can be aligned:
 
-	<Stroke StrokeAlignment="Center" />
+	<Stroke Alignment="Center" />
 
 Valid values are `Center`, `Inside` and `Outside`.
 

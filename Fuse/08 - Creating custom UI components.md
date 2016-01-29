@@ -83,4 +83,6 @@ __MainView.ux__:
 </App>
 ```
 
-Note that you can set properties of reference type (such as `Brush`) by using `ux:Binding`. In the above example, we create a `LinearGradient` and use that as `Fill`.
+You can set properties of reference types (such as `Brush`) by using `ux:Binding`. In the above example, we create a `LinearGradient` and use that as `Fill`.
+
+* Note that it is not possible to use $(Style:styles) on properties created with the ux:Property syntax.

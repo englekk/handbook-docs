@@ -54,11 +54,12 @@ In most cases, when creating custom classes, we need to be able to define some i
 __MyButton.ux__:
 
 ```
-<Panel ux:Class="MyButton" ux:Name="self">
-    <string ux:Property="Text" ux:Value="MyButton" />
-    <float4 ux:Property="CornerRadius" ux:Value="0" />
-    <float4 ux:Property="BackgroundColor" ux:Value="#f00" />
-    <float4 ux:Property="TextColor" ux:Value="#000" />
+<Panel ux:Class="MyButton" ux:Name="self" Text="MyButton" CornerRadius="10"
+       BackgroundColor="#f00" >
+    <string ux:Property="Text" />
+    <float4 ux:Property="CornerRadius" />
+    <float4 ux:Property="BackgroundColor" />
+    <float4 ux:Property="TextColor"  />
     <Text Alignment="Center" TextColor="{Property self.TextColor}" Value="{Property self.Text}"/>
     <Rectangle Layer="Background" CornerRadius="{Property self.CornerRadius}">
         <SolidColor Color="{Property self.BackgroundColor}"/>

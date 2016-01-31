@@ -324,8 +324,8 @@ Fuse has several ways in which you can interop with native APIs, existing native
 				<b>Foreign Code</b>
 				<p>Put native Java, Objective-C and C++ code directly in your Fuse project, and expose new functionality to FuseJS.</p>
 			</td>
-			<td class="feature__planned">In progress</td>
-			<td class="feature__planned">In progress</td>
+			<td class="feature__experimental">Experimental</td>
+			<td class="feature__experimental">Experimental</td>
 		</tr>
 
 		<tr>
@@ -333,8 +333,8 @@ Fuse has several ways in which you can interop with native APIs, existing native
 				<b>Uno Inline Foreign Code</b>
 				<p>Implement Uno methods directly in a native platform language: Java, Objective-C or C++.</p>
 			</td>
-			<td class="feature__planned">In progress</td>
-			<td class="feature__planned">In progress</td>
+			<td class="feature__experimental">Experimental</td>
+			<td class="feature__experimental">Experimental</td>
 		</tr>
 
 		<tr>

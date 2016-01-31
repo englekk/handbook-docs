@@ -191,8 +191,17 @@ Their features, function and appearance may vary between platforms.
 
 		<tr>
 			<td>
-				DatePicker
-				<p>Display the native OS date picker.</p>
+				Native Pickers
+				<p>Display the native OS pickers, date picker, value picker etc.</p>
+			</td>
+			<td class="feature__planned">Planned</td>
+			<td class="feature__planned">Planned</td>
+		</tr>
+
+		<tr>
+			<td>
+				Native Modal Dialogs 
+				<p>Display the native OS dialog boxes.</p>
 			</td>
 			<td class="feature__planned">Planned</td>
 			<td class="feature__planned">Planned</td>

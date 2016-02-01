@@ -41,13 +41,13 @@ Here is an example Uno project file with with all possible fields:
 			"XXXHDPI": "\$(Icon)"
         },
 		"NDK": {
-			"PlatformVersion": null     // default: 9
+			"PlatformVersion": 9
 		},
 		"SDK": {
-			"BuildToolsVersion": null,  // default: 23.0.0
-			"CompileVersion": null,     // default: 19
-			"MinVersion": null,         // default: 10
-			"TargetVersion": null       // default: 19
+			"BuildToolsVersion": "23.0.0",
+			"CompileVersion": 19,
+			"MinVersion": 10,
+			"TargetVersion": 19
 		}
     },
     "iOS": {

@@ -116,6 +116,22 @@ Here is an example Uno project file with with all possible fields:
 }
 ```
 
+* Note: Setting null for android NDK and SDK options results in the following default values being used:
+
+```
+"Android": {
+    "NDK": {
+      "PlatformVersion": null     // default: 9
+    },
+    "SDK": {
+      "BuildToolsVersion": null,  // default: 23.0.0
+      "CompileVersion": null,     // default: 19
+      "MinVersion": null,         // default: 10
+      "TargetVersion": null       // default: 19
+    }
+}
+```
+
 ## Globs
 
 These glob features are supported in `Includes` and `Excludes` properties:

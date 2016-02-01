@@ -2,7 +2,7 @@
 
 Some types of animation ([like this one](https://www.fusetools.com/developers/examples/swipeplaces)) are best described using Physics simulation. Fuse comes with a set of physics based triggers and behaviors which can be used for these situations.
 
-_Note: When using physics, make sure your project has a reference to the Fuse.Physics package._
+_Note: When using physics, make sure your @(Project structure:project) has a reference to the Fuse.Physics package._
 
 ## $(Physics Rules)
 

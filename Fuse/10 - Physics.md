@@ -2,6 +2,8 @@
 
 Some types of animation ([like this one](https://www.fusetools.com/developers/examples/swipeplaces)) are best described using Physics simulation. Fuse comes with a set of physics based triggers and behaviors which can be used for these situations.
 
+_Note: When using physics, make sure your project has a reference to the Fuse.Physics package._
+
 ## $(Physics Rules)
 
 Physics simulation is achieved by using different types of physics rule behaviors like `Spring` or @(PointAttractor). Each rule knows how to perform a certain kind of simulation and how to apply this to each frame of the animation. We can add additional customization to the animation by using the related @(Trigger:triggers) to animate based on certain physics @(ForceField triggers:events).

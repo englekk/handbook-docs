@@ -75,7 +75,7 @@ extern(iOS) class iOSSystemSoundsProvider : ISystemSoundsProvider
 Fuse provides a couple neat ways to wrap target specific code so as to make it available as a unified JavaScript API on all platforms.
 
 * Take a look at the [uxl-handbook](https://www.fusetools.com/developers/guides/uxl-handbook) for detailed documentation of target specific compilation.
-* For a tutorial on creating your own JavaScript module with Uno, take a look [here](https://www.fusetools.com/community/guides/fusejs/nativemodules).
+* For a tutorial on creating your own JavaScript module with Uno, take a look [here](/fusejs/native-modules).
 
 In the following example, we use the `extern` and `if defined` syntax, to make a `NativeModule` which chooses the correct implementation based on which platform we build for:
 

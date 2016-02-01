@@ -86,6 +86,6 @@ When previewing your app, the "Oops! Something went wrong here" screen appears.
 
 If the console output contains `GL_VERSION: 1.1.0` and `GL_RENDERER: GDI Generic` the problem is most likely missing / outdated OpenGL drivers. Upgrade to the most recent drivers for your graphics adapter and try again.
 
-This problem can also be triggered by driver issues under Windows 10 specific to the Intel HD Graphics 2000 / 3000 graphics adapters. In this case you will not be able to do local preview with instant updates, but you can still test your app on the PC by doing a regular build: `fuse build -t=dotnetexe --run`
+This problem can also be triggered by driver issues under Windows 10 specific to the Intel HD Graphics 2000 / 3000 / 4000 graphics adapters. In this case you will not be able to do local preview with instant updates, but you can still test your app on the PC by doing a regular build: `fuse build -t=dotnetexe --run`
 
 You can of course also still use [preview on Android and iOS devices](https://www.fusetools.com/learn/guides/preview-and-export-device-preview)

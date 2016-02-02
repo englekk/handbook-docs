@@ -14,7 +14,7 @@ Here is an example Uno project file with with all possible fields:
 {
     "BuildDirectory": "build",
     "CacheDirectory": ".uno",
-    "OutputDirectory": "\$(BuildDirectory)/@(Target)/@(Configuration)",
+    "OutputDirectory": "\$(BuildDirectory)/\@(Target)/\@(Configuration)",
     "RootNamespace": "\$(QIdentifier)",
     "ReferenceUnoCore": true,
     "Version": "0.0.0",

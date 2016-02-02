@@ -59,7 +59,7 @@ __Note__: This section of the documentation is incomplete, a full description of
 
 When you drop a folder into Sublime Text 3, it will by default search through all files in all subfolders. When building a Fuse project, this isn't always what you want.
 
-If you create a file called `ProjectName.sublime-project`, you can drop this into it to make it ignore the `.cache` and `.build` directories:
+If you create a file called `ProjectName.sublime-project`, you can drop this into it to make it ignore the `.uno` and `build` directories:
 
 ```
 {
@@ -68,8 +68,8 @@ If you create a file called `ProjectName.sublime-project`, you can drop this int
 		{
 			"folder_exclude_patterns":
 			[
-				".build",
-				".cache",
+				"build",
+				".uno",
 			],
 			"path": "."
 		}
@@ -83,8 +83,8 @@ This file can then be opened from the `Project` -> `Open Project...`-dialog.
 
 If you are using Git for version control, you can put the following in your .gitignore file.
 
-	.build
-	.cache
+	build
+	.uno
 
 ## Preview
 

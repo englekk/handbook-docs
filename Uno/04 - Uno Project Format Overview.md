@@ -12,8 +12,9 @@ Here is an example Uno project file with with all possible fields:
 
 ```
 {
-    "BuildDirectory": ".build",
-    "CacheDirectory": ".cache",
+    "BuildDirectory": "build",
+    "CacheDirectory": ".uno",
+    "OutputDirectory": "\$(BuildDirectory)/@(Target)/@(Configuration)",
     "RootNamespace": "\$(QIdentifier)",
     "ReferenceUnoCore": true,
     "Version": "0.0.0",
@@ -65,8 +66,8 @@ Here is an example Uno project file with with all possible fields:
 			"iPad_76_1x": "\$(Icon)",
 			"iPad_76_2x": "\$(Icon)"
         },
-		"BundleIdentifier": "com.uno.$(Name)",
-		"BundleName": "$(Title)",
+		"BundleIdentifier": "com.uno.\$(Name)",
+		"BundleName": "\$(Title)",
 		"DeploymentTarget": "7.0",
 		"PList": {
 			"MKDirectionsApplicationSupportedModes": [

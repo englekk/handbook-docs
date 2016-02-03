@@ -596,7 +596,13 @@ AUTH: TODO: Do we need to discuss Z-ordering? -->
 
 Fuse comes with a set of actions that invoke OS-specific behavior, such as dialing a phone number or vibrating the device.
 
-### $(LaunchUri)
+### $(Fuse.Launcher)
+
+The Fuse.Launcher package lets you start other activities like email, maps and web browsers.
+
+* Note: Make sure you add Fuse.Launcher to your @(Project structure:.unoproj) file.
+
+#### $(LaunchUri)
 
 Requests the operating system to launch a [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
 
@@ -605,7 +611,9 @@ Requests the operating system to launch a [URI](https://en.wikipedia.org/wiki/Un
 An URI can be anything from a URL to a custom URI scheme registered by an app. The underlying OS is responsible for handling the request.
 For instance, [here is a list of common URI schemes](http://www.iana.org/assignments/uri-schemes) that are registered with The Internet Assigned Numbers Authority (IANA).
 
-### $(LaunchEmail)
+
+
+#### $(LaunchEmail)
 
 Launches the default email app, and starts composing a message.
 
@@ -619,13 +627,13 @@ Launches the default email app, and starts composing a message.
 - `Subject` – The subject of the email
 - `Message` – The body text of the email
 
-### $(LaunchMaps)
+#### $(LaunchMaps)
 
 Launches the default maps app, given a latitude/longitude pair.
 
 	<LaunchMaps Latitude="35.673813" Longitude="-36.780810" />
 
-### $(Call)
+#### $(Call)
 
 Issues a phone call to the specified number.
 

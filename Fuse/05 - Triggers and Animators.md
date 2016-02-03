@@ -840,6 +840,8 @@ TODO: I dont know what it does -->
 User events are intended for sending messages between components of your application.
 They may be sent and received from UX, Uno, and JavaScript.
 
+* Make sure you also check out the documentation on using @(UserEvents-js:FuseJS UserEvents from JavaScript).
+
 ### $(UserEvent)
 
 User events are attached to the node they are declared in, and only that node and its children can raise and handle the event.
@@ -863,17 +865,15 @@ To raise a @(UserEvent:user event) from UX, use the `RaiseUserEvent` action.
 		</Clicked>
 	</Button>
 
-For information on how to raise user events from JavaScript, see the @(UserEvents-js:FuseJS UserEvents) documentation.
-
 ### $(UserEventArg:Passing arguments)
 
 A $(UserEvent:user event) may also include a number of arguments that can be read from either JavaScript or Uno.
 
 	<RaiseUserEvent Name="MyEvent">
-		<UserEventArg Name="message" Value="Hello from UX!" />
+		<UserEventArg Name="message" StringValue="Hello from UX!" />
 	</RaiseUserEvent>
 
-`UserEventArg` also accepts `IntValue`, `FloatValue`, `StringValue` or `BoolValue` in place of `Value`.
+`UserEventArg` accepts `IntValue`, `FloatValue`, `StringValue` or `BoolValue`.
 
 ### $(OnUserEvent:Responding to user events)
 

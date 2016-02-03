@@ -18,7 +18,7 @@ Here is an example Uno project file with with all possible fields:
     "RootNamespace": "\$(QIdentifier)",
     "ReferenceUnoCore": true,
     "Version": "0.0.0",
-    "VersionCount": 1,
+    "VersionCode": 0,
     "Title": "\$(Name)",
     "Copyright": "Copyright (C) 2015",
     "Publisher": "[Publisher]",

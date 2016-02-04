@@ -187,10 +187,10 @@ You can scale an element uniformly along all axes by using the `Factor` property
 <Scale Factor="2" Duration="0.4"/>
 ```
 
-`Scale` can be used relative to something using the `RelativeTo` property, which accepts the following values:
+`Scale` can be used relative to something using the `RelativeTo` property. The two choices are:
 
-- `SizeChange`: When used together with @(LayoutAnimation), scales relative to the change in size of the element.
-- `SizeFactor`: Scales to the size of the element specified by `RelativeNode`.
+* `SizeChange` - resizes relative to the change in size of the element specified by the `RelativeNode` property.
+* `SizeFactor` - resizes with a factor relative to another element, specified by `RelativeNode`. A factor of `1` would make it the same size as the `RelativeNode`, while a factor of `0.5` would make it half the size, and so on.
 
 ### $(Rotate)
 
@@ -210,7 +210,10 @@ When used in concert with @(LayoutAnimation), `Resize` allows you to animate the
 <Resize RelativeTo="SizeChange" Duration="0.5" Easing="CircularInOut" />
 ```
 
-The only value `Resize` has for `RelativeTo` at the moment is `SizeChange`, which resizes relative to the change in size of the element.
+`Resize` has two options for `RelativeTo` at the moment:
+
+* `SizeChange` - resizes relative to the change in size of the element specified by the `RelativeNode` property.
+* `SizeFactor` - resizes the element individually on both axes, relative to an element specified by the `RelativeNode` property. To control the size factors, use the `X` and `Y` properties to set one axis at the time, or use the `Vector` property to set the factor of both axes at once, using a two-dimensional vector.
 
 ### $(TransitionLayout)
 

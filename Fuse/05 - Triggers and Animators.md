@@ -625,7 +625,7 @@ This trigger fires when the user presses either a physical or emulated back butt
 </App>
 ```
 
-For a complete list of supported keys, check out the [https://www.fusetools.com/learn/uno/api/uno/platform/key](Key enum) list.
+For a complete list of supported keys, check out the [Key enum](https://www.fusetools.com/learn/uno/api/uno/platform/key) list.
 
 <!--  ### $(BringToFront)
 AUTH: TODO: Do we need to discuss Z-ordering? -->

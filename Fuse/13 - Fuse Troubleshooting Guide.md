@@ -1,5 +1,11 @@
 # $(Fuse Troubleshooting Guide)
 
+## Logs
+When investigating issues it's often useful to check the logs written by Fuse and the editor plugins. These can be be found in:
+
+- OS X: `~/.fuse/logs`
+- Windows: `%localappdata%\Fusetools\Fuse\logs`
+
 ## Connection issues
 
 ### A network error occurred

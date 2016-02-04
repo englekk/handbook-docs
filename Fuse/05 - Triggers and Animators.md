@@ -589,6 +589,44 @@ Toggles a `Navigation`. This is currently only supported in @(EdgeNavigation), a
 Used on an `EdgeNavigation`, it will navigate to and from a @(Panel) with `EdgeNavigation.Edge` set, specified by using the `Target` property.
 
 
+### $(OnBackButton)
+
+This trigger fires when the user presses either a physical or emulated back button on their device. The folllowing code will flash the screen green when the back button is pressed:
+
+```
+<App Theme="Basic">
+  <Panel>
+    <SolidColor ux:Name="rect" Color="#F00" />
+    <WhileTrue ux:Name="backPulse" Value="false">
+      <Change rect.Color="#0F0" Duration="0.2" />
+    </WhileTrue>
+    <OnBackButton>
+      <Pulse Target="backPulse" />
+    </OnBackButton>
+  </Panel>
+</App>
+```
+
+### $(OnButtonPressed)
+
+`OnButtonPressed` is triggered when the key specified by the property `Key` is pressed. The following example will flash the screen blue when the "menu" button is pressed. This button is present on some android devices.
+
+```
+<App Theme="Basic">
+  <Panel>
+    <SolidColor ux:Name="solidColor" Color="#F00" />
+    <WhileTrue ux:Name="menuPulse" Value="false">
+      <Change solidColor.Color="#00F" Duration="0.2" />
+    </WhileTrue>
+    <OnKeyPress Key="MenuButton">
+      <Pulse Target="menuPulse" />
+    </OnKeyPress>
+  </Panel>
+</App>
+```
+
+For a complete list of supported keys, check out the [Key enum](https://www.fusetools.com/learn/uno/api/uno/platform/key) list.
+
 <!--  ### $(BringToFront)
 AUTH: TODO: Do we need to discuss Z-ordering? -->
 
@@ -1005,7 +1043,7 @@ This is achieved using the `LengthNode` property of @(SwipeGesture), and in this
 		</Panel>
 	</Panel>
 
-#### $(Swiped)
+### $(Swiped)
 
 `Swiped` is a pulse trigger that is invoked when a swipe has occurred.
 
@@ -1031,7 +1069,7 @@ We can control this behavior by setting the `How` property to either `ToActive` 
 		</WhileSwipeActive>
 	</Panel>
 
-#### $(SetSwipeActive) and $(ToggleSwipeActive)
+### $(SetSwipeActive) and $(ToggleSwipeActive)
 
 We can control the state of `Active` type @(SwipeGesture:SwipeGestures) by using the `SetSwipeActive` and `ToggleSwipeActive` actions.
 

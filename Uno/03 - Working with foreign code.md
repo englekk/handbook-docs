@@ -220,15 +220,18 @@ You can create an autorelease pool at the beginning of the block, like this:
 }];
 ```
 
-Note that you need to `#include<Uno/Memory.h>` to get access to `uAutoReleasePool`.
+_Note:_ you need to `#include<Uno/Memory.h>` to get access to `uAutoReleasePool`.
 
 
-Another alternative is to pass a delegate, which will create the autorelease pool for you:
+Another alternative is to pass a `delegate`, `Func` or `Action`, which will create the autorelease pool for you:
 
 ```
 class SomeClass
 {
 	[Foreign(Language.ObjC)]
-	extern(iOS) void DoSomethingInSeparateThread(delegate)
+	extern(iOS) void DoSomethingInSeparateThread(Action<> callback)
+	@{
+		[someObjCObject doSomethingInSeparateThreadWithCallback: callback];
+	@}
 }
 ```

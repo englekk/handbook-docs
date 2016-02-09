@@ -78,15 +78,12 @@ You can use UXL macros in foreign methods, which essentially acts as a bridge in
 We won't go into detail here, but rather provide some examples of the most common use cases.
 For a complete reference on UXL macros, see the [UXL Handbook](/learn/guides/uxl-handbook#uxl-macros).
 
-Foreign instance methods have access to `_this`, a wrapped version of the object they are called on.
+Foreign instance methods have access to `_this`, which refers to the object they are called on, wrapped as `UnoObject`.
 Since the type can't automatically be inferred, you have to use the `:Of` macro to interact with it:
 
 ```
 @{MyClass:Of(_this)}
 ```
-
-<!-- AUTH: rewrite this sentence -->
-We can then combine this with more UXL macros.
 
 ### `Get` and `Set`
 

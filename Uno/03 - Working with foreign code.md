@@ -51,6 +51,21 @@ In Foreign Code arguments and return values are automatically converted between 
 
 Primitive types (`int`, `float`, `char`, etc) are converted as you would expect with the one exception that java does not have primitive unsigned bytes, so a `byte` in java is an `sbyte` in Uno.
 
+So you can write this:
+
+```
+	[Foreign(Language.Java)]
+	public static extern(Android) void Foo(double x, long y)
+	@{
+		android.util.Log.d("ForeignCodeExample", "Well look at this:" + x + "and" + y);
+	@}
+```
+
+And call it in Uno like this:
+
+```
+    Foo(1.2, 12345678);
+```
 
 #### Strings
 
@@ -59,6 +74,21 @@ Strings are just too common for us not to handle automatically. So Uno strings m
 - `java.lang.String` in Java
 - `NSString*` in Objective-C
 
+So again you can write something like this:
+
+```
+	[Foreign(Language.ObjC)]
+	public static extern(iOS) void Log(string message)
+	@{
+		NSLog(@"%@", message);
+	@}
+```
+
+And calling it in Uno like this:
+
+```
+    Log("Type magic everywhere!");
+```
 
 #### Foreign objects passed to Uno
 
@@ -70,6 +100,21 @@ You may wonder why not try and map more types; it's probably easy to think of a 
 
 > Mapping object models in the general case does not work, even in languages as syntactically similar as Java and Uno. The differences necessary in a translation are a mental overhead for the programmer using Foreign Code. We choose instead to provide a predicable interface and require that working with the internals of a foreign object is done in foreign code.
 
+Here's how it looks like to get an object from Java:
+
+```
+	[Foreign(Language.Java)]
+	public static extern(iOS) Java.Object Test(int texName)
+	@{
+        return new android.graphics.SurfaceTexture(texName);
+	@}
+```
+
+And calling it:
+
+```
+    var stex = Test(1);
+```
 
 #### And the other way? (Uno objects passed into Foreign Code)
 
@@ -77,6 +122,23 @@ Predicatably we take the same approach. An Uno passed to Java or Objective-C is 
 
 In Objective-C the type of that box is `id<UnoObject>` and in Java it is `com.uno.UnoObject`
 
+
+Here is an example of an Uno object being passed in:
+
+```
+	[Foreign(Language.Java)]
+	public static extern(iOS) void Test(SomeFancyType soFancy)
+	@{
+        // Inside here the type of soFancy is `UnoObject`
+		android.util.Log.d("ForeignCodeExample", "Here it is" + soFancy);
+	@}
+```
+
+Call it is how you would expect:
+
+```
+    var v = Test(new SomeFancyType(1, 2, 3));
+```
 
 #### Ok but what about passing a `Java.Object` back to Java or a `ObjC.Object` back to Objective-C?
 

@@ -29,13 +29,13 @@ class Example
 }
 ```
 
-Here we wanted to avoid reinventing the wheel and instead use Java and Objective-C's own Logging. By tagging our uno method with the `Foreign` attribute, and picking a language, we are then able to write the chosen language between the `@{` & `@}` braces.
+Here we wanted to avoid reinventing the wheel and instead use Java and Objective-C's own Logging. By tagging our Uno method with the `Foreign` attribute, and picking a language, we are then able to write the chosen language between the `@{` & `@}` braces.
 
 You are probably wondering why we have strange braces around our foreign method body. This simply tells the compiler "Don't try and read this bit as Uno".
 
 The two languages we currently support in the `Foreign` attribute are `Objective-C` (on iOS) and `Java` (on Android) which you write as `[Foreign(Language.ObjC)]` and `[Foreign(Language.Java)]` respectively.
 
-The `Foreign` attribute lives in the `Uno.Compiler.ExportTargetInterop` namespace, so make sure you import that with `using` at the top of your uno file.
+The `Foreign` attribute lives in the `Uno.Compiler.ExportTargetInterop` namespace, so make sure you import that with `using` at the top of your Uno file.
 
 The eagle-eyed among you will also have noticed that we have two methods with the same name and signature in the same class. We can do this since `extern(...)` strips out code that does not match the target platform in a very early stage of compilation.
 
@@ -118,7 +118,7 @@ And calling it:
 
 #### And the other way? (Uno objects passed into Foreign Code)
 
-Predicatably we take the same approach. An Uno passed to Java or Objective-C is boxed inside an opaque object.
+Predictably we take the same approach. An Uno passed to Java or Objective-C is boxed inside an opaque object.
 
 In Objective-C the type of that box is `id<UnoObject>` and in Java it is `com.uno.UnoObject`
 
@@ -166,27 +166,27 @@ In the current release this feature is available in Objective-C, and the Java ve
 Rather than just remove the old style bindings and force you into Foreign Code immediately, we are taking a more measured approach.
 
 Any object created using the old bindings can be passed up to Java in the same way as `Java.Object`.
-Objective-C bindings objects can be paseed as `ObjC.Object`.
+Objective-C bindings objects can be passed as `ObjC.Object`.
 
 
 
 ## Talking back to Uno
 
-Sometimes it is not enough to be able to return values from Foreign Code to Uno. Sometimes it makes more sense to intereact with uno from inside Foreign Code. We need to be very clear to tell the compiler what parts of our Foreign Code are actually calls into Uno. To do this we use our UXL syntax.
+Sometimes it is not enough to be able to return values from Foreign Code to Uno. Sometimes it makes more sense to interact with Uno from inside Foreign Code. We need to be very clear to tell the compiler what parts of our Foreign Code are actually calls into Uno. To do this we use our UXL syntax.
 
 Using UXL we can do two main things from Foreign Code:
 
-- Access uno fields
-- Call uno methods
+- Access Uno fields
+- Call Uno methods
 
-If you havent seen UXL before, and/or are someone who likes getting all the details on something, then check out our fairly extensive [UXL Handbook](/learn/guides/uxl-handbook#uxl-macros). For this guide however we will just show lots of small examples:
+If you haven't seen UXL before, and/or are someone who likes getting all the details on something, then check out our fairly extensive [UXL Handbook](/learn/guides/uxl-handbook#uxl-macros). For this guide however we will just show lots of small examples:
 
 
 ### `Get` and `Set` Static Uno Fields
 
 Let's start nice and simple. We can get or set the value of a property using the `Get` and `Set` macros.
 
-The anotomy of a UXL `Get` expression is as follows:
+The anatomy of a UXL `Get` expression is as follows:
 
 ```
 v¯¯¯¯¯¯¯¯¯¯v¯ The `@{` `}` syntax means its a uxl macro
@@ -386,7 +386,7 @@ Note that the wildcard (`*`) only includes fuse files by default, you have to ex
 
 ### Java
 
-With Java you normally have to worry about your folder structure matching your package hierarchy, but not in Fuse. We will parse the `package` statement in your java files and ensure the hieracrchy is correct in the project emmited by our compiler.
+With Java you normally have to worry about your folder structure matching your package hierarchy, but not in Fuse. We will parse the `package` statement in your java files and ensure the hierarchy is correct in the project emitted by our compiler.
 
 _Note:_ With foreign Java, there is currently no way to `import` a package or class. For that reason you have to reference classes by their fully qualified name.
 
@@ -425,7 +425,7 @@ Full details will be available in this document when this feature is released.
 
 ## Delegates
 
-Foreign Code will also allow you to pass delegates to your foreign methods. Whilst the end result is the same, the details vary a little between Java & Objective-C so let's tackle them seperately:
+Foreign Code will also allow you to pass delegates to your foreign methods. Whilst the end result is the same, the details vary a little between Java & Objective-C so let's tackle them separately:
 
 **Objective-C:**
 

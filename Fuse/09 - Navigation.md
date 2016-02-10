@@ -217,7 +217,7 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 
 ```
 <Panel>
-	<HierarchicalNavigation ux:Name="nav" ReuseExistingNode="false" Active="mainPage" />
+	<HierarchicalNavigation ux:Name="nav" Active="mainPage" />
 
 	<Style>
 		<Page>

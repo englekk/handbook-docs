@@ -96,11 +96,7 @@ See the `Coming Soon` section. :)
 
 #### Delegates
 
-See the `Coming Soon` section.
-
-**Java:**
-
-In the current release this feature is only avaiable in Objective-C, but the Java version is on the way. Please see the `Coming Soon` section for details.
+In the current release this feature is available in Objective-C, and the Java version is on the way. Please see the `Coming Soon` section for details.
 
 
 #### A note on objects from the old bindings

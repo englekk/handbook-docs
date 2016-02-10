@@ -1,7 +1,7 @@
 # Working with foreign code
 
 While we're trying to wrap as much native cross-platform functionality as we can into Fuse, there are naturally going to be features that haven't implemented yet.
-This guide explains how you can use the foreign code feature in Uno to implement reach into your platform's native functionality yourself.
+This guide explains how you can use the foreign code feature in Uno to reach into your platform's native functionality yourself.
 
 _Note:_ This is a young feature, intended to replace the old way of doing interop through language bindings. If you want to know more about our reasons for doing so, we have written a [standalone post](https://medium.com/@fusetools/a-sane-way-of-mixing-languages-in-fuse-660b351c2f96) on the subject.
 

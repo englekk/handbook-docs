@@ -103,7 +103,9 @@ In the current release this feature is available in Objective-C, and the Java ve
 
 Rather than just remove the old style bindings and force you into Foreign Code immediately, we are taking a more measured approach.
 
-Any object created using the old bindings can be passed up to Java in the same way as `Java.Object`
+Any object created using the old bindings can be passed up to Java in the same way as `Java.Object`.
+Objective-C bindings objects can be paseed as `ObjC.Object`.
+
 
 
 ## Talking back to Uno

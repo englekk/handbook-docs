@@ -47,7 +47,7 @@ One of the more mind-numbing things to deal with when using some 'foreign functi
 In Foreign Code arguments and return values are automatically converted between their Uno representation and their corresponding Java/Objective-C representation.
 
 
-#### Primtive Types
+#### Primitive Types
 
 Primitive types (`int`, `float`, `char`, etc) are converted as you would expect with the one exception that java does not have primitive unsigned bytes, so a `byte` in java is an `sbyte` in Uno.
 

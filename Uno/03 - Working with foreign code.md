@@ -104,7 +104,7 @@ Here's how it looks like to get an object from Java:
 
 ```
 	[Foreign(Language.Java)]
-	public static extern(iOS) Java.Object Test(int texName)
+	public static extern(Android) Java.Object Test(int texName)
 	@{
         return new android.graphics.SurfaceTexture(texName);
 	@}
@@ -127,7 +127,7 @@ Here is an example of an Uno object being passed in:
 
 ```
 	[Foreign(Language.Java)]
-	public static extern(iOS) void Test(SomeFancyType soFancy)
+	public static extern(Android) void Test(SomeFancyType soFancy)
 	@{
         // Inside here the type of soFancy is `UnoObject`
 		android.util.Log.d("ForeignCodeExample", "Here it is" + soFancy);

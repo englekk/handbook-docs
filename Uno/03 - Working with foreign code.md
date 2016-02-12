@@ -184,6 +184,8 @@ If you haven't seen UXL before, and/or are someone who likes getting all the det
 
 ### `Get` and `Set` Static Uno Fields
 
+_Note:_ Woops, looks like we have a bug with Foreign Code accessing static fields on Android. This will be fixed in an upcoming release. Once it is out this note will be removed
+
 Let's start nice and simple. We can get or set the value of a property using the `Get` and `Set` macros.
 
 The anatomy of a UXL `Get` expression is as follows:

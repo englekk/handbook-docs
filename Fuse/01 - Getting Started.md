@@ -10,7 +10,7 @@ Fuse is a toolkit that developers and designers use to create native, cross-plat
 
 You express your user interfaces in markup (which we call "UX") which makes it easy to make animated and responsive UIs. Your app logic is written in JavaScript which is interpreted, and **all rendering is compiled to native code for optimal performance.** You can choose between real native UI elements and customizable cross platform elements. Fuse is not a "black box", but a flexible toolkit and can be extended using Uno (a C#-dialect). Fuse does _not_ generate HTML5/hybrid apps, it exports fully native mobile apps.
 
-While you're developing your app, **your changes are reflected in real time** both on your computer and on your devices, with **no need to recompile or re-deploy.** While it's wonderful to prototype in Fuse, it is _not_ a prototyping tool, it is a fully-fledged app development tool that with no need for further coding in XCode or Android studio. Apps built purely with Fuse are already in app stores today, and more and more apps are being developed every day.
+While you're developing your app, **your changes are reflected in real time** both on your computer and on your devices, with **no need to recompile or re-deploy.** While it's wonderful to prototype in Fuse, it is _not_ a prototyping tool, it is a fully-fledged app development tool that needs no further coding in XCode or Android studio. Apps built purely with Fuse are already in app stores today, and more and more apps are being developed every day.
 
 ## $(Setup)
 
@@ -29,7 +29,7 @@ After having created a new project, either by using the dashboard or the `fuse` 
 - `ProjectName.unoproj` - This is the project file, and basically keeps track of which files compose the project, which packages it depends on and also other handy values like your API keys.
 - `MainView.ux` - This is the main starting point for your app, mainly because it contains the `App`-tag. Under normal circumstances you will delete most of the contents of this file, but feel free to examine the default application and see what is needed to make a bare bones surface with some controls.
 
-Note: JavaScript do not need to be referenced from the `unoproj`-file as JavaScript files are referenced directly from UX markup.
+Note: JavaScript files do not need to be referenced from the `unoproj`-file as JavaScript files are referenced directly from UX markup.
 
 > ### $(Project file structure)
 

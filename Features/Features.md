@@ -4,7 +4,7 @@
 
 Keep track of current and upcoming Fuse features as we evolve through our beta.
 
-This overview is updated for each release. **Latest update: 9th of December 2015.**
+This overview is updated for each release. **Latest update: 1st of February 2016.**
 
 ## Legend
 

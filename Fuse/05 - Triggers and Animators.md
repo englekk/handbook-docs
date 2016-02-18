@@ -1154,6 +1154,21 @@ The `WhileEnabled` trigger is active whenever its containing @(Element:elements)
 
 The `WhileDisabled` trigger is active whenever its containing @(Element:elements) `IsEnabled` property is set to `False`.
 
+## $(Keyboard triggers)
+
+### $(TextInputActionTriggered)
+
+`TextInputActionTriggered` is triggered when the user presses the return key while editing a @(TextInput).
+The following example demonstrates how you can hide the keyboard in response.
+
+```
+<TextInput>
+	<TextInputActionTriggered>
+		<ReleaseFocus />
+	</TextInputActionTriggered>
+</TextInput>
+```
+
 ## $(Focus triggers and actions)
 
 ### $(WhileFocused)

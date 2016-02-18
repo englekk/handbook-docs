@@ -71,16 +71,17 @@ We actually already built most of the behavior of the `PageControl` from scratch
 	<Page Background="Blue"/>
 </PageControl>
 ```
-
-`PageControl` has a few properties that might be of interest:
+`PageControl` has a few properties you might be interested in:
 
 * `Active` - The currently active page
 * `CanGoBack` - `true` if it is possible to navigate backward
 * `CanGoForward` - `true` if it is possible to navigate forward
-* `PageCount` - Current page number
-* `PageProgress` - Progress in the navigation from 0.0 to the amount of pages minus one.
+* `PageCount` - Number of pages
+* `PageProgress` - Navigation progress, spanning from 0.0 to the number of pages minus one
 
-You can set the active `Page` in a `PageControl` by assigning the `Active` property to the name of your `Page`. In the following example, We have a 3-page app, and a button that always returns the user to the first page.
+
+By using data binding, you can set the currently active page by `Name` using the `Active` property.
+In the following example, We have three pages and a button that returns the user to the first page.
 
 ```
 <App Theme="Basic" Background="#eeeeeeff">
@@ -106,7 +107,7 @@ You can set the active `Page` in a `PageControl` by assigning the `Active` prope
 </App>
 ```
 
-The [Pages using JavaScript](https://www.fusetools.com/community/examples/pageslist) example shows this in practice.
+Take a look at the [Pages using JavaScript](https://www.fusetools.com/community/examples/pageslist) example to see how this can be used in practice.
 
 ### $(PageIndicator)
 

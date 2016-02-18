@@ -29,10 +29,10 @@ The most basic type of panel is the `Panel`. Children of a Panel will be default
 
 Note that the element order in a `Panel` is the same as the layer order in popular graphics packages such as Photoshop; the layer that appears first in the UX-file will be layered on top of elements appearing later in the file.
 
-The `Panel` has a few properties you might be interested in:
+`Panel` has a few properties you might be interested in:
 
-* `Layout` - specifies a Layout for the `Panel`. A `StackPanel` is for example primarily just a `Panel` with a `StackLayout` controller. Check out @(The Layout property:layout) for more detail.
-* `Children` - contains a list of all child nodes of the `Panel`. This may for example come in handy when manipulating nodes with uno.
+* `Layout` - Specifies a Layout for the `Panel`. For instance, a `StackPanel` is practically just a `Panel` with `Layout="StackLayout"`. Check out @(The Layout property:layout) for more detail.
+* `Children` - Contains a list of all child nodes of the `Panel`. This may for example come in handy when traversing nodes using Uno.
 
 ## $(StackPanel)
 

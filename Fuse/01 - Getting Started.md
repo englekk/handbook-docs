@@ -29,31 +29,9 @@ After having created a new project, either by using the dashboard or the `fuse` 
 - `ProjectName.unoproj` - This is the project file, and basically keeps track of which files compose the project, which packages it depends on and also other handy values like your API keys.
 - `MainView.ux` - This is the main starting point for your app, mainly because it contains the `App`-tag. Under normal circumstances you will delete most of the contents of this file, but feel free to examine the default application and see what is needed to make a bare bones surface with some controls.
 
+Head to the @(Uno Project Format Overview) for a complete reference of the `unoproj` format.
+
 Note: JavaScript files do not need to be referenced from the `unoproj`-file as JavaScript files are referenced directly from UX markup.
-
-> ### $(Project file structure)
-
-The `unoproj` file has the following structure (incomplete):
-
-To divide the solution into multiple projects and reference them from the `unoproj`-file:
-
-```
-"Projects" : [
-	"path_to_other_project.unoproj"
-]
-```
-
-To add/remove references to one of the standard packages shipping with Fuse :
-
-```
-"Packages": [
-        "Experimental.iOS"
-]
-```
-
-__Note__: This section of the documentation is incomplete, a full description of the `unoproj` file is coming.
-
-
 
 > ### $(Sublime Text projects)
 

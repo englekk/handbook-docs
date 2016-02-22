@@ -234,25 +234,31 @@ If you have a complex data context and want to narrow the data context down, you
 
 You can drive which subtree should be active using `Match` and `Case`:
 
-	<JavaScript>
-		module.exports = {
-			active: "blue"
-		};	
-	</JavaScript>
-	<Match Value="{active}">
-		<Case String="red">
-			<Rectangle Fill="#f00" Height="50" Width="50" />
-		</Case>
-		<Case String="blue">
-			<Rectangle Fill="#00f" Height="50" Width="50" />
-		</Case>
-	</Match>
+```
+<JavaScript>
+	module.exports = {
+		active: "refjadsuiof"
+	};
+</JavaScript>
+<Match Value="{active}">
+	<Case String="red">
+		<Rectangle Fill="#f00" Height="50" Width="50" />
+	</Case>
+	<Case String="blue">
+		<Rectangle Fill="#00f" Height="50" Width="50" />
+	</Case>
+	<Case IsDefault="true" String="green">
+		<Rectangle Fill="#0f0" Height="50" Width="50" />
+	</Case>
+</Match>
+```
 
 Valid match properties for `Case` are:
 
 - `String` - match a string
 - `Number` - match a number
 - `Bool` - match a boolean
+- `IsDefault` - default case if no other case matches
 
 ## $(DataToResource)
 

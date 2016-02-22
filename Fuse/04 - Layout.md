@@ -446,46 +446,6 @@ The above example illustrates how `LayoutMaster` can be used to implement a movi
 
 ## $(Absolute positioning) $(X:) $(Y:)
 
-You can make an element inherit the layout of another using the `LayoutMaster` property.
-
-```
-<StackPanel>
-	<Rectangle ux:Name="master" Height="150" Background="#f00a" />
-	<Rectangle LayoutMaster="master" Background="#00fa" />
-</StackPanel>
-```
-
-The above example will result in two overlapping @(Rectangle:Rectangles).
-
-When the `LayoutMaster` of an element is changed, any @(LayoutAnimation:LayoutAnimations) on that element will be activated.
-
-```
-<Rectangle ux:Name="selection" LayoutMaster="target1">
-	<Stroke Width="2" Brush="#3498db" Offset="2" />
-	<LayoutAnimation>
-		<Move RelativeTo="WorldPositionChange" X="1" Y="1" Duration="0.3" Easing="CubicInOut" />
-		<Resize RelativeTo="SizeChange" X="1" Y="1" Duration="0.3" Easing="CubicInOut" />
-	</LayoutAnimation>
-</Rectangle>
-
-<StackPanel>
-	<Panel ux:Name="target1" Margin="10" Height="50" Background="#eee">
-		<Text Alignment="Center">Click me</Text>
-		<Clicked>
-			<Set selection.LayoutMaster="target1" />
-		</Clicked>
-	</Panel>
-	<Panel ux:Name="target2" Width="150" Height="100" Background="#eee">
-		<Text Alignment="Center">Me too!</Text>
-		<Clicked>
-			<Set selection.LayoutMaster="target2" />
-		</Clicked>
-	</Panel>
-</StackPanel>
-```
-
-The above example illustrates how `LayoutMaster` can be used to implement a moving selection rectangle. It consists of two panels that, when clicked, animate the `selection` @(Rectangle) to inherit their size and position.
-
 If we want to give our elements an explicit position, we can assign their `X` and `Y` properties. The `X` property will move the element relative to the left side of its container, while the `Y` property moves it relative to the top.
 
 Be aware that absolute positioning elements should generally be avoided in favor of using layout rules. This is because when real data is used, the absolute values used might no longer be meaningful.

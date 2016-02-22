@@ -82,7 +82,7 @@ When running preview, Fuse will create a shell application on your device that c
 
 > ### Exporting to iOS
 
-On iOS, you need to have a machine running OS X and Xcode installed (as for preview). You also need an Apple developer account. In the project root, simply type:
+For iOS, you need to have a machine running OS X and Xcode installed (as for preview). You also need an Apple developer account. In the project root, simply type:
 
 `fuse build --target=iOS --run` to build and run the app.
 

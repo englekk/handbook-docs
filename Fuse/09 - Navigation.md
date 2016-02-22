@@ -59,9 +59,8 @@ It also lets us differentiate between pages and normal panels when styling our a
 
 ## $(PageControl)
 
-Since swiping between pages is such a common thing to see in apps, Fuse has a wrapper @(Control) for exactly this.
-
-We actually already built most of the behavior of the `PageControl` from scratch in @(Basic navigation). One difference to note is that the `PageControl` styles @(Page:pages), and not @(Panel:panels), so it should be used like this:
+Since swiping between pages is such a common interaction, Fuse comes with a @(Control) for exactly this.
+In this context, the term "page" does not necessarily mean @(Page), but refers to any child of the `PageControl` that participates in navigation.
 
 ```
 <PageControl>
@@ -69,37 +68,44 @@ We actually already built most of the behavior of the `PageControl` from scratch
 	<Page Background="Blue"/>
 </PageControl>
 ```
-`PageControl` has a few properties you might be interested in:
 
-* `Active` - The currently active page
-* `PageProgress` - Navigation progress, spanning from 0 to the number of pages minus one
+The above example illustrates the default behavior of `PageControl`, which is to slide the pages in response to swipe gestures.
+We can however customize this behavior with the following properties:
 
+- `InactiveState` controls the `Visibility` and `IsEnabled` status of children when they go off-screen.
+	- `Collapsed` _(default)_ – Sets `Visibility="Collapsed"` so that inactive pages are hidden and no layout is calculated on them.
+	- `Disabled` – Inactive pages are visible, but pointer interaction is disabled by setting `IsEnabled="false"`.
+	- `Unchanged` – Inactive pages are left as-is.
+- `Transition` controls how pages are transitioned during navigation
+	- `Standard` _(default)_ – Performs a standard sideways sliding animation.
+	- `None` – Does not perform animation. Use this to implement your own animation.
+- `Interaction` controls how user interaction is handled
+	- `Swipe` _(default)_ – The user can swipe between pages.
+	- `None` – The user cannot directly interact with navigation. Use this to implement your own navigation controls/gestures.
 
 By using data binding, you can set the currently active page by `Name` using the `Active` property.
 In the following example, We have three pages and a button that returns the user to the first page.
 
 ```
-<App Theme="Basic" Background="#eeeeeeff">
-	<DockPanel>
-		<JavaScript>
-			var Observable = require("FuseJS/Observable");
-			var currentPage = Observable("Page1");
-			function clickHandler() {
-				currentPage.value = "Page1";
-			}
-			module.exports = {
-				clickHandler: clickHandler,
-				currentPage: currentPage
-			};
-		</JavaScript>
-		<PageControl Active="{currentPage}" Dock="Fill">
-			<Page Name="Page1" Background="Red"/>
-			<Page Name="Page2" Background="Green"/>
-			<Page Name="Page3" Background="Blue"/>
-		</PageControl>
-		<Button Text="Home" Clicked="{clickHandler}" Dock="Bottom"/>
-	</DockPanel>
-</App>
+<DockPanel>
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");
+		var currentPage = Observable("Page1");
+		function clickHandler() {
+			currentPage.value = "Page1";
+		}
+		module.exports = {
+			clickHandler: clickHandler,
+			currentPage: currentPage
+		};
+	</JavaScript>
+	<PageControl Active="{currentPage}">
+		<Page Name="Page1" Background="Red"/>
+		<Page Name="Page2" Background="Green"/>
+		<Page Name="Page3" Background="Blue"/>
+	</PageControl>
+	<Button Text="Home" Clicked="{clickHandler}" Dock="Bottom"/>
+</DockPanel>
 ```
 
 Take a look at the [Pages using JavaScript](https://www.fusetools.com/community/examples/pageslist) example to see how this can be used in practice.

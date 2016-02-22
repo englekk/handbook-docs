@@ -12,35 +12,35 @@ Here is an example Uno project file with with all possible fields:
 
 ```
 {
-    "BuildDirectory": "build",
-    "CacheDirectory": ".uno",
-    "OutputDirectory": "\$(BuildDirectory)/\@(Target)/\@(Configuration)",
-    "RootNamespace": "\$(QIdentifier)",
-    "ReferenceUnoCore": true,
-    "Version": "0.0.0",
-    "VersionCode": 0,
-    "Title": "\$(Name)",
-    "Copyright": "Copyright (C) 2015",
-    "Publisher": "[Publisher]",
-    "Mobile": {
-        "KeepAlive": false,
-        "ShowStatusbar": true,
-        "RunsInBackground": true,
-        "Orientations": "Auto"
-    },
-    "Android": {
-        "ApplicationLabel": "\$(Title)",
-        "VersionCode": "\$(VersionCount)",
-        "VersionName": "\$(Version)",
-        "Description": "\$(Description)",
-        "Icons": {
+	"BuildDirectory": "build",
+	"CacheDirectory": ".uno",
+	"OutputDirectory": "\$(BuildDirectory)/\@(Target)/\@(Configuration)",
+	"RootNamespace": "\$(QIdentifier)",
+	"ReferenceUnoCore": true,
+	"Version": "0.0.0",
+	"VersionCode": 0,
+	"Title": "\$(Name)",
+	"Copyright": "Copyright (C) 2015",
+	"Publisher": "[Publisher]",
+	"Mobile": {
+		"KeepAlive": false,
+		"ShowStatusbar": true,
+		"RunsInBackground": true,
+		"Orientations": "Auto"
+	},
+	"Android": {
+		"ApplicationLabel": "\$(Title)",
+		"VersionCode": "\$(VersionCount)",
+		"VersionName": "\$(Version)",
+		"Description": "\$(Description)",
+		"Icons": {
 			"LDPI": "\$(Icon)",
 			"MDPI": "\$(Icon)",
 			"HDPI": "\$(Icon)",
 			"XHDPI": "\$(Icon)",
 			"XXHDPI": "\$(Icon)",
 			"XXXHDPI": "\$(Icon)"
-        },
+		},
 		"NDK": {
 			"PlatformVersion": 9
 		},
@@ -50,9 +50,9 @@ Here is an example Uno project file with with all possible fields:
 			"MinVersion": 10,
 			"TargetVersion": 19
 		}
-    },
-    "iOS": {
-        "Icons": {
+	},
+	"iOS": {
+		"Icons": {
 			"iPhone_29_2x": "\$(Icon)",
 			"iPhone_29_3x": "\$(Icon)",
 			"iPhone_40_2x": "\$(Icon)",
@@ -65,7 +65,7 @@ Here is an example Uno project file with with all possible fields:
 			"iPad_40_2x": "\$(Icon)",
 			"iPad_76_1x": "\$(Icon)",
 			"iPad_76_2x": "\$(Icon)"
-        },
+		},
 		"BundleIdentifier": "com.uno.\$(Name)",
 		"BundleName": "\$(Title)",
 		"DeploymentTarget": "7.0",
@@ -77,43 +77,51 @@ Here is an example Uno project file with with all possible fields:
 			"UIRequiresPersistentWiFi": true,
 			"UIRequiredDeviceCapabilities": [
 				"camera-flash"
-			]
+			],
+			"NSHealthShareUsageDescription": "We need to read your HealthKit data because...",
+			"UIApplicationExitsOnSuspend": false,
+			"UIFileSharingEnabled": true,
+			"UINewsstandApp": false,
+			"UIPrerenderedIcon": false,
+			"UISupportedExternalAccessoryProtocols": [],
+			"UIViewControllerBasedStatusBarAppearance": false,
+			"UIViewEdgeAntialiasing": true
 		},
-    },
-    "HTML": {
-        "Title": "\$(Title)",
-        "Favicon": "\$(Icon)"
-    },
-    "InternalsVisibleTo": [],
-    "Packages": [
+	},
+	"HTML": {
+		"Title": "\$(Title)",
+		"Favicon": "\$(Icon)"
+	},
+	"InternalsVisibleTo": [],
+	"Packages": [
 		"Fuse.Animations",
-    	"Fuse.BasicTheme",
-    	"Fuse.Themes",
-    	"Fuse.Controls",
-    	"Fuse.Designer",
-    	"Fuse.Drawing",
-    	"Fuse.Drawing.Primitives",
-    	"Fuse.Effects",
+		"Fuse.BasicTheme",
+		"Fuse.Themes",
+		"Fuse.Controls",
+		"Fuse.Designer",
+		"Fuse.Drawing",
+		"Fuse.Drawing.Primitives",
+		"Fuse.Effects",
 		"Fuse.Scripting",
-    	"Fuse.Elements",
-    	"Fuse.Entities",
-    	"Fuse.Gestures",
-    	"Fuse.Navigation",
-    	"Fuse.Shapes",
-    	"Fuse.Triggers",
-    	"Fuse.Reactive",
-    	"Fuse.Android",
-    	"Fuse.Desktop",
-    	"Fuse.iOS",
-    	"FuseCore",
-    	"Uno.Collections",
-    	"Uno.Geometry"
-    ],
-    "Projects": [],
-    "Includes": [
-        "*"
-    ],
-    "Excludes": []
+		"Fuse.Elements",
+		"Fuse.Entities",
+		"Fuse.Gestures",
+		"Fuse.Navigation",
+		"Fuse.Shapes",
+		"Fuse.Triggers",
+		"Fuse.Reactive",
+		"Fuse.Android",
+		"Fuse.Desktop",
+		"Fuse.iOS",
+		"FuseCore",
+		"Uno.Collections",
+		"Uno.Geometry"
+	],
+	"Projects": [],
+	"Includes": [
+		"*"
+	],
+	"Excludes": []
 }
 ```
 

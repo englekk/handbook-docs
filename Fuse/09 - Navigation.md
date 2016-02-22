@@ -72,10 +72,7 @@ We actually already built most of the behavior of the `PageControl` from scratch
 `PageControl` has a few properties you might be interested in:
 
 * `Active` - The currently active page
-* `CanGoBack` - `true` if it is possible to navigate backward
-* `CanGoForward` - `true` if it is possible to navigate forward
-* `PageCount` - Number of pages
-* `PageProgress` - Navigation progress, spanning from 0.0 to the number of pages minus one
+* `PageProgress` - Navigation progress, spanning from 0 to the number of pages minus one
 
 
 By using data binding, you can set the currently active page by `Name` using the `Active` property.

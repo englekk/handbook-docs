@@ -2,21 +2,44 @@
 
 In Fuse, styling refers to setting properties such as fonts, colors, margins and appearances in a consistent way throughout your app.
 
-## $(Style)
+## Migrating from `$(Style)`
 
-To add a `Style` to a `Node`:
+`Style` has been deprecated! The correct way to set properties on multiple elements is now by using `ux:Class`.
+Wherever you would have a `Style` that applies properties and children to every element of a certain type, you now have to explicitly subclass the type and use that instead.
 
-	<StackPanel>
-		<Style>
-			<Text FontSize="32" />
-		</Style>
-		<Text>Biggie!</Text>
-		<Panel>
-			<Text>Another biggie!</Text>
-		</Panel>
-	</StackPanel>
+This means that the following:
 
-The `Text` instances created at the level where the `Style` is introduced _or below_ will be affected by the `Style`. In this case, adding the `Style` will have the same appearance as adding the `FontSize` to all the `Text`-elements separately.
+```
+<StackPanel>
+	<Style>
+		<Rectangle Background="#f00" Width="100" Height="100">
+			<Clicked>
+				<Scale Factor="1.2" Duration="0.2" />
+			</Clicked>
+		</Rectangle>
+	</Style>
+
+	<Rectangle />
+	<Rectangle />
+</StackPanel>
+```
+
+Should be rewritten as:
+
+```
+<StackPanel>
+	<Rectangle ux:Class="FancyRectangle" Background="#f00" Width="100" Height="100">
+		<Clicked>
+			<Scale Factor="1.2" Duration="0.2" />
+		</Clicked>
+	</Rectangle>
+
+	<FancyRectangle />
+	<FancyRectangle />
+</StackPanel>
+```
+
+Further reference on `ux:Class` can be found under @(Creating custom UI components).
 
 ## $(Theme)
 

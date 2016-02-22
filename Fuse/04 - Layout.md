@@ -138,14 +138,12 @@ The Dock property can be assigned to be either `Left`, `Right`, `Top`, `Bottom` 
 
 ```
 <DockPanel>
-	<Style>
-		<Rectangle MinWidth="100" MinHeight="200"/>
-	</Style>
-	<Rectangle Fill="Red" Dock="Left"/>
-	<Rectangle Fill="Green" Dock="Top"/>
-	<Rectangle Fill="Blue" Dock="Right"/>
-	<Rectangle Fill="Yellow" Dock="Bottom"/>
-	<Rectangle Fill="Teal" />
+	<Rectangle ux:Class="MyRectangle" MinWidth="100" MinHeight="200" />
+	<MyRectangle Fill="Red" Dock="Left"/>
+	<MyRectangle Fill="Green" Dock="Top"/>
+	<MyRectangle Fill="Blue" Dock="Right"/>
+	<MyRectangle Fill="Yellow" Dock="Bottom"/>
+	<MyRectangle Fill="Teal" />
 </DockPanel>
 ```
 
@@ -207,34 +205,34 @@ As we can tell from the last snippet, layouts are automatically bound to the `La
 `ColumnLayout` lays out the children of a @(Panel) by dividing them into columns. The number of columns can be adjusted with the `ColumnCount` property.
 It attempts to keep the height of the columns somewhat balanced by placing children in the shortest column available after laying out their previous siblings.
 
-	<Panel>
-		<ColumnLayout ColumnCount="3" />
+```
+<Panel>
+	<Panel ux:Class="MyPanel" Background="#2c3e50" Margin="5" />
+	<Text ux:Class="MyText" TextColor="#fff" Alignment="Center" FontSize="20" />
 
-		<Style>
-			<Panel Background="#2c3e50" Margin="5" />
-			<Text TextColor="#fff" Alignment="Center" TextAlignment="Center" FontSize="20" />
-		</Style>
+	<ColumnLayout ColumnCount="3" />
 
-		<Panel Height="200">
-			<Text>1</Text>
-		</Panel>
+	<MyPanel Height="200">
+		<MyText>1</MyText>
+	</MyPanel>
 
-		<Panel Height="100">
-			<Text>2</Text>
-		</Panel>
+	<MyPanel Height="100">
+		<MyText>2</MyText>
+	</MyPanel>
 
-		<Panel Height="300">
-			<Text>3</Text>
-		</Panel>
+	<MyPanel Height="300">
+		<MyText>3</MyText>
+	</MyPanel>
 
-		<Panel Height="150">
-			<Text>4</Text>
-		</Panel>
+	<MyPanel Height="150">
+		<MyText>4</MyText>
+	</MyPanel>
 
-		<Panel Height="200">
-			<Text>5</Text>
-		</Panel>
-	</Panel>
+	<MyPanel Height="200">
+		<MyText>5</MyText>
+	</MyPanel>
+</Panel>
+```
 
 In this example we have divided five @(Panel:panels) of different heights into three columns.
 The animation below shows the result of this, and what would happen if we were to resize the third @(Panel:panel).

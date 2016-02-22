@@ -92,7 +92,7 @@ You can insert the contents of a UX file into another by using `ux:Include`.
 * MainView.ux
 
 ```
-<App>
+<App Theme="Basic">
 	<DockPanel>
 		<StatusBarBackground Dock="Top" />
 		<Panel Height="40" Dock="Top" />

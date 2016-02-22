@@ -29,6 +29,11 @@ The most basic type of panel is the `Panel`. Children of a Panel will be default
 
 Note that the element order in a `Panel` is the same as the layer order in popular graphics packages such as Photoshop; the layer that appears first in the UX-file will be layered on top of elements appearing later in the file.
 
+`Panel` has a few properties you might be interested in:
+
+* `Layout` - Specifies a Layout for the `Panel`. For instance, a `StackPanel` is practically just a `Panel` with `Layout="StackLayout"`. Check out @(The Layout property:layout) for more detail.
+* `Children` - Contains a list of all child nodes of the `Panel`. This may for example come in handy when traversing nodes using Uno.
+
 ## $(StackPanel)
 
 The StackPanel places its children in a stack. The default layout is a vertical stack, but one can use the `Orientation` property to specify that the stack should be layed out horizontally.
@@ -133,14 +138,12 @@ The Dock property can be assigned to be either `Left`, `Right`, `Top`, `Bottom` 
 
 ```
 <DockPanel>
-	<Style>
-		<Rectangle MinWidth="100" MinHeight="200"/>
-	</Style>
-	<Rectangle Fill="Red" Dock="Left"/>
-	<Rectangle Fill="Green" Dock="Top"/>
-	<Rectangle Fill="Blue" Dock="Right"/>
-	<Rectangle Fill="Yellow" Dock="Bottom"/>
-	<Rectangle Fill="Teal" />
+	<Rectangle ux:Class="MyRectangle" MinWidth="100" MinHeight="200" />
+	<MyRectangle Fill="Red" Dock="Left"/>
+	<MyRectangle Fill="Green" Dock="Top"/>
+	<MyRectangle Fill="Blue" Dock="Right"/>
+	<MyRectangle Fill="Yellow" Dock="Bottom"/>
+	<MyRectangle Fill="Teal" />
 </DockPanel>
 ```
 
@@ -202,34 +205,34 @@ As we can tell from the last snippet, layouts are automatically bound to the `La
 `ColumnLayout` lays out the children of a @(Panel) by dividing them into columns. The number of columns can be adjusted with the `ColumnCount` property.
 It attempts to keep the height of the columns somewhat balanced by placing children in the shortest column available after laying out their previous siblings.
 
-	<Panel>
-		<ColumnLayout ColumnCount="3" />
+```
+<Panel>
+	<Panel ux:Class="MyPanel" Background="#2c3e50" Margin="5" />
+	<Text ux:Class="MyText" TextColor="#fff" Alignment="Center" FontSize="20" />
 
-		<Style>
-			<Panel Background="#2c3e50" Margin="5" />
-			<Text TextColor="#fff" Alignment="Center" TextAlignment="Center" FontSize="20" />
-		</Style>
+	<ColumnLayout ColumnCount="3" />
 
-		<Panel Height="200">
-			<Text>1</Text>
-		</Panel>
+	<MyPanel Height="200">
+		<MyText>1</MyText>
+	</MyPanel>
 
-		<Panel Height="100">
-			<Text>2</Text>
-		</Panel>
+	<MyPanel Height="100">
+		<MyText>2</MyText>
+	</MyPanel>
 
-		<Panel Height="300">
-			<Text>3</Text>
-		</Panel>
+	<MyPanel Height="300">
+		<MyText>3</MyText>
+	</MyPanel>
 
-		<Panel Height="150">
-			<Text>4</Text>
-		</Panel>
+	<MyPanel Height="150">
+		<MyText>4</MyText>
+	</MyPanel>
 
-		<Panel Height="200">
-			<Text>5</Text>
-		</Panel>
-	</Panel>
+	<MyPanel Height="200">
+		<MyText>5</MyText>
+	</MyPanel>
+</Panel>
+```
 
 In this example we have divided five @(Panel:panels) of different heights into three columns.
 The animation below shows the result of this, and what would happen if we were to resize the third @(Panel:panel).
@@ -442,46 +445,6 @@ The above example illustrates how `LayoutMaster` can be used to implement a movi
 
 
 ## $(Absolute positioning) $(X:) $(Y:)
-
-You can make an element inherit the layout of another using the `LayoutMaster` property.
-
-```
-<StackPanel>
-	<Rectangle ux:Name="master" Height="150" Background="#f00a" />
-	<Rectangle LayoutMaster="master" Background="#00fa" />
-</StackPanel>
-```
-
-The above example will result in two overlapping @(Rectangle:Rectangles).
-
-When the `LayoutMaster` of an element is changed, any @(LayoutAnimation:LayoutAnimations) on that element will be activated.
-
-```
-<Rectangle ux:Name="selection" LayoutMaster="target1">
-	<Stroke Width="2" Brush="#3498db" Offset="2" />
-	<LayoutAnimation>
-		<Move RelativeTo="WorldPositionChange" X="1" Y="1" Duration="0.3" Easing="CubicInOut" />
-		<Resize RelativeTo="SizeChange" X="1" Y="1" Duration="0.3" Easing="CubicInOut" />
-	</LayoutAnimation>
-</Rectangle>
-
-<StackPanel>
-	<Panel ux:Name="target1" Margin="10" Height="50" Background="#eee">
-		<Text Alignment="Center">Click me</Text>
-		<Clicked>
-			<Set selection.LayoutMaster="target1" />
-		</Clicked>
-	</Panel>
-	<Panel ux:Name="target2" Width="150" Height="100" Background="#eee">
-		<Text Alignment="Center">Me too!</Text>
-		<Clicked>
-			<Set selection.LayoutMaster="target2" />
-		</Clicked>
-	</Panel>
-</StackPanel>
-```
-
-The above example illustrates how `LayoutMaster` can be used to implement a moving selection rectangle. It consists of two panels that, when clicked, animate the `selection` @(Rectangle) to inherit their size and position.
 
 If we want to give our elements an explicit position, we can assign their `X` and `Y` properties. The `X` property will move the element relative to the left side of its container, while the `Y` property moves it relative to the top.
 

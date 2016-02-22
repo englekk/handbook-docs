@@ -34,22 +34,20 @@ The @(LinearNavigation) is just one of several @(Navigation types:types of navig
 This adds all the behavior we need for navigation, but this is not enough to let us swipe between pages. The pages don't know how to animate themselves when they @(EnteringAnimation:enter) or @(ExitingAnimation:exit). For that we use @(EnteringAnimation) and @(ExitingAnimation).
 
 
-	<Panel>
-		<Style>
-			<Panel>
-				<EnteringAnimation>
-					<Move X="-1" RelativeTo="ParentSize"/>
-				</EnteringAnimation>
-				<ExitingAnimation>
-					<Move X="1" RelativeTo="ParentSize" Duration="0.5"/>
-				</ExitingAnimation>
-			</Panel>
-		</Style>
-		<LinearNavigation Easing="CircularOut" />
-		<SwipeNavigate SwipeDirection="Left"/>
-		<Panel Background="Blue"/>
-		<Panel Background="Red"/>
+<Panel>
+	<Panel ux:Class="NavPanel">
+		<EnteringAnimation>
+			<Move X="-1" RelativeTo="ParentSize"/>
+		</EnteringAnimation>
+		<ExitingAnimation>
+			<Move X="1" RelativeTo="ParentSize" Duration="0.5"/>
+		</ExitingAnimation>
 	</Panel>
+	<LinearNavigation Easing="CircularOut" />
+	<SwipeNavigate SwipeDirection="Left"/>
+	<NavPanel Background="Blue"/>
+	<NavPanel Background="Red"/>
+</Panel>
 
 Now the @(Panel:panels) will move to the side when they are navigate to and from by the width of their parent container.
 
@@ -71,42 +69,40 @@ We actually already built most of the behavior of the `PageControl` from scratch
 	<Page Background="Blue"/>
 </PageControl>
 ```
-
-`PageControl` has a few properties that might be of interest:
+`PageControl` has a few properties you might be interested in:
 
 * `Active` - The currently active page
-* `CanGoBack` - `true` if it is possible to navigate backward
-* `CanGoForward` - `true` if it is possible to navigate forward
-* `PageCount` - Current page number
-* `PageProgress` - Progress in the navigation from 0.0 to the amount of pages minus one.
+* `PageProgress` - Navigation progress, spanning from 0 to the number of pages minus one
 
-You can set the active `Page` in a `PageControl` by assigning the `Active` property to the name of your `Page`. In the following example, We have a 3-page app, and a button that always returns the user to the first page.
+
+By using data binding, you can set the currently active page by `Name` using the `Active` property.
+In the following example, We have three pages and a button that returns the user to the first page.
 
 ```
 <App Theme="Basic" Background="#eeeeeeff">
-  <DockPanel>
-    <JavaScript>
-      var Observable = require("FuseJS/Observable");
-      var currentPage = Observable("Page1");
-      function clickHandler() {
-		  currentPage.value = "Page1";
-      }
-      module.exports = {
-		  clickHandler: clickHandler,
-		  currentPage: currentPage
-      };
-    </JavaScript>
-    <PageControl Active="{currentPage}" Dock="Fill">
-      <Page Name="Page1" Background="Red"/>
-      <Page Name="Page2" Background="Green"/>
-      <Page Name="Page3" Background="Blue"/>
-    </PageControl>
-    <Button Text="Home" Clicked="{clickHandler}" Dock="Bottom"/>
-  </DockPanel>
+	<DockPanel>
+		<JavaScript>
+			var Observable = require("FuseJS/Observable");
+			var currentPage = Observable("Page1");
+			function clickHandler() {
+				currentPage.value = "Page1";
+			}
+			module.exports = {
+				clickHandler: clickHandler,
+				currentPage: currentPage
+			};
+		</JavaScript>
+		<PageControl Active="{currentPage}" Dock="Fill">
+			<Page Name="Page1" Background="Red"/>
+			<Page Name="Page2" Background="Green"/>
+			<Page Name="Page3" Background="Blue"/>
+		</PageControl>
+		<Button Text="Home" Clicked="{clickHandler}" Dock="Bottom"/>
+	</DockPanel>
 </App>
 ```
 
-The [Pages using JavaScript](https://www.fusetools.com/community/examples/pageslist) example shows this in practice.
+Take a look at the [Pages using JavaScript](https://www.fusetools.com/community/examples/pageslist) example to see how this can be used in practice.
 
 ### $(PageIndicator)
 
@@ -218,19 +214,25 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 ```
 <Panel>
 	<HierarchicalNavigation ux:Name="nav" Active="mainPage" />
+	<Panel ux:Class="NavPanel">
+		<EnteringAnimation>
+			<Move X="-1" RelativeTo="ParentSize"/>
+		</EnteringAnimation>
+		<ExitingAnimation>
+			<Move X="1" RelativeTo="ParentSize" Duration="0.5"/>
+		</ExitingAnimation>
+	</Panel>
 
-	<Style>
-		<Page>
-			<EnteringAnimation>
-				<Move X="1" RelativeTo="ParentSize" />
-			</EnteringAnimation>
-			<ExitingAnimation>
-				<Move X="-1" RelativeTo="ParentSize" />
-			</ExitingAnimation>
-		</Page>
-	</Style>
+	<Page ux:Class="MyPage">
+		<EnteringAnimation>
+			<Move X="1" RelativeTo="ParentSize" />
+		</EnteringAnimation>
+		<ExitingAnimation>
+			<Move X="-1" RelativeTo="ParentSize" />
+		</ExitingAnimation>
+	</Page>
 
-	<Page ux:Name="mainPage">
+	<MyPage ux:Name="mainPage">
 		<StackPanel>
 			<Button Text="Page 1">
 				<Clicked>
@@ -252,7 +254,7 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 		</StackPanel>
 	</Page>
 
-	<Page ux:Name="subPage1" ux:AutoBind="false">
+	<MyPage ux:Name="subPage1" ux:AutoBind="false">
 		<StackPanel>
 			<Text>Welcome to page 1!</Text>
 			<Button Text="Go Back">
@@ -263,7 +265,7 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 		</StackPanel>
 	</Page>
 
-	<Page ux:Name="subPage2" ux:AutoBind="false">
+	<MyPage ux:Name="subPage2" ux:AutoBind="false">
 		<StackPanel>
 			<Text>Welcome to page 2!</Text>
 			<Button Text="Go Back">
@@ -369,37 +371,43 @@ The `WhileCanGoForward` trigger is active whenever navigating forward is possibl
 
 ## $(EnteringAnimation) / $(ExitingAnimation)
 
-As seen above, Entering- and ExitingAnimation are used to specify how pages and elements behave when they are being navigated to and from. There is no default behavior for elements when using `Navigation` so unless a @(PageControl) is being used (which does apply a style with Entering- and ExitingAnimation to @(Page:pages)) one has to add these in order to define what a navigation actually means for a page.
+As seen above, Entering- and ExitingAnimation are used to specify how pages and elements behave when they are being navigated to and from.
+There is no default behavior for elements when using `Navigation` so unless a @(PageControl) is being used (which does apply an animation between pages), you have to set this up yourself.
 
-@(PageControl) applies the following style to @(Page:pages):
+You can extend `Panel` to apply animation for all pages:
 
-	<Style>
-		<Page>
-			<EnteringAnimation>
-				<Move X="-1" RelativeTo="ParentSize" Duration="0.5"/>
-			</EnteringAnimation>
-			<ExitingAnimation>
-				<Move X="1" RelativeTo="ParentSize" Duration="0.5"/>
-			</ExitingAnimation>
-		</Page>
-	</Style>
+```
+	<Page ux:Class="AnimatedPage">
+		<EnteringAnimation>
+			<Move X="-1" RelativeTo="ParentSize" Duration="0.5"/>
+		</EnteringAnimation>
+		<ExitingAnimation>
+			<Move X="1" RelativeTo="ParentSize" Duration="0.5"/>
+		</ExitingAnimation>
+	</Page>
+
+	<Panel>
+		<LinearNavigation />
+		<AnimatedPage Background="Red" />
+	</Panel>
+```
 
 It just moves each page by the width of its parent, which is a common style for @(LinearNavigation) situations.
 
-There are of course no limits to what can be animated while navigating. The following style also @(Scale:scales) the pages as they enter/exit.
+There are of course no limits to what can be animated while navigating. The following example also @(Scale:scales) the pages as they enter/exit.
 
-	<Style>
-		<Page>
-			<EnteringAnimation>
-				<Move X="-1" RelativeTo="ParentSize" Duration="0.5"/>
-				<Scale Factor="0.2" Duration="0.5"/>
-			</EnteringAnimation>
-			<ExitingAnimation>
-				<Move X="1" RelativeTo="ParentSize" Duration="0.5"/>
-				<Scale Factor="0.6" Duration="0.5"/>
-			</ExitingAnimation>
-		</Page>
-	</Style>
+```
+<Page ux:Class="AnimatedPage">
+	<EnteringAnimation>
+		<Move X="-1" RelativeTo="ParentSize" Duration="0.5"/>
+		<Scale Factor="0.2" Duration="0.5"/>
+	</EnteringAnimation>
+	<ExitingAnimation>
+		<Move X="1" RelativeTo="ParentSize" Duration="0.5"/>
+		<Scale Factor="0.6" Duration="0.5"/>
+	</ExitingAnimation>
+</Page>
+```
 
 ## $(ActivatingAnimation)
 
@@ -407,36 +415,36 @@ There are of course no limits to what can be animated while navigating. The foll
 
 Here is a more advanced use of @(EnteringAnimation:Entering-), @(ExitingAnimation:Exiting-) and @(ActivatingAnimation):
 
-    <Style>
-		<Page ux:Name="page">
-			<EnteringAnimation>
-				<Move RelativeTo="ParentSize">
-					<Keyframe X="-0.7" Time="0.5"/>
-					<Keyframe X="0" Time="1"/>
-				</Move>
-				<Rotate>
-					<Keyframe DegreesZ="20" Time="0.5"/>
-					<Keyframe DegreesZ="0" Time="1"/>
-				</Rotate>
-				<Change page.Opacity="0" Duration="1"/>
-				<Scale Factor=".5" Duration="1"/>
-			</EnteringAnimation>
-			<ExitingAnimation>
-				<Move RelativeTo="ParentSize">
-					<Keyframe X="0.7" Time="0.5"/>
-					<Keyframe X="0" Time="1"/>
-				</Move>
-				<Rotate>
-					<Keyframe DegreesZ="-20" Time="0.5"/>
-					<Keyframe DegreesZ="0" Time="1"/>
-				</Rotate>
-				<Scale Factor=".5" Duration="1"/>
-			</ExitingAnimation>
-			<WhileActive Threshold="0.5">
-				<BringToFront/>
-			</WhileActive>
-		</Page>
-	</Style>
+```
+<Page ux:Class="MyPage" ux:Name="self">
+	<EnteringAnimation>
+		<Move RelativeTo="ParentSize">
+			<Keyframe X="-0.7" Time="0.5"/>
+			<Keyframe X="0" Time="1"/>
+		</Move>
+		<Rotate>
+			<Keyframe DegreesZ="20" Time="0.5"/>
+			<Keyframe DegreesZ="0" Time="1"/>
+		</Rotate>
+		<Change self.Opacity="0" Duration="1"/>
+		<Scale Factor=".5" Duration="1"/>
+	</EnteringAnimation>
+	<ExitingAnimation>
+		<Move RelativeTo="ParentSize">
+			<Keyframe X="0.7" Time="0.5"/>
+			<Keyframe X="0" Time="1"/>
+		</Move>
+		<Rotate>
+			<Keyframe DegreesZ="-20" Time="0.5"/>
+			<Keyframe DegreesZ="0" Time="1"/>
+		</Rotate>
+		<Scale Factor=".5" Duration="1"/>
+	</ExitingAnimation>
+	<WhileActive Threshold="0.5">
+		<BringToFront/>
+	</WhileActive>
+</Page>
+```
 
 <!-- TODO: Document whats going on? -->
 

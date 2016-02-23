@@ -1,14 +1,10 @@
 # Hello, $(UX Markup)!
 
-Fuse can be used in two primary ways:
+The primary way of working in Fuse is by editing UX Markup - an XML-based file format that's tailor made for app development. Layout, interaction and animation is written in a clear, declarative syntax. The main benefits of working in UX Markup is that it opens up for much deeper and faster development, and offers a better way for designers and developers to work together and more easily share code and designs.
 
-* @(Creating apps) or prototypes with cross-platform JavaScript logic
-* Creating components, UI views and designs for native apps
+UX Markup is used for building components, UI views, designs, prototypes and full apps in Fuse and is compiled down to C++ native code. UX Markup is complemented by business logic written in JavaScript, which runs on its own thread, leaving your UI and animation nice and smooth.
 
-The main representation of both these things in Fuse is through the use of UX Markup.
-
-UX Markup is an XML-based file format. Anyone with even a passing experience reading XML will find it immediately familiar. For an in-depth look at its detailed features, read the [UX Markup Guide](https://www.fusetools.com/learn/guides/uxmarkup).
-
+For an in-depth look at the features of UX Markup, see the [UX Markup Guide](https://www.fusetools.com/learn/guides/uxmarkup).
 
 ## $(Creating apps) : $(App)
 

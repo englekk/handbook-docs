@@ -188,6 +188,22 @@ You can also just use `Each` as a simple repeater:
 	</Grid>
 
 
+> ## Ensuring order
+
+Note that `Each` does not necessarily insert the children at the exact location in the tree where the `Each` node resides. To ensure child order, wrap the `Each` in some sort of @(Panel):
+
+	<StackPanel>
+		<Text>I go first!</Text>
+		<StackPanel>
+			<Each Items="{strings}">
+				<Text Value="{}" />
+			</Each>
+		</StackPanel>
+		<Text>I go last!</Text>
+	</StackPanel>
+
+We are considering adding more tricks to allow more flexibility in this case, but for now this is the recommended approach.
+
 ## $(WhileCount) and $(WhileEmpty)
 
 The `WhileEmpty` and `WhileCount` @(Trigger:triggers) can be used to act on the number of items in a collection:
@@ -270,20 +286,4 @@ You can bind to a defined resource using @(DataToResource):
 			picture: "picture"
 		}
 	</JavaScript>			
-	<Image Source="{DataToResource picture}" />			
-
-> ## Ensuring order
-
-Note that `Each` does not necessarily insert the children at the exact location in the tree where the `Each` node resides. To ensure child order, wrap the `Each` in some sort of @(Panel):
-
-	<StackPanel>
-		<Text>I go first!</Text>
-		<StackPanel>
-			<Each Items="{strings}">
-				<Text Value="{}" />
-			</Each>
-		</StackPanel>
-		<Text>I go last!</Text>
-	</StackPanel>
-
-We are considering adding more tricks to allow more flexibility in this case, but for now this is the recommended approach.
+	<Image Source="{DataToResource picture}" />

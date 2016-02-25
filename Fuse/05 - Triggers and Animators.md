@@ -485,7 +485,7 @@ Tells a @(Navigation:navigation context) or a @(WebView) to step forward in its 
 
 	<GoForward TargetNode="myWebView" />
 
-<!-- For further detail about `GoForward` in the context of @(Navigation:navigation), see @(Controlling navigation). -->
+For more information about `GoForward` in the context of @(Navigation:navigation), see @(Controlling navigation).
 
 
 ### $(GoBack)
@@ -496,7 +496,7 @@ Tells a @(Navigation:navigation context) or a @(WebView) to step backward in its
 
 	<GoBack TargetNode="myWebView" />
 
-<!-- For further detail about `GoBack` in the context of @(Navigation:navigation), see @(Controlling navigation). -->
+For more information about `GoBack` in the context of @(Navigation:navigation), see @(Controlling navigation).
 
 
 ### $(Toggle)

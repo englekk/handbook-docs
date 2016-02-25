@@ -325,11 +325,13 @@ If `Target` is not specified, it will look for a parent element with a `Navigati
 
 ### GoBack
 
-The behavior of `GoBack` depends on the type of navigation context (`TargetNode`) it's performed on:
+The behavior of `GoBack` depends on the type of navigator (`TargetNode`) it's performed on:
 
 - @(LinearNavigation) – Navigates to the page occurring before the current page.
 - @(HierarchicalNavigation) – Navigates one level up in the hierarchy, i.e. the page most recently navigated to.
 - @(DirectNavigation) – Does nothing.
+
+*Keep in mind that the `TargetNode` property must be set to the parent Panel which contains a Navigation behavior, not to the behavior itself.*
 
 > ### $(WhileCanGoBack)
 
@@ -343,6 +345,7 @@ As with @(GoBack), `GoForward` is also context-sensitive:
 - @(HierarchicalNavigation) – Navigates one level down in the hierarchy, i.e. the last page the user has @(GoBack:gone back) from.
 - @(DirectNavigation) – Does nothing.
 
+*Keep in mind that the `TargetNode` property must be set to the parent Panel which contains a Navigation behavior, not to the behavior itself.*
 
 > ### $(WhileCanGoForward)
 

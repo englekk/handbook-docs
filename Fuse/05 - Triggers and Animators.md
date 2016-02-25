@@ -995,13 +995,13 @@ We use the `SwipeGesture` behavior when we want an element to handle swipe gestu
 
 ```
 <Panel>
-	<SwipeGesture Direction="Right" Length="100" SwipeType="Active" />
+	<SwipeGesture Direction="Right" Length="100" Type="Active" />
 </Panel>
 ```
 
 - `Direction="Right"` specifies that this should be a swipe-to-the-right gesture.
 - `Length="100"` means that the swipe has a length of 100 points in the specified `Direction`.
-- `SwipeType="Active"` indicates that this should be a two-state swipe gesture that toggles between an inactive/active state.
+- `Type="Active"` indicates that this should be a two-state swipe gesture that toggles between an inactive/active state.
 
 `SwipeGesture` accepts the following properties:
 
@@ -1012,7 +1012,7 @@ We use the `SwipeGesture` behavior when we want an element to handle swipe gestu
 - `HitSize` only applies when `Edge` is used, and specifies how far from the edge we can start swiping for it to be recognized.
 - `Length` specifies, in points, how far we can swipe in the specified `Direction`.
 - `LengthNode` can be used instead of `Length`. It references another element that should be measured to determine the length of the swipe.
-- `SwipeType`
+- `Type`
 	- `Active` indicates that swiping should toggle between an inactive/active state.
 	- `Simple` indicates that swiping should invoke a single, momentary action.
 

@@ -53,6 +53,18 @@ While previewing on an iOS or Android device, you get the message "Failed to con
  - `/usr/share/uno/SDKs/AndroidSDK/platform-tools` (OS X)
 - If you are on Windows you should check that you have the latest USB drivers for your device. You can read more about this [here](http://developer.android.com/tools/extras/oem-usb.html)
 
+## Cannot build for iOS
+
+### Symptoms
+- The iOS build stops at ```Code Sign error: No code signing identities found: No valid signing identities (i.e. certificate and private key pair) were found.```
+
+#### Solution
+- Start Xcode
+- Create a new, blank iOS project and try to build it
+- When the error dialogue with ```No provisioning profiles matching an applicaple signing identity were found.``` appears, click `Fix Issue` and let the wizard complete
+- Close Xcode
+- Now re-run your build/preview from Fuse
+
 ## Sublime plugin does not work
 
 ### Symptoms

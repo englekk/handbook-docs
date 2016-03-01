@@ -307,8 +307,8 @@ Returns the number of values in the @(Observable) as an observable number. Whene
 
 	books = Observable("UX and you",
 		"Observing the observer",
-	    "Documenting the documenter");
-	numBooks = books.count(); //result: 3
+		"Documenting the documenter");
+	numBooks = books.count();
 
 #### $(Observable.countCondition:count(condition))
 
@@ -321,7 +321,7 @@ Returns an observable number of values for which `condition` is true.
 	);
 	var tasksDone = tasks.count(function(x){
 		return x.isDone;
-	}); // 2
+	});
 
 #### $(Observable.not:not())
 

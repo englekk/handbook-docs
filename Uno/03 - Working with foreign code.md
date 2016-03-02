@@ -305,13 +305,13 @@ public class Example
 	[Foreign(Language.Java)]
 	public extern(Android) void Rage()
 	@{
-		@{Angrify():Call("JAVA!")};
+		@{Angrify(string):Call("JAVA!")};
 	@}
 
 	[Foreign(Language.ObjC)]
 	public extern(iOS) void Rage()
 	@{
-		@{Angrify():Call(@"OBJECTIVE-C!")}; // :p
+		@{Angrify(string):Call(@"OBJECTIVE-C!")}; // :p
 	@}
 }
 ```

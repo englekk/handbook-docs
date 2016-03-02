@@ -252,7 +252,7 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 				</Button>
 			</WhileCanGoForward>
 		</StackPanel>
-	</Page>
+	</MyPage>
 
 	<MyPage ux:Name="subPage1" ux:AutoBind="false">
 		<StackPanel>
@@ -263,7 +263,7 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 				</Clicked>
 			</Button>
 		</StackPanel>
-	</Page>
+	</MyPage>
 
 	<MyPage ux:Name="subPage2" ux:AutoBind="false">
 		<StackPanel>
@@ -274,7 +274,7 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 				</Clicked>
 			</Button>
 		</StackPanel>
-	</Page>
+	</MyPage>
 </Panel>
 ```
 

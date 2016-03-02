@@ -133,6 +133,34 @@ Delete a file from the application folder, returning `true` on a success:
 var wasDeleted = storage.deleteSync("filename.txt");
 ```
 
+## Bundle
+
+The bundle API allows you to read files that is bundled with the application defined in the project file (using `<somename.extension>:Bundle`).
+
+	var bundle = require('FuseJS/Bundle');
+
+### $(Bundle.read:read)
+
+	bundle.read(bundlename)
+
+* `bundlename` - The bundle that should be read
+
+Returns a `Promise` with a `string` containing the content of the file.
+
+	bundle.read("bundlename.json").then(function(content) {
+		console.log(content);
+	}, function(error) {
+		console.log(error);
+	});
+
+### `readSync`
+
+Synchronously read data from a bundle:
+
+	var data = bundle.readSync("bundlename.json");
+
+> Warning: This call will block, if you are reading large amounts of data, use @(Bundle.read).
+
 ## $(Timer)
 
 You can schedule tasks to be run later using the `Timer` API:

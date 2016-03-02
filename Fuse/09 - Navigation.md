@@ -187,13 +187,9 @@ With these on each page we can create a `PageIndicator` that uses images for the
 
 ## $(Navigation types)
 
-There are several navigation types, and they have quite different behaviors and use cases. Each of them inherit from the `Navigation` base type, and therefore share a few properties:
+There are several navigation types, and they have quite different behaviors and use cases.
 
-* `Active` - The currently active page
-* `CanGoBack` - `true` if it is possible to navigate backward
-* `CanGoForward` - `true` if it is possible to navigate forward
-* `PageCount` - The number of pages
-* `PageProgress` - Progress in the navigation from 0.0 to the amount of pages minus one.
+Each of them inherit from the `Navigation` base type, which exposes the `Active` property, which sets the currently active page. This can be data-bound to the string name of the node.
 
 ### $(LinearNavigation)
 

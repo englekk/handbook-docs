@@ -179,10 +179,10 @@ It's possible to circumvent the boxing behaviour by using UXL macros. The follow
 [Foreign(Language.ObjC)]
 public static extern(iOS) void ForeignIntArray(int[] xs)
 @{
-	@{int[]:Of(xs).Set(3, 123)};
-	for (int i = 0; i < @{int[]:Of(xs).Length:Get()}; ++i)
+	@{$0.Set(3, 123)};
+	for (int i = 0; i < @{$0.Length:Get()}; ++i)
 	{
-		NSLog(@"array[%d]=%d", i, @{int[]:Of(xs).Get(i)});
+		NSLog(@"array[%d]=%d", i, @{$0.Get(i)});
 	}
 @}
 ```

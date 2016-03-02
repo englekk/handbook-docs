@@ -493,7 +493,7 @@ You add Java and Objective-C files like this:
 }
 ```
 
-This also allows your Objective-C code to use UXL macros to talk back to Uno just like in foreign code blocks. If you are not using UXL macros you can use the `CSource` and `CHeader` file types instead. Processing of Java files is not yet possible, but will be coming soon.
+This also allows your Objective-C code to use UXL macros to talk back to Uno just like in foreign code blocks. If you use macros in such a file, it has to be an Objective-C++ file (`.mm`) since the macro expansion uses features from both Objective-C and C++ to interoperate with Uno code, and the file has to include `uObjC.Foreign.h`. If you are not using UXL macros you can use the `CSource` and `CHeader` file types instead. Processing of Java files is not yet possible, but will be coming soon.
 
 Note that the wildcard (`*`) only includes fuse files by default, you have to explicitly add foreign files. This is super helpful as it means you can have a valid Java (or Objective-C) project inside you app hierarchy (with tests etc) and only include the files you actually need in your app.
 

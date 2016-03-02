@@ -151,15 +151,126 @@ Just to clarify:
 Of course you can still cast the objects back to their original types.
 
 
-#### Arrays?
 
-See the `Coming Soon` section. :)
+## Arrays
 
+This feature allows you to pass Uno arrays to Foreign Code. As ever, we are performance conscious so we don't just make a copy of the data straight away. We pass a handle to the Uno array that you can use directly in your foreign code. If you need a full copy of the data just call `arr.copyArray()` (in Java) or `[arr copyArray]` (in Objective-C) and you will be given the native version of that type.The full details are below.
 
-#### Delegates
+**Objective-C:**
 
-In the current release this feature is available in Objective-C, and the Java version is on the way. Please see the `Coming Soon` section for details.
+Arrays are converted to an object of type `id<UnoArray>` which is a wrapper around the Uno array. It can be indexed and updated with the familiar `arr[i]` syntax and has a `count` method (called with `[arr count]`) that returns an `NSUInteger`. Note that updates to it are reflected in the original Uno array --- it's a wrapper, not a copy.  As mentioned, it's also possible to copy the `id<UnoArray>` to an `NSArray*` by calling `[xs copyArray]`.
 
+ Since Objective-C lacks generics, indexing into the `id<UnoArray>` object to get an element returns `id` regardless of the element type of the array on the Uno side. This `id` is a _boxed_ representation of the element type according to the following table:
+
+    | Uno                         | Objective-C           | Boxed array element |
+    |-----------------------------|-----------------------|---------------------|
+    | `int`, `bool`, `char`, etc. | `int`, `bool`, `char` | `NSNumber*`         |
+    | `string`                    | `NSString*`           | `NSString*`         |
+    | `ObjC.Object`               | `id`                  | `id`                |
+    | `object`                    | `id<UnoObject>`       | `id<UnoObject>`     |
+    | `Func<string, int>` etc.    | `^ int(NSString*)`    | `^ int(NSString*)`  |
+    | `SomeType[]`                | `id<UnoArray>`        | `id<UnoArray>`      |
+
+Most types are already boxed, but note that primitive types like `int`, `bool`, and `char` are boxed as `NSNumber*` when accessed in a wrapped array. This means that to update an Uno array argument `int[] x` on the Objective-C side, we have to write e.g. `x[index] = @42;`. When copying an array, the resulting `NSArray*`'s elements are also boxed following the same rules.
+
+It's possible to circumvent the boxing behaviour by using UXL macros. The following examples contrast the two ways to use arrays in foreign Objective-C code:
+
+```
+[Foreign(Language.ObjC)]
+public static extern(iOS) void ForeignIntArray(int[] xs)
+@{
+	@{int[]:Of(xs).Set(3, 123)};
+	for (int i = 0; i < @{int[]:Of(xs).Length:Get()}; ++i)
+	{
+		NSLog(@"array[%d]=%d", i, @{int[]:Of(xs).Get(i)});
+	}
+@}
+```
+
+```
+[Foreign(Language.ObjC)]
+public static extern(iOS) void ForeignIntArray(int[] xs)
+@{
+	xs[3] = @123;
+	for (int i = 0; i < [xs count]; ++i)
+	{
+		NSLog(@"array[%d]=%@", i, xs[i]);
+	}
+@}
+```
+
+**Java:**
+
+First off we try to avoid copying massive ammounts of data by default, so we pass up a boxed uno array. You can then call `.copyArray()` on that to get the native array (at which point the data is copied)
+
+The conversions look like this (Note: Java does not allow generics of primitives types)
+
+    | Uno Type              | Boxed Java Type      | Unboxed Java Type   |
+    |-----------------------|----------------------|---------------------|
+    | bool[]                | com.uno.BoolArray    | bool[]              |
+    | sbyte[]               | com.uno.ByteArray    | byte[]              |
+    | char[]                | com.uno.CharArray    | char[]              |
+    | short[]               | com.uno.ShortArray   | short[]             |
+    | int[]                 | com.uno.IntArray     | int[]               |
+    | long[]                | com.uno.LongArray    | long[]              |
+    | float[]               | com.uno.FloatArray   | float[]             |
+    | double[]              | com.uno.DoubleArray  | double[]            |
+    | string[]              | com.uno.StringArray  | String[]            |
+    | anyOtherType[]        | com.uno.ObjectArray  | com.uno.UnoObject[] |
+
+Java also doesn't allow operator overloading so to get the first `int` from an IntArray called `x` use `x.get(0)`. To set first value in the `IntArray` `x` to `10` use `x.set(0, 10)`
+
+## Delegates
+
+Foreign Code also allows you to pass delegates to your foreign methods. Whilst the end result is the same, the details vary a little between Java & Objective-C so let's tackle them separately:
+
+**Objective-C:**
+
+Delegates get converted to an Objective-C block of the corresponding type. As an example, an argument of the type `Action<string, int>` becomes a block of type `^ void(NSString*, int)`. The argument and return types of the block use the same type conversions as arguments to foreign functions normally do.
+
+Here is a simple example of this in action:
+
+```
+[Foreign(Language.ObjC)]
+public static extern(iOS) double DelegateArgument(Func<int, double> f)
+@{
+	 // f is of type `^ double(int)` here, so can be called like any function
+	 return f(12);
+@}
+```
+
+**Java:**
+
+If you define a delegate like this:
+
+```
+namespace Foo
+{
+	public delegate void Bar(float x, float y, float z);
+}
+```
+Then you can do this:
+
+```
+[Foreign(Language.Java)]
+public static extern(Android) void ForeignDelegate(Bar x)
+@{
+	x.run(1.0f, 2.0f, 3.0f);
+@}
+```
+Now 'Java < 8' doesn't have lambdas, and runnable and callables don't take arguments, so behind the scenes the compiler makes a Java class called `com.foreign.Foo.Bar` with a `public void run(float x, float y, float z) { ... }` method.
+
+The usual type conversions for primitive, string, objects and arrays still apply to arguments of delegates.
+
+You can also pass Uno `Action`s to Java. Again because Java delegates don't support primitives we have to generate a class for this.
+
+The type conversions follow this pattern:
+
+```
+Action -> com.foreign.Uno.Action
+Action<int> -> com.foreign.Uno.Action_int
+Action<int[],int> -> com.foreign.Uno.Action_IntArray_int
+```
 
 #### A note on objects from the old bindings
 
@@ -167,7 +278,6 @@ Rather than just remove the old style bindings and force you into Foreign Code i
 
 Any object created using the old bindings can be passed up to Java in the same way as `Java.Object`.
 Objective-C bindings objects can be passed as `ObjC.Object`.
-
 
 
 ## Talking back to Uno
@@ -376,12 +486,14 @@ You add Java and Objective-C files like this:
 
 	"Includes": [
 		"*",
-		"Example.hh:CHeader:iOS",
-		"Example.mm:CSource:iOS",
+		"Example.hh:ObjCHeader:iOS",
+		"Example.mm:ObjCSource:iOS",
 		"Example.java:Java:Android"
 	]
 }
 ```
+
+This also allows your Objective-C code to use UXL macros to talk back to Uno just like in foreign code blocks. If you are not using UXL macros you can use the `CSource` and `CHeader` file types instead. Processing of Java files is not yet possible, but will be coming soon.
 
 Note that the wildcard (`*`) only includes fuse files by default, you have to explicitly add foreign files. This is super helpful as it means you can have a valid Java (or Objective-C) project inside you app hierarchy (with tests etc) and only include the files you actually need in your app.
 
@@ -418,39 +530,9 @@ As mentioned before, Foreign Code is a young feature and we are excited to discu
 But here are a could of things coming down 'the pipes' soon.
 
 
-## Arrays
+## Processed Java files
 
-This feature allows you to pass Uno arrays to Foreign Code. As ever, we are performance conscious so we don't just make a copy of the data straight away. We pass a handle to the Uno array that you can use directly in your foreign code. If you need a full copy of the data just call `arr.copyArray()` (in Java) or `[arr copyArray]` (in Objective-C) and you will be given the native version of that type.
-
-Full details will be available in this document when this feature is released.
-
-
-## Delegates
-
-Foreign Code will also allow you to pass delegates to your foreign methods. Whilst the end result is the same, the details vary a little between Java & Objective-C so let's tackle them separately:
-
-**Objective-C:**
-
-We have preliminary support for delegates in Objective-C, but there are known bugs that will be fixed in future releases.
-
-Delegates get converted to an Objective-C block of the corresponding type. As an example, an argument of the type `Action<string, int>` becomes a block of type `^ void(NSString*, int)`. The argument and return type of the block use the same type conversions as arguments to foreign functions normally do.
-
-Here is a simple example of this in action:
-
-```
-[Foreign(Language.ObjC)]
-public static extern(iOS) double DelegateArgument(Func<int, double> f)
-@{
-	 // f is of type `^ double(int)` here, so can be called like any function
-	 return f(12);
-@}
-```
-
-**Java:**
-We have added this internally and it will be out in a release soon! This will allow you to pass `Action`s, `Func`s & user defined delegates to Java in the same way as you can today with Objective-C.
-
-Full details will be available in this document when this feature is released.
-
+We want to be able to use UXL macros to call back to Uno from separate Java files, just like we can in foreign code blocks and in processed Objective-C files.
 
 ## Foreign support libraries
 

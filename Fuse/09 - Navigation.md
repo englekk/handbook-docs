@@ -214,14 +214,6 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 ```
 <Panel>
 	<HierarchicalNavigation ux:Name="nav" Active="mainPage" />
-	<Panel ux:Class="NavPanel">
-		<EnteringAnimation>
-			<Move X="-1" RelativeTo="ParentSize"/>
-		</EnteringAnimation>
-		<ExitingAnimation>
-			<Move X="1" RelativeTo="ParentSize" Duration="0.5"/>
-		</ExitingAnimation>
-	</Panel>
 
 	<Page ux:Class="MyPage">
 		<EnteringAnimation>

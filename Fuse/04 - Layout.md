@@ -247,6 +247,27 @@ A full example that uses `ColumnLayout` can be found [here](https://www.fusetool
 
 `DefaultLayout` is the default layout of a @(Panel).
 
+## $(CircleLayout)
+
+`CircleLayout` lays out the children of a @(Panel) in a circular pattern. It can be tweaked with the following properties:
+
+- $(CircleLayout.StartAngleDegrees:StartAngleDegrees) - The angle in degrees where the first child should be placed.
+- $(CircleLayout.EndAngleDegrees:EndAngleDegrees) - The angle in degrees where the last child should be placed.
+- $(CircleLayout.Radius:Radius) - The distance the items are placed from the center of the @(Panel). The range is from 0 to 1 where 0 is in the center and 1 is at the edges of the @(Panel).
+- $(CircleLayout.ItemSpacingDegrees) - The number of degrees between the placement of each child.
+
+The following example places 26 red circles in a half circle formation:
+
+```
+<Panel Margin="20" Color="#ddd">
+    <CircleLayout StartAngleDegrees="-180" EndAngleDegrees="0"/>
+
+	<Each Count="26">
+		<Circle Width="25" Color="#f00" Height="25"/>
+	</Each>
+</Panel>
+```
+
 ## Element Layout
 
 <!-- TODO: Link to video -->

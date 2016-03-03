@@ -308,18 +308,39 @@ While @(EdgeNavigator) will do the job in most cases, you might be interested in
 
 Fuse provides several @(Actions:actions) that allow you to perform @(Navigation:navigation).
 
-All navigation-related @(Actions:actions) have a `Target` property that lets you specify the navigation context to perform the action on.
-If `Target` is not specified, it will look for a parent element with a `Navigation` behavior and use that.
+All navigation-related @(Actions:actions) have a `NavigationContext` property that lets you specify the navigation context to perform the action on.
+If `NavigationContext` is not specified, it will look for a parent element with a `Navigation` behavior and use that.
+
+> ### Manually specifying a navigation context
+
+```
+<DockPanel>
+	<PageControl ux:Name="navContext">
+		<Page ux:Name="page1" Background="#f00" />
+		<Page ux:Name="page2" Background="#00f" />
+	</PageControl>
+	<Grid Dock="Bottom" Columns="1*,1*">
+		<Button Text="Go to page 1">
+			<Clicked>
+				<NavigateTo Target="page1" NavigationContext="navContext" />
+			</Clicked>
+		</Button>
+		<Button Text="Go to page 2">
+			<Clicked>
+				<NavigateTo Target="page2" NavigationContext="navContext" />
+			</Clicked>
+		</Button>
+	</Grid>
+</DockPanel>
+```
 
 ### GoBack
 
-The behavior of `GoBack` depends on the type of navigator (`TargetNode`) it's performed on:
+The behavior of `GoBack` depends on the type of navigation context it's performed on:
 
 - @(LinearNavigation) – Navigates to the page occurring before the current page.
 - @(HierarchicalNavigation) – Navigates one level up in the hierarchy, i.e. the page most recently navigated to.
 - @(DirectNavigation) – Does nothing.
-
-*Keep in mind that the `TargetNode` property must be set to the parent Panel which contains a Navigation behavior, not to the behavior itself.*
 
 > ### $(WhileCanGoBack)
 
@@ -333,8 +354,6 @@ As with @(GoBack), `GoForward` is also context-sensitive:
 - @(HierarchicalNavigation) – Navigates one level down in the hierarchy, i.e. the last page the user has @(GoBack:gone back) from.
 - @(DirectNavigation) – Does nothing.
 
-*Keep in mind that the `TargetNode` property must be set to the parent Panel which contains a Navigation behavior, not to the behavior itself.*
-
 > ### $(WhileCanGoForward)
 
 The `WhileCanGoForward` trigger is active whenever navigating forward is possible.
@@ -342,23 +361,24 @@ The `WhileCanGoForward` trigger is active whenever navigating forward is possibl
 
 ### $(NavigateTo)
 
-`NavigateTo` navigates to a specific @(Page:page), specified by the `Target` property. Below is an example using a @(PageControl).
+Navigates to a specific @(Page:page), specified by the `Target` property. Below is an example using a @(PageControl).
 
-	<PageControl ux:Name="nav">
-		<Page ux:Name="page1">
-			<Button Text="Go to page 2" Alignment="Center">
-				<Clicked>
-					<NavigateTo Target="page2" />
-				</Clicked>
-			</Button>
-		</Page>
-		<Page ux:Name="page2">
-			<Text Alignment="Center">
-				Welcome to page 2!
-			</Text>
-		</Page>
-	</PageControl>
-
+```
+<PageControl ux:Name="nav">
+	<Page ux:Name="page1">
+		<Button Text="Go to page 2" Alignment="Center">
+			<Clicked>
+				<NavigateTo Target="page2" />
+			</Clicked>
+		</Button>
+	</Page>
+	<Page ux:Name="page2">
+		<Text Alignment="Center">
+			Welcome to page 2!
+		</Text>
+	</Page>
+</PageControl>
+```
 
 ## $(EnteringAnimation) / $(ExitingAnimation)
 

@@ -958,12 +958,12 @@ Getting a `MapView` included in your app is straight forward: Simply include the
 </NativeViewHost>
 ```
 
-To initialize and manipulate the map camera, use the `Latitude`, `Longitude`, `Zoom`, `Tilt` and `Bearing` properties, all of which are two-way bindable. `Zoom` takes values in platform specific ranges, with meters above ground on iOS and a "zoom factor" on Android. To get started with comparable values on both platforms, initialize with values from the `ZoomLevel` class. Options are `World`, `Continent`, `City`, `Street` and `Building`. 
+To initialize and manipulate the map camera, use the `Latitude`, `Longitude`, `Zoom`, `Tilt` and `Bearing` properties, all of which are two-way bindable. `Zoom` takes values in platform specific ranges, with meters above ground on iOS and a "zoom factor" on Android. 
 
 The map can be further customised by setting the rendering style using the `Style` property and the `MapStyle` enum. Options are `Normal`, `Satellite` and `Hybrid`.
 
 #### Maps on Android
-Google Maps requires an API key. Follow [Google's documentation](https://developers.google.com/maps/android/) to get one set up. Once you have your key the key must be added to your project file:
+Google Maps requires the Fuse.Maps package to be referenced in your .unoproj to build correctly. It also requires a valid API key. Follow [Google's documentation](https://developers.google.com/maps/android/) to get one set up. Once you have your key the key must be added to your project file:
 
 ```JSON
 "Android": {

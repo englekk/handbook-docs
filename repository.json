@@ -1,0 +1,7 @@
+{
+	"containers": true,
+	"generatorType": "handbook",
+	"cssPrefix": "handbook",
+	"uriFormat": "/learn/{0}",
+	"baseUri": "/learn"
+}

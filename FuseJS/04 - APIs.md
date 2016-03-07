@@ -78,7 +78,12 @@ You can also use `setTimeout` to create loops:
 The storage API allows you to save text to files in the application directory.
 
 	var storage = require('FuseJS/Storage');
-
+  
+Please note that while debugging inside Windows / OSX machines the files will be stored according to the system application data.  
+  
+For **Windows**: `%appdata%\Local`.    
+For **OSX**: `~/.local/share/`.  
+  
 ### $(storage.write:write)
 
 Write a string value to specified file.

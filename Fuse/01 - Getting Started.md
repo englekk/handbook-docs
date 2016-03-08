@@ -10,7 +10,7 @@ Fuse is a toolkit that developers and designers use to create native, cross-plat
 
 You express your user interfaces in markup (which we call "UX") which makes it easy to make animated and responsive UIs. Your app logic is written in JavaScript which is interpreted, and **all rendering is compiled to native code for optimal performance.** You can choose between real native UI elements and customizable cross platform elements. Fuse is not a "black box", but a flexible toolkit and can be extended using Uno (a C#-dialect). Fuse does _not_ generate HTML5/hybrid apps, it exports fully native mobile apps.
 
-While you're developing your app, **your changes are reflected in real time** both on your computer and on your devices, with **no need to recompile or re-deploy.** While it's wonderful to prototype in Fuse, it is _not_ a prototyping tool, it is a fully-fledged app development tool that with no need for further coding in XCode or Android studio. Apps built purely with Fuse are already in app stores today, and more and more apps are being developed every day.
+While you're developing your app, **your changes are reflected in real time** both on your computer and on your devices, with **no need to recompile or re-deploy.** While it's wonderful to prototype in Fuse, it is _not_ a prototyping tool, it is a fully-fledged app development tool that needs no further coding in XCode or Android studio. Apps built purely with Fuse are already in app stores today, and more and more apps are being developed every day.
 
 ## $(Setup)
 
@@ -29,37 +29,15 @@ After having created a new project, either by using the dashboard or the `fuse` 
 - `ProjectName.unoproj` - This is the project file, and basically keeps track of which files compose the project, which packages it depends on and also other handy values like your API keys.
 - `MainView.ux` - This is the main starting point for your app, mainly because it contains the `App`-tag. Under normal circumstances you will delete most of the contents of this file, but feel free to examine the default application and see what is needed to make a bare bones surface with some controls.
 
-Note: JavaScript do not need to be referenced from the `unoproj`-file as JavaScript files are referenced directly from UX markup.
+Head to the @(Uno Project Format Overview) for a complete reference of the `unoproj` format.
 
-> ### $(Project file structure)
-
-The `unoproj` file has the following structure (incomplete):
-
-To divide the solution into multiple projects and reference them from the `unoproj`-file:
-
-```
-"Projects" : [
-	"path_to_other_project.unoproj"
-]
-```
-
-To add/remove references to one of the standard packages shipping with Fuse :
-
-```
-"Packages": [
-        "Experimental.iOS"
-]
-```
-
-__Note__: This section of the documentation is incomplete, a full description of the `unoproj` file is coming.
-
-
+Note: JavaScript files do not need to be referenced from the `unoproj`-file as JavaScript files are referenced directly from UX markup.
 
 > ### $(Sublime Text projects)
 
 When you drop a folder into Sublime Text 3, it will by default search through all files in all subfolders. When building a Fuse project, this isn't always what you want.
 
-If you create a file called `ProjectName.sublime-project`, you can drop this into it to make it ignore the `.cache` and `.build` directories:
+If you create a file called `ProjectName.sublime-project`, you can drop this into it to make it ignore the `.uno` and `build` directories:
 
 ```
 {
@@ -68,8 +46,8 @@ If you create a file called `ProjectName.sublime-project`, you can drop this int
 		{
 			"folder_exclude_patterns":
 			[
-				".build",
-				".cache",
+				"build",
+				".uno",
 			],
 			"path": "."
 		}
@@ -83,8 +61,8 @@ This file can then be opened from the `Project` -> `Open Project...`-dialog.
 
 If you are using Git for version control, you can put the following in your .gitignore file.
 
-	.build
-	.cache
+	build
+	.uno
 
 ## Preview
 
@@ -104,7 +82,7 @@ When running preview, Fuse will create a shell application on your device that c
 
 > ### Exporting to iOS
 
-On iOS, you need to have a machine running OS X and Xcode installed (as for preview). You also need an Apple developer account. In the project root, simply type:
+For iOS, you need to have a machine running OS X and Xcode installed (as for preview). You also need an Apple developer account. In the project root, simply type:
 
 `fuse build --target=iOS --run` to build and run the app.
 

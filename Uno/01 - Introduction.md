@@ -6,6 +6,6 @@ For advanced use cases, Fuse lets you write code in Uno. Uno is a fast, native d
 
 To learn more about Uno, consult these resources:
 
-- [Uno API Reference](https://www.fusetools.com/developers/api) - Detailed docs on all Fuse classes
-- [Uno Language Reference](https://www.fusetools.com/developers/guides/unolang) - How the Uno language differs from C#
-- [UXL Handbook (Here be Dragons)](https://www.fusetools.com/developers/guides/uxl-handbook) - An informal overview of using UXL for conditional compilation and interop with native code
+- [Uno API Reference](/learn/uno/api) - Detailed docs on all Fuse classes
+- [Uno Language Reference](/learn/guides/uno-lang) - How the Uno language differs from C#
+- [UXL Handbook (Here be Dragons)](/learn/guides/uxl-handbook) - An informal overview of using UXL for conditional compilation and interop with native code

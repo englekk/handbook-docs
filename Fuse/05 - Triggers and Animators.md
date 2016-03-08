@@ -187,10 +187,10 @@ You can scale an element uniformly along all axes by using the `Factor` property
 <Scale Factor="2" Duration="0.4"/>
 ```
 
-`Scale` can be used relative to something using the `RelativeTo` property, which accepts the following values:
+`Scale` can be used relative to something using the `RelativeTo` property. The two choices are:
 
-- `SizeChange`: When used together with @(LayoutAnimation), scales relative to the change in size of the element.
-- `SizeFactor`: Scales to the size of the element specified by `RelativeNode`.
+* `SizeChange` - resizes relative to the change in size of the element specified by the `RelativeNode` property.
+* `SizeFactor` - resizes with a factor relative to another element, specified by `RelativeNode`. A factor of `1` would make it the same size as the `RelativeNode`, while a factor of `0.5` would make it half the size, and so on.
 
 ### $(Rotate)
 
@@ -210,7 +210,10 @@ When used in concert with @(LayoutAnimation), `Resize` allows you to animate the
 <Resize RelativeTo="SizeChange" Duration="0.5" Easing="CircularInOut" />
 ```
 
-The only value `Resize` has for `RelativeTo` at the moment is `SizeChange`, which resizes relative to the change in size of the element.
+`Resize` has two options for `RelativeTo` at the moment:
+
+* `SizeChange` - resizes relative to the change in size of the element specified by the `RelativeNode` property.
+* `SizeFactor` - resizes the element individually on both axes, relative to an element specified by the `RelativeNode` property. To control the size factors, use the `X` and `Y` properties to set one axis at the time, or use the `Vector` property to set the factor of both axes at once, using a two-dimensional vector.
 
 ### $(TransitionLayout)
 
@@ -482,7 +485,7 @@ Tells a @(Navigation:navigation context) or a @(WebView) to step forward in its 
 
 	<GoForward TargetNode="myWebView" />
 
-<!-- For further detail about `GoForward` in the context of @(Navigation:navigation), see @(Controlling navigation). -->
+For more information about `GoForward` in the context of @(Navigation:navigation), see @(Controlling navigation).
 
 
 ### $(GoBack)
@@ -493,7 +496,7 @@ Tells a @(Navigation:navigation context) or a @(WebView) to step backward in its
 
 	<GoBack TargetNode="myWebView" />
 
-<!-- For further detail about `GoBack` in the context of @(Navigation:navigation), see @(Controlling navigation). -->
+For more information about `GoBack` in the context of @(Navigation:navigation), see @(Controlling navigation).
 
 
 ### $(Toggle)
@@ -589,6 +592,44 @@ Toggles a `Navigation`. This is currently only supported in @(EdgeNavigation), a
 Used on an `EdgeNavigation`, it will navigate to and from a @(Panel) with `EdgeNavigation.Edge` set, specified by using the `Target` property.
 
 
+### $(OnBackButton)
+
+This trigger fires when the user presses either a physical or emulated back button on their device. The folllowing code will flash the screen green when the back button is pressed:
+
+```
+<App Theme="Basic">
+  <Panel>
+    <SolidColor ux:Name="rect" Color="#F00" />
+    <WhileTrue ux:Name="backPulse" Value="false">
+      <Change rect.Color="#0F0" Duration="0.2" />
+    </WhileTrue>
+    <OnBackButton>
+      <Pulse Target="backPulse" />
+    </OnBackButton>
+  </Panel>
+</App>
+```
+
+### $(OnButtonPressed)
+
+`OnButtonPressed` is triggered when the key specified by the property `Key` is pressed. The following example will flash the screen blue when the "menu" button is pressed. This button is present on some android devices.
+
+```
+<App Theme="Basic">
+  <Panel>
+    <SolidColor ux:Name="solidColor" Color="#F00" />
+    <WhileTrue ux:Name="menuPulse" Value="false">
+      <Change solidColor.Color="#00F" Duration="0.2" />
+    </WhileTrue>
+    <OnKeyPress Key="MenuButton">
+      <Pulse Target="menuPulse" />
+    </OnKeyPress>
+  </Panel>
+</App>
+```
+
+For a complete list of supported keys, check out the [Key enum](https://www.fusetools.com/learn/uno/api/uno/platform/key) list.
+
 <!--  ### $(BringToFront)
 AUTH: TODO: Do we need to discuss Z-ordering? -->
 
@@ -596,7 +637,13 @@ AUTH: TODO: Do we need to discuss Z-ordering? -->
 
 Fuse comes with a set of actions that invoke OS-specific behavior, such as dialing a phone number or vibrating the device.
 
-### $(LaunchUri)
+### $(Fuse.Launcher)
+
+The Fuse.Launcher package lets you start other activities like email, maps and web browsers.
+
+* Note: Make sure you add Fuse.Launcher to your @(Project structure:.unoproj) file.
+
+#### $(LaunchUri)
 
 Requests the operating system to launch a [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
 
@@ -605,7 +652,9 @@ Requests the operating system to launch a [URI](https://en.wikipedia.org/wiki/Un
 An URI can be anything from a URL to a custom URI scheme registered by an app. The underlying OS is responsible for handling the request.
 For instance, [here is a list of common URI schemes](http://www.iana.org/assignments/uri-schemes) that are registered with The Internet Assigned Numbers Authority (IANA).
 
-### $(LaunchEmail)
+
+
+#### $(LaunchEmail)
 
 Launches the default email app, and starts composing a message.
 
@@ -619,13 +668,13 @@ Launches the default email app, and starts composing a message.
 - `Subject` – The subject of the email
 - `Message` – The body text of the email
 
-### $(LaunchMaps)
+#### $(LaunchMaps)
 
 Launches the default maps app, given a latitude/longitude pair.
 
 	<LaunchMaps Latitude="35.673813" Longitude="-36.780810" />
 
-### $(Call)
+#### $(Call)
 
 Issues a phone call to the specified number.
 
@@ -633,7 +682,7 @@ Issues a phone call to the specified number.
 
 ### $(Vibrate)
 
-Vibrates the device for a given number of seconds.
+Vibrates the device for a given number of seconds. Note: iOS will not honor any specified duration, as this is not an option in the native iOS API.
 
 	<Vibrate Duration="0.8" />
 
@@ -832,6 +881,8 @@ TODO: I dont know what it does -->
 User events are intended for sending messages between components of your application.
 They may be sent and received from UX, Uno, and JavaScript.
 
+* Make sure you also check out the documentation on using @(UserEvents-js:FuseJS UserEvents from JavaScript).
+
 ### $(UserEvent)
 
 User events are attached to the node they are declared in, and only that node and its children can raise and handle the event.
@@ -855,17 +906,15 @@ To raise a @(UserEvent:user event) from UX, use the `RaiseUserEvent` action.
 		</Clicked>
 	</Button>
 
-For information on how to raise user events from JavaScript, see the @(UserEvents-js:FuseJS UserEvents) documentation.
-
 ### $(UserEventArg:Passing arguments)
 
 A $(UserEvent:user event) may also include a number of arguments that can be read from either JavaScript or Uno.
 
 	<RaiseUserEvent Name="MyEvent">
-		<UserEventArg Name="message" Value="Hello from UX!" />
+		<UserEventArg Name="message" StringValue="Hello from UX!" />
 	</RaiseUserEvent>
 
-`UserEventArg` also accepts `IntValue`, `FloatValue`, `StringValue` or `BoolValue` in place of `Value`.
+`UserEventArg` accepts `IntValue`, `FloatValue`, `StringValue` or `BoolValue`.
 
 ### $(OnUserEvent:Responding to user events)
 
@@ -946,13 +995,13 @@ We use the `SwipeGesture` behavior when we want an element to handle swipe gestu
 
 ```
 <Panel>
-	<SwipeGesture Direction="Right" Length="100" SwipeType="Active" />
+	<SwipeGesture Direction="Right" Length="100" Type="Active" />
 </Panel>
 ```
 
 - `Direction="Right"` specifies that this should be a swipe-to-the-right gesture.
 - `Length="100"` means that the swipe has a length of 100 points in the specified `Direction`.
-- `SwipeType="Active"` indicates that this should be a two-state swipe gesture that toggles between an inactive/active state.
+- `Type="Active"` indicates that this should be a two-state swipe gesture that toggles between an inactive/active state.
 
 `SwipeGesture` accepts the following properties:
 
@@ -963,7 +1012,7 @@ We use the `SwipeGesture` behavior when we want an element to handle swipe gestu
 - `HitSize` only applies when `Edge` is used, and specifies how far from the edge we can start swiping for it to be recognized.
 - `Length` specifies, in points, how far we can swipe in the specified `Direction`.
 - `LengthNode` can be used instead of `Length`. It references another element that should be measured to determine the length of the swipe.
-- `SwipeType`
+- `Type`
 	- `Active` indicates that swiping should toggle between an inactive/active state.
 	- `Simple` indicates that swiping should invoke a single, momentary action.
 
@@ -997,7 +1046,7 @@ This is achieved using the `LengthNode` property of @(SwipeGesture), and in this
 		</Panel>
 	</Panel>
 
-#### $(Swiped)
+### $(Swiped)
 
 `Swiped` is a pulse trigger that is invoked when a swipe has occurred.
 
@@ -1023,7 +1072,7 @@ We can control this behavior by setting the `How` property to either `ToActive` 
 		</WhileSwipeActive>
 	</Panel>
 
-#### $(SetSwipeActive) and $(ToggleSwipeActive)
+### $(SetSwipeActive) and $(ToggleSwipeActive)
 
 We can control the state of `Active` type @(SwipeGesture:SwipeGestures) by using the `SetSwipeActive` and `ToggleSwipeActive` actions.
 
@@ -1104,6 +1153,21 @@ The `WhileEnabled` trigger is active whenever its containing @(Element:elements)
 ### $(WhileDisabled)
 
 The `WhileDisabled` trigger is active whenever its containing @(Element:elements) `IsEnabled` property is set to `False`.
+
+## $(Keyboard triggers)
+
+### $(TextInputActionTriggered)
+
+`TextInputActionTriggered` is triggered when the user presses the return key while editing a @(TextInput).
+The following example demonstrates how you can hide the keyboard in response.
+
+```
+<TextInput>
+	<TextInputActionTriggered>
+		<ReleaseFocus />
+	</TextInputActionTriggered>
+</TextInput>
+```
 
 ## $(Focus triggers and actions)
 
@@ -1282,11 +1346,42 @@ In the following example, our background changes color when we reach the bottom 
 </Slider>
 ```
 
-<!-- ## $(Timeline)
+### $(Timeline)
 
-TODO: Might need edaqua for this one.
+The `Timeline` allows for a nice way of grouping several animations together and separating them from the interaction logic. It can be played by animating its `TargetProgress` property between 0 and 1.
 
-Timelines are used to create custom animations that can be played, paused, seeked etc. in response to events.-->
+Here is an example of how we can use a timeline to animate several properties on a rectangle (its width and color), and then play between the start and end of this `Timeline` by clicking two buttons.
+
+```
+<App Theme="Basic">
+	<StackPanel>
+		<Rectangle ux:Name="rect" Height="40" Width="100%">
+			<SolidColor ux:Name="color" Color="#f00" />
+		</Rectangle>
+		<Grid ColumnCount="2">
+			<Button Text="Red">
+				<Clicked>
+					<Set timeline.TargetProgress="0" />
+				</Clicked>
+			</Button>
+			<Button Text="Green">
+				<Clicked>
+					<Set timeline.TargetProgress="1" />
+				</Clicked>
+			</Button>
+		</Grid>
+
+		<Timeline ux:Name="timeline">
+			<Change Target="rect.Width">
+				<Keyframe Value="10" Time="0.3"/>
+				<Keyframe Value="100" Time="0.6"/>
+			</Change>
+			<Change color.Color="#0f0" Duration="0.3" Delay="0.3"/>
+		</Timeline>
+	</StackPanel>
+</App>
+```
+
 
 <!-- ## Advanced trigger usage
 

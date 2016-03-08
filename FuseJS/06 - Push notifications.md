@@ -33,7 +33,7 @@ Add the following to you `.unoproj`
 },
 ```
 
-Where the `SenderID` is the project ID from the `Google Developers Console`
+Where the `SenderID` is the project ID from the [Google Developers Console](https://console.developers.google.com)
 
 
 ## How this behaves in your app

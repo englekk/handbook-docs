@@ -29,6 +29,11 @@ The most basic type of panel is the `Panel`. Children of a Panel will be default
 
 Note that the element order in a `Panel` is the same as the layer order in popular graphics packages such as Photoshop; the layer that appears first in the UX-file will be layered on top of elements appearing later in the file.
 
+`Panel` has a few properties you might be interested in:
+
+* `Layout` - Specifies a Layout for the `Panel`. For instance, a `StackPanel` is practically just a `Panel` with `Layout="StackLayout"`. Check out @(The Layout property:layout) for more detail.
+* `Children` - Contains a list of all child nodes of the `Panel`. This may for example come in handy when traversing nodes using Uno.
+
 ## $(StackPanel)
 
 The StackPanel places its children in a stack. The default layout is a vertical stack, but one can use the `Orientation` property to specify that the stack should be layed out horizontally.
@@ -97,7 +102,7 @@ By default, elements are placed in the grid by the order they appear in the UX, 
 
 The `WrapPanel` lays out its children one after the other and wraps around whenever it reaches the end. One can specify which direction the elements are layed out in by assigning the $(FlowDirection) property. FlowDirection can either be `LeftToRight` or `RightToLeft`.
 
-The following WrapPanel lays out its children horizontally from right ro left.
+The following WrapPanel lays out its children horizontally from right to left.
 
 ```
 <WrapPanel FlowDirection="RightToLeft">
@@ -133,14 +138,12 @@ The Dock property can be assigned to be either `Left`, `Right`, `Top`, `Bottom` 
 
 ```
 <DockPanel>
-	<Style>
-		<Rectangle MinWidth="100" MinHeight="200"/>
-	</Style>
-	<Rectangle Fill="Red" Dock="Left"/>
-	<Rectangle Fill="Green" Dock="Top"/>
-	<Rectangle Fill="Blue" Dock="Right"/>
-	<Rectangle Fill="Yellow" Dock="Bottom"/>
-	<Rectangle Fill="Teal" />
+	<Rectangle ux:Class="MyRectangle" MinWidth="100" MinHeight="200" />
+	<MyRectangle Fill="Red" Dock="Left"/>
+	<MyRectangle Fill="Green" Dock="Top"/>
+	<MyRectangle Fill="Blue" Dock="Right"/>
+	<MyRectangle Fill="Yellow" Dock="Bottom"/>
+	<MyRectangle Fill="Teal" />
 </DockPanel>
 ```
 
@@ -202,34 +205,34 @@ As we can tell from the last snippet, layouts are automatically bound to the `La
 `ColumnLayout` lays out the children of a @(Panel) by dividing them into columns. The number of columns can be adjusted with the `ColumnCount` property.
 It attempts to keep the height of the columns somewhat balanced by placing children in the shortest column available after laying out their previous siblings.
 
-	<Panel>
-		<ColumnLayout ColumnCount="3" />
+```
+<Panel>
+	<Panel ux:Class="MyPanel" Background="#2c3e50" Margin="5" />
+	<Text ux:Class="MyText" TextColor="#fff" Alignment="Center" FontSize="20" />
 
-		<Style>
-			<Panel Background="#2c3e50" Margin="5" />
-			<Text TextColor="#fff" Alignment="Center" TextAlignment="Center" FontSize="20" />
-		</Style>
+	<ColumnLayout ColumnCount="3" />
 
-		<Panel Height="200">
-			<Text>1</Text>
-		</Panel>
+	<MyPanel Height="200">
+		<MyText>1</MyText>
+	</MyPanel>
 
-		<Panel Height="100">
-			<Text>2</Text>
-		</Panel>
+	<MyPanel Height="100">
+		<MyText>2</MyText>
+	</MyPanel>
 
-		<Panel Height="300">
-			<Text>3</Text>
-		</Panel>
+	<MyPanel Height="300">
+		<MyText>3</MyText>
+	</MyPanel>
 
-		<Panel Height="150">
-			<Text>4</Text>
-		</Panel>
+	<MyPanel Height="150">
+		<MyText>4</MyText>
+	</MyPanel>
 
-		<Panel Height="200">
-			<Text>5</Text>
-		</Panel>
-	</Panel>
+	<MyPanel Height="200">
+		<MyText>5</MyText>
+	</MyPanel>
+</Panel>
+```
 
 In this example we have divided five @(Panel:panels) of different heights into three columns.
 The animation below shows the result of this, and what would happen if we were to resize the third @(Panel:panel).
@@ -243,6 +246,27 @@ A full example that uses `ColumnLayout` can be found [here](https://www.fusetool
 > ## $(DefaultLayout)
 
 `DefaultLayout` is the default layout of a @(Panel).
+
+## $(CircleLayout)
+
+`CircleLayout` lays out the children of a @(Panel) in a circular pattern. It can be tweaked with the following properties:
+
+- $(CircleLayout.StartAngleDegrees:StartAngleDegrees) - The angle in degrees where the first child should be placed.
+- $(CircleLayout.EndAngleDegrees:EndAngleDegrees) - The angle in degrees where the last child should be placed.
+- $(CircleLayout.Radius:Radius) - The distance the items are placed from the center of the @(Panel). The range is from 0 to 1 where 0 is in the center and 1 is at the edges of the @(Panel).
+- $(CircleLayout.ItemSpacingDegrees) - The number of degrees between the placement of each child.
+
+The following example places 26 red circles in a half circle formation:
+
+```
+<Panel Margin="20" Color="#ddd">
+    <CircleLayout StartAngleDegrees="-180" EndAngleDegrees="0"/>
+
+	<Each Count="26">
+		<Circle Width="25" Color="#f00" Height="25"/>
+	</Each>
+</Panel>
+```
 
 ## Element Layout
 
@@ -282,7 +306,7 @@ Alignment can be assigned to any one of the following values:
 - $(Center)
 - $(CenterRight)
 - $(BottomLeft)
-- $(BottomCenterter)
+- $(BottomCenter)
 - $(BottomRight)
 
 If you don't assign an `Alignment` explicitly, the default alignment will be to stretch the control as much as the parent control requests. For a normal `Panel`, this means that the child control will try to fill the parent `Panel`, but other containing controls might ask the children to behave differently.
@@ -370,17 +394,102 @@ This rectangle will be exactly 200 pixels wide, which means it will be smaller w
 When a @(Panel) places its children, it assumes that the "center" of that element is in the middle. However, if we want the element to be placed as if its "center" was along its left side, we could use the @(Anchor) property like so:
 
 ```
-<Rectangle Anchor="0,50%"/>
+<Rectangle Anchor="0%,50%"/>
 ```
 
 This puts the elements anchor in the middle of its left edge.
+
+
+### $(TransformOrigin)
+
+The `TransformOrigin` property specifies the origin of transformation used by
+transformation behaviors and animators, such as @(Move), @(Scale), @(Rotation), @(Scaling), etc.
+
+It accepts the following values:
+
+- $(TransformOrigin.Center:Center) _(default)_ – Transforms originate at the center of the element
+- $(TransformOrigin.TopLeft:TopLeft) – Transforms originate at the top left corner of the element
+- $(TransformOrigin.Anchor:Anchor) – Transforms originate around the point specified by the @(Anchor) property.
+- $(TransformOrigin.HorizontalBoxCenter:HorizontalBoxCenter) – Simulates the effect of the element being the front-facing side of a cube in 3D space, using the width of the element for determining the depth of the cube. Without the element being in a @(Viewport) this will have no illusion of depth, effectively rendering it useless.
+- $(TransformOrigin.VerticalBoxCenter:VerticalBoxCenter) – The same as @(TransformOrigin.HorizontalBoxCenter), except that it uses the height of the element for determining depth.
+
+> #### Using Anchor to set an arbitrary transform origin
+
+```
+<Rectangle X="50%" Y="50%" Anchor="0%,50%" TransformOrigin="Anchor"/>
+```
+
+The above example creates a rectangle who’s left edge center is placed in the middle of the parent. When rotated it will then be rotated around this point.
+
+
+### $(LayoutMaster)
+
+You can make an element inherit the layout of another using the `LayoutMaster` property.
+
+```
+<StackPanel>
+	<Rectangle ux:Name="master" Height="150" Background="#f00a" />
+	<Rectangle LayoutMaster="master" Background="#00fa" />
+</StackPanel>
+```
+
+The above example will result in two overlapping @(Rectangle:Rectangles).
+
+When the `LayoutMaster` of an element is changed, any @(LayoutAnimation:LayoutAnimations) on that element will be activated.
+
+```
+<Rectangle ux:Name="selection" LayoutMaster="target1">
+	<Stroke Width="2" Brush="#3498db" Offset="2" />
+	<LayoutAnimation>
+		<Move RelativeTo="WorldPositionChange" X="1" Y="1" Duration="0.3" Easing="CubicInOut" />
+		<Resize RelativeTo="SizeChange" X="1" Y="1" Duration="0.3" Easing="CubicInOut" />
+	</LayoutAnimation>
+</Rectangle>
+
+<StackPanel>
+	<Panel ux:Name="target1" Margin="10" Height="50" Background="#eee">
+		<Text Alignment="Center">Click me</Text>
+		<Clicked>
+			<Set selection.LayoutMaster="target1" />
+		</Clicked>
+	</Panel>
+	<Panel ux:Name="target2" Width="150" Height="100" Background="#eee">
+		<Text Alignment="Center">Me too!</Text>
+		<Clicked>
+			<Set selection.LayoutMaster="target2" />
+		</Clicked>
+	</Panel>
+</StackPanel>
+```
+
+The above example illustrates how `LayoutMaster` can be used to implement a moving selection rectangle. It consists of two panels that, when clicked, animate the `selection` @(Rectangle) to inherit their size and position.
+
 
 ## $(Absolute positioning) $(X:) $(Y:)
 
 If we want to give our elements an explicit position, we can assign their `X` and `Y` properties. The `X` property will move the element relative to the left side of its container, while the `Y` property moves it relative to the top.
 
-Be aware that absolute positioning elements should generally be avoided in favor of using layout rules. This is because when real data is used, the absolute values used might no longer be meaningfull.
+Be aware that absolute positioning elements should generally be avoided in favor of using layout rules. This is because when real data is used, the absolute values used might no longer be meaningful.
 
+> ## $(Viewport)
+
+The `Viewport` element allows you to perform 3D transformations with perspective projection.
+In its current state, `Viewport` is somewhat limited.
+It has to be placed directly in your `<App>` with the rest of your app inside a child @(Panel), and cannot handle node-local perspectives.
+
+The `Perspective` property controls how far away the camera is from the `Z = 0` plane (where everything is drawn by default), in points.
+
+	<App Theme="Basic">
+		<Viewport Perspective="400">
+			<Panel>
+				<Rectangle Width="200" Height="200" Background="#2ecc71">
+					<Clicked>
+						<Rotate DegreesX="360" Duration="1.5" Easing="QuadraticInOut" DurationBack="0" />
+					</Clicked>
+				</Rectangle>
+			</Panel>
+		</Viewport>
+	</App>
 
 ## Status bars
 

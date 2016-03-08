@@ -54,6 +54,22 @@ We can also query the number of values in the list through the `.length` propert
 
 See the full list of @(Observable.Members) to see what's possible with observable lists.
 
+#### Data types with Observables
+
+Observables can be used to supply all the basic types; number, string, boolean, as well as vector types. Number, string and boolean are created using their usual JavaScript literals:
+
+```
+var obsNumber = Observable(10.5);
+var obsString = Observable("hello");
+var obsBool = Observable(true);
+```
+
+For data-bindings requiring vector types (e.g. colors), one can use JavaScript arrays:
+
+```
+var obsRedColor = Observable([1,0,0,1]);
+var obsWhiteAndBlack = Observable([1,1,1,1], [0,0,0,1]);
+```
 
 #### Observable functions
 When an `Observable` is initialized with a function as its only argument, the `.value`
@@ -151,7 +167,7 @@ Removes all values for which `func` is true.
 		return place.temperature < 20;
 	}); //Removes Sydney from the list
 
-#### $(Observable.forEach:forEach(func))
+#### $(Observable.forEach:forEach(func(item)))
 
 Invokes `func` on every value in the @(Observable).
 
@@ -159,6 +175,17 @@ Invokes `func` on every value in the @(Observable).
 	numbers.forEach(function(number) {
 		Console.Log(number + " is a nice number!");
 	});
+
+#### forEach(func(item,index))
+
+Invokes `func` on every value in the @(Observable).
+
+	var numbers = Observable(10, 2, 50, 3);
+	numbers.forEach(function(number, index) {
+		Console.Log(number + " has the index: " + index);
+	});
+
+If `func` accepts two arguments, the second argument is the index of that item in the @(Observable).
 
 #### $(Observable.replaceAt:replaceAt(index, value))
 
@@ -252,7 +279,7 @@ The new @(Observable:observable) observes the old @(Observable:observable), and 
 
 If the `condition` returns an `Observable`, the `where` operator will also observe the condition.
 
-#### $(Observable.map:map(func))
+#### $(Observable.map:map(func(item)))
 
 Invokes `func` on every value in the @(Observable) returning a new @(Observable) with the results.
 
@@ -262,6 +289,17 @@ Invokes `func` on every value in the @(Observable) returning a new @(Observable)
 	});
 
 The values of `roots` becomes the square root of the numbers in `numbers`. The values in `numbers` remain unchanged.
+
+#### $(Observable.mapi:map(func(item, index)))
+
+Invokes `func` on every value in the @(Observable) returning a new @(Observable) with the results.
+
+	var numbers = Observable("this", "item", "is");
+	var roots = numbers.map(function(item, index) {
+		return item + " has the index nr: " + index;
+	});
+
+When Observable.map is used with a function which takes two arguments, the second argument is the index of that item in the @(Observable).
 
 #### $(Observable.count:count())
 

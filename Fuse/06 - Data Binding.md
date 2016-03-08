@@ -188,6 +188,22 @@ You can also just use `Each` as a simple repeater:
 	</Grid>
 
 
+> ## Ensuring order
+
+Note that `Each` does not necessarily insert the children at the exact location in the tree where the `Each` node resides. To ensure child order, wrap the `Each` in some sort of @(Panel):
+
+	<StackPanel>
+		<Text>I go first!</Text>
+		<StackPanel>
+			<Each Items="{strings}">
+				<Text Value="{}" />
+			</Each>
+		</StackPanel>
+		<Text>I go last!</Text>
+	</StackPanel>
+
+We are considering adding more tricks to allow more flexibility in this case, but for now this is the recommended approach.
+
 ## $(WhileCount) and $(WhileEmpty)
 
 The `WhileEmpty` and `WhileCount` @(Trigger:triggers) can be used to act on the number of items in a collection:
@@ -253,6 +269,7 @@ Valid match properties for `Case` are:
 - `String` - match a string
 - `Number` - match a number
 - `Bool` - match a boolean
+- `IsDefault` - default case if no other case matches
 
 * Note: Match.Value can be data-bound to any JavaScript-type, but if using property-binding, one has to use the specialized properties `String`, `Number`, `Integer` or `Bool`. This is because property-bindings requires that the types are identical.
 

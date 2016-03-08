@@ -1,5 +1,11 @@
 # $(Fuse Troubleshooting Guide)
 
+## Logs
+When investigating issues it's often useful to check the logs written by Fuse and the editor plugins. These can be be found in:
+
+- OS X: `~/.fuse/logs`
+- Windows: `%localappdata%\Fusetools\Fuse\logs`
+
 ## Connection issues
 
 ### A network error occurred
@@ -47,6 +53,18 @@ While previewing on an iOS or Android device, you get the message "Failed to con
  - `/usr/share/uno/SDKs/AndroidSDK/platform-tools` (OS X)
 - If you are on Windows you should check that you have the latest USB drivers for your device. You can read more about this [here](http://developer.android.com/tools/extras/oem-usb.html)
 
+## Cannot build for iOS
+
+### Symptoms
+- The iOS build stops at ```Code Sign error: No code signing identities found: No valid signing identities (i.e. certificate and private key pair) were found.```
+
+#### Solution
+- Start Xcode
+- Create a new, blank iOS project and try to build it
+- When the error dialogue with ```No provisioning profiles matching an applicaple signing identity were found.``` appears, click `Fix Issue` and let the wizard complete
+- Close Xcode
+- Now re-run your build/preview from Fuse
+
 ## Sublime plugin does not work
 
 ### Symptoms
@@ -85,3 +103,7 @@ When previewing your app, the "Oops! Something went wrong here" screen appears.
 ## Local preview does not start on Windows
 
 If the console output contains `GL_VERSION: 1.1.0` and `GL_RENDERER: GDI Generic` the problem is most likely missing / outdated OpenGL drivers. Upgrade to the most recent drivers for your graphics adapter and try again.
+
+This problem can also be triggered by driver issues under Windows 10 specific to the Intel HD Graphics 2000 / 3000 / 4000 graphics adapters. In this case you will not be able to do local preview with instant updates, but you can still test your app on the PC by doing a regular build: `fuse build -t=dotnetexe --run`
+
+You can of course also still use [preview on Android and iOS devices](https://www.fusetools.com/learn/guides/preview-and-export-device-preview)

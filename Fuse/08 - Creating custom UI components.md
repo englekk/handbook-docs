@@ -54,31 +54,62 @@ In most cases, when creating custom classes, we need to be able to define some i
 __MyButton.ux__:
 
 ```
-<Panel ux:Class="MyButton" ux:Name="self">
-    <string ux:Property="Text" ux:Value="MyButton" />
-    <float4 ux:Property="CornerRadius" ux:Value="0" />
-    <float4 ux:Property="BackgroundColor" ux:Value="#f00" />
-    <float4 ux:Property="TextColor" ux:Value="#000" />
-    <Text Alignment="Center" TextColor="{Property self.TextColor}" Value="{Property self.Text}"/>
-    <Rectangle Layer="Background" CornerRadius="{Property self.CornerRadius}">
-        <SolidColor Color="{Property self.BackgroundColor}"/>
-    </Rectangle>
+<Panel ux:Class="MyButton" ux:Name="self" Text="Click me!"
+	   Fill="#f00" TextColor="#000" CornerRadius="10">
+	<string ux:Property="Text"/>
+	<float4 ux:Property="CornerRadius" />
+	<Brush ux:Property="Fill" />
+	<float4 ux:Property="TextColor"/>
+	<Text Alignment="Center" TextColor="{Property self.TextColor}" Value="{Property self.Text}"/>
+	<Rectangle Layer="Background" CornerRadius="{Property self.CornerRadius}" Fill="{Property self.Fill}" />
 </Panel>
 ```
 
-Here we have created a new class called MyButton. We expose four properties (Text, CornerRadius, BackgroundColor and TextColor). These properties can then be bound to within our ux:Class using the `{Property self.PropName}` syntax.
+Here we have created a new class called MyButton. We expose four properties (Text, CornerRadius, Fill and TextColor). These properties can then be bound to within our ux:Class using the `{Property self.PropName}` syntax.
 
 When we instantiate our class, we can then access these properties directly:
 
 __MainView.ux__:
+
 ```
 <App>
-	<Panel>
-		<MyButton CornerRadius="20" Text="MyText" TextColor="#fff"
-			      BackgroundColor="#5C6BC0 " Width="200" Height="50"/>
-	</Panel>
+	<MyButton CornerRadius="20" Text="MyText"
+	          TextColor="#fff" Width="200" Height="50">
+		<LinearGradient ux:Binding="Fill">
+			<GradientStop Color="#0f0" Offset="0" />
+			<GradientStop Color="#00f" Offset="1" />
+	    </LinearGradient>
+	</MyButton>
 </App>
 ```
 
-- Note: ux:Property currently only works for atomic types (eg. float4, bool and string) and not for complex class types. This will be improved in an upcoming version.
-- Note: property-bindings require that the source and target properties are of identical types.
+You can set properties of reference types (such as `Brush`) by using `ux:Binding`. In the above example, we create a `LinearGradient` and use that as `Fill`.
+
+## ux:Include
+
+You can insert the contents of a UX file into another by using `ux:Include`.
+
+* MainView.ux
+
+```
+<App Theme="Basic">
+	<DockPanel>
+		<StatusBarBackground Dock="Top" />
+		<Panel Height="40" Dock="Top" />
+
+		<ux:Include File="Content.ux" />
+	</DockPanel>
+</App>
+```
+
+* Content.ux
+
+```
+<StackPanel>
+	<Text>This is content!</Text>
+	<Text>This is also content.</Text>
+</StackPanel>
+```
+
+Note that this doesn't work when the root node of the included file is a `ux:Class`.
+In this case it is already available, and can be used without importing anything.

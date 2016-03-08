@@ -123,7 +123,7 @@ Synchronously read data from a file in the application folder:
 
 	var data = storage.readSync("filename.txt");
 
-> Warning: This call will block, if you are writing large amounts of data, use @(Storage.read).
+> Warning: This call will block, if you are reading large amounts of data, use @(Storage.read).
 
 ### `deleteSync`
 

@@ -145,11 +145,11 @@ The Dock property can be assigned to be either `Left`, `Right`, `Top`, `Bottom` 
 ```
 <DockPanel>
 	<Rectangle ux:Class="MyRectangle" MinWidth="100" MinHeight="200" />
-	<MyRectangle Fill="Red" Dock="Left"/>
-	<MyRectangle Fill="Green" Dock="Top"/>
-	<MyRectangle Fill="Blue" Dock="Right"/>
-	<MyRectangle Fill="Yellow" Dock="Bottom"/>
-	<MyRectangle Fill="Teal" />
+	<MyRectangle Background="Red" Dock="Left"/>
+	<MyRectangle Background="Green" Dock="Top"/>
+	<MyRectangle Background="Blue" Dock="Right"/>
+	<MyRectangle Background="Yellow" Dock="Bottom"/>
+	<MyRectangle Background="Teal" />
 </DockPanel>
 ```
 

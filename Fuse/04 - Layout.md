@@ -31,7 +31,7 @@ Note that the element order in a `Panel` is the same as the layer order in popul
 
 `Panel` has a few properties you might be interested in:
 
-* `Layout` - Specifies a Layout for the `Panel`. For instance, a `StackPanel` is practically just a `Panel` with `Layout="StackLayout"`. Check out @(The Layout property:layout) for more detail.
+* `Layout` - Specifies a Layout for the `Panel`. Check out @(The Layout property:the section on layouts) for more detail.
 * `Children` - Contains a list of all child nodes of the `Panel`. This may for example come in handy when traversing nodes using Uno.
 
 ## $(StackPanel)

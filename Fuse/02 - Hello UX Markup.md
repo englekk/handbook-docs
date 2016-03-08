@@ -46,10 +46,10 @@ the app will look and feel. You set it like this:
 
 `Theme` can have the following settings:
 
-* `Basic` - Reccommended. Uses OpenGL based graphics to render controls with identical appearance on each platform. 
+* `Basic` - Reccommended. Uses OpenGL based graphics to render controls with identical appearance on each platform.
 * `Native` - Uses the native iOS and Android platform controls by default. Note that this will not work in local desktop preview.
 * `NativeWithFallback` - Uses `Native` theme on iOS and Android devices, but `Basic` in local desktop preview.
-* `Graphics` - This is the default if nothing is specified. Uses OpenGL based graphics, but provides *no default appearance* for standard controls such as `Button` and `Slider`
+* *Default* - If nothing is specified, Fuse uses OpenGL based graphics, but provides *no default appearance* for standard controls (such as `Button` and `Slider`).
 
 ### $(NativeTheme: Native Theme)
 
@@ -69,7 +69,9 @@ In this example, the displayed controls will have native appearance on iOS and A
 
 ### $(BasicTheme: Basic Theme)
 
-Example use:
+The `Basic` theme renders controls with OpenGL, gives controls a look and feel inspired by material design.
+
+Example usage:
 
 	<App Theme="Basic">
 
@@ -77,9 +79,6 @@ Using `Theme="Basic"` which will give your app an identical look on all platform
 
 * Status bars will behave differently across platforms
 * `TextInput` is a higher-level control and will by default not be rendered since it relies on native platform controls. Either define your own style for this or use a @(BasicTheme) instead.
-
-The `Basic` theme ships with Fuse and gives controls a look and feel inspired by material design. This can be useful when you want a starting
-point for UIs that are supposed to look the same on all platforms.
 
 The main benefits of working with `Basic` theme are:
 

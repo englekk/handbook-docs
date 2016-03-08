@@ -1,7 +1,7 @@
 # $(Layout)
 
 Fuse has a powerful layout system that works across all platforms and devices, whether you
-are building with @(NativeTheme:native) elements or @(GraphicsTheme:graphics) based elements.
+are building with @(NativeTheme:native) elements or @(BasicTheme:graphics) based elements.
 
 > #### Video introduction to layout
 

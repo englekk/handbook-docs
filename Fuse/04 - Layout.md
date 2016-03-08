@@ -36,7 +36,7 @@ Note that the element order in a `Panel` is the same as the layer order in popul
 
 ## $(StackPanel)
 
-The StackPanel places its children in a stack. The default layout is a vertical stack, but one can use the `Orientation` property to specify that the stack should be layed out horizontally.
+The StackPanel places its children in a stack. The default layout is a vertical stack, but one can use the `Orientation` property to specify that the stack should be laid out horizontally.
 
 ```
 <StackPanel Orientation="Horizontal">
@@ -44,7 +44,9 @@ The StackPanel places its children in a stack. The default layout is a vertical 
 </StackPanel>
 ```
 
-Additionally, one can use the `ItemSpacing` property to make some space between elements, as an alternative to setting a margin on the elements. The following example shows three Panels in a `StackPanel`, spaced using the `ItemSpacing` property:
+Additionally, one can use the `ItemSpacing` property to make some space between elements.
+It differs from setting `Margin` on each child, in that it only adjusts the space directly *between* the elements, not the space around each of them.
+The following example shows three Panels in a `StackPanel`, spaced using the `ItemSpacing` property:
 
 ```
 <StackPanel ItemSpacing="20">
@@ -67,7 +69,8 @@ If all that is needed is a grid of equally sized rows and columns, one can simpl
 
 ### $(Rows) and $(Columns)
 
-More fine grained control of how the rows and column sizes are calculated can be achieved with the Rows and Columns properties. These properties are assigned to a comma separated list of values which can take on a few different forms.
+More fine grained control of how the rows and column sizes are calculated can be achieved with the `Rows` and `Columns` properties.
+These properties are assigned to a comma separated list of values which can take on a few different forms.
 The values can either be absolute, relative or automatic.
 
 Example of a Grid with 3 rows of size 10, 10 and 50 points.
@@ -89,7 +92,8 @@ The following grid has 3 rows where the first two rows gets the size of its larg
 
 ### $(Grid.Row:Placing elements in a Grid) $(Grid.Column:)
 
-By default, elements are placed in the grid by the order they appear in the UX, from left to right, top to bottom. One can specify per element which grid cell they should be placed in using the Row and Column like so:
+By default, elements are placed in the grid by the order they appear in the UX, from left to right, top to bottom.
+One can however explicitly specify per element which grid cell they should be placed in using the `Row` and `Column` properties like so:
 
 ```
 <Grid RowCount="1" ColumnCount="2">
@@ -100,7 +104,7 @@ By default, elements are placed in the grid by the order they appear in the UX, 
 
 ## $(WrapPanel)
 
-The `WrapPanel` lays out its children one after the other and wraps around whenever it reaches the end. One can specify which direction the elements are layed out in by assigning the $(FlowDirection) property. FlowDirection can either be `LeftToRight` or `RightToLeft`.
+The `WrapPanel` lays out its children one after the other and wraps around whenever it reaches the end. One can specify which direction the elements are laid out in by assigning the $(FlowDirection) property. FlowDirection can either be `LeftToRight` or `RightToLeft`.
 
 The following WrapPanel lays out its children horizontally from right to left.
 
@@ -131,7 +135,9 @@ You can also specify the maximum area the WrapPanel will allocate an element by 
 The DockPanel lays out its children by docking them to the different sides, one after the other. One can specify which side per element by using the $(Dock) property like so:
 
 ```
-<Rectangle Dock="Left"/>
+<DockPanel>
+	<Rectangle Dock="Left"/>
+</DockPanel>
 ```
 
 The Dock property can be assigned to be either `Left`, `Right`, `Top`, `Bottom` or `Fill` (which is the default).
@@ -147,15 +153,15 @@ The Dock property can be assigned to be either `Left`, `Right`, `Top`, `Bottom` 
 </DockPanel>
 ```
 
-The @(Style) is used to give the @(Rectangle:rectangles) a minimum size. The @(Rectangle) do not have any explicit default size, so when the `DockPanel` places them, it tries to use their minimum size, except for when `Dock` is set to `Fill`.
-
 > ## $(Viewbox)
 
 To make contents stretch to fit an area, you can use `Viewbox`:
 
-	<Viewbox>
-		<Rectangle Background="#808" Width="200" Height="100" />
-	</Viewbox>
+```
+<Viewbox>
+	<Rectangle Background="#808" Width="200" Height="100" />
+</Viewbox>
+```
 
 This will maintain its aspect ratio of 2:1 while stretching the `Rectangle` to be the size of the `Viewbox`.
 
@@ -173,17 +179,9 @@ You can also set the @(StretchMode) for the contents, which defaults to `Uniform
 <!-- TODO: find a better title -->
 
 In the previous sections, we've been talking about different types of @(Panel:panels) and how they perform layout on their children.
-Under the hood, these are regular @(Panel:panels) that have been assigned a `Layout`.
+Under the hood, these are regular @(Panel:Panels) that have been assigned a `Layout`.
 
-Layouts control how a @(Panel) should lay out its children.
-Fuse comes with several which are listed below, together with their corresponding panel types.
-
-- @(StackPanel) - $(StackLayout)
-- @(Grid) - $(GridLayout)
-- @(DockPanel) - $(DockLayout)
-- @(WrapPanel) - $(WrapLayout)
-
-This means that the following snippets are equivalent to each other:
+For instance, @(StackPanel) is essentially a @(Panel) whose `Layout` is set to an instance of @(StackLayout), as illustrated below.
 
 ```
 <StackPanel>
@@ -198,9 +196,11 @@ This means that the following snippets are equivalent to each other:
 </Panel>
 ```
 
-As we can tell from the last snippet, layouts are automatically bound to the `Layout` property.
+As we can tell from the last snippet, layouts are automatically bound to the `Layout` property so you don't have to reference it by name.
 
-## $(ColumnLayout)
+Note that *not all layouts have corresponding @(Panel) types*. These are documented below:
+
+> ### $(ColumnLayout)
 
 `ColumnLayout` lays out the children of a @(Panel) by dividing them into columns. The number of columns can be adjusted with the `ColumnCount` property.
 It attempts to keep the height of the columns somewhat balanced by placing children in the shortest column available after laying out their previous siblings.
@@ -243,18 +243,14 @@ You can also lay out the children in rows instead of columns by setting the `Ori
 
 A full example that uses `ColumnLayout` can be found [here](https://www.fusetools.com/examples/gallery).
 
-> ## $(DefaultLayout)
-
-`DefaultLayout` is the default layout of a @(Panel).
-
-## $(CircleLayout)
+> ### $(CircleLayout)
 
 `CircleLayout` lays out the children of a @(Panel) in a circular pattern. It can be tweaked with the following properties:
 
 - $(CircleLayout.StartAngleDegrees:StartAngleDegrees) - The angle in degrees where the first child should be placed.
 - $(CircleLayout.EndAngleDegrees:EndAngleDegrees) - The angle in degrees where the last child should be placed.
 - $(CircleLayout.Radius:Radius) - The distance the items are placed from the center of the @(Panel). The range is from 0 to 1 where 0 is in the center and 1 is at the edges of the @(Panel).
-- $(CircleLayout.ItemSpacingDegrees) - The number of degrees between the placement of each child.
+- $(CircleLayout.ItemSpacingDegrees:ItemSpacingDegrees) - The number of degrees between the placement of each child.
 
 The following example places 26 red circles in a half circle formation:
 
@@ -493,7 +489,11 @@ The `Perspective` property controls how far away the camera is from the `Z = 0` 
 
 ## Status bars
 
-iOS and Android devices usually has a status bar aligned to the top of the screen which shows status information from the operating system like battery and network information. This status bar might or might not be visible while our app is running. We also might or might not be able to draw behind it. Android also often has an on-screen bar to handle navigation, and most devices show an on-screen keyboard when it accepts user input.
+iOS and Android devices usually has a status bar aligned to the top of the screen which shows status information from the operating system like battery and network information. This status bar might or might not be visible while our app is running. We also may or may not be able to draw behind it. Android also often has an on-screen bar to handle navigation, and most devices show an on-screen keyboard when it accepts user input.
+
+> ### Video introduction to OS elements
+
+[YOUTUBE S_syTU44jzw]
 
 ### $(StatusBarBackground)
 
@@ -508,10 +508,6 @@ The @(StatusBarBackground) element is used to compensate for the status bar. It 
 	</DockPanel>
 </App>
 ```
-
-> ### Video introduction to OS elements
-
-[YOUTUBE S_syTU44jzw]
 
 ### $(BottomBarBackground)
 

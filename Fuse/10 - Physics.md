@@ -1,12 +1,12 @@
 # $(Physics)
 
-Some types of animation ([like this one](https://www.fusetools.com/developers/examples/swipeplaces)) are best described using Physics simulation. Fuse comes with a set of physics based triggers and behaviors which can be used for these situations.
+Some types of animation ([like this one](https://www.fusetools.com/developers/examples/swipeplaces)) are best described using Physics simulation. Fuse comes with a set of physics based triggers and behaviors which can be used for these situations. 
 
 _Note: When using physics, make sure your @(Project structure:project) has a reference to the Fuse.Physics package._
 
 ## $(Physics Rules)
 
-Physics simulation is achieved by using different types of physics rule behaviors like `Spring` or @(PointAttractor). Each rule knows how to perform a certain kind of simulation and how to apply this to each frame of the animation. We can add additional customization to the animation by using the related @(Trigger:triggers) to animate based on certain physics @(ForceField triggers:events).
+Physics simulation is achieved by using different types of physics behaviors to create spaces in which elements are affected dynamically in various ways. Each physics behavior knows how to simulate a certain kind of force, and how to apply this to each frame of the animation. Affected elements can respond to multiple forces at a time. We can add additional customization to the animation by using the related @(Trigger:triggers) to animate based on certain physics @(ForceField triggers:events). Physics behaviors are categorized 
 
 ### $(Draggable)
 
@@ -36,13 +36,20 @@ The `WhileDragging` trigger is active while the @(Element) is being dragged and 
 </Panel>
 ```
 
-### $(PointAttractor)
+## $(Force fields)
+Force fields are physics behaviors that continously affect elements within their defined area of influence.
 
-The `PointAttractor` `Rule` is a`ForceField` rule and can be used to define "landing points" which @(Draggable:draggable) @(Element:elements) are attracted to when they are not dragged by the user. The `PointAttractor` can be customized with the following properties:
+#### $(PointAttractor)
+
+The `PointAttractor` is used to create a circular area of influence that pulls idle @(Draggable:draggable) @(Element:elements) towards its center. 
+
+*Properties:* 
 - Offset - Set the position of the `PointAttractor` relative to its container
 - Radius - The radius from the point where the attractor will have an effect.
 - Strength - How much attraction is applied to the affected elements.
 - Exclusive - Whether this attractor will be exclusively applied when it is considered the strongest @(Physics Rules:rule) applying force.
+
+Multiple `PointAttractors` can overlap, creating potentially interesting behaviors.
 
 The [Swipe places](https://www.fusetools.com/examples/swipe-places) example is a good example of the `PointAttractor` in use.
 
@@ -55,24 +62,25 @@ The Spring @(Rule:rule) is used
 AUTH: Buggy?
 -->
 
-## $(ForceField triggers)
+### $(Force field triggers)
 
-`ForceField` triggers are used to animate based on whether an @(Element) is affected by a `ForceField` rule or not.
+Force field triggers activate based on whether their parent @(Element) is affected by a force field or not. 
 
-- ForceField - The `ForceField` needed to enter to activate this @(Trigger).
+*Common properties:* 
+- `ForceField` - The force field needed to enter to activate this @(Trigger).
 
-### $(EnteredForceField)
+#### $(EnteredForceField)
 
 `EnteredForceField` is a pulse trigger which which activates when the @(Element) enters the specified `ForceField`.
-Being a pulse trigger, means that the @(Animation:animations)/@(Actions:actions) inside the trigger will be played forwards and then backwards in one continuous run. One can modify the `Threshold` property to specify how close the @(Element) has to be to activate the trigger.
+Being a pulse trigger, means that the @(Animation:animations)/@(Actions:actions) inside the trigger will be played forwards and then backwards in one continuous run. You can modify the `Threshold` attribute to specify how close the @(Element) has to be to activate the trigger, working in unison with the `Radius` property of the force field in question.
 
-### $(ExitedForceField)
+#### $(ExitedForceField)
 
-`ExitedForceField` works like @(EnteredForceField), but activates when elements leave the specified `ForceField`.
+`ExitedForceField` works like @(EnteredForceField), but activates on elements _leaving_ the specified `ForceField`.
 
-### $(InForceFieldAnimation)
+#### $(InForceFieldAnimation)
 
-`InForceFieldAnimation` is used to animate @(Element:elements) as they enter a @(ForceField triggers:forcefield). One can modify the `From` and `To` properties to control where in the `ForceField` the animation should occur.
+`InForceFieldAnimation` is used to animate @(Element:elements) as they enter a force field. You can modify the `From` and `To` properties to control the range along the distance from the center within the force field to its outer edge in which the animation should occur.
 
 - `From` & `To` - Number between 0 and 1, 0 being the edge of the forcefield and 1 at the center.
 

@@ -46,10 +46,10 @@ the app will look and feel. You set it like this:
 
 `Theme` can have the following settings:
 
-* `Basic` - Uses OpenGL based graphics to render controls with identical appearance on each platform. 
+* `Basic` - Reccommended. Uses OpenGL based graphics to render controls with identical appearance on each platform. 
 * `Native` - Uses the native iOS and Android platform controls by default. Note that this will not work in local desktop preview.
 * `NativeWithFallback` - Uses `Native` theme on iOS and Android devices, but `Basic` in local desktop preview.
-* `Graphics` - This is the default. Uses OpenGL based graphics, but provides *no default appearance* for standard controls such as `Button` and `Slider`
+* `Graphics` - This is the default if nothing is specified. Uses OpenGL based graphics, but provides *no default appearance* for standard controls such as `Button` and `Slider`
 
 ### $(NativeTheme: Native Theme)
 

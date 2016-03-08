@@ -84,3 +84,32 @@ __MainView.ux__:
 ```
 
 You can set properties of reference types (such as `Brush`) by using `ux:Binding`. In the above example, we create a `LinearGradient` and use that as `Fill`.
+
+## ux:Include
+
+You can insert the contents of a UX file into another by using `ux:Include`.
+
+* MainView.ux
+
+```
+<App Theme="Basic">
+	<DockPanel>
+		<StatusBarBackground Dock="Top" />
+		<Panel Height="40" Dock="Top" />
+
+		<ux:Include File="Content.ux" />
+	</DockPanel>
+</App>
+```
+
+* Content.ux
+
+```
+<StackPanel>
+	<Text>This is content!</Text>
+	<Text>This is also content.</Text>
+</StackPanel>
+```
+
+Note that this doesn't work when the root node of the included file is a `ux:Class`.
+In this case it is already available, and can be used without importing anything.

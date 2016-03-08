@@ -945,6 +945,68 @@ WebViews can also be fed raw HTML to display by wrapping an @(HTML) node or via 
 </LoadHtml>
 ```
 
+## $(MapView)
+The `MapView` allows you to present annotated, interactive world-wide maps to the user using the mapping APIs native to the platform: Google Maps on Android and Apple Maps on iOS.
+
+The `MapView` is a native control, and thus needs to be contained in a @(NativeViewHost) to be displayed with Graphics themes. As with other native mobile controls, there currently isn't a `MapView` available for desktop targets. 
+
+Getting a `MapView` included in your app is straight forward: Simply include the node in your UX as you normally would with a native control:
+
+```XML
+<NativeViewHost>
+	<MapView/>
+</NativeViewHost>
+```
+
+To initialize and manipulate the map camera, use the `Latitude`, `Longitude`, `Zoom`, `Tilt` and `Bearing` properties, all of which are two-way bindable. `Zoom` takes values in platform specific ranges, with meters above ground on iOS and a "zoom factor" on Android. 
+
+The map can be further customised by setting the rendering style using the `Style` property and the `MapStyle` enum. Options are `Normal`, `Satellite` and `Hybrid`.
+
+#### Maps on Android
+Google Maps requires the Fuse.Maps package to be referenced in your .unoproj to build correctly. It also requires a valid API key. Follow [Google's documentation](https://developers.google.com/maps/android/) to get one set up. Once you have your key the key must be added to your project file:
+
+```JSON
+"Android": {
+   "Geo": {
+        "ApiKey": "your_key_here"
+    }
+}
+```
+
+### $(MapMarker)
+To annotate the map, you must decorate it with `MapMarker` nodes. `MapMarker` nodes are simple value objects that contain a `Latitude`, a `Longitude` and a `Label`
+
+```HTML
+<NativeViewHost>
+	<MapView>
+		<MapMarker Label="Fuse HQ" Latitude="59.9115573" Longitude="10.73888" />
+	</MapView>
+</NativeViewHost>
+```
+
+If you need to generate MapMarkers dynamically from JS, data binding and @(Each) are your friends. While we're scripting we might as well hook into the `MarkerTapped` event to detect when the user has selected a marker.
+
+```HTML
+<JavaScript>
+	var Observable = require("FuseJS/Observable");
+	
+	exports.markers = Observable({latitude:30.282786, longitude:-97.741736, label:"Austin"});
+	
+	exports.onMarkerTapped = function(args)
+	{
+		console.log("Marker press: "+args.label); 
+	}
+</JavaScript>
+
+<NativeViewHost>
+	<MapView MarkerTapped={onMarkerTapped} >
+		<Each Items={markers}>
+			<MapMarker Latitude="{latitude}" Longitude="{longitude}" Label="{label}" />
+		</Each>
+	</MapView>
+</NativeViewHost>
+```
+
 ## $(Element)
 
 Here are some properties that are common for all `Element` types:

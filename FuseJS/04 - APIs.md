@@ -163,7 +163,7 @@ Synchronously read data from a bundled file:
 
 ## $(Timer)
 
-You can schedule tasks to be run later using the `Timer` API:
+You can schedule tasks to be executed after specific time using the `Timer` API:
 
 ```
 var Timer = require('FuseJS/Timer');

@@ -58,6 +58,7 @@ The Grid places its children in a grid formation. The rows and columns can be sp
 ### $(RowCount) and $(ColumnCount)
 
 If all that is needed is a grid of equally sized rows and columns, one can simply state the number of rows and columns using the RowCount and ColumnCount properties.
+
 ```
 <Grid RowCount="4" ColumnCount="2"/>
 ```
@@ -69,18 +70,22 @@ These properties are assigned to a comma separated list of values which can take
 The values can either be absolute, relative or automatic.
 
 Example of a Grid with 3 rows of size 10, 10 and 50 points.
+
 ```
 <Grid Rows="10,10,50"/>
 ```
 
 Example of a Grid with 3 rows where the first two each occupy 20% of the available space, and the last one occupies 60%:
+
 ```
 <Grid Rows="1*,1*,3*"/>
 ```
+
 The rows sizes here are calculated by first summing all the values (1+1+3 = 5).
 Then we divide our value by the total (1/5 = 20%, 1/5 = 20%, 3/5 = 60%).
 
 The following grid has 3 rows where the first two rows gets the size of its largest child and the last row takes up the remaining space:
+
 ```
 <Grid Rows="auto,auto,1*"/>
 ```
@@ -332,14 +337,19 @@ Each element can also specify how much space should be between its borders and a
 
 Both @(Margin) and @(Padding) are specified using a comma separated list of 4 values which defines the left, top, right and bottom values in that order.
 Here is an example of a @(Rectangle) with a margin of 20 to the left, 30 to the top, 50 to the right and 10 to the bottom:
+
 ```
 <Rectangle Margin="20,30,50,10"/>
 ```
+
 Here is a rectangle where all sides have the same margin:
+
 ```
 <Rectangle Margin="50"/>
 ```
+
 This rectangle has a margin of 50 for its left and right, and 20 for its top and bottom:
+
 ```
 <Rectangle Margin="50,20"/>
 ```
@@ -493,6 +503,7 @@ iOS and Android devices usually has a status bar aligned to the top of the scree
 ### $(StatusBarBackground)
 
 The @(StatusBarBackground) element is used to compensate for the status bar. It will always have the same size as the status bar across all platforms and devices. We can use a @(DockPanel) to dock this element on the top of our app and "offset" the rest of our content so it fits within the visible parts of our screen.
+
 ```
 <App>
 	<DockPanel>

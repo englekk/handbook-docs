@@ -141,9 +141,9 @@ The bundle API allows you to read files that is bundled with the application def
 
 ### $(Bundle.read:read)
 
-	bundle.read(bundlename)
+	bundle.read(fileName)
 
-* `bundlename` - The bundle that should be read
+* `fileName` - Name of the bundled file that should be read
 
 Returns a `Promise` with a `string` containing the content of the file.
 
@@ -155,7 +155,7 @@ Returns a `Promise` with a `string` containing the content of the file.
 
 ### `readSync`
 
-Synchronously read data from a bundle:
+Synchronously read data from a bundled file:
 
 	var data = bundle.readSync("bundlename.json");
 

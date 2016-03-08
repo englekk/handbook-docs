@@ -126,7 +126,7 @@ In the following example, we are using an `Image` with the `Nearest` resample mo
 ```
 -->
 
-### $(StretchMode)
+> ### $(StretchMode)
 
 When added to a container, an `Image` will by default try to show as much of itself as possible. If the image isn't the same aspect as its container, there will be parts of the container that will not be covered.
 
@@ -140,7 +140,7 @@ There are a number of ways to address this issue. You can set the `StretchMode`-
 - `Uniform` - This will make the picture as large as possible while preserving aspect ratio. This will often make the `Image` not cover the whole parent.
 - `UniformToFill` - Fill the parent container while preserving aspect ratio. This will often mean that parts of the picture are left out, clipped by the parent
 
-### $(StretchDirection)
+#### $(StretchDirection)
 
 You can set which directions you want the image to scale by setting the `StretchDirection`-property:
 
@@ -148,7 +148,7 @@ You can set which directions you want the image to scale by setting the `Stretch
 - `UpOnly` - Only upscale contents
 - `DownOnly` - Only downscale contents
 
-### $(ContentAlignment)
+> ### $(ContentAlignment)
 
 You can set an alignment on Image which will make the image align within its rectangle on screen if it fills more or less of the available space in its rectangle. Which might be common when using @(StretchDirection) and @(StretchMode):
 
@@ -192,10 +192,6 @@ Fuse currently supports the following image source types:
 * @(HttpImageSource) - specifies a single image from a URL and its density
 * @(MultiDensityImageSource) - allows you to specify multiple versions of the same image for use with different screen densities.
 
-In addition, the following classes allow you to configure image sources further:
-
-* `MemoryPolicy` - controls how long the image data is kept in memory when no longer in use.
-
 > ### $(MultiDensityImageSource)
 
 Because devices have widely different pixel densities, Fuse allows you to specify multiple image resources for the same logical `Image`:
@@ -208,11 +204,6 @@ Because devices have widely different pixel densities, Fuse allows you to specif
 	</Image>
 
 Fuse will then pick the resource best suited for the screen, respecting the $(StretchMode) of the image.
-
-<!--
-  ### Memory policy
-
-TODO: Explain @mortoray? -->
 
 > ### $(HttpImageSource)
 

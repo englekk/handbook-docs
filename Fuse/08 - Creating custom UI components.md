@@ -2,7 +2,13 @@
 
 ## ux:Class
 
-You can introduce a new _class_ at any point in your code using ux:Class. The following code creates a class called `Header`, which inherits from `Text`.
+Specifying the `ux:Class` attribute on an UX markup node defines a new class. A class is a reusable component that can be instantiated elsewhere in your project.
+
+`ux:Class` creates a self-contained component that can be used anywhere. It has no acces to `ux:Name`s outside itself. To create a class that has access to `ux:Name`s in a certain context, see `ux:InnerClass`.
+
+### Example
+
+The following code creates a class called `Header`, which inherits from `Text`.
 
 ```
 <Text ux:Class="Header" FontSize="22" />
@@ -14,7 +20,7 @@ It can be instantiated, just like any other Fuse element.
 <Header>Welcome</Header>
 ```
 
-In this case, the `Header`-class will be a distinctly different class from `Text`, although all properties from `Text` will also be available. Note that the class can be defined in a separate file, and often is.
+In this case, the `Header`-class will be a different class from `Text`, although all properties from `Text` will also be available. Note that the class can be defined in a separate file, and often is.
 
 Custom classes can be as complex as you want:
 
@@ -85,31 +91,59 @@ __MainView.ux__:
 
 You can set properties of reference types (such as `Brush`) by using `ux:Binding`. In the above example, we create a `LinearGradient` and use that as `Fill`.
 
+## ux:InnerClass
+
+An inner class is a class that belongs to a certain scope and has access to `ux:Name`s declared in that scope. An inner class can only be used in the scope where it is declared.
+
+### Example
+
+	<App Theme="Basic">
+		<Button ux:InnerClass="ActivateButton" ux:Name="btn" Margin="10">
+			<Clicked>
+				<!-- This class has access to currentActive because it is an inner class of App -->
+				<Set highlight.LayoutMaster="btn" />
+			</Clicked>
+		</Button>
+
+		<StackPanel>
+			<ActivateButton Text="Option A" ux:Name="defaultOption"/>
+			<ActivateButton Text="Option B" />
+			<ActivateButton Text="Option C" />
+			<Rectangle Fill="Red" ux:Name="highlight" Margin="-5" LayoutMaster="defaultOption">
+				<LayoutAnimation>
+					<Move RelativeTo="PositionChange" X="1" Y="1" Duration="0.4" Easing="BackOut" />
+				</LayoutAnimation>
+			</Rectangle>
+		</StackPanel>
+	</App>
+			
+
 ## ux:Include
 
-You can insert the contents of a UX file into another by using `ux:Include`.
+You can insert the contents of a UX file into another by using `ux:Include`. 
 
-* MainView.ux
+The above example, the `ux:InnerClass can be split into a separate file
 
-```
-<App Theme="Basic">
-	<DockPanel>
-		<StatusBarBackground Dock="Top" />
-		<Panel Height="40" Dock="Top" />
 
-		<ux:Include File="Content.ux" />
-	</DockPanel>
-</App>
-```
+	<App Theme="Basic">
+		<ux:Include File="ActivateButton.ux" />
 
-* Content.ux
+		<StackPanel>
+			<ActivateButton Text="Option A" ux:Name="defaultOption"/>
+			...
+		</StackPanel>
+	</App>
 
-```
-<StackPanel>
-	<Text>This is content!</Text>
-	<Text>This is also content.</Text>
-</StackPanel>
-```
+In `ActivateButton.ux`:
 
-Note that this doesn't work when the root node of the included file is a `ux:Class`.
-In this case it is already available, and can be used without importing anything.
+	<Button ux:InnerClass="ActivateButton" ux:Name="btn" Margin="10">
+		<Clicked>
+			<!-- This class has access to currentActive because it is an inner class of App -->
+			<Set highlight.LayoutMaster="btn" />
+		</Clicked>
+	</Button>
+
+Note that included files should not have `ux:Class` on the root node, that would create two instances of the class in your project. However, included files can specify `ux:InnerClass`. This will create a local version of the inner class in each location it is included.
+
+
+

@@ -186,7 +186,7 @@ Their features, function and appearance may vary between platforms.
 				<p>Display the OS native maps.</p>
 			</td>
 			<td class="feature__experimental">Experimental</td>
-			<td class="feature__planned">In progress</td>
+			<td class="feature__planned">Experimental</td>
 		</tr>
 
 		<tr>
@@ -202,6 +202,15 @@ Their features, function and appearance may vary between platforms.
 			<td>
 				Native Modal Dialogs 
 				<p>Display the native OS dialog boxes.</p>
+			</td>
+			<td class="feature__planned">Planned</td>
+			<td class="feature__planned">Planned</td>
+		</tr>
+
+		<tr>
+			<td>
+				Audio
+				<p>Play sounds as part of UX markup triggers.</p>
 			</td>
 			<td class="feature__planned">Planned</td>
 			<td class="feature__planned">Planned</td>
@@ -351,8 +360,8 @@ Fuse has several ways in which you can interop with native APIs, existing native
 				<a href="https://www.fusetools.com/learn/uno#working-with-native-apis-from-uno">Uno Native API Bindings</a>
 				<p>Call any Android and iOS API directly from Uno in plain syntax.</p>
 			</td>
-			<td class="feature__mature">Mature</td>
-			<td class="feature__mature">Mature</td>
+			<td class="feature__experimental">Mature (Deprecated)</td>
+			<td class="feature__experimental">Mature (Deprecated)</td>
 		</tr>
 
 		<tr>
@@ -360,8 +369,8 @@ Fuse has several ways in which you can interop with native APIs, existing native
 				<a href="/learn/guides/uxl-handbook">Uno Extension Layer (UXL)</a>
 				<p>Various low-level methods for advanced interop between Uno and the native target language.</p>
 			</td>
-			<td class="feature__mature">Mature</td>
-			<td class="feature__mature">Mature</td>
+			<td class="feature__experimental">Mature (Deprecated)</td>
+			<td class="feature__experimental">Mature (Deprecated)</td>
 		</tr>
 	</tbody>
 </table>

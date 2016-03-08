@@ -175,13 +175,12 @@ Note that any other setting than `DownOnly` might create pixel artifacts, as the
 
 You can also set the @(StretchMode) for the contents, which defaults to `Uniform`.
 
-## $(The Layout property)
-<!-- TODO: find a better title -->
+## $(Layout rules)
 
 In the previous sections, we've been talking about different types of @(Panel:panels) and how they perform layout on their children.
 Under the hood, these are regular @(Panel:Panels) that have been assigned a `Layout`.
 
-For instance, @(StackPanel) is essentially a @(Panel) whose `Layout` is set to an instance of @(StackLayout), as illustrated below.
+For instance, @(StackPanel) is essentially a @(Panel) whose `Layout` is set to an instance of @(StackLayout). This means that the following snippets are equivalent of each other.
 
 ```
 <StackPanel>
@@ -196,9 +195,9 @@ For instance, @(StackPanel) is essentially a @(Panel) whose `Layout` is set to a
 </Panel>
 ```
 
-As we can tell from the last snippet, layouts are automatically bound to the `Layout` property so you don't have to reference it by name.
+As shown in the last snippet, layout rules are automatically bound to the `Layout` property so you don't have to reference them by name.
 
-Note that *not all layouts have corresponding @(Panel) types*. These are documented below:
+Note that *not all layout rules have corresponding @(Panel) types*. These are documented below.
 
 > ### $(ColumnLayout)
 

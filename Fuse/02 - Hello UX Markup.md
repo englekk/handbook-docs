@@ -78,7 +78,7 @@ Example usage:
 Using `Theme="Basic"` which will give your app an identical look on all platforms, with the exception of:
 
 * Status bars will behave differently across platforms
-* `TextInput` is a higher-level control and will by default not be rendered since it relies on native platform controls. Either define your own style for this or use a @(BasicTheme) instead.
+* `TextInput` is and other higher level controls will map to the platform-specific controls.
 
 The main benefits of working with `Basic` theme are:
 

@@ -21,11 +21,12 @@ For example, here is a @(Panel) with a @(WhilePressed) trigger causing the panel
 <!-- TODO:
 * Explain how triggers are a timeline, plays forwards/backwards, applies/unapplies -->
 
-As well as animating properties, one can also use triggers to add and remove entire elements.
-
 ### $(Rest state) and deviation
 
-The default layout and configuration of UX markup elements is called the rest state. Triggers define deviations from this rest state. Each trigger knows how to "un-apply" its own animation to return the rest state, even if interrupted mid-animation. This is great, because it means animation is completely separated from the logical state of your program, greatly reducing the complexity of dealing with combined animation on
+The default layout and configuration of UX markup elements is called the rest state.
+Triggers define deviations from this rest state.
+Each trigger knows how to "un-apply" its own animation to return to the rest state, even if interrupted mid-animation.
+This is great because it means animation is completely separated from the logical state of your program, greatly reducing the complexity of dealing with combined animation on
 multiple devices, screen sizes, with real data and real user input.
 
 
@@ -36,10 +37,10 @@ There are five pairs of properties which are important for controlling the exact
 
 ### $(Target)/Value
 
-The `Target` property is used to identify the property which we intend to animate.
+The `Target` property is used to identify the property that we intend to animate.
 The `Value` property is the value of the result of an animation.
 
-Because the task of setting a target and value is so common, UX has a special syntax for this. Instead of
+Because the task of setting a target property and value is so common, UX has a special syntax for this. Instead of
 
 ```
 <Change Target="target.Property" Value="Value"/>
@@ -130,14 +131,18 @@ One can also animate such properties as `Width`, `Height` and `Margin`, but beca
 
 The `Move` animator is used to move an element. `Move` does not affect layout, so the element will just get an offset from its actual location.
 
-	<Move X="50" />
+```
+<Move X="50" />
+```
 
 When triggered, this will move the element by 50 points in the X direction.
 
 You may want for an element to move relative to its own size or some other elements size.
 To achieve this we can use the @(RelativeTo) property, for instance:
 
-	<Move X="0.5" RelativeTo="Size" />
+```
+<Move X="0.5" RelativeTo="Size" />
+```
 
 When triggered, this will move the element by half of its own width in the X-direction.
 
@@ -148,7 +153,7 @@ $(RelativeTo) can be set to the following values:
 - `ParentSize`: Same as `Size` but uses the elements parents size instead.
 - `PositionChange`: Used in response to a @(LayoutAnimation) to move the element by the amount of change in position within it's parent.
 - `WorldPositionChange`: Used in response to a @(LayoutAnimation) to move the element by the amount of change in position relative to the entire display.
-- `Keyboard`: Moves the element relative to the size of the eyboard.
+- `Keyboard`: Moves the element relative to the size of the keyboard.
 
 The `RelativeNode` property lets you move an element relative to another. In that case, you may use the following `RelativeTo` modes:
 
@@ -156,7 +161,7 @@ The `RelativeNode` property lets you move an element relative to another. In tha
 - `ParentSize`: Same as `Size` but measures the `RelativeNode`'s parent size instead.
 - `PositionOffset`: Moves the element to be in the same position as the element specified by `RelativeNode`.
   The offset is measured as the difference in `ActualPosition` between the two elements.
-- `TransformOriginOffset`: Works like `PositionOffset`, but insted measures the difference in `TransformOrigin`.
+- `TransformOriginOffset`: Works like `PositionOffset`, but instead measures the difference in `TransformOrigin`.
 
 Move corresponds to adding a @(Translation) on the element and using @(Change) to animate its X and Y values. The following two examples give the same result.
 
@@ -200,7 +205,7 @@ You can scale an element uniformly along all axes by using the `Factor` property
 <Rotate Degrees="90" Duration="0.5"/>
 ```
 
-Using the `Degrees` property rotates the element around the Z-axis. Alternatively, you can use `DegreesX`, `DegreesY`, and `DegreesZ` to rotate the element around a specifix axis. However, you will propabily not need this.
+Using the `Degrees` property rotates the element around the Z-axis. Alternatively, you can use `DegreesX`, `DegreesY`, and `DegreesZ` to rotate the element around a specific axis.
 
 ### $(Resize)
 
@@ -336,7 +341,7 @@ The two examples have quite different results. In the first case, the panel is f
 
 ### $(Translation)
 
-`Translation` moves the element in the specified X, Y, and Z direction. The follwing example shows a @(Rectangle) which is moved 100 points in the X-direction and 50 points in the Y-direction.
+`Translation` moves the element in the specified X, Y, and Z direction. The following example shows a @(Rectangle) which is moved 100 points in the X-direction and 50 points in the Y-direction.
 
 ```
 <Rectangle Width="50" Height="50">
@@ -346,13 +351,11 @@ The two examples have quite different results. In the first case, the panel is f
 
 You can set the translation value for `Translation` with:
 
- * `X` or `Y`, to seperately set the X and Y translations
+ * `X` or `Y`, to separately set the X and Y translations
  * `XY`, to set the translation of both axes at once
  * `Z`, to set the translation in the Z axis.
 
 The coordinates default to being relative to the elements original position(`TranslationModes.Local`), but this can be changed using the property `RelativeTo`. Further, you can make the transform relative to another element by using `RelativeNode`.
-
-Additionally, `IsFlat` will return true if the `Translation` only translates on the X and Y axis.
 
 ### $(Scaling)
 
@@ -370,8 +373,6 @@ Additionally, `IsFlat` will return true if the `Translation` only translates on 
  * `Vector`, to set the scale of all three axes at once
  * `X`, `Y`, and `Z`, for control of individual axes.
 
-While the property `IsFlat` exists, it will allways return true as `Scaling` can't add depth, and is only there for consistency reasons.
-
 <!-- TODO: Document Vector -->
 
 ### $(Rotation)
@@ -388,16 +389,11 @@ You can rotate an element using:
 
  * `Degrees`, controlling rotation around the Z axis
  * `DegreesX`, `DegreesY`, `DegreesZ`, giving you individual control of all 3 axes.
- * `EulerAngle` and `EulerAngleDegrees`, letting you set the euler angles of the element in radians or degrees, respectively.
-
-Additionally, you can check if the `Rotation` is strictly around the Z axis by using the property `IsFlat`.
+ * `EulerAngle` and `EulerAngleDegrees`, letting you set the Euler angles of the element in radians or degrees, respectively.
 
 ### $(Shear)
 
 The `Shear` animator can be used to perform a shear mapping on an element. One can use `DegreesX` and `DegreesY` to set the shear on one axis, or `Degrees` and `Vector` to set the shear in both the X and Y plane, using degrees or radians.
-
-While the effect is strictly 2D, the `IsFlat` property is there for consistency reasons, and will allways return true due to this.
-
 
 ## $(Attractor)
 
@@ -418,13 +414,13 @@ The `Attractor` is used to give a more natural movement to animations. It acts a
 
 Triggers can contain actions too, which are one-off events that fire at a particular point in the trigger's timeline.
 
-Note that actions, contrary to @(Animators:animators) are not reversible. This means it is not neccessarily possible to return to the @(rest state) if the trigger is reversed.
+Note that actions, contrary to @(Animators:animators) are not reversible. This means it is not necessarily possible to return to the @(rest state) if the trigger is reversed.
 
-Like @(Animators:animators), `Actions` can have a `Delay`. This specifies a number of seconds from the @(Trigger) is activated to the `Action` is fired. However, unlike `Animators`, they also have a property called `AtProgress` which can be set to a value between 0 and 1. It has a similar function as `Delay`, but is instead relative to the full @(Duration) of the @(Trigger). Setting `AtProgress` to 0, means the action is fired as soon as the @(Trigger) is actiated. Setting it to 0.5 means it is fired half way through and so on.
+Like @(Animators:animators), `Actions` can have a `Delay`. This specifies a number of seconds from the @(Trigger) is activated to the `Action` is fired. However, unlike `Animators`, they also have a property called `AtProgress` which can be set to a value between 0 and 1. It has a similar function as `Delay`, but is instead relative to the full @(Duration) of the @(Trigger). Setting `AtProgress` to 0, means the action is fired as soon as the @(Trigger) is activated. Setting it to 0.5 means it is fired half way through and so on.
 
 ### $(Action.AtProgress:AtProgress)
 
-`Actions` also has a property called `AtProgress` which can be set to a value between 0 and 1. It has a similar function as `Delay`, but is instead relative to the full @(Duration) of the @(Trigger). Setting `AtProgress` to 0, means the action is fired as soon as the @(Trigger) is actiated. Setting it to 0.5 means it is fired half way through and so on.
+`Actions` also has a property called `AtProgress` which can be set to a value between 0 and 1. It has a similar function as `Delay`, but is instead relative to the full @(Duration) of the @(Trigger). Setting `AtProgress` to 0, means the action is fired as soon as the @(Trigger) is activated. Setting it to 0.5 means it is fired half way through and so on.
 
 ### $(DebugAction)
 
@@ -444,19 +440,17 @@ It is the equivalent of calling `debug_log` from Uno or JavaScript.
 Permanently changes the value of a property. If you want to just change it temporarily, use @(Change). When using `Set` on a property, the value will not be reverted back when the containing trigger is deactivated. In the following example we change the color of a rectangle by setting the value of its `SolidColor` @(Element). Multiple activations of the @(Clicked) trigger won't have any additional effect.
 
 ```
-<Rectangle>
-	<SolidColor ux:Name="color" Color="#00f"/>
-</Rectangle>
+<Rectangle ux:Name="rect" Color="#00f" />
 <Clicked>
-	<Set color.Color="#f00"/>
+	<Set rect.Color="#f00"/>
 </Clicked>
 ```
 
 Set may also be invoked using its `Target` and `Value` properties. The following lines are equivalent:
 
 ```
-<Set Target="color.Color" Value="#f00" />
-<Set color.Color="#f00" />
+<Set Target="rect.Color" Value="#f00" />
+<Set rect.Color="#f00" />
 ```
 
 ### $(Callback)
@@ -652,8 +646,6 @@ Requests the operating system to launch a [URI](https://en.wikipedia.org/wiki/Un
 An URI can be anything from a URL to a custom URI scheme registered by an app. The underlying OS is responsible for handling the request.
 For instance, [here is a list of common URI schemes](http://www.iana.org/assignments/uri-schemes) that are registered with The Internet Assigned Numbers Authority (IANA).
 
-
-
 #### $(LaunchEmail)
 
 Launches the default email app, and starts composing a message.
@@ -706,9 +698,6 @@ A `State` consists of a set of @(Animators:animators) inside a `State` object. I
 
 A `StateGroup` is used to group a set of @(State:states) together and switch between them.
 `StateGroup` has an `Active` property, which is used to assign which @(State) is currently active in that group.
-One can also specify the `TransitionType`, which can be either `Exclusive` or `Parallel`.
-`Exclusive` means that each state will have to be fully deactivated before the next state becomes active.
-`Parallel` means that as one state deactivates, the next one will become active and whatever properties they animate will be interpolated between them.
 
 Here is an example of how to use a `StateGroup` to switch the color of a @(Rectangle) between three states:
 
@@ -747,6 +736,10 @@ Here is an example of how to use a `StateGroup` to switch the color of a @(Recta
 	</Grid>
 </StackPanel>
 ```
+
+One can also specify the `TransitionType`, which can be either `Exclusive` or `Parallel`.
+`Exclusive` means that each state will have to be fully deactivated before the next state becomes active.
+`Parallel` means that as one state deactivates, the next one will become active and whatever properties they animate will be interpolated between them.
 
 ## Data triggers
 
@@ -820,8 +813,8 @@ If you want to listen for events coming from anywhere, set the `Filter` property
 
 The handler function can then read the @(UserEventArg:arguments) that were passed with the event.
 
-```js
-var myHandler = function(args) {
+```javascript
+function myHandler(args) {
 	console.log(args.message);
 }
 
@@ -847,8 +840,6 @@ Following are triggers which react to pointer gestures.
 ### $(Clicked)
 
 `Clicked` is activated in response to a click @(Gestures:gesture). What constitutes a click-event can be platform specific, but usually means that the pointer was pressed and released within the bounds of the containing element.
-
-* Note: `Clicked`-triggers can be placed on any @(Element), not just @(Button:buttons).
 
 ```
 <Panel Width="50" Height="50">
@@ -1039,7 +1030,7 @@ The `WhileEnabled` trigger is active whenever its containing @(Element:elements)
 
 ### $(WhileDisabled)
 
-The `WhileDisabled` trigger is active whenever its containing @(Element:elements) `IsEnabled` property is set to `False`.
+The `WhileDisabled` trigger is active whenever the `IsEnabled` property of its containing @(Element:element) is set to `False`.
 
 ## $(Keyboard triggers)
 
@@ -1073,7 +1064,7 @@ The opposite to @(WhileFocused), active whenever its containing @(Element:elemen
 ### $(GiveFocus)
 
 `GiveFocus` is an action that gives focus to its containing @(Element:element) when activated.
-It also accepts a `Target` property, which specifies what element to give focus to.
+It also accepts a `Target` property, which specifies which element to give focus to.
 
 ### $(ReleaseFocus)
 

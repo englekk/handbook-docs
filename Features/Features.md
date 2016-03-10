@@ -561,6 +561,14 @@ Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to
 			</td>
 			<td class="feature__planned">In progress</td>
 		</tr>
+		
+		<tr>
+			<td>
+				<b>Fuse Package System</b>
+				<p>Share Fuse packages, components and project files more easily.</p>
+			</td>
+			<td class="feature__planned">Planned</td>
+		</tr>
 	</tbody>
 </table>
 

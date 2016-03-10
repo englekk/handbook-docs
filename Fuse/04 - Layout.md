@@ -23,7 +23,7 @@ The most basic type of panel is the `Panel`. Children of a Panel will be default
 <Panel>
 	<Text>This...</Text>
 	<Text>...will be on top of this</Text>
-	<Rectangle Alignment="BottomLeft" Height="20" Width="20" Fill="#678" />
+	<Rectangle Alignment="BottomLeft" Height="20" Width="20" Color="#678" />
 </Panel>
 ```
 
@@ -97,8 +97,8 @@ One can however explicitly specify per element which grid cell they should be pl
 
 ```
 <Grid RowCount="1" ColumnCount="2">
-	<Rectangle Row="0" Column="1" Fill="Red"/>
-	<Rectangle Row="0" Column="0" Fill="Blue"/>
+	<Rectangle Row="0" Column="1" Color="Red"/>
+	<Rectangle Row="0" Column="0" Color="Blue"/>
 </Grid>
 ```
 
@@ -111,7 +111,7 @@ The following WrapPanel lays out its children horizontally from right to left.
 ```
 <WrapPanel FlowDirection="RightToLeft">
 	<Each Count="10">
-		<Rectangle Margin="5" Width="100" Height="100" Fill="Blue"/>
+		<Rectangle Margin="5" Width="100" Height="100" Color="Blue"/>
 	</Each>
 </WrapPanel>
 ```
@@ -121,7 +121,7 @@ The Orientation property can be used to make a vertical `WrapPanel` like so:
 ```
 <WrapPanel Orientation="Vertical">
 	<Each Count="10">
-		<Rectangle Margin="5" Width="100" Height="100" Fill="Blue"/>
+		<Rectangle Margin="5" Width="100" Height="100" Color="Blue"/>
 	</Each>
 </WrapPanel>
 ```
@@ -145,11 +145,11 @@ The Dock property can be assigned to be either `Left`, `Right`, `Top`, `Bottom` 
 ```
 <DockPanel>
 	<Rectangle ux:Class="MyRectangle" MinWidth="100" MinHeight="200" />
-	<MyRectangle Background="Red" Dock="Left"/>
-	<MyRectangle Background="Green" Dock="Top"/>
-	<MyRectangle Background="Blue" Dock="Right"/>
-	<MyRectangle Background="Yellow" Dock="Bottom"/>
-	<MyRectangle Background="Teal" />
+	<MyRectangle Color="Red" Dock="Left"/>
+	<MyRectangle Color="Green" Dock="Top"/>
+	<MyRectangle Color="Blue" Dock="Right"/>
+	<MyRectangle Color="Yellow" Dock="Bottom"/>
+	<MyRectangle Color="Teal" />
 </DockPanel>
 ```
 
@@ -159,7 +159,7 @@ To make contents stretch to fit an area, you can use `Viewbox`:
 
 ```
 <Viewbox>
-	<Rectangle Background="#808" Width="200" Height="100" />
+	<Rectangle Color="#808" Width="200" Height="100" />
 </Viewbox>
 ```
 
@@ -317,10 +317,10 @@ In the following example, only two of the @(Rectangle:rectangles) are visible. T
 
 ```
 <StackPanel>
-	<Rectangle Visibility="Visible" Fill="Red" Height="50"/>
-	<Rectangle Visibility="Collapsed" Fill="Green" Height="50"/>
-	<Rectangle Visibility="Hidden" Fill="Blue" Height="50"/>
-	<Rectangle Fill="Yellow" Height="50"/>
+	<Rectangle Visibility="Visible" Color="Red" Height="50"/>
+	<Rectangle Visibility="Collapsed" Color="Green" Height="50"/>
+	<Rectangle Visibility="Hidden" Color="Blue" Height="50"/>
+	<Rectangle Color="Yellow" Height="50"/>
 </StackPanel>
 ```
 
@@ -428,8 +428,8 @@ You can make an element inherit the layout of another using the `LayoutMaster` p
 
 ```
 <StackPanel>
-	<Rectangle ux:Name="master" Height="150" Background="#f00a" />
-	<Rectangle LayoutMaster="master" Background="#00fa" />
+	<Rectangle ux:Name="master" Height="150" Color="#f00a" />
+	<Rectangle LayoutMaster="master" Color="#00fa" />
 </StackPanel>
 ```
 

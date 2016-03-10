@@ -33,24 +33,7 @@ multiple devices, screen sizes, with real data and real user input.
 ## Animators
 
 Animators are used to specify which and how @(Element:elements) are to be animated when a @(Trigger:trigger) is triggered.
-There are five pairs of properties which are important for controlling the exact result of an animation.
-
-### $(Target)/Value
-
-The `Target` property is used to identify the property that we intend to animate.
-The `Value` property is the value of the result of an animation.
-
-Because the task of setting a target property and value is so common, UX has a special syntax for this. Instead of
-
-```
-<Change Target="target.Property" Value="Value"/>
-```
-
-one can do the following:
-
-```
-<Change target.Property="Value"/>
-```
+There are three pairs of properties which are important for controlling the exact result of an animation.
 
 ### $(Duration)/$(DurationBack)
 
@@ -114,20 +97,50 @@ TODO/AUTH: Write about mixop-->
 ### $(Change)
 
 `Change` temporarily changes the value of a property while its containing trigger is active. To permanently change a value, use the @(Set) animator.
+
+The `Target` property refers to the property that we intend to animate.
+The `Value` property is the value of the result of the animation.
+
+Because the task of setting a target property and value is so common, UX has a special syntax for this. Instead of
+
+```
+<Change Target="target.Property" Value="Value"/>
+```
+
+one can do the following:
+
+```
+<Change target.Property="Value"/>
+```
+
 The `Change` animator can be used to animate almost any property.
 
 ```
-<Panel ux:Name="somePanel">
-	<SolidColor ux:Name="someColor" Color="Red"/>
-</Panel>
+<Panel ux:Name="somePanel" Color="Red" />
+
 <Change somePanel.Opacity="0"/>
-<Change someColor.Color="Blue" Duration="0.3"/>
+<Change somePanel.Color="Blue" Duration="0.3"/>
 <Change somePanel.Visibility="Collapsed"/>
 ```
 
 One can also animate such properties as `Width`, `Height` and `Margin`, but because these properties might affect the entire layout of your UI, this can end up being quite costly in terms of performance. There are usually more effective ways to do animations that interact with layout. Check out @(LayoutAnimation) and @(MultiLayoutPanel) for some inspiration.
 
-### $(Move)
+> ### $(Cycle)
+
+`Cycle` continuously animates a property between two values at a given frequency.
+
+	<Panel>
+		<Translation ux:Name="someTranslation" />
+		<WhilePressed>
+			<Cycle Target="someTranslation.X" Low="-20" High="20" Frequency="2" />
+		</WhilePressed>
+	</Panel>
+
+You may also specify a `Duration` to control the length of the animation.
+
+### Transform animators
+
+#### $(Move)
 
 The `Move` animator is used to move an element. `Move` does not affect layout, so the element will just get an offset from its actual location.
 
@@ -182,7 +195,7 @@ Move corresponds to adding a @(Translation) on the element and using @(Change) t
 </Panel>
 ```
 
-### $(Scale)
+#### $(Scale)
 
 `Scale` works in the same way as @(Move) except that it scales the element. Note that scale doesn't actually change the elements size. This means that the rest of the UI layout wont be affected and the animation is guaranteed to be fast.
 
@@ -197,7 +210,7 @@ You can scale an element uniformly along all axes by using the `Factor` property
 * `SizeChange` - resizes relative to the change in size of the element specified by the `RelativeNode` property.
 * `SizeFactor` - resizes with a factor relative to another element, specified by `RelativeNode`. A factor of `1` would make it the same size as the `RelativeNode`, while a factor of `0.5` would make it half the size, and so on.
 
-### $(Rotate)
+#### $(Rotate)
 
 `Rotate` rotates an Element and is equal to adding a @(Rotation) and animating it with a @(Change).
 
@@ -207,7 +220,7 @@ You can scale an element uniformly along all axes by using the `Factor` property
 
 Using the `Degrees` property rotates the element around the Z-axis. Alternatively, you can use `DegreesX`, `DegreesY`, and `DegreesZ` to rotate the element around a specific axis.
 
-### $(Resize)
+#### $(Resize)
 
 When used in concert with @(LayoutAnimation), `Resize` allows you to animate the size of an element:
 
@@ -220,44 +233,7 @@ When used in concert with @(LayoutAnimation), `Resize` allows you to animate the
 * `SizeChange` - resizes relative to the change in size of the element specified by the `RelativeNode` property.
 * `SizeFactor` - resizes the element individually on both axes, relative to an element specified by the `RelativeNode` property. To control the size factors, use the `X` and `Y` properties to set one axis at the time, or use the `Vector` property to set the factor of both axes at once, using a two-dimensional vector.
 
-### $(TransitionLayout)
-
-The `TransitionLayout` action lets you create a temporary layout change.
-This can be used to do visual layout transitions without needing actual layout changes.
-
-It has no noticeable effect on its own, and needs to be combined with a @(LayoutAnimation).
-The @(LayoutAnimation) will then be triggered by this action.
-
-	<DockPanel>
-		<Panel Dock="Top" Height="20" ux:Name="originElement" />
-
-		<Button Height="100" Dock="Bottom" Text="Transition!">
-			<LayoutAnimation>
-				<Move X="1" Y="1" RelativeTo="WorldPositionChange" Duration="1" />
-				<Resize X="1" Y="1" RelativeTo="SizeChange" Duration="1" />
-			</LayoutAnimation>
-			<Clicked>
-				<TransitionLayout From="originElement" />
-			</Clicked>
-		</Button>
-	</DockPanel>
-
-When clicked, the @(Button) in this example will perform a transition over 1 second from the position and size of `originElement` (top edge of the @(DockPanel)) to its actual position and size (bottom edge of the @(DockPanel)).
-
-### $(Cycle)
-
-`Cycle` continuously animates a property between two values at a given frequency.
-
-	<Panel>
-		<Translation ux:Name="someTranslation" />
-		<WhilePressed>
-			<Cycle Target="someTranslation.X" Low="-20" High="20" Frequency="2" />
-		</WhilePressed>
-	</Panel>
-
-You may also specify a `Duration` to control the length of the animation.
-
-### $(Spin)
+#### $(Spin)
 
 `Spin` continuously rotates an element, given a `Frequency` measured in full rotations per second.
 
@@ -269,7 +245,7 @@ You may also specify a `Duration` to control the length of the animation.
 
 As with @(Cycle), you may also specify a `Duration` to control the length of the animation.
 
-### $(Skew)
+#### $(Skew)
 
 `Skew` allows you to animate a skew transform on an element.
 
@@ -278,6 +254,21 @@ As with @(Cycle), you may also specify a `Duration` to control the length of the
 ```
 
 You can use `DegreesX` and `DegreesY` to skew on one axis, or `DegreesXY` and `XY` to skew on both axes in degrees or radians, respectively.
+
+### $(Attractor)
+
+The `Attractor` is used to give a more natural movement to animations. It acts as an intermediary between an animator and its target. An `Attractor` will continuously animate its target towards its `Value` using a simple form of physics simulation. We can combine this behavior with animation by animating the attractor's `Value` property.
+
+```
+<Panel ux:Name="somePanel">
+	<Translation ux:Name="someTranslation"/>
+	<Attractor ux:Name="someAttractor" Target="someTranslation.X"/>
+	<WhilePressed>
+		<Change someAttractor.Value="100"/>
+	</WhilePressed>
+
+</Panel>
+```
 
 ### $(Keyframe:Keyframes)
 
@@ -317,7 +308,7 @@ All animations for a `Trigger` share a common timeline, which ends when the last
 <Nothing Duration="1" />
 ```
 
-> ## Transforms
+## Transforms
 
 All @(Element:elements) can have transforms applied to them in order to move, scale or rotate.
 It is worth mentioning that the order of these transforms affects the order of when they are applied to the element, and therefore can lead to different results.
@@ -337,7 +328,7 @@ It is worth mentioning that the order of these transforms affects the order of w
 </Panel>
 ```
 
-The two examples have quite different results. In the first case, the panel is first moved 100 points to the right and then rotated 45 degrees. In the other case, the panel is first rotated 45 degrees. The positive `X`-direction is now 45 degrees downward, and so our panel ends up being moved toward the bottom right.
+The two examples have quite different results. In the first case, the panel is first moved 100 points to the right and then rotated 45 degrees. In the other case, the panel is first rotated 45 degrees. The positive X direction is now 45 degrees downward, and so our panel ends up being moved toward the bottom right.
 
 ### $(Translation)
 
@@ -394,21 +385,6 @@ You can rotate an element using:
 ### $(Shear)
 
 The `Shear` animator can be used to perform a shear mapping on an element. One can use `DegreesX` and `DegreesY` to set the shear on one axis, or `Degrees` and `Vector` to set the shear in both the X and Y plane, using degrees or radians.
-
-## $(Attractor)
-
-The `Attractor` is used to give a more natural movement to animations. It acts as an intermediary between an animator and its target. An `Attractor` will continuously animate its target towards its `Value` using a simple form of physics simulation. We can combine this behavior with animation by animating the attractor's `Value` property.
-
-```
-<Panel ux:Name="somePanel">
-	<Translation ux:Name="someTranslation"/>
-	<Attractor ux:Name="someAttractor" Target="someTranslation.X"/>
-	<WhilePressed>
-		<Change someAttractor.Value="100"/>
-	</WhilePressed>
-
-</Panel>
-```
 
 ## $(Actions)
 
@@ -924,7 +900,7 @@ This is achieved using the `LengthNode` property of @(SwipeGesture), and in this
 		</Panel>
 	</Panel>
 
-### $(Swiped)
+#### $(Swiped)
 
 `Swiped` is a pulse trigger that is invoked when a swipe has occurred.
 
@@ -950,7 +926,7 @@ We can control this behavior by setting the `How` property to either `ToActive` 
 		</WhileSwipeActive>
 	</Panel>
 
-### $(SetSwipeActive) and $(ToggleSwipeActive)
+#### $(SetSwipeActive) and $(ToggleSwipeActive)
 
 We can control the state of `Active` type @(SwipeGesture:SwipeGestures) by using the `SetSwipeActive` and `ToggleSwipeActive` actions.
 
@@ -974,7 +950,7 @@ If we wish to bypass the animation, `SetSwipeActive` lets us do that by setting 
 
 ## $(Viewport triggers)
 
-These triggers react when something happens to the app.
+These triggers react to changes in the geometry of the screen.
 
 ### $(WhileWindowLandscape)
 
@@ -994,14 +970,14 @@ The `WhileWindowPortrait` trigger is active whenever the app's viewport height i
 
 ### $(WhileWindowSize)
 
-The `WhileWindowSize` trigger has three float2-properties that control it's behavior:
+The `WhileWindowSize` trigger has three float2-properties that control its behavior:
 
  * `GreaterThan`
  * `LessThan`
  * `EqualTo`
 
 
-These properties have to be larger than 0, and are conditions the app viewport has to conform to in order for the trigger to be active. The following is an example that changes the background color of an app if the viewport size is greater than a certain size:
+These properties have to be larger than `0,0`, and are conditions the app viewport has to conform to in order for the trigger to be active. The following is an example that changes the background color of an app if the viewport size is greater than a certain size:
 
 ```
 <App Theme="Basic">
@@ -1033,6 +1009,12 @@ The `WhileEnabled` trigger is active whenever its containing @(Element:elements)
 The `WhileDisabled` trigger is active whenever the `IsEnabled` property of its containing @(Element:element) is set to `False`.
 
 ## $(Keyboard triggers)
+
+### $(WhileKeyboardVisible)
+
+`WhileKeyboardVisible` is active whenever the on-screen keyboard is visible.
+
+<!-- TODO: Example -->
 
 ### $(TextInputActionTriggered)
 
@@ -1086,15 +1068,6 @@ In the following example, we place a red @(Panel) if on an Android device and a 
 	</iOS>
 </Panel>
 ```
-
-### $(WhileKeyboardVisible)
-
-`WhileKeyboardVisible` is active whenever the on-screen keyboard is visible.
-
-<!-- TODO: Example -->
-
-<!-- ### WhileWindowAspect
-TODO: Did we change the name of this?-->
 
 ## WebView-specific triggers & actions
 
@@ -1185,7 +1158,7 @@ To make this feel better and allow return, we currently inject the user's JS in 
 (function() { USER_JS })();
 ```
 
-### Reading the result value
+#### Reading the result value
 
 When we evaluate the JavaScript we are currently bound by platform restrictions in a key way: String is the only allowed return value type on Android, our lowest common denominator. Android allows for parity with iOS as of API level 19, which denies us good backwards compatibility. For now we must rely on the comparatively ancient [addJavaScriptInterface](http://developer.android.com/reference/android/webkit/WebView.html#addJavascriptInterface(java.lang.Object, java.lang.String)) API for backwards compatibility.
 
@@ -1211,7 +1184,7 @@ The returned JSON string here is then put into a result object with the `json` k
 Note that of course return is optional. If you don't return anything from your evaluated JS the return value of the expression will simply be "null".
 
 
-## Special $(Animation)s
+## $(Special Animations)
 
 In Fuse terminology, *animations* are a certain category of triggers that animate in response to a higher level interpretation
 of input, events and logical state changes.

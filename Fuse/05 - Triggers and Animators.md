@@ -140,6 +140,10 @@ You may also specify a `Duration` to control the length of the animation.
 
 ### Transform animators
 
+Transform animators apply a transformation to an element. They do not affect layout, guaranteeing fast animations.
+
+All transform animators accept an *optional* `Target` property, indicating which element the transform should be applied to.
+
 #### $(Move)
 
 The `Move` animator is used to move an element. `Move` does not affect layout, so the element will just get an offset from its actual location.
@@ -585,7 +589,191 @@ Toggles a `Navigation`. This is currently only supported in @(EdgeNavigation), a
 
 Used on an `EdgeNavigation`, it will navigate to and from a @(Panel) with `EdgeNavigation.Edge` set, specified by using the `Target` property.
 
+## $(Gestures)
+
+Following are triggers which react to pointer gestures.
+
+### $(Clicked)
+
+`Clicked` is activated in response to a click @(Gestures:gesture). What constitutes a click-event can be platform specific, but usually means that the pointer was pressed and released within the bounds of the containing element.
+
+```
+<Panel Width="50" Height="50">
+	<Clicked>
+		<Scale Factor="2" Duration="0.2"/>
+	</Clicked>
+</Panel>
+```
+
+### $(Tapped)
+
+The `Tapped`-trigger is quite similar to the @(Clicked)-trigger. Where a click just means that the pointer has to be pressed and released on the element, a tap means that the pointer has to be released within a certain time after the pointer is pressed.
+
+### $(DoubleClicked)
+
+`DoubleClicked` is activated when the element has been @(Clicked) twice within a certain timeframe.
+
+### $(DoubleTapped)
+
+As with @(DoubleClicked), `DoubleTapped` is activated when the element has been @(Tapped) twice within a certain timeframe.
+
+### $(WhilePressed)
+
+`WhilePressed` is active while its containing element is being pressed and the pointer is inside its bounds.
+
+```
+<Panel Width="50" Height="50">
+	<WhilePressed>
+		<Scale Factor="2" Duration="0.2"/>
+	</WhilePressed>
+</Panel>
+```
+
+### $(WhileHovering)
+
+`WhileHovering` is active while the pointer is within the bounds if its containing @(Element).
+
+* Note: `WhileHovering` only has value when the device supports a hovering pointer, like the mouse pointer on desktop machines. For most smart phones this trigger won't have much value.
+
+### $(SwipeGesture:Swipe gestures)
+
+We use the `SwipeGesture` behavior when we want an element to handle swipe gestures.
+
+```
+<Panel>
+	<SwipeGesture Direction="Right" Length="100" Type="Active" />
+</Panel>
+```
+
+- `Direction="Right"` specifies that this should be a swipe-to-the-right gesture.
+- `Length="100"` means that the swipe has a length of 100 points in the specified `Direction`.
+- `Type="Active"` indicates that this should be a two-state swipe gesture that toggles between an inactive/active state.
+
+`SwipeGesture` accepts the following properties:
+
+- `Direction` specifies the direction of the swipe.
+	Possible values are `Left`, `Up`, `Right` and `Down`.
+- `Edge` can be used instead of `Direction`, and specifies an edge of the element that can be swiped from.
+	Possible values are `Left`, `Top`, `Right` and `Bottom`.
+- `HitSize` only applies when `Edge` is used, and specifies how far from the edge we can start swiping for it to be recognized.
+- `Length` specifies, in points, how far we can swipe in the specified `Direction`.
+- `LengthNode` can be used instead of `Length`. It references another element that should be measured to determine the length of the swipe.
+- `Type`
+	- `Active` indicates that swiping should toggle between an inactive/active state.
+	- `Simple` indicates that swiping should invoke a single, momentary action.
+
+The `SwipeGesture` behavior has no effect on its own. We need to apply our own triggers and animators to respond to the gesture.
+In the following sub-sections we will go through different triggers and actions we can use to respond to and control @(SwipeGesture:SwipeGestures).
+
+* Note: Since you have the possibility to attach multiple swipe gestures on the same element, the related triggers need to know which one you are referring to.
+We are therefore required to set the `Source` property of all swipe-related triggers to the @(SwipeGesture) it should respond to.
+
+#### $(SwipingAnimation)
+
+`SwipingAnimation` performs animation in response to an element being swiped.
+The most common use case is to move the element along with the pointer.
+
+	<Panel Width="100" Height="100" Background="#000">
+		<SwipeGesture ux:Name="swipe" Direction="Right" Length="200" />
+		<SwipingAnimation Source="swipe">
+			<Move X="200" />
+		</SwipingAnimation>
+	</Panel>
+
+Instead of using a fixed length for the swipe we may also determine it from the size of another element.
+This is achieved using the `LengthNode` property of @(SwipeGesture), and in this case the `RelativeNode` property of @(Move) as well.
+
+	<Panel ux:Name="parentContainer" Margin="40">
+		<Panel Width="60" Height="60" Background="#000" Alignment="Left">
+			<SwipeGesture ux:Name="swipe" Direction="Right" Type="Active" LengthNode="parentContainer" />
+			<SwipingAnimation Source="swipe">
+				<Move X="1" RelativeTo="Size" RelativeNode="parentContainer" />
+			</SwipingAnimation>
+		</Panel>
+	</Panel>
+
+#### $(Swiped)
+
+`Swiped` is a pulse trigger that is invoked when a swipe has occurred.
+
+	<Panel Width="100" Height="100">
+		<SwipeGesture ux:Name="swipe" Direction="Up" Length="50" Type="Simple" />
+		<Swiped Source="swipe">
+			<Scale Factor="1.5" Duration="0.4" DurationBack="0.2" />
+		</Swiped>
+	</Panel>
+
+By default, `Swiped` will only trigger when swiping to the primary swipe direction (when it enters the active state).
+For instance, if the @(SwipeGesture) has `Direction="Left"` it only triggers on a `Left` swipe and ignores the matching closing swipe.
+We can control this behavior by setting the `How` property to either `ToActive` (default), `ToInactive` or `ToEither`.
+
+#### $(WhileSwipeActive)
+
+`WhileSwipeActive` is active whenever a @(SwipeGesture) is active (when the user has swiped it "open").
+
+	<Panel Width="100" Height="100">
+		<SwipeGesture ux:Name="swipe" Direction="Up" Length="50" Type="Simple" />
+		<WhileSwipeActive Source="swipe">
+			<Scale Factor="1.5" Duration="0.4" DurationBack="0.2" />
+		</WhileSwipeActive>
+	</Panel>
+
+#### $(SetSwipeActive) and $(ToggleSwipeActive)
+
+We can control the state of `Active` type @(SwipeGesture:SwipeGestures) by using the `SetSwipeActive` and `ToggleSwipeActive` actions.
+
+	<SwipeGesture ux:Name="swipe" Direction="Right" Length="100" Type="Active" />
+	...
+	<StackPanel>
+		<Button Text="Close">
+			<Clicked>
+				<SetSwipeActive Target="swipe" Value="false" />
+			</Clicked>
+		</Button>
+
+		<Button Text="Toggle">
+			<Clicked>
+				<ToggleSwipeActive Target="swipe" />
+			</Clicked>
+		</Button>
+	</StackPanel>
+
+If we wish to bypass the animation, `SetSwipeActive` lets us do that by setting `Bypass="true"`.
+
+## Data triggers
+
+These triggers react to data changes, either from data binding or from the control context.
+
+### $(WhileTrue)
+
+`WhileTrue` is active while its `Value` property is `True` and inactive while it's false.
+
+### $(WhileFalse)
+
+`WhileFalse` is active while its `Value` property is `False` and inactive while it's true.
+
+<!-- ### WhileFailed
+TODO: I dont know what it does -->
+
 ## Native triggers
+
+### $(Platform triggers)
+
+Sometimes it can be necessary with platform specific code. This can be done by using the platform triggers `Android` and `iOS`.
+
+In the following example, we place a red @(Panel) if on an Android device and a blue @(Panel) if on an iOS device:
+
+```
+<Panel>
+	<Android>
+		<Panel Background="#f00" Alignment="Center" Width="150" Height="150"/>
+	</Android>
+	<iOS>
+		<Panel Background="#00f" Alignment="Center" Width="150" Height="150"/>
+	</iOS>
+</Panel>
+```
+
 
 ### $(WhileKeyboardVisible)
 
@@ -749,21 +937,6 @@ One can also specify the `TransitionType`, which can be either `Exclusive` or `P
 `Exclusive` means that each state will have to be fully deactivated before the next state becomes active.
 `Parallel` means that as one state deactivates, the next one will become active and whatever properties they animate will be interpolated between them.
 
-## Data triggers
-
-These triggers react to data changes, either from data binding or from the control context.
-
-### $(WhileTrue)
-
-`WhileTrue` is active while its `Value` property is `True` and inactive while it's false.
-
-### $(WhileFalse)
-
-`WhileFalse` is active while its `Value` property is `False` and inactive while it's true.
-
-<!-- ### WhileFailed
-TODO: I dont know what it does -->
-
 ## $(User events)
 
 User events are intended for sending messages between components of your application.
@@ -828,157 +1001,6 @@ function myHandler(args) {
 
 module.exports = { myHandler: myHandler }
 ```
-
-## $(Gestures)
-
-Following are triggers which react to pointer gestures.
-
-### $(WhilePressed)
-
-`WhilePressed` is active while its containing element is being pressed and the pointer is inside its bounds.
-
-```
-<Panel Width="50" Height="50">
-	<WhilePressed>
-		<Scale Factor="2" Duration="0.2"/>
-	</WhilePressed>
-</Panel>
-```
-
-### $(Clicked)
-
-`Clicked` is activated in response to a click @(Gestures:gesture). What constitutes a click-event can be platform specific, but usually means that the pointer was pressed and released within the bounds of the containing element.
-
-```
-<Panel Width="50" Height="50">
-	<Clicked>
-		<Scale Factor="2" Duration="0.2"/>
-	</Clicked>
-</Panel>
-```
-
-### $(Tapped)
-
-The `Tapped`-trigger is quite similar to the @(Clicked)-trigger. Where a click just means that the pointer has to be pressed and released on the element, a tap means that the pointer has to be released within a certain time after the pointer is pressed.
-
-### $(DoubleClicked)
-
-`DoubleClicked` is activated when the element has been @(Clicked) twice within a certain timeframe.
-
-### $(DoubleTapped)
-
-As with @(DoubleClicked), `DoubleTapped` is activated when the element has been @(Tapped) twice within a certain timeframe.
-
-### $(WhileHovering)
-
-`WhileHovering` is active while the pointer is within the bounds if its containing @(Element).
-
-* Note: `WhileHovering` only has value when the device supports a hovering pointer, like the mouse pointer on desktop machines. For most smart phones this trigger won't have much value.
-
-### $(SwipeGesture:Swipe gestures)
-
-We use the `SwipeGesture` behavior when we want an element to handle swipe gestures.
-
-```
-<Panel>
-	<SwipeGesture Direction="Right" Length="100" Type="Active" />
-</Panel>
-```
-
-- `Direction="Right"` specifies that this should be a swipe-to-the-right gesture.
-- `Length="100"` means that the swipe has a length of 100 points in the specified `Direction`.
-- `Type="Active"` indicates that this should be a two-state swipe gesture that toggles between an inactive/active state.
-
-`SwipeGesture` accepts the following properties:
-
-- `Direction` specifies the direction of the swipe.
-	Possible values are `Left`, `Up`, `Right` and `Down`.
-- `Edge` can be used instead of `Direction`, and specifies an edge of the element that can be swiped from.
-	Possible values are `Left`, `Top`, `Right` and `Bottom`.
-- `HitSize` only applies when `Edge` is used, and specifies how far from the edge we can start swiping for it to be recognized.
-- `Length` specifies, in points, how far we can swipe in the specified `Direction`.
-- `LengthNode` can be used instead of `Length`. It references another element that should be measured to determine the length of the swipe.
-- `Type`
-	- `Active` indicates that swiping should toggle between an inactive/active state.
-	- `Simple` indicates that swiping should invoke a single, momentary action.
-
-The `SwipeGesture` behavior has no effect on its own. We need to apply our own triggers and animators to respond to the gesture.
-In the following sub-sections we will go through different triggers and actions we can use to respond to and control @(SwipeGesture:SwipeGestures).
-
-* Note: Since you have the possibility to attach multiple swipe gestures on the same element, the related triggers need to know which one you are referring to.
-We are therefore required to set the `Source` property of all swipe-related triggers to the @(SwipeGesture) it should respond to.
-
-#### $(SwipingAnimation)
-
-`SwipingAnimation` performs animation in response to an element being swiped.
-The most common use case is to move the element along with the pointer.
-
-	<Panel Width="100" Height="100" Background="#000">
-		<SwipeGesture ux:Name="swipe" Direction="Right" Length="200" />
-		<SwipingAnimation Source="swipe">
-			<Move X="200" />
-		</SwipingAnimation>
-	</Panel>
-
-Instead of using a fixed length for the swipe we may also determine it from the size of another element.
-This is achieved using the `LengthNode` property of @(SwipeGesture), and in this case the `RelativeNode` property of @(Move) as well.
-
-	<Panel ux:Name="parentContainer" Margin="40">
-		<Panel Width="60" Height="60" Background="#000" Alignment="Left">
-			<SwipeGesture ux:Name="swipe" Direction="Right" Type="Active" LengthNode="parentContainer" />
-			<SwipingAnimation Source="swipe">
-				<Move X="1" RelativeTo="Size" RelativeNode="parentContainer" />
-			</SwipingAnimation>
-		</Panel>
-	</Panel>
-
-#### $(Swiped)
-
-`Swiped` is a pulse trigger that is invoked when a swipe has occurred.
-
-	<Panel Width="100" Height="100">
-		<SwipeGesture ux:Name="swipe" Direction="Up" Length="50" Type="Simple" />
-		<Swiped Source="swipe">
-			<Scale Factor="1.5" Duration="0.4" DurationBack="0.2" />
-		</Swiped>
-	</Panel>
-
-By default, `Swiped` will only trigger when swiping to the primary swipe direction (when it enters the active state).
-For instance, if the @(SwipeGesture) has `Direction="Left"` it only triggers on a `Left` swipe and ignores the matching closing swipe.
-We can control this behavior by setting the `How` property to either `ToActive` (default), `ToInactive` or `ToEither`.
-
-#### $(WhileSwipeActive)
-
-`WhileSwipeActive` is active whenever a @(SwipeGesture) is active (when the user has swiped it "open").
-
-	<Panel Width="100" Height="100">
-		<SwipeGesture ux:Name="swipe" Direction="Up" Length="50" Type="Simple" />
-		<WhileSwipeActive Source="swipe">
-			<Scale Factor="1.5" Duration="0.4" DurationBack="0.2" />
-		</WhileSwipeActive>
-	</Panel>
-
-#### $(SetSwipeActive) and $(ToggleSwipeActive)
-
-We can control the state of `Active` type @(SwipeGesture:SwipeGestures) by using the `SetSwipeActive` and `ToggleSwipeActive` actions.
-
-	<SwipeGesture ux:Name="swipe" Direction="Right" Length="100" Type="Active" />
-	...
-	<StackPanel>
-		<Button Text="Close">
-			<Clicked>
-				<SetSwipeActive Target="swipe" Value="false" />
-			</Clicked>
-		</Button>
-
-		<Button Text="Toggle">
-			<Clicked>
-				<ToggleSwipeActive Target="swipe" />
-			</Clicked>
-		</Button>
-	</StackPanel>
-
-If we wish to bypass the animation, `SetSwipeActive` lets us do that by setting `Bypass="true"`.
 
 ## $(Viewport triggers)
 
@@ -1062,23 +1084,6 @@ It also accepts a `Target` property, which specifies which element to give focus
 ### $(ReleaseFocus)
 
 When activated, `ReleaseFocus` removes focus from the currently focused @(Element:element).
-
-## $(Platform triggers)
-
-Sometimes it can be necessary with platform specific code. This can be done by using the platform triggers `Android` and `iOS`.
-
-In the following example, we place a red @(Panel) if on an Android device and a blue @(Panel) if on an iOS device:
-
-```
-<Panel>
-	<Android>
-		<Panel Background="#f00" Alignment="Center" Width="150" Height="150"/>
-	</Android>
-	<iOS>
-		<Panel Background="#00f" Alignment="Center" Width="150" Height="150"/>
-	</iOS>
-</Panel>
-```
 
 ## WebView-specific triggers & actions
 

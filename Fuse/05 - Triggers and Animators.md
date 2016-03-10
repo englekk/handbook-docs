@@ -14,14 +14,14 @@ For example, here is a @(Panel) with a @(WhilePressed) trigger causing the panel
 </Panel>
 ```
 
-> ### Video introduction to Triggers and Animators
+> ## Video introduction to Triggers and Animators
 
 [YOUTUBE bT1npBvXEzw]
 
 <!-- TODO:
 * Explain how triggers are a timeline, plays forwards/backwards, applies/unapplies -->
 
-### $(Rest state) and deviation
+## $(Rest state) and deviation
 
 The default layout and configuration of UX markup elements is called the rest state.
 Triggers define deviations from this rest state.

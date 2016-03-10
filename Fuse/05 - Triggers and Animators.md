@@ -207,8 +207,8 @@ You can scale an element uniformly along all axes by using the `Factor` property
 
 `Scale` can be used relative to something using the `RelativeTo` property. The two choices are:
 
-* `SizeChange` - resizes relative to the change in size of the element specified by the `RelativeNode` property.
-* `SizeFactor` - resizes with a factor relative to another element, specified by `RelativeNode`. A factor of `1` would make it the same size as the `RelativeNode`, while a factor of `0.5` would make it half the size, and so on.
+* `SizeChange` - scales relative to the change in size of the element specified by the `RelativeNode` property.
+* `SizeFactor` - scales with a factor relative to another element, specified by `RelativeNode`. A factor of `1` would make it the same size as the `RelativeNode`, while a factor of `0.5` would make it half the size, and so on.
 
 #### $(Rotate)
 
@@ -555,53 +555,85 @@ With `BringToFront`, one can bring the element specified by the `Target` propert
 </DockPanel>
 ```
 
+### $(TransitionLayout)
+
+The `TransitionLayout` action lets you create a temporary layout change.
+This can be used to do visual layout transitions without needing actual layout changes.
+
+It has no noticeable effect on its own, and needs to be combined with a @(LayoutAnimation).
+The @(LayoutAnimation) will in turn be triggered by this action.
+
+	<DockPanel>
+		<Panel Dock="Top" Height="20" ux:Name="originElement" />
+
+		<Button Height="100" Dock="Bottom" Text="Transition!">
+			<LayoutAnimation>
+				<Move X="1" Y="1" RelativeTo="WorldPositionChange" Duration="1" />
+				<Resize X="1" Y="1" RelativeTo="SizeChange" Duration="1" />
+			</LayoutAnimation>
+			<Clicked>
+				<TransitionLayout From="originElement" />
+			</Clicked>
+		</Button>
+	</DockPanel>
+
+When clicked, the @(Button) in this example will perform a transition over 1 second from the position and size of `originElement` (top edge of the @(DockPanel)) to its actual position and size (bottom edge of the @(DockPanel)).
+
 ### $(NavigateToggle)
 
 Toggles a `Navigation`. This is currently only supported in @(EdgeNavigation), and will do nothing if used on another type of navigation.
 
 Used on an `EdgeNavigation`, it will navigate to and from a @(Panel) with `EdgeNavigation.Edge` set, specified by using the `Target` property.
 
+## Native triggers
+
+### $(WhileKeyboardVisible)
+
+`WhileKeyboardVisible` is active whenever the on-screen keyboard is visible.
+
+<!-- TODO: Example -->
+
+### $(TextInputActionTriggered)
+
+`TextInputActionTriggered` is triggered when the user presses the return key while editing a @(TextInput).
+The following example demonstrates how you can respond to this by releasing focus from the input, thereby hiding the on-screen keyboard.
+
+```
+<TextInput>
+	<TextInputActionTriggered>
+		<ReleaseFocus />
+	</TextInputActionTriggered>
+</TextInput>
+```
 
 ### $(OnBackButton)
 
-This trigger fires when the user presses either a physical or emulated back button on their device. The folllowing code will flash the screen green when the back button is pressed:
+This trigger fires when the user presses either a physical or emulated back button on their device. The following code will flash the screen blue when the back button is pressed:
 
 ```
-<App Theme="Basic">
-  <Panel>
-    <SolidColor ux:Name="rect" Color="#F00" />
-    <WhileTrue ux:Name="backPulse" Value="false">
-      <Change rect.Color="#0F0" Duration="0.2" />
-    </WhileTrue>
-    <OnBackButton>
-      <Pulse Target="backPulse" />
-    </OnBackButton>
-  </Panel>
-</App>
+<Panel>
+	<Rectangle ux:Name="rect" Layer="Background" Color="#F00" />
+	<OnBackButton>
+		<Change rect.Color="#00F" Duration="0.2" />
+	</OnBackButton>
+</Panel>
 ```
 
-### $(OnButtonPressed)
+> ### $(OnKeyPress)
 
-`OnButtonPressed` is triggered when the key specified by the property `Key` is pressed. The following example will flash the screen blue when the "menu" button is pressed. This button is present on some android devices.
+`OnKeyPress` is triggered when the key specified by the property `Key` is pressed.
+The following example will flash the screen blue when the "menu" button (which is present on some older android devices) is pressed.
 
 ```
-<App Theme="Basic">
-  <Panel>
-    <SolidColor ux:Name="solidColor" Color="#F00" />
-    <WhileTrue ux:Name="menuPulse" Value="false">
-      <Change solidColor.Color="#00F" Duration="0.2" />
-    </WhileTrue>
-    <OnKeyPress Key="MenuButton">
-      <Pulse Target="menuPulse" />
-    </OnKeyPress>
-  </Panel>
-</App>
+<Panel>
+	<Rectangle ux:Name="rect" Layer="Background" Color="#F00" />
+	<OnKeyPress Key="MenuButton">
+		<Change rect.Color="#00F" Duration="0.2" />
+	</OnKeyPress>
+</Panel>
 ```
 
 For a complete list of supported keys, check out the [Key enum](https://www.fusetools.com/learn/uno/api/uno/platform/key) list.
-
-<!--  ### $(BringToFront)
-AUTH: TODO: Do we need to discuss Z-ordering? -->
 
 ## Native actions
 
@@ -1007,27 +1039,6 @@ The `WhileEnabled` trigger is active whenever its containing @(Element:elements)
 ### $(WhileDisabled)
 
 The `WhileDisabled` trigger is active whenever the `IsEnabled` property of its containing @(Element:element) is set to `False`.
-
-## $(Keyboard triggers)
-
-### $(WhileKeyboardVisible)
-
-`WhileKeyboardVisible` is active whenever the on-screen keyboard is visible.
-
-<!-- TODO: Example -->
-
-### $(TextInputActionTriggered)
-
-`TextInputActionTriggered` is triggered when the user presses the return key while editing a @(TextInput).
-The following example demonstrates how you can hide the keyboard in response.
-
-```
-<TextInput>
-	<TextInputActionTriggered>
-		<ReleaseFocus />
-	</TextInputActionTriggered>
-</TextInput>
-```
 
 ## $(Focus triggers and actions)
 

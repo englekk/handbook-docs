@@ -686,119 +686,6 @@ Vibrates the device for a given number of seconds. Note: iOS will not honor any 
 
 	<Vibrate Duration="0.8" />
 
-## WebView-specific triggers & actions
-
-### $(PageBeginLoading)
-
-Triggers once the @(WebView) begins loading new content.
-
-```
-<NativeViewHost>
-	<WebView Url="http://fusetools.com">
-		<PageBeginLoading>
-			<DebugAction Message="Page began to load!"/>
-		</PageBeginLoading>
-	</WebView>
-</NativeViewHost>
-```
-
-### $(WhilePageLoading)
-
-Becomes active when a @(WebView) Url changes, and stays active until it has completed loading content.
-
-### $(PageLoaded)
-
-Triggers once the @(WebView) has completed loading content from its current Url.
-
-```
-<NativeViewHost>
-	<WebView Url="http://fusetools.com">
-		<PageLoaded>
-			<DebugAction Message="Arrived at page!"/>
-		</PageLoaded>
-	</WebView>
-</NativeViewHost>
-```
-
-### $(Reload)
-
-The `Reload` action lets you tell a given WebView to reload its current location.
-
-`<Reload TargetNode="myWebView" />`
-
-### $(LoadUrl)
-
-The `LoadUrl` action lets you tell a given WebView to navigate to a location.
-
-`<LoadUrl TargetNode="myWebView" Url="http://mypage.com" />`
-
-### $(LoadHtml)
-
-The `LoadHtml` action lets you feed a given WebView with raw HTML to display when triggered, alongside a base url to set the HTML's context. This is either done by pointing the action's `Source` attribute to a databound HTML string, or by wrapping an @(HTML) and putting the HTML in the node body, like this:
-
-```XML
-<LoadHtml TargetNode="myWebView" BaseUrl="http://my.domain">
-	<HTML>
-		<![CDATA[
-			<h1>Boom!</h1>
-		]]>
-	</HTML>
-</LoadHtml>
-```
-
-> ### $(EvaluateJS)
-
-The WebView offers limited execution of arbitrary JavaScript in the currently loaded web environment. This is done with the `<EvaluateJS/>` action. Let's look at a simplified example.
-
-```XML
-<EvaluateJS Handler="{onPageLoaded}">
-	var result = {
-		url : document.location.href
-	};
-	return result;
-</EvaluateJS>
-```
-
-Note the use of a `return` statement in the script body. Implementations of JavaScript evaluation APIs generally act like a JavaScript [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop), and when evaluating multiple lines of JS the result of the last statement of the script becomes the returned value. For instance, "1+5" is completely valid JS when evaluated and returns the expected value of "6".
-
-This can result in odd-feeling JS, where referencing an object becomes an implicit return statement, whereas an explicit return is not allowed.
-
-```JavaScript
-var result = {};
-result.foo = "bar";
-result; // using return here is invalid JS
-```
-
-To make this feel better and allow return, we currently inject the user's JS in the form of a function:
-
-```JavaScript
-(function() { USER_JS })();
-```
-
-### Reading the result value
-
-When we evaluate the JavaScript we are currently bound by platform restrictions in a key way: String is the only allowed return value type on Android, our lowest common denominator. Android allows for parity with iOS as of API level 19, which denies us good backwards compatibility. For now we must rely on the comparatively ancient [addJavaScriptInterface](http://developer.android.com/reference/android/webkit/WebView.html#addJavascriptInterface(java.lang.Object, java.lang.String)) API for backwards compatibility.
-
-What this means is that any return value passed from the evaluated script must by necessity be returned as JSON and parsed back from it on the Fuse end. Even if all you want is the result of some arithmetic, you'd still receive it as a string and require a cast. Instead of forcing you to routinely `return JSON.stringify(foo)` from your own JS we handle this by *always* wrapping your JS in JSON.stringify before evaluation:
-
-```JavaScript
-JSON.stringify( (USER_JS)(); );
-```
-
-The returned JSON string here is then put into a result object with the `json` key. This is for clarity, so you never forget that the data you are receiving is a JSON string that you will need to parse.
-
-```XML
-<JavaScript>
-	module.exports = {
-		onPageLoaded : function(result)
-		{
-			var url = JSON.parse(result.json).url;
-		}
-	};
-</JavaScript>
-```
-
-Note that of course return is optional. If you don't return anything from your evaluated JS the return value of the expression will simply be "null".
 
 ## $(State groups)
 
@@ -1217,6 +1104,121 @@ In the following example, we place a red @(Panel) if on an Android device and a 
 
 <!-- ### WhileWindowAspect
 TODO: Did we change the name of this?-->
+
+## WebView-specific triggers & actions
+
+### $(PageBeginLoading)
+
+Triggers once the @(WebView) begins loading new content.
+
+```
+<NativeViewHost>
+	<WebView Url="http://fusetools.com">
+		<PageBeginLoading>
+			<DebugAction Message="Page began to load!"/>
+		</PageBeginLoading>
+	</WebView>
+</NativeViewHost>
+```
+
+### $(WhilePageLoading)
+
+Becomes active when a @(WebView) Url changes, and stays active until it has completed loading content.
+
+### $(PageLoaded)
+
+Triggers once the @(WebView) has completed loading content from its current Url.
+
+```
+<NativeViewHost>
+	<WebView Url="http://fusetools.com">
+		<PageLoaded>
+			<DebugAction Message="Arrived at page!"/>
+		</PageLoaded>
+	</WebView>
+</NativeViewHost>
+```
+
+### $(Reload)
+
+The `Reload` action lets you tell a given WebView to reload its current location.
+
+`<Reload TargetNode="myWebView" />`
+
+### $(LoadUrl)
+
+The `LoadUrl` action lets you tell a given WebView to navigate to a location.
+
+`<LoadUrl TargetNode="myWebView" Url="http://mypage.com" />`
+
+### $(LoadHtml)
+
+The `LoadHtml` action lets you feed a given WebView with raw HTML to display when triggered, alongside a base url to set the HTML's context. This is either done by pointing the action's `Source` attribute to a databound HTML string, or by wrapping an @(HTML) and putting the HTML in the node body, like this:
+
+```XML
+<LoadHtml TargetNode="myWebView" BaseUrl="http://my.domain">
+	<HTML>
+		<![CDATA[
+			<h1>Boom!</h1>
+		]]>
+	</HTML>
+</LoadHtml>
+```
+
+> ### $(EvaluateJS)
+
+The WebView offers limited execution of arbitrary JavaScript in the currently loaded web environment. This is done with the `<EvaluateJS/>` action. Let's look at a simplified example.
+
+```XML
+<EvaluateJS Handler="{onPageLoaded}">
+	var result = {
+		url : document.location.href
+	};
+	return result;
+</EvaluateJS>
+```
+
+Note the use of a `return` statement in the script body. Implementations of JavaScript evaluation APIs generally act like a JavaScript [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop), and when evaluating multiple lines of JS the result of the last statement of the script becomes the returned value. For instance, "1+5" is completely valid JS when evaluated and returns the expected value of "6".
+
+This can result in odd-feeling JS, where referencing an object becomes an implicit return statement, whereas an explicit return is not allowed.
+
+```JavaScript
+var result = {};
+result.foo = "bar";
+result; // using return here is invalid JS
+```
+
+To make this feel better and allow return, we currently inject the user's JS in the form of a function:
+
+```JavaScript
+(function() { USER_JS })();
+```
+
+### Reading the result value
+
+When we evaluate the JavaScript we are currently bound by platform restrictions in a key way: String is the only allowed return value type on Android, our lowest common denominator. Android allows for parity with iOS as of API level 19, which denies us good backwards compatibility. For now we must rely on the comparatively ancient [addJavaScriptInterface](http://developer.android.com/reference/android/webkit/WebView.html#addJavascriptInterface(java.lang.Object, java.lang.String)) API for backwards compatibility.
+
+What this means is that any return value passed from the evaluated script must by necessity be returned as JSON and parsed back from it on the Fuse end. Even if all you want is the result of some arithmetic, you'd still receive it as a string and require a cast. Instead of forcing you to routinely `return JSON.stringify(foo)` from your own JS we handle this by *always* wrapping your JS in JSON.stringify before evaluation:
+
+```JavaScript
+JSON.stringify( (function() { USER_JS })() );
+```
+
+The returned JSON string here is then put into a result object with the `json` key. This is for clarity, so you never forget that the data you are receiving is a JSON string that you will need to parse.
+
+```XML
+<JavaScript>
+	module.exports = {
+		onPageLoaded : function(result)
+		{
+			var url = JSON.parse(result.json).url;
+		}
+	};
+</JavaScript>
+```
+
+Note that of course return is optional. If you don't return anything from your evaluated JS the return value of the expression will simply be "null".
+
 
 ## Special $(Animation)s
 

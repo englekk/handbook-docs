@@ -460,7 +460,7 @@ The `Callback` action is used to call a JavaScript function (see @(Data Binding)
 ```
 <JavaScript>
 	var someJSFunction = function () {
-		Console.Log("some function called");
+		console.log("some function called");
 	}
 	module.exports = { someJSFunction: someJSFunction };
 </JavaScript>

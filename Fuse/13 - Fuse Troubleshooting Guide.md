@@ -1,7 +1,7 @@
 # $(Fuse Troubleshooting Guide)
 
 ## General tips
-- When you have upgraded Fuse since the last time you built a project, clean the project before building (run `uno clean`).
+- When you have upgraded Fuse since the last time you built a project, clean the project before building (run `uno clean` in a terminal in the project folder).
 
 ## Logs
 When investigating issues it's often useful to check the logs written by Fuse and the editor plugins. These can be be found in:

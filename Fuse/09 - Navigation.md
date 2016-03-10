@@ -8,11 +8,13 @@ Lets take a look at a simple case: we want a set of @(Page:pages) which we can @
 
 To start off, we make a set of @(Panel:panels) which represents our @(Page:pages).
 
-	<Panel>
-		<Panel Background="Red"/>
-		<Panel Background="Blue"/>
-		<Panel Background="Green"/>
-	</Panel>
+```
+<Panel>
+	<Panel Background="Red"/>
+	<Panel Background="Blue"/>
+	<Panel Background="Green"/>
+</Panel>
+```
 
 Currently this is just a @(Panel) with three @(Panel:panels) inside it. To make our swipe navigation possible, we need to add three things.
 
@@ -23,17 +25,21 @@ Currently this is just a @(Panel) with three @(Panel:panels) inside it. To make 
 We start off by adding a @(LinearNavigation)- and a @(SwipeNavigate) behavior.
 The @(LinearNavigation) is just one of several @(Navigation types:types of navigation) that can be used.
 
-	<Panel>
-		<LinearNavigation Easing="CircularOut"/>
-		<SwipeNavigate SwipeDirection="Left"/>
-		<Panel Background="Red"/>
-		<Panel Background="Blue"/>
-		<Panel Background="Green"/>
-	</Panel>
+```
+<Panel>
+	<LinearNavigation />
+	<SwipeNavigate SwipeDirection="Left"/>
+	<Panel Background="Red"/>
+	<Panel Background="Blue"/>
+	<Panel Background="Green"/>
+</Panel>
+```
 
-This adds all the behavior we need for navigation, but this is not enough to let us swipe between pages. The pages don't know how to animate themselves when they @(EnteringAnimation:enter) or @(ExitingAnimation:exit). For that we use @(EnteringAnimation) and @(ExitingAnimation).
+This adds all the behavior we need for navigation, but this is not enough to let us swipe between pages.
+The pages don't know how to animate themselves when they @(EnteringAnimation:enter) or @(ExitingAnimation:exit).
+For that we @(Creating custom UI components:subclass) @(Panel) and add both an @(EnteringAnimation) and an @(ExitingAnimation).
 
-
+```
 <Panel>
 	<Panel ux:Class="NavPanel">
 		<EnteringAnimation>
@@ -43,11 +49,13 @@ This adds all the behavior we need for navigation, but this is not enough to let
 			<Move X="1" RelativeTo="ParentSize" Duration="0.5"/>
 		</ExitingAnimation>
 	</Panel>
-	<LinearNavigation Easing="CircularOut" />
+	<LinearNavigation />
 	<SwipeNavigate SwipeDirection="Left"/>
-	<NavPanel Background="Blue"/>
 	<NavPanel Background="Red"/>
+	<NavPanel Background="Blue"/>
+	<NavPanel Background="Green"/>
 </Panel>
+```
 
 Now the @(Panel:panels) will move to the side when they are navigate to and from by the width of their parent container.
 

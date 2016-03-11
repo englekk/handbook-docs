@@ -180,8 +180,7 @@ You can also set the @(StretchMode) for the contents, which defaults to `Uniform
 In the previous sections, we've been talking about different types of @(Panel:panels) and how they perform layout on their children.
 Under the hood, these are regular @(Panel:Panels) that have been assigned a `Layout`.
 
-For instance, @(StackPanel) is essentially a @(Panel) whose `Layout` is set to an instance of @(StackLayout). This means that the following snippets are equivalent of each other.
-
+For instance, @(StackPanel) is essentially a @(Panel) whose `Layout` is set to an instance of $(StackLayout). This means that the following snippets are equivalent of each
 ```
 <StackPanel>
 	...

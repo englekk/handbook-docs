@@ -1,12 +1,12 @@
 # $(Physics)
 
-Some types of animation ([like this one](https://www.fusetools.com/developers/examples/swipeplaces)) are best described using Physics simulation. Fuse comes with a set of physics based triggers and behaviors which can be used for these situations. 
+Some types of animation ([like this one](https://www.fusetools.com/developers/examples/swipeplaces)) are best described using Physics simulation. Fuse comes with a set of physics based triggers and behaviors which can be used for these situations.
 
 _Note: When using physics, make sure your @(Project structure:project) has a reference to the Fuse.Physics package._
 
 ## $(Physics Rules)
 
-Physics simulation is achieved by using different types of physics behaviors to create spaces in which elements are affected dynamically in various ways. Each physics behavior knows how to simulate a certain kind of force, and how to apply this to each frame of the animation. Affected elements can respond to multiple forces at a time. We can add additional customization to the animation by using the related @(Trigger:triggers) to animate based on certain physics @(ForceField triggers:events). Physics behaviors are categorized 
+Physics simulation is achieved by using different types of physics behaviors to create spaces in which elements are affected dynamically in various ways. Each physics behavior knows how to simulate a certain kind of force, and how to apply this to each frame of the animation. Affected elements can respond to multiple forces at a time. We can add additional customization to the animation by using the related @(Trigger:triggers) to animate based on certain physics events. Physics behaviors are categorized
 
 ### $(Draggable)
 
@@ -41,9 +41,9 @@ Force fields are physics behaviors that continously affect elements within their
 
 #### $(PointAttractor)
 
-The `PointAttractor` is used to create a circular area of influence that pulls idle @(Draggable:draggable) @(Element:elements) towards its center. 
+The `PointAttractor` is used to create a circular area of influence that pulls idle @(Draggable:draggable) @(Element:elements) towards its center.
 
-*Properties:* 
+*Properties:*
 - Offset - Set the position of the `PointAttractor` relative to its container
 - Radius - The radius from the point where the attractor will have an effect.
 - Strength - How much attraction is applied to the affected elements.
@@ -64,15 +64,15 @@ AUTH: Buggy?
 
 ### $(Force field triggers)
 
-Force field triggers activate based on whether their parent @(Element) is affected by a force field or not. 
+Force field triggers activate based on whether their parent @(Element) is affected by a force field or not.
 
-*Common properties:* 
+*Common properties:*
 - `ForceField` - The force field needed to enter to activate this @(Trigger).
 
 #### $(EnteredForceField)
 
 `EnteredForceField` is a pulse trigger which which activates when the @(Element) enters the specified `ForceField`.
-Being a pulse trigger, means that the @(Animation:animations)/@(Actions:actions) inside the trigger will be played forwards and then backwards in one continuous run. You can modify the `Threshold` attribute to specify how close the @(Element) has to be to activate the trigger, working in unison with the `Radius` property of the force field in question.
+Being a pulse trigger, means that the @(Animators:animations)/@(Actions:actions) inside the trigger will be played forwards and then backwards in one continuous run. You can modify the `Threshold` attribute to specify how close the @(Element) has to be to activate the trigger, working in unison with the `Radius` property of the force field in question.
 
 #### $(ExitedForceField)
 

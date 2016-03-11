@@ -97,6 +97,8 @@ An inner class is a class that belongs to a certain scope and has access to `ux:
 
 ### Example
 
+> A known bug causes this example to sometimes crash the compiler in Fuse 0.10. This issue has been fixed, and the fix will roll out in Fuse 0.11 soon. Thanks for your patience, and thanks for reporting bugs in our forums :)
+
 	<App Theme="Basic">
 		<Button ux:InnerClass="ActivateButton" ux:Name="btn" Margin="10">
 			<Clicked>

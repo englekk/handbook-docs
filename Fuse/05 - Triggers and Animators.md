@@ -52,7 +52,7 @@ In the following example, the total duration of the @(WhileTrue) trigger will be
 
 ### $(Delay)/$(DelayBack)
 
-Setting the `Delay` property results in the actual animation being delayed by that amount of seconds. `DelayBack` is used to set a different delay on the backward animation. The total duration of the animation becomes the delay + the duration. The following @(Change:change) animator has a total duration of 7 seconds. It waits 5 seconds after being activated and then animates its @(Target) over 2 seconds.
+Setting the `Delay` property results in the actual animation being delayed by that amount of seconds. `DelayBack` is used to set a different delay on the backward animation. The total duration of the animation becomes the delay + the duration. The following @(Change:change) animator has a total duration of 7 seconds. It waits 5 seconds after being activated and then animates its target element over 2 seconds.
 
 ```
 <Change Delay="5" Duration="2" someElement.Height="100"/>

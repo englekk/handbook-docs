@@ -14,42 +14,26 @@ For example, here is a @(Panel) with a @(WhilePressed) trigger causing the panel
 </Panel>
 ```
 
-> ### Video introduction to Triggers and Animators
+> ## Video introduction to Triggers and Animators
 
 [YOUTUBE bT1npBvXEzw]
 
 <!-- TODO:
 * Explain how triggers are a timeline, plays forwards/backwards, applies/unapplies -->
 
-As well as animating properties, one can also use triggers to add and remove entire elements.
+## $(Rest state) and deviation
 
-### $(Rest state) and deviation
-
-The default layout and configuration of UX markup elements is called the rest state. Triggers define deviations from this rest state. Each trigger knows how to "un-apply" its own animation to return the rest state, even if interrupted mid-animation. This is great, because it means animation is completely separated from the logical state of your program, greatly reducing the complexity of dealing with combined animation on
+The default layout and configuration of UX markup elements is called the rest state.
+Triggers define deviations from this rest state.
+Each trigger knows how to "un-apply" its own animation to return to the rest state, even if interrupted mid-animation.
+This is great because it means animation is completely separated from the logical state of your program, greatly reducing the complexity of dealing with combined animation on
 multiple devices, screen sizes, with real data and real user input.
 
 
 ## Animators
 
 Animators are used to specify which and how @(Element:elements) are to be animated when a @(Trigger:trigger) is triggered.
-There are five pairs of properties which are important for controlling the exact result of an animation.
-
-### $(Target)/Value
-
-The `Target` property is used to identify the property which we intend to animate.
-The `Value` property is the value of the result of an animation.
-
-Because the task of setting a target and value is so common, UX has a special syntax for this. Instead of
-
-```
-<Change Target="target.Property" Value="Value"/>
-```
-
-one can do the following:
-
-```
-<Change target.Property="Value"/>
-```
+There are three pairs of properties which are important for controlling the exact result of an animation.
 
 ### $(Duration)/$(DurationBack)
 
@@ -113,31 +97,69 @@ TODO/AUTH: Write about mixop-->
 ### $(Change)
 
 `Change` temporarily changes the value of a property while its containing trigger is active. To permanently change a value, use the @(Set) animator.
+
+The `Target` property refers to the property that we intend to animate.
+The `Value` property is the value of the result of the animation.
+
+Because the task of setting a target property and value is so common, UX has a special syntax for this. Instead of
+
+```
+<Change Target="target.Property" Value="Value"/>
+```
+
+one can do the following:
+
+```
+<Change target.Property="Value"/>
+```
+
 The `Change` animator can be used to animate almost any property.
 
 ```
-<Panel ux:Name="somePanel">
-	<SolidColor ux:Name="someColor" Color="Red"/>
-</Panel>
+<Panel ux:Name="somePanel" Color="Red" />
+
 <Change somePanel.Opacity="0"/>
-<Change someColor.Color="Blue" Duration="0.3"/>
+<Change somePanel.Color="Blue" Duration="0.3"/>
 <Change somePanel.Visibility="Collapsed"/>
 ```
 
 One can also animate such properties as `Width`, `Height` and `Margin`, but because these properties might affect the entire layout of your UI, this can end up being quite costly in terms of performance. There are usually more effective ways to do animations that interact with layout. Check out @(LayoutAnimation) and @(MultiLayoutPanel) for some inspiration.
 
-### $(Move)
+> ### $(Cycle)
+
+`Cycle` continuously animates a property between two values at a given frequency.
+
+	<Panel>
+		<Translation ux:Name="someTranslation" />
+		<WhilePressed>
+			<Cycle Target="someTranslation.X" Low="-20" High="20" Frequency="2" />
+		</WhilePressed>
+	</Panel>
+
+You may also specify a `Duration` to control the length of the animation.
+
+### Transform animators
+
+Transform animators apply a transformation to an element. They do not affect layout, guaranteeing fast animations.
+
+All transform animators accept an *optional* `Target` property, indicating which element the transform should be applied to.
+
+#### $(Move)
 
 The `Move` animator is used to move an element. `Move` does not affect layout, so the element will just get an offset from its actual location.
 
-	<Move X="50" />
+```
+<Move X="50" />
+```
 
 When triggered, this will move the element by 50 points in the X direction.
 
 You may want for an element to move relative to its own size or some other elements size.
 To achieve this we can use the @(RelativeTo) property, for instance:
 
-	<Move X="0.5" RelativeTo="Size" />
+```
+<Move X="0.5" RelativeTo="Size" />
+```
 
 When triggered, this will move the element by half of its own width in the X-direction.
 
@@ -148,7 +170,7 @@ $(RelativeTo) can be set to the following values:
 - `ParentSize`: Same as `Size` but uses the elements parents size instead.
 - `PositionChange`: Used in response to a @(LayoutAnimation) to move the element by the amount of change in position within it's parent.
 - `WorldPositionChange`: Used in response to a @(LayoutAnimation) to move the element by the amount of change in position relative to the entire display.
-- `Keyboard`: Moves the element relative to the size of the eyboard.
+- `Keyboard`: Moves the element relative to the size of the keyboard.
 
 The `RelativeNode` property lets you move an element relative to another. In that case, you may use the following `RelativeTo` modes:
 
@@ -156,7 +178,7 @@ The `RelativeNode` property lets you move an element relative to another. In tha
 - `ParentSize`: Same as `Size` but measures the `RelativeNode`'s parent size instead.
 - `PositionOffset`: Moves the element to be in the same position as the element specified by `RelativeNode`.
   The offset is measured as the difference in `ActualPosition` between the two elements.
-- `TransformOriginOffset`: Works like `PositionOffset`, but insted measures the difference in `TransformOrigin`.
+- `TransformOriginOffset`: Works like `PositionOffset`, but instead measures the difference in `TransformOrigin`.
 
 Move corresponds to adding a @(Translation) on the element and using @(Change) to animate its X and Y values. The following two examples give the same result.
 
@@ -177,7 +199,7 @@ Move corresponds to adding a @(Translation) on the element and using @(Change) t
 </Panel>
 ```
 
-### $(Scale)
+#### $(Scale)
 
 `Scale` works in the same way as @(Move) except that it scales the element. Note that scale doesn't actually change the elements size. This means that the rest of the UI layout wont be affected and the animation is guaranteed to be fast.
 
@@ -189,10 +211,10 @@ You can scale an element uniformly along all axes by using the `Factor` property
 
 `Scale` can be used relative to something using the `RelativeTo` property. The two choices are:
 
-* `SizeChange` - resizes relative to the change in size of the element specified by the `RelativeNode` property.
-* `SizeFactor` - resizes with a factor relative to another element, specified by `RelativeNode`. A factor of `1` would make it the same size as the `RelativeNode`, while a factor of `0.5` would make it half the size, and so on.
+* `SizeChange` - scales relative to the change in size of the element specified by the `RelativeNode` property.
+* `SizeFactor` - scales with a factor relative to another element, specified by `RelativeNode`. A factor of `1` would make it the same size as the `RelativeNode`, while a factor of `0.5` would make it half the size, and so on.
 
-### $(Rotate)
+#### $(Rotate)
 
 `Rotate` rotates an Element and is equal to adding a @(Rotation) and animating it with a @(Change).
 
@@ -200,9 +222,9 @@ You can scale an element uniformly along all axes by using the `Factor` property
 <Rotate Degrees="90" Duration="0.5"/>
 ```
 
-Using the `Degrees` property rotates the element around the Z-axis. Alternatively, you can use `DegreesX`, `DegreesY`, and `DegreesZ` to rotate the element around a specifix axis. However, you will propabily not need this.
+Using the `Degrees` property rotates the element around the Z-axis. Alternatively, you can use `DegreesX`, `DegreesY`, and `DegreesZ` to rotate the element around a specific axis.
 
-### $(Resize)
+#### $(Resize)
 
 When used in concert with @(LayoutAnimation), `Resize` allows you to animate the size of an element:
 
@@ -215,44 +237,7 @@ When used in concert with @(LayoutAnimation), `Resize` allows you to animate the
 * `SizeChange` - resizes relative to the change in size of the element specified by the `RelativeNode` property.
 * `SizeFactor` - resizes the element individually on both axes, relative to an element specified by the `RelativeNode` property. To control the size factors, use the `X` and `Y` properties to set one axis at the time, or use the `Vector` property to set the factor of both axes at once, using a two-dimensional vector.
 
-### $(TransitionLayout)
-
-The `TransitionLayout` action lets you create a temporary layout change.
-This can be used to do visual layout transitions without needing actual layout changes.
-
-It has no noticeable effect on its own, and needs to be combined with a @(LayoutAnimation).
-The @(LayoutAnimation) will then be triggered by this action.
-
-	<DockPanel>
-		<Panel Dock="Top" Height="20" ux:Name="originElement" />
-
-		<Button Height="100" Dock="Bottom" Text="Transition!">
-			<LayoutAnimation>
-				<Move X="1" Y="1" RelativeTo="WorldPositionChange" Duration="1" />
-				<Resize X="1" Y="1" RelativeTo="SizeChange" Duration="1" />
-			</LayoutAnimation>
-			<Clicked>
-				<TransitionLayout From="originElement" />
-			</Clicked>
-		</Button>
-	</DockPanel>
-
-When clicked, the @(Button) in this example will perform a transition over 1 second from the position and size of `originElement` (top edge of the @(DockPanel)) to its actual position and size (bottom edge of the @(DockPanel)).
-
-### $(Cycle)
-
-`Cycle` continuously animates a property between two values at a given frequency.
-
-	<Panel>
-		<Translation ux:Name="someTranslation" />
-		<WhilePressed>
-			<Cycle Target="someTranslation.X" Low="-20" High="20" Frequency="2" />
-		</WhilePressed>
-	</Panel>
-
-You may also specify a `Duration` to control the length of the animation.
-
-### $(Spin)
+#### $(Spin)
 
 `Spin` continuously rotates an element, given a `Frequency` measured in full rotations per second.
 
@@ -264,7 +249,7 @@ You may also specify a `Duration` to control the length of the animation.
 
 As with @(Cycle), you may also specify a `Duration` to control the length of the animation.
 
-### $(Skew)
+#### $(Skew)
 
 `Skew` allows you to animate a skew transform on an element.
 
@@ -273,6 +258,21 @@ As with @(Cycle), you may also specify a `Duration` to control the length of the
 ```
 
 You can use `DegreesX` and `DegreesY` to skew on one axis, or `DegreesXY` and `XY` to skew on both axes in degrees or radians, respectively.
+
+### $(Attractor)
+
+The `Attractor` is used to give a more natural movement to animations. It acts as an intermediary between an animator and its target. An `Attractor` will continuously animate its target towards its `Value` using a simple form of physics simulation. We can combine this behavior with animation by animating the attractor's `Value` property.
+
+```
+<Panel ux:Name="somePanel">
+	<Translation ux:Name="someTranslation"/>
+	<Attractor ux:Name="someAttractor" Target="someTranslation.X"/>
+	<WhilePressed>
+		<Change someAttractor.Value="100"/>
+	</WhilePressed>
+
+</Panel>
+```
 
 ### $(Keyframe:Keyframes)
 
@@ -312,7 +312,7 @@ All animations for a `Trigger` share a common timeline, which ends when the last
 <Nothing Duration="1" />
 ```
 
-> ## Transforms
+## Transforms
 
 All @(Element:elements) can have transforms applied to them in order to move, scale or rotate.
 It is worth mentioning that the order of these transforms affects the order of when they are applied to the element, and therefore can lead to different results.
@@ -332,11 +332,11 @@ It is worth mentioning that the order of these transforms affects the order of w
 </Panel>
 ```
 
-The two examples have quite different results. In the first case, the panel is first moved 100 points to the right and then rotated 45 degrees. In the other case, the panel is first rotated 45 degrees. The positive `X`-direction is now 45 degrees downward, and so our panel ends up being moved toward the bottom right.
+The two examples have quite different results. In the first case, the panel is first moved 100 points to the right and then rotated 45 degrees. In the other case, the panel is first rotated 45 degrees. The positive X direction is now 45 degrees downward, and so our panel ends up being moved toward the bottom right.
 
 ### $(Translation)
 
-`Translation` moves the element in the specified X, Y, and Z direction. The follwing example shows a @(Rectangle) which is moved 100 points in the X-direction and 50 points in the Y-direction.
+`Translation` moves the element in the specified X, Y, and Z direction. The following example shows a @(Rectangle) which is moved 100 points in the X-direction and 50 points in the Y-direction.
 
 ```
 <Rectangle Width="50" Height="50">
@@ -346,13 +346,11 @@ The two examples have quite different results. In the first case, the panel is f
 
 You can set the translation value for `Translation` with:
 
- * `X` or `Y`, to seperately set the X and Y translations
+ * `X` or `Y`, to separately set the X and Y translations
  * `XY`, to set the translation of both axes at once
  * `Z`, to set the translation in the Z axis.
 
 The coordinates default to being relative to the elements original position(`TranslationModes.Local`), but this can be changed using the property `RelativeTo`. Further, you can make the transform relative to another element by using `RelativeNode`.
-
-Additionally, `IsFlat` will return true if the `Translation` only translates on the X and Y axis.
 
 ### $(Scaling)
 
@@ -370,8 +368,6 @@ Additionally, `IsFlat` will return true if the `Translation` only translates on 
  * `Vector`, to set the scale of all three axes at once
  * `X`, `Y`, and `Z`, for control of individual axes.
 
-While the property `IsFlat` exists, it will allways return true as `Scaling` can't add depth, and is only there for consistency reasons.
-
 <!-- TODO: Document Vector -->
 
 ### $(Rotation)
@@ -388,43 +384,23 @@ You can rotate an element using:
 
  * `Degrees`, controlling rotation around the Z axis
  * `DegreesX`, `DegreesY`, `DegreesZ`, giving you individual control of all 3 axes.
- * `EulerAngle` and `EulerAngleDegrees`, letting you set the euler angles of the element in radians or degrees, respectively.
-
-Additionally, you can check if the `Rotation` is strictly around the Z axis by using the property `IsFlat`.
+ * `EulerAngle` and `EulerAngleDegrees`, letting you set the Euler angles of the element in radians or degrees, respectively.
 
 ### $(Shear)
 
 The `Shear` animator can be used to perform a shear mapping on an element. One can use `DegreesX` and `DegreesY` to set the shear on one axis, or `Degrees` and `Vector` to set the shear in both the X and Y plane, using degrees or radians.
 
-While the effect is strictly 2D, the `IsFlat` property is there for consistency reasons, and will allways return true due to this.
-
-
-## $(Attractor)
-
-The `Attractor` is used to give a more natural movement to animations. It acts as an intermediary between an animator and its target. An `Attractor` will continuously animate its target towards its `Value` using a simple form of physics simulation. We can combine this behavior with animation by animating the attractor's `Value` property.
-
-```
-<Panel ux:Name="somePanel">
-	<Translation ux:Name="someTranslation"/>
-	<Attractor ux:Name="someAttractor" Target="someTranslation.X"/>
-	<WhilePressed>
-		<Change someAttractor.Value="100"/>
-	</WhilePressed>
-
-</Panel>
-```
-
 ## $(Actions)
 
 Triggers can contain actions too, which are one-off events that fire at a particular point in the trigger's timeline.
 
-Note that actions, contrary to @(Animators:animators) are not reversible. This means it is not neccessarily possible to return to the @(rest state) if the trigger is reversed.
+Note that actions, contrary to @(Animators:animators) are not reversible. This means it is not necessarily possible to return to the @(rest state) if the trigger is reversed.
 
-Like @(Animators:animators), `Actions` can have a `Delay`. This specifies a number of seconds from the @(Trigger) is activated to the `Action` is fired. However, unlike `Animators`, they also have a property called `AtProgress` which can be set to a value between 0 and 1. It has a similar function as `Delay`, but is instead relative to the full @(Duration) of the @(Trigger). Setting `AtProgress` to 0, means the action is fired as soon as the @(Trigger) is actiated. Setting it to 0.5 means it is fired half way through and so on.
+Like @(Animators:animators), `Actions` can have a `Delay`. This specifies a number of seconds from the @(Trigger) is activated to the `Action` is fired. However, unlike `Animators`, they also have a property called `AtProgress` which can be set to a value between 0 and 1. It has a similar function as `Delay`, but is instead relative to the full @(Duration) of the @(Trigger). Setting `AtProgress` to 0, means the action is fired as soon as the @(Trigger) is activated. Setting it to 0.5 means it is fired half way through and so on.
 
 ### $(Action.AtProgress:AtProgress)
 
-`Actions` also has a property called `AtProgress` which can be set to a value between 0 and 1. It has a similar function as `Delay`, but is instead relative to the full @(Duration) of the @(Trigger). Setting `AtProgress` to 0, means the action is fired as soon as the @(Trigger) is actiated. Setting it to 0.5 means it is fired half way through and so on.
+`Actions` also has a property called `AtProgress` which can be set to a value between 0 and 1. It has a similar function as `Delay`, but is instead relative to the full @(Duration) of the @(Trigger). Setting `AtProgress` to 0, means the action is fired as soon as the @(Trigger) is activated. Setting it to 0.5 means it is fired half way through and so on.
 
 ### $(DebugAction)
 
@@ -444,19 +420,17 @@ It is the equivalent of calling `debug_log` from Uno or JavaScript.
 Permanently changes the value of a property. If you want to just change it temporarily, use @(Change). When using `Set` on a property, the value will not be reverted back when the containing trigger is deactivated. In the following example we change the color of a rectangle by setting the value of its `SolidColor` @(Element). Multiple activations of the @(Clicked) trigger won't have any additional effect.
 
 ```
-<Rectangle>
-	<SolidColor ux:Name="color" Color="#00f"/>
-</Rectangle>
+<Rectangle ux:Name="rect" Color="#00f" />
 <Clicked>
-	<Set color.Color="#f00"/>
+	<Set rect.Color="#f00"/>
 </Clicked>
 ```
 
 Set may also be invoked using its `Target` and `Value` properties. The following lines are equivalent:
 
 ```
-<Set Target="color.Color" Value="#f00" />
-<Set color.Color="#f00" />
+<Set Target="rect.Color" Value="#f00" />
+<Set rect.Color="#f00" />
 ```
 
 ### $(Callback)
@@ -466,7 +440,7 @@ The `Callback` action is used to call a JavaScript function (see @(Data Binding)
 ```
 <JavaScript>
 	var someJSFunction = function () {
-		Console.Log("some function called");
+		console.log("some function called");
 	}
 	module.exports = { someJSFunction: someJSFunction };
 </JavaScript>
@@ -585,53 +559,269 @@ With `BringToFront`, one can bring the element specified by the `Target` propert
 </DockPanel>
 ```
 
+### $(TransitionLayout)
+
+The `TransitionLayout` action lets you create a temporary layout change.
+This can be used to do visual layout transitions without needing actual layout changes.
+
+It has no noticeable effect on its own, and needs to be combined with a @(LayoutAnimation).
+The @(LayoutAnimation) will in turn be triggered by this action.
+
+	<DockPanel>
+		<Panel Dock="Top" Height="20" ux:Name="originElement" />
+
+		<Button Height="100" Dock="Bottom" Text="Transition!">
+			<LayoutAnimation>
+				<Move X="1" Y="1" RelativeTo="WorldPositionChange" Duration="1" />
+				<Resize X="1" Y="1" RelativeTo="SizeChange" Duration="1" />
+			</LayoutAnimation>
+			<Clicked>
+				<TransitionLayout From="originElement" />
+			</Clicked>
+		</Button>
+	</DockPanel>
+
+When clicked, the @(Button) in this example will perform a transition over 1 second from the position and size of `originElement` (top edge of the @(DockPanel)) to its actual position and size (bottom edge of the @(DockPanel)).
+
 ### $(NavigateToggle)
 
 Toggles a `Navigation`. This is currently only supported in @(EdgeNavigation), and will do nothing if used on another type of navigation.
 
 Used on an `EdgeNavigation`, it will navigate to and from a @(Panel) with `EdgeNavigation.Edge` set, specified by using the `Target` property.
 
+## $(Gestures)
+
+Following are triggers which react to pointer gestures.
+
+### $(Clicked)
+
+`Clicked` is activated in response to a click @(Gestures:gesture). What constitutes a click-event can be platform specific, but usually means that the pointer was pressed and released within the bounds of the containing element.
+
+```
+<Panel Width="50" Height="50">
+	<Clicked>
+		<Scale Factor="2" Duration="0.2"/>
+	</Clicked>
+</Panel>
+```
+
+### $(Tapped)
+
+The `Tapped`-trigger is quite similar to the @(Clicked)-trigger. Where a click just means that the pointer has to be pressed and released on the element, a tap means that the pointer has to be released within a certain time after the pointer is pressed.
+
+### $(DoubleClicked)
+
+`DoubleClicked` is activated when the element has been @(Clicked) twice within a certain timeframe.
+
+### $(DoubleTapped)
+
+As with @(DoubleClicked), `DoubleTapped` is activated when the element has been @(Tapped) twice within a certain timeframe.
+
+### $(WhilePressed)
+
+`WhilePressed` is active while its containing element is being pressed and the pointer is inside its bounds.
+
+```
+<Panel Width="50" Height="50">
+	<WhilePressed>
+		<Scale Factor="2" Duration="0.2"/>
+	</WhilePressed>
+</Panel>
+```
+
+### $(WhileHovering)
+
+`WhileHovering` is active while the pointer is within the bounds if its containing @(Element).
+
+* Note: `WhileHovering` only has value when the device supports a hovering pointer, like the mouse pointer on desktop machines. For most smart phones this trigger won't have much value.
+
+### $(SwipeGesture:Swipe gestures)
+
+We use the `SwipeGesture` behavior when we want an element to handle swipe gestures.
+
+```
+<Panel>
+	<SwipeGesture Direction="Right" Length="100" Type="Active" />
+</Panel>
+```
+
+- `Direction="Right"` specifies that this should be a swipe-to-the-right gesture.
+- `Length="100"` means that the swipe has a length of 100 points in the specified `Direction`.
+- `Type="Active"` indicates that this should be a two-state swipe gesture that toggles between an inactive/active state.
+
+`SwipeGesture` accepts the following properties:
+
+- `Direction` specifies the direction of the swipe.
+	Possible values are `Left`, `Up`, `Right` and `Down`.
+- `Edge` can be used instead of `Direction`, and specifies an edge of the element that can be swiped from.
+	Possible values are `Left`, `Top`, `Right` and `Bottom`.
+- `HitSize` only applies when `Edge` is used, and specifies how far from the edge we can start swiping for it to be recognized.
+- `Length` specifies, in points, how far we can swipe in the specified `Direction`.
+- `LengthNode` can be used instead of `Length`. It references another element that should be measured to determine the length of the swipe.
+- `Type`
+	- `Active` indicates that swiping should toggle between an inactive/active state.
+	- `Simple` indicates that swiping should invoke a single, momentary action.
+
+The `SwipeGesture` behavior has no effect on its own. We need to apply our own triggers and animators to respond to the gesture.
+In the following sub-sections we will go through different triggers and actions we can use to respond to and control @(SwipeGesture:SwipeGestures).
+
+* Note: Since you have the possibility to attach multiple swipe gestures on the same element, the related triggers need to know which one you are referring to.
+We are therefore required to set the `Source` property of all swipe-related triggers to the @(SwipeGesture) it should respond to.
+
+#### $(SwipingAnimation)
+
+`SwipingAnimation` performs animation in response to an element being swiped.
+The most common use case is to move the element along with the pointer.
+
+	<Panel Width="100" Height="100" Background="#000">
+		<SwipeGesture ux:Name="swipe" Direction="Right" Length="200" />
+		<SwipingAnimation Source="swipe">
+			<Move X="200" />
+		</SwipingAnimation>
+	</Panel>
+
+Instead of using a fixed length for the swipe we may also determine it from the size of another element.
+This is achieved using the `LengthNode` property of @(SwipeGesture), and in this case the `RelativeNode` property of @(Move) as well.
+
+	<Panel ux:Name="parentContainer" Margin="40">
+		<Panel Width="60" Height="60" Background="#000" Alignment="Left">
+			<SwipeGesture ux:Name="swipe" Direction="Right" Type="Active" LengthNode="parentContainer" />
+			<SwipingAnimation Source="swipe">
+				<Move X="1" RelativeTo="Size" RelativeNode="parentContainer" />
+			</SwipingAnimation>
+		</Panel>
+	</Panel>
+
+#### $(Swiped)
+
+`Swiped` is a pulse trigger that is invoked when a swipe has occurred.
+
+	<Panel Width="100" Height="100">
+		<SwipeGesture ux:Name="swipe" Direction="Up" Length="50" Type="Simple" />
+		<Swiped Source="swipe">
+			<Scale Factor="1.5" Duration="0.4" DurationBack="0.2" />
+		</Swiped>
+	</Panel>
+
+By default, `Swiped` will only trigger when swiping to the primary swipe direction (when it enters the active state).
+For instance, if the @(SwipeGesture) has `Direction="Left"` it only triggers on a `Left` swipe and ignores the matching closing swipe.
+We can control this behavior by setting the `How` property to either `ToActive` (default), `ToInactive` or `ToEither`.
+
+#### $(WhileSwipeActive)
+
+`WhileSwipeActive` is active whenever a @(SwipeGesture) is active (when the user has swiped it "open").
+
+	<Panel Width="100" Height="100">
+		<SwipeGesture ux:Name="swipe" Direction="Up" Length="50" Type="Simple" />
+		<WhileSwipeActive Source="swipe">
+			<Scale Factor="1.5" Duration="0.4" DurationBack="0.2" />
+		</WhileSwipeActive>
+	</Panel>
+
+#### $(SetSwipeActive) and $(ToggleSwipeActive)
+
+We can control the state of `Active` type @(SwipeGesture:SwipeGestures) by using the `SetSwipeActive` and `ToggleSwipeActive` actions.
+
+	<SwipeGesture ux:Name="swipe" Direction="Right" Length="100" Type="Active" />
+	...
+	<StackPanel>
+		<Button Text="Close">
+			<Clicked>
+				<SetSwipeActive Target="swipe" Value="false" />
+			</Clicked>
+		</Button>
+
+		<Button Text="Toggle">
+			<Clicked>
+				<ToggleSwipeActive Target="swipe" />
+			</Clicked>
+		</Button>
+	</StackPanel>
+
+If we wish to bypass the animation, `SetSwipeActive` lets us do that by setting `Bypass="true"`.
+
+## Data triggers
+
+These triggers react to data changes, either from data binding or from the control context.
+
+### $(WhileTrue)
+
+`WhileTrue` is active while its `Value` property is `True` and inactive while it's false.
+
+### $(WhileFalse)
+
+`WhileFalse` is active while its `Value` property is `False` and inactive while it's true.
+
+<!-- ### WhileFailed
+TODO: I dont know what it does -->
+
+## Native triggers
+
+### $(Platform triggers)
+
+Sometimes it can be necessary with platform specific code. This can be done by using the platform triggers `Android` and `iOS`.
+
+In the following example, we place a red @(Panel) if on an Android device and a blue @(Panel) if on an iOS device:
+
+```
+<Panel>
+	<Android>
+		<Panel Background="#f00" Alignment="Center" Width="150" Height="150"/>
+	</Android>
+	<iOS>
+		<Panel Background="#00f" Alignment="Center" Width="150" Height="150"/>
+	</iOS>
+</Panel>
+```
+
+
+### $(WhileKeyboardVisible)
+
+`WhileKeyboardVisible` is active whenever the on-screen keyboard is visible.
+
+<!-- TODO: Example -->
+
+### $(TextInputActionTriggered)
+
+`TextInputActionTriggered` is triggered when the user presses the return key while editing a @(TextInput).
+The following example demonstrates how you can respond to this by releasing focus from the input, thereby hiding the on-screen keyboard.
+
+```
+<TextInput>
+	<TextInputActionTriggered>
+		<ReleaseFocus />
+	</TextInputActionTriggered>
+</TextInput>
+```
 
 ### $(OnBackButton)
 
-This trigger fires when the user presses either a physical or emulated back button on their device. The folllowing code will flash the screen green when the back button is pressed:
+This trigger fires when the user presses either a physical or emulated back button on their device. The following code will flash the screen blue when the back button is pressed:
 
 ```
-<App Theme="Basic">
-  <Panel>
-    <SolidColor ux:Name="rect" Color="#F00" />
-    <WhileTrue ux:Name="backPulse" Value="false">
-      <Change rect.Color="#0F0" Duration="0.2" />
-    </WhileTrue>
-    <OnBackButton>
-      <Pulse Target="backPulse" />
-    </OnBackButton>
-  </Panel>
-</App>
+<Panel>
+	<Rectangle ux:Name="rect" Layer="Background" Color="#F00" />
+	<OnBackButton>
+		<Change rect.Color="#00F" Duration="0.2" />
+	</OnBackButton>
+</Panel>
 ```
 
-### $(OnButtonPressed)
+> ### $(OnKeyPress)
 
-`OnButtonPressed` is triggered when the key specified by the property `Key` is pressed. The following example will flash the screen blue when the "menu" button is pressed. This button is present on some android devices.
+`OnKeyPress` is triggered when the key specified by the property `Key` is pressed.
+The following example will flash the screen blue when the "menu" button (which is present on some older android devices) is pressed.
 
 ```
-<App Theme="Basic">
-  <Panel>
-    <SolidColor ux:Name="solidColor" Color="#F00" />
-    <WhileTrue ux:Name="menuPulse" Value="false">
-      <Change solidColor.Color="#00F" Duration="0.2" />
-    </WhileTrue>
-    <OnKeyPress Key="MenuButton">
-      <Pulse Target="menuPulse" />
-    </OnKeyPress>
-  </Panel>
-</App>
+<Panel>
+	<Rectangle ux:Name="rect" Layer="Background" Color="#F00" />
+	<OnKeyPress Key="MenuButton">
+		<Change rect.Color="#00F" Duration="0.2" />
+	</OnKeyPress>
+</Panel>
 ```
 
 For a complete list of supported keys, check out the [Key enum](https://www.fusetools.com/learn/uno/api/uno/platform/key) list.
-
-<!--  ### $(BringToFront)
-AUTH: TODO: Do we need to discuss Z-ordering? -->
 
 ## Native actions
 
@@ -651,8 +841,6 @@ Requests the operating system to launch a [URI](https://en.wikipedia.org/wiki/Un
 
 An URI can be anything from a URL to a custom URI scheme registered by an app. The underlying OS is responsible for handling the request.
 For instance, [here is a list of common URI schemes](http://www.iana.org/assignments/uri-schemes) that are registered with The Internet Assigned Numbers Authority (IANA).
-
-
 
 #### $(LaunchEmail)
 
@@ -685,6 +873,217 @@ Issues a phone call to the specified number.
 Vibrates the device for a given number of seconds. Note: iOS will not honor any specified duration, as this is not an option in the native iOS API.
 
 	<Vibrate Duration="0.8" />
+
+
+## $(State groups)
+
+State groups allow you to define completely custom states, with custom events.
+
+### $(State)
+
+A `State` consists of a set of @(Animators:animators) inside a `State` object. It acts as a normal @(Trigger), but is activated by its containing @(StateGroup).
+
+```
+<State>
+	<Rotate Degrees="200" Duration="0.4"/>
+	<Move X="10" Duration="0.4"/>
+</State>
+```
+
+### $(StateGroup)
+
+A `StateGroup` is used to group a set of @(State:states) together and switch between them.
+`StateGroup` has an `Active` property, which is used to assign which @(State) is currently active in that group.
+
+Here is an example of how to use a `StateGroup` to switch the color of a @(Rectangle) between three states:
+
+```
+<StackPanel>
+	<Panel Width="100" Height="100">
+		<SolidColor ux:Name="someColor"/>
+	</Panel>
+	<StateGroup ux:Name="stateGroup">
+		<State ux:Name="redState">
+			<Change someColor.Color="#f00" Duration="0.2"/>
+		</State>
+		<State ux:Name="blueState">
+			<Change someColor.Color="#00f" Duration="0.2"/>
+		</State>
+		<State ux:Name="greenState">
+			<Change someColor.Color="#0f0" Duration="0.2"/>
+		</State>
+	</StateGroup>
+	<Grid ColumnCount="3">
+		<Button Text="Red">
+			<Clicked>
+				<Set stateGroup.Active="redState"/>
+			</Clicked>
+		</Button>
+		<Button Text="Blue">
+			<Clicked>
+				<Set stateGroup.Active="blueState"/>
+			</Clicked>
+		</Button>
+		<Button Text="Green">
+			<Clicked>
+				<Set stateGroup.Active="greenState"/>
+			</Clicked>
+		</Button>
+	</Grid>
+</StackPanel>
+```
+
+One can also specify the `TransitionType`, which can be either `Exclusive` or `Parallel`.
+`Exclusive` means that each state will have to be fully deactivated before the next state becomes active.
+`Parallel` means that as one state deactivates, the next one will become active and whatever properties they animate will be interpolated between them.
+
+## $(User events)
+
+User events are intended for sending messages between components of your application.
+They may be sent and received from UX, Uno, and JavaScript.
+
+* Make sure you also check out the documentation on using @(UserEvents-js:FuseJS UserEvents from JavaScript).
+
+### $(UserEvent)
+
+User events are attached to the node they are declared in, and only that node and its children can raise and handle the event.
+
+	<App>
+		<UserEvent Name="MyEvent"/>
+		...
+
+This creates an event with the name `MyEvent`.
+By putting this `UserEvent` in `App` we are essentially making it an app-wide event, since every child of App can raise and respond to this event.
+
+* Note: Make sure you add "Fuse.UserEvents" to your .unoproj file.
+
+### $(RaiseUserEvent:Raising user events from UX)
+
+To raise a @(UserEvent:user event) from UX, use the `RaiseUserEvent` action.
+
+	<Button>
+		<Clicked>
+			<RaiseUserEvent Name="MyEvent" />
+		</Clicked>
+	</Button>
+
+### $(UserEventArg:Passing arguments)
+
+A $(UserEvent:user event) may also include a number of arguments that can be read from either JavaScript or Uno.
+
+	<RaiseUserEvent Name="MyEvent">
+		<UserEventArg Name="message" StringValue="Hello from UX!" />
+	</RaiseUserEvent>
+
+`UserEventArg` accepts `IntValue`, `FloatValue`, `StringValue` or `BoolValue`.
+
+### $(OnUserEvent:Responding to user events)
+
+To respond to a @(UserEvent:user event), use the `OnUserEvent` trigger.
+
+	<OnUserEvent Name="MyEvent">
+		...
+	</OnUserEvent>
+
+By default, `OnUserEvent` will only listen for events that are declared in one of its ancestor nodes.
+If you want to listen for events coming from anywhere, set the `Filter` property to `Global`.
+
+`OnUserEvent` also lets you attach a JavaScript handler to the event.
+
+	<OnUserEvent Name="MyEvent" Handler="{myHandler}" />
+
+The handler function can then read the @(UserEventArg:arguments) that were passed with the event.
+
+```javascript
+function myHandler(args) {
+	console.log(args.message);
+}
+
+module.exports = { myHandler: myHandler }
+```
+
+## $(Viewport triggers)
+
+These triggers react to changes in the geometry of the screen.
+
+### $(WhileWindowLandscape)
+
+The `WhileWindowLandscape` trigger is active whenever the app's viewport width is larger than it's height. The following example changes the App's background color depending on its orientation:
+
+```
+<App ux:Name="app" Theme="Basic" Background="#FFF">
+     <WhileWindowLandscape>
+         <Change app.ClearColor="0,0,1,1" Duration="1" />
+     </WhileWindowLandscape>
+</App>
+```
+
+### $(WhileWindowPortrait)
+
+The `WhileWindowPortrait` trigger is active whenever the app's viewport height is larger than, or equal to, the width.
+
+### $(WhileWindowSize)
+
+The `WhileWindowSize` trigger has three float2-properties that control its behavior:
+
+ * `GreaterThan`
+ * `LessThan`
+ * `EqualTo`
+
+
+These properties have to be larger than `0,0`, and are conditions the app viewport has to conform to in order for the trigger to be active. The following is an example that changes the background color of an app if the viewport size is greater than a certain size:
+
+```
+<App Theme="Basic">
+  <Panel>
+     <SolidColor ux:Name="coloredPanel" Color="#F00" />
+     <WhileWindowSize GreaterThan="400,400">
+       <Change coloredPanel.Color="#0F0" Duration=".5"/>
+     </WhileWindowSize>
+  </Panel>
+</App>
+```
+
+## $(Control triggers)
+
+### $(WhileEnabled)
+
+The `WhileEnabled` trigger is active whenever its containing @(Element:elements) `IsEnabled` property is set to `True`.
+
+```
+<Panel  Width="50" Height="50" Background="Red" >
+	<WhileEnabled>
+		<Rotate Degrees="45" Duration="0.5"/>
+	</WhileEnabled>
+</Panel>
+```
+
+### $(WhileDisabled)
+
+The `WhileDisabled` trigger is active whenever the `IsEnabled` property of its containing @(Element:element) is set to `False`.
+
+## $(Focus triggers and actions)
+
+### $(WhileFocused)
+
+The `WhileFocused` trigger is active whenever its containing @(Element:element) is in focus.
+
+### $(WhileNotFocused)
+
+The opposite to @(WhileFocused), active whenever its containing @(Element:element) is _not_ in focus.
+
+### $(WhileFocusWithin)
+
+`WhileFocusWithin` is active whenever a child of its containing @(Element:element) is in focus.
+
+### $(GiveFocus)
+
+`GiveFocus` is an action that gives focus to its containing @(Element:element) when activated.
+It also accepts a `Target` property, which specifies which element to give focus to.
+
+### $(ReleaseFocus)
+
+When activated, `ReleaseFocus` removes focus from the currently focused @(Element:element).
 
 ## WebView-specific triggers & actions
 
@@ -775,14 +1174,14 @@ To make this feel better and allow return, we currently inject the user's JS in 
 (function() { USER_JS })();
 ```
 
-### Reading the result value
+#### Reading the result value
 
 When we evaluate the JavaScript we are currently bound by platform restrictions in a key way: String is the only allowed return value type on Android, our lowest common denominator. Android allows for parity with iOS as of API level 19, which denies us good backwards compatibility. For now we must rely on the comparatively ancient [addJavaScriptInterface](http://developer.android.com/reference/android/webkit/WebView.html#addJavascriptInterface(java.lang.Object, java.lang.String)) API for backwards compatibility.
 
 What this means is that any return value passed from the evaluated script must by necessity be returned as JSON and parsed back from it on the Fuse end. Even if all you want is the result of some arithmetic, you'd still receive it as a string and require a cast. Instead of forcing you to routinely `return JSON.stringify(foo)` from your own JS we handle this by *always* wrapping your JS in JSON.stringify before evaluation:
 
 ```JavaScript
-JSON.stringify( (USER_JS)(); );
+JSON.stringify( (function() { USER_JS })() );
 ```
 
 The returned JSON string here is then put into a result object with the `json` key. This is for clarity, so you never forget that the data you are receiving is a JSON string that you will need to parse.
@@ -800,425 +1199,8 @@ The returned JSON string here is then put into a result object with the `json` k
 
 Note that of course return is optional. If you don't return anything from your evaluated JS the return value of the expression will simply be "null".
 
-## $(State groups)
 
-State groups allow you to define completely custom states, with custom events.
-
-### $(State)
-
-A `State` consists of a set of @(Animators:animators) inside a `State` object. It acts as a normal @(Trigger), but is activated by its containing @(StateGroup).
-
-```
-<State>
-	<Rotate Degrees="200" Duration="0.4"/>
-	<Move X="10" Duration="0.4"/>
-</State>
-```
-
-### $(StateGroup)
-
-A `StateGroup` is used to group a set of @(State:states) together and switch between them.
-`StateGroup` has an `Active` property, which is used to assign which @(State) is currently active in that group.
-One can also specify the `TransitionType`, which can be either `Exclusive` or `Parallel`.
-`Exclusive` means that each state will have to be fully deactivated before the next state becomes active.
-`Parallel` means that as one state deactivates, the next one will become active and whatever properties they animate will be interpolated between them.
-
-Here is an example of how to use a `StateGroup` to switch the color of a @(Rectangle) between three states:
-
-```
-<StackPanel>
-	<Panel Width="100" Height="100">
-		<SolidColor ux:Name="someColor"/>
-	</Panel>
-	<StateGroup ux:Name="stateGroup">
-		<State ux:Name="redState">
-			<Change someColor.Color="#f00" Duration="0.2"/>
-		</State>
-		<State ux:Name="blueState">
-			<Change someColor.Color="#00f" Duration="0.2"/>
-		</State>
-		<State ux:Name="greenState">
-			<Change someColor.Color="#0f0" Duration="0.2"/>
-		</State>
-	</StateGroup>
-	<Grid ColumnCount="3">
-		<Button Text="Red">
-			<Clicked>
-				<Set stateGroup.Active="redState"/>
-			</Clicked>
-		</Button>
-		<Button Text="Blue">
-			<Clicked>
-				<Set stateGroup.Active="blueState"/>
-			</Clicked>
-		</Button>
-		<Button Text="Green">
-			<Clicked>
-				<Set stateGroup.Active="greenState"/>
-			</Clicked>
-		</Button>
-	</Grid>
-</StackPanel>
-```
-
-## Data triggers
-
-These triggers react to data changes, either from data binding or from the control context.
-
-### $(WhileTrue)
-
-`WhileTrue` is active while its `Value` property is `True` and inactive while it's false.
-
-### $(WhileFalse)
-
-`WhileFalse` is active while its `Value` property is `False` and inactive while it's true.
-
-<!-- ### WhileFailed
-TODO: I dont know what it does -->
-
-## $(User events)
-
-User events are intended for sending messages between components of your application.
-They may be sent and received from UX, Uno, and JavaScript.
-
-* Make sure you also check out the documentation on using @(UserEvents-js:FuseJS UserEvents from JavaScript).
-
-### $(UserEvent)
-
-User events are attached to the node they are declared in, and only that node and its children can raise and handle the event.
-
-	<App>
-		<UserEvent Name="MyEvent"/>
-		...
-
-This creates an event with the name `MyEvent`.
-By putting this `UserEvent` in `App` we are essentially making it an app-wide event, since every child of App can raise and respond to this event.
-
-* Note: Make sure you add "Fuse.UserEvents" to your .unoproj file.
-
-### $(RaiseUserEvent:Raising user events from UX)
-
-To raise a @(UserEvent:user event) from UX, use the `RaiseUserEvent` action.
-
-	<Button>
-		<Clicked>
-			<RaiseUserEvent Name="MyEvent" />
-		</Clicked>
-	</Button>
-
-### $(UserEventArg:Passing arguments)
-
-A $(UserEvent:user event) may also include a number of arguments that can be read from either JavaScript or Uno.
-
-	<RaiseUserEvent Name="MyEvent">
-		<UserEventArg Name="message" StringValue="Hello from UX!" />
-	</RaiseUserEvent>
-
-`UserEventArg` accepts `IntValue`, `FloatValue`, `StringValue` or `BoolValue`.
-
-### $(OnUserEvent:Responding to user events)
-
-To respond to a @(UserEvent:user event), use the `OnUserEvent` trigger.
-
-	<OnUserEvent Name="MyEvent">
-		...
-	</OnUserEvent>
-
-By default, `OnUserEvent` will only listen for events that are declared in one of its ancestor nodes.
-If you want to listen for events coming from anywhere, set the `Filter` property to `Global`.
-
-`OnUserEvent` also lets you attach a JavaScript handler to the event.
-
-	<OnUserEvent Name="MyEvent" Handler="{myHandler}" />
-
-The handler function can then read the @(UserEventArg:arguments) that were passed with the event.
-
-```js
-var myHandler = function(args) {
-	console.log(args.message);
-}
-
-module.exports = { myHandler: myHandler }
-```
-
-## $(Gestures)
-
-Following are triggers which react to pointer gestures.
-
-### $(WhilePressed)
-
-`WhilePressed` is active while its containing element is being pressed and the pointer is inside its bounds.
-
-```
-<Panel Width="50" Height="50">
-	<WhilePressed>
-		<Scale Factor="2" Duration="0.2"/>
-	</WhilePressed>
-</Panel>
-```
-
-### $(Clicked)
-
-`Clicked` is activated in response to a click @(Gestures:gesture). What constitutes a click-event can be platform specific, but usually means that the pointer was pressed and released within the bounds of the containing element.
-
-* Note: `Clicked`-triggers can be placed on any @(Element), not just @(Button:buttons).
-
-```
-<Panel Width="50" Height="50">
-	<Clicked>
-		<Scale Factor="2" Duration="0.2"/>
-	</Clicked>
-</Panel>
-```
-
-### $(Tapped)
-
-The `Tapped`-trigger is quite similar to the @(Clicked)-trigger. Where a click just means that the pointer has to be pressed and released on the element, a tap means that the pointer has to be released within a certain time after the pointer is pressed.
-
-### $(DoubleClicked)
-
-`DoubleClicked` is activated when the element has been @(Clicked) twice within a certain timeframe.
-
-### $(DoubleTapped)
-
-As with @(DoubleClicked), `DoubleTapped` is activated when the element has been @(Tapped) twice within a certain timeframe.
-
-### $(WhileHovering)
-
-`WhileHovering` is active while the pointer is within the bounds if its containing @(Element).
-
-* Note: `WhileHovering` only has value when the device supports a hovering pointer, like the mouse pointer on desktop machines. For most smart phones this trigger won't have much value.
-
-### $(SwipeGesture:Swipe gestures)
-
-We use the `SwipeGesture` behavior when we want an element to handle swipe gestures.
-
-```
-<Panel>
-	<SwipeGesture Direction="Right" Length="100" Type="Active" />
-</Panel>
-```
-
-- `Direction="Right"` specifies that this should be a swipe-to-the-right gesture.
-- `Length="100"` means that the swipe has a length of 100 points in the specified `Direction`.
-- `Type="Active"` indicates that this should be a two-state swipe gesture that toggles between an inactive/active state.
-
-`SwipeGesture` accepts the following properties:
-
-- `Direction` specifies the direction of the swipe.
-	Possible values are `Left`, `Up`, `Right` and `Down`.
-- `Edge` can be used instead of `Direction`, and specifies an edge of the element that can be swiped from.
-	Possible values are `Left`, `Top`, `Right` and `Bottom`.
-- `HitSize` only applies when `Edge` is used, and specifies how far from the edge we can start swiping for it to be recognized.
-- `Length` specifies, in points, how far we can swipe in the specified `Direction`.
-- `LengthNode` can be used instead of `Length`. It references another element that should be measured to determine the length of the swipe.
-- `Type`
-	- `Active` indicates that swiping should toggle between an inactive/active state.
-	- `Simple` indicates that swiping should invoke a single, momentary action.
-
-The `SwipeGesture` behavior has no effect on its own. We need to apply our own triggers and animators to respond to the gesture.
-In the following sub-sections we will go through different triggers and actions we can use to respond to and control @(SwipeGesture:SwipeGestures).
-
-* Note: Since you have the possibility to attach multiple swipe gestures on the same element, the related triggers need to know which one you are referring to.
-We are therefore required to set the `Source` property of all swipe-related triggers to the @(SwipeGesture) it should respond to.
-
-#### $(SwipingAnimation)
-
-`SwipingAnimation` performs animation in response to an element being swiped.
-The most common use case is to move the element along with the pointer.
-
-	<Panel Width="100" Height="100" Background="#000">
-		<SwipeGesture ux:Name="swipe" Direction="Right" Length="200" />
-		<SwipingAnimation Source="swipe">
-			<Move X="200" />
-		</SwipingAnimation>
-	</Panel>
-
-Instead of using a fixed length for the swipe we may also determine it from the size of another element.
-This is achieved using the `LengthNode` property of @(SwipeGesture), and in this case the `RelativeNode` property of @(Move) as well.
-
-	<Panel ux:Name="parentContainer" Margin="40">
-		<Panel Width="60" Height="60" Background="#000" Alignment="Left">
-			<SwipeGesture ux:Name="swipe" Direction="Right" Type="Active" LengthNode="parentContainer" />
-			<SwipingAnimation Source="swipe">
-				<Move X="1" RelativeTo="Size" RelativeNode="parentContainer" />
-			</SwipingAnimation>
-		</Panel>
-	</Panel>
-
-### $(Swiped)
-
-`Swiped` is a pulse trigger that is invoked when a swipe has occurred.
-
-	<Panel Width="100" Height="100">
-		<SwipeGesture ux:Name="swipe" Direction="Up" Length="50" Type="Simple" />
-		<Swiped Source="swipe">
-			<Scale Factor="1.5" Duration="0.4" DurationBack="0.2" />
-		</Swiped>
-	</Panel>
-
-By default, `Swiped` will only trigger when swiping to the primary swipe direction (when it enters the active state).
-For instance, if the @(SwipeGesture) has `Direction="Left"` it only triggers on a `Left` swipe and ignores the matching closing swipe.
-We can control this behavior by setting the `How` property to either `ToActive` (default), `ToInactive` or `ToEither`.
-
-#### $(WhileSwipeActive)
-
-`WhileSwipeActive` is active whenever a @(SwipeGesture) is active (when the user has swiped it "open").
-
-	<Panel Width="100" Height="100">
-		<SwipeGesture ux:Name="swipe" Direction="Up" Length="50" Type="Simple" />
-		<WhileSwipeActive Source="swipe">
-			<Scale Factor="1.5" Duration="0.4" DurationBack="0.2" />
-		</WhileSwipeActive>
-	</Panel>
-
-### $(SetSwipeActive) and $(ToggleSwipeActive)
-
-We can control the state of `Active` type @(SwipeGesture:SwipeGestures) by using the `SetSwipeActive` and `ToggleSwipeActive` actions.
-
-	<SwipeGesture ux:Name="swipe" Direction="Right" Length="100" Type="Active" />
-	...
-	<StackPanel>
-		<Button Text="Close">
-			<Clicked>
-				<SetSwipeActive Target="swipe" Value="false" />
-			</Clicked>
-		</Button>
-
-		<Button Text="Toggle">
-			<Clicked>
-				<ToggleSwipeActive Target="swipe" />
-			</Clicked>
-		</Button>
-	</StackPanel>
-
-If we wish to bypass the animation, `SetSwipeActive` lets us do that by setting `Bypass="true"`.
-
-## $(Viewport triggers)
-
-These triggers react when something happens to the app.
-
-### $(WhileWindowLandscape)
-
-The `WhileWindowLandscape` trigger is active whenever the app's viewport width is larger than it's height. The following example changes the App's background color depending on its orientation:
-
-```
-<App ux:Name="app" Theme="Basic" Background="#FFF">
-     <WhileWindowLandscape>
-         <Change app.ClearColor="0,0,1,1" Duration="1" />
-     </WhileWindowLandscape>
-</App>
-```
-
-### $(WhileWindowPortrait)
-
-The `WhileWindowPortrait` trigger is active whenever the app's viewport height is larger than, or equal to, the width.
-
-### $(WhileWindowSize)
-
-The `WhileWindowSize` trigger has three float2-properties that control it's behavior:
-
- * `GreaterThan`
- * `LessThan`
- * `EqualTo`
-
-
-These properties have to be larger than 0, and are conditions the app viewport has to conform to in order for the trigger to be active. The following is an example that changes the background color of an app if the viewport size is greater than a certain size:
-
-```
-<App Theme="Basic">
-  <Panel>
-     <SolidColor ux:Name="coloredPanel" Color="#F00" />
-     <WhileWindowSize GreaterThan="400,400">
-       <Change coloredPanel.Color="#0F0" Duration=".5"/>
-     </WhileWindowSize>
-  </Panel>
-</App>
-```
-
-## $(Control triggers)
-
-### $(WhileEnabled)
-
-The `WhileEnabled` trigger is active whenever its containing @(Element:elements) `IsEnabled` property is set to `True`.
-
-```
-<Panel  Width="50" Height="50" Background="Red" >
-	<WhileEnabled>
-		<Rotate Degrees="45" Duration="0.5"/>
-	</WhileEnabled>
-</Panel>
-```
-
-### $(WhileDisabled)
-
-The `WhileDisabled` trigger is active whenever its containing @(Element:elements) `IsEnabled` property is set to `False`.
-
-## $(Keyboard triggers)
-
-### $(TextInputActionTriggered)
-
-`TextInputActionTriggered` is triggered when the user presses the return key while editing a @(TextInput).
-The following example demonstrates how you can hide the keyboard in response.
-
-```
-<TextInput>
-	<TextInputActionTriggered>
-		<ReleaseFocus />
-	</TextInputActionTriggered>
-</TextInput>
-```
-
-## $(Focus triggers and actions)
-
-### $(WhileFocused)
-
-The `WhileFocused` trigger is active whenever its containing @(Element:element) is in focus.
-
-### $(WhileNotFocused)
-
-The opposite to @(WhileFocused), active whenever its containing @(Element:element) is _not_ in focus.
-
-### $(WhileFocusWithin)
-
-`WhileFocusWithin` is active whenever a child of its containing @(Element:element) is in focus.
-
-### $(GiveFocus)
-
-`GiveFocus` is an action that gives focus to its containing @(Element:element) when activated.
-It also accepts a `Target` property, which specifies what element to give focus to.
-
-### $(ReleaseFocus)
-
-When activated, `ReleaseFocus` removes focus from the currently focused @(Element:element).
-
-## $(Platform triggers)
-
-Sometimes it can be necessary with platform specific code. This can be done by using the platform triggers `Android` and `iOS`.
-
-In the following example, we place a red @(Panel) if on an Android device and a blue @(Panel) if on an iOS device:
-
-```
-<Panel>
-	<Android>
-		<Panel Background="#f00" Alignment="Center" Width="150" Height="150"/>
-	</Android>
-	<iOS>
-		<Panel Background="#00f" Alignment="Center" Width="150" Height="150"/>
-	</iOS>
-</Panel>
-```
-
-### $(WhileKeyboardVisible)
-
-`WhileKeyboardVisible` is active whenever the on-screen keyboard is visible.
-
-<!-- TODO: Example -->
-
-<!-- ### WhileWindowAspect
-TODO: Did we change the name of this?-->
-
-## Special $(Animation)s
+## $(Special Animations)
 
 In Fuse terminology, *animations* are a certain category of triggers that animate in response to a higher level interpretation
 of input, events and logical state changes.

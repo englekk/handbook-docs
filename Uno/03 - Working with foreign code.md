@@ -272,13 +272,40 @@ Action<int> -> com.foreign.Uno.Action_int
 Action<int[],int> -> com.foreign.Uno.Action_IntArray_int
 ```
 
+
+## Out/ref parameters
+
+Out and ref parameters are supported in foreign Objective-C functions. The Objective-C type for such a parameter is a pointer to the Objective-C type of the parameter according to the ordinary rules.
+
+The following two examples show how it works:
+
+```
+[Foreign(Language.ObjC)]
+extern(iOS) void PrimitiveOutParam(ref int m, out int n)
+@{
+    // m and n are of type `int*` here.
+    *m = 222;
+    *n = 123;
+@}
+
+[Foreign(Language.ObjC)]
+extern(iOS) void StringOutParam(ref string m, out string n)
+@{
+    // m and n are of type `NSString**` here.
+    *m = @"Out1";
+    *n = @"Out2";
+@}
+```
+
+As Java doesnt have out/ref parameters, it is unlikely that we will support this for Java.
+
+
 #### A note on objects from the old bindings
 
 Rather than just remove the old style bindings and force you into Foreign Code immediately, we are taking a more measured approach.
 
 Any object created using the old bindings can be passed up to Java in the same way as `Java.Object`.
 Objective-C bindings objects can be passed as `ObjC.Object`.
-
 
 ## Talking back to Uno
 
@@ -529,32 +556,6 @@ class Example
 ```
 
 _Note:_ Beware of naming collisions! An Objective-C class can't have the same name as an Uno class in the global namespace.
-
-## Out/ref parameters
-
-Out and ref parameters are supported in foreign Objective-C functions. The Objective-C type for such a parameter is a pointer to the Objective-C type of the parameter according to the ordinary rules.
-
-The following two examples show how it works:
-
-```
-[Foreign(Language.ObjC)]
-extern(iOS) void PrimitiveOutParam(ref int m, out int n)
-@{
-    // m and n are of type `int*` here.
-    *m = 222;
-    *n = 123;
-@}
-
-[Foreign(Language.ObjC)]
-extern(iOS) void StringOutParam(ref string m, out string n)
-@{
-    // m and n are of type `NSString**` here.
-    *m = @"Out1";
-    *n = @"Out2";
-@}
-```
-
-As Java doesnt have out/ref parameters, it is unlikely that we will support this for Java.
 
 --------------------------------------------------------------------------------
 

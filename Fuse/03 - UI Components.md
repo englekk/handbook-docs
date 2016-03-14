@@ -913,6 +913,14 @@ WebViews can also be fed raw HTML to display by wrapping an @(HTML) node or via 
 
 `<LoadHtml TargetNode="myWebView" BaseUrl="http://my.domain" Source="{html}"/>`
 
+### JavaScript API
+Certain methods of the WebView are exposed through JavaScript
+
+- `goto("http://myurl.com")`
+- `loadHtml("my html string")`
+- `loadHtml("my html string", "http://my.baseurl.com")`
+- `setBaseUrl("http://my.baseurl.com")`
+
 ### $(HTML)
 `<HTML/>` is a semantic utility node used to feed a @(WebView) component or a @(LoadHtml) action with raw HTML:
 
@@ -952,6 +960,15 @@ Getting a `MapView` included in your app is straight forward: Simply include the
 To initialize and manipulate the map camera, use the `Latitude`, `Longitude`, `Zoom`, `Tilt` and `Bearing` properties, all of which are two-way bindable. `Zoom` takes values in platform specific ranges, with meters above ground on iOS and a "zoom factor" on Android. 
 
 The map can be further customised by setting the rendering style using the `Style` property and the `MapStyle` enum. Options are `Normal`, `Satellite` and `Hybrid`.
+
+### JavaScript API
+Certain methods of the MapView are exposed through JavaScript. 
+
+- `setMarkers([ { latitude:0, longitude:0, label:"Zero"} ])`
+- `setLocation(latitude, longitude)` 
+- `setTilt(0.0)`
+- `setZoom(1.0)`
+- `setBearing(0.0)`
 
 #### Maps on Android
 Google Maps requires the Fuse.Maps package to be referenced in your .unoproj to build correctly. It also requires a valid API key. Follow [Google's documentation](https://developers.google.com/maps/android/) to get one set up. Once you have your key the key must be added to your project file:

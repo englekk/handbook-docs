@@ -30,7 +30,7 @@ multiple devices, screen sizes, with real data and real user input.
 
 ## Seperate forward and backward animation
 
-Some advanced @(Trigger:Trigger) animations might use seperate forward and backward animations. To do this, put the backward animation inside a @(TriggerAnimation), and bind it do the `BackwardAnimation` binding on the parent(forward) animation. This trigger uses `BackwardAnimation` to animate with a different easing when the animation is going back to its idle state.
+Some advanced @(Trigger:Trigger) animations might use separate forward and backward animations. To do this, put the backward animation inside a @(TriggerAnimation), and bind it do the `BackwardAnimation` binding on the parent(forward) animation. This trigger uses `BackwardAnimation` to animate with a different easing when the animation is going back to its idle state.
 
 ```
 <WhilePressed ux:Binding="BackwardAnimation">

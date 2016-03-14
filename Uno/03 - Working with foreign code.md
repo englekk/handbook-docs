@@ -504,15 +504,24 @@ With Java you normally have to worry about your folder structure matching your p
 
 _Note:_ With foreign Java, there is currently no way to `import` a package or class. For that reason you have to reference classes by their fully qualified name.
 
+You can use the `ForeignInclude` attribute to add imports in Java. It can only be used on classes. The includes affect all Foreign methods in the uno class.
+
+```
+[ForeignInclude(Language.Java, "java.lang.Runnable", "java.lang.Boolean", "android.app.Activity")]
+public class SomeUnoClass : Uno.Application
+{
+    ...
+}
+```
+
+
 
 ### Objective-C
 
 To use external Objective-C headers, you need to include them in your class, like so:
 
 ```
-using Uno.Compiler.ExportTargetInterop;
-
-[Require("Source.Include", "Example.hh")]
+[ForeignInclude(Language.ObjC, "Example.hh")]
 class Example
 {
 	...
@@ -520,6 +529,32 @@ class Example
 ```
 
 _Note:_ Beware of naming collisions! An Objective-C class can't have the same name as an Uno class in the global namespace.
+
+## Out/ref parameters
+
+Out and ref parameters are supported in foreign Objective-C functions. The Objective-C type for such a parameter is a pointer to the Objective-C type of the parameter according to the ordinary rules.
+
+The following two examples show how it works:
+
+```
+[Foreign(Language.ObjC)]
+extern(iOS) void PrimitiveOutParam(ref int m, out int n)
+@{
+    // m and n are of type `int*` here.
+    *m = 222;
+    *n = 123;
+@}
+
+[Foreign(Language.ObjC)]
+extern(iOS) void StringOutParam(ref string m, out string n)
+@{
+    // m and n are of type `NSString**` here.
+    *m = @"Out1";
+    *n = @"Out2";
+@}
+```
+
+As Java doesnt have out/ref parameters, it is unlikely that we will support this for Java.
 
 --------------------------------------------------------------------------------
 

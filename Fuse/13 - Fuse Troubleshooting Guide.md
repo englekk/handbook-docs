@@ -1,6 +1,8 @@
 # $(Fuse Troubleshooting Guide)
 
 ## General tips
+
+### Upgrading Fuse
 - When you have upgraded Fuse since the last time you built a project, clean the project before building (run `uno clean` in a terminal in the project folder).
 
 ## Logs

@@ -123,3 +123,16 @@ look and feel inspired by material design. This can be useful when you want a st
 point for UIs that are supposed to look the same on all platforms.
 
 	<App Theme="Basic">
+
+## $(ux:AutoBind)
+
+@(ux:AutoBind) controls whether an object should automatically be "connected" to the parent node. By default `ux:AutoBind="true"`, so you only need to use this if you want to do something special.
+
+For example:
+```
+<Panel ux:Name="panel1" >
+    <Panel ux:AutoBind="false" ux:Name="panel2" />
+</Panel>
+```
+
+In this case, `panel2` will not become a child of `panel1`. Instead, it will remain detached from the object tree. This is only meaningful if you intend to add it later, for example by navigating to it in a `HeirarchicalNavigation`.

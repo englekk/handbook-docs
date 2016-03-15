@@ -138,6 +138,46 @@ Delete a file from the application folder, returning `true` on a success:
 var wasDeleted = storage.deleteSync("filename.txt");
 ```
 
+## $(Interacting with UX elements)
+
+Some UX elements expose a JavaScript API.
+All you need to do is give them a `ux:Name`, and they will be available as globals.
+
+### $(JS-ScrollView:ScrollView)
+
+The viewport of a @(ScrollView) can be changed via the following functions.
+All of these take either one or two `Number` arguments.
+If one argument is given, it scrolls by the given amount in the allowed scroll direction.
+If two arguments are given, they are interpreted as X, Y coordinates.
+
+#### `scrollTo`
+
+Scrolls to the desired absolute position.
+
+#### `scrollToRelative`
+
+Scrolls to the desired relative position in the range of `0..1`.
+
+#### `seekTo`
+
+Jumps to the desired absolute position without animating.
+
+#### `seekToRelative`
+
+Jumps to the desired relative position in the range of `0..1`, without animating.
+
+> #### `Node.bringIntoView`
+
+Every `Node` has the method `bringIntoView`. When called, it will scroll the node's parent @(ScrollView) so that the node becomes visible.
+This is equivalent of the @(BringIntoView) action.
+
+<!-- TODO
+> #### ScrollView with JavaScript example
+
+```
+```
+-->
+
 ## Bundle
 
 The bundle API allows you to read files that is bundled with the application defined in the project file (using `<somename.extension>:Bundle`).

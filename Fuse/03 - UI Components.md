@@ -961,16 +961,7 @@ To initialize and manipulate the map camera, use the `Latitude`, `Longitude`, `Z
 
 The map can be further customised by setting the rendering style using the `Style` property and the `MapStyle` enum. Options are `Normal`, `Satellite` and `Hybrid`.
 
-### JavaScript API
-Certain methods of the MapView are exposed through JavaScript. 
-
-- `setMarkers([ { latitude:0, longitude:0, label:"Zero"} ])`
-- `setLocation(latitude, longitude)` 
-- `setTilt(0.0)`
-- `setZoom(1.0)`
-- `setBearing(0.0)`
-
-#### Maps on Android
+> ### Maps on Android
 
 Google Maps requires the following:
 
@@ -985,6 +976,15 @@ Google Maps requires the following:
     }
 }
 ```
+
+### JavaScript API
+Certain methods of the MapView are exposed through JavaScript. 
+
+- `setMarkers([ { latitude:0, longitude:0, label:"Zero"} ])`
+- `setLocation(latitude, longitude)` 
+- `setTilt(0.0)`
+- `setZoom(1.0)`
+- `setBearing(0.0)`
 
 ### $(MapMarker)
 To annotate the map, you must decorate it with `MapMarker` nodes. `MapMarker` nodes are simple value objects that contain a `Latitude`, a `Longitude` and a `Label`

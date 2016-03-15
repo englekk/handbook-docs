@@ -971,7 +971,12 @@ Certain methods of the MapView are exposed through JavaScript.
 - `setBearing(0.0)`
 
 #### Maps on Android
-Google Maps requires the Fuse.Maps package to be referenced in your .unoproj to build correctly. It also requires a valid API key. Follow [Google's documentation](https://developers.google.com/maps/android/) to get one set up. Once you have your key the key must be added to your project file:
+
+Google Maps requires the following:
+
+- A package reference to `Fuse.Maps` in your unoproj
+- The Google Play libraries. See [this guide](/learn/guides/installing-google-play-services) for installation instructions
+- A valid Google Maps API key. Follow [Google's documentation](https://developers.google.com/maps/android/) to get one set up. Once you have your key it must be added to your project file, as shown below
 
 ```JSON
 "Android": {

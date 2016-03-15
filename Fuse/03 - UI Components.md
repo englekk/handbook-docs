@@ -812,6 +812,8 @@ To limit the behavior of a `ScrollView`, you can set the ScrollDirection:
 
 Valid settings for `AllowedScrollDirections` include `Horizontal`, `Both` and `Vertical` (default). <!--TODO: Check that this is true. There are also a bunch of AllowedScrollDirections in the enum I believe are not used -->
 
+ScrollView also exposes a JavaScript API, which is documented @(JS-ScrollView:here).
+
 > ### $(ScrollingAnimation)
 
 It is possible to animate properties based on absolute `ScrollView` position. For example, let's remove a top ledge as a `ScrollView` scrolls down:

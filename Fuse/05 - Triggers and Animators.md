@@ -933,6 +933,8 @@ Here is an example of how to use a `StateGroup` to switch the color of a @(Recta
 </StackPanel>
 ```
 
+StateGroup also exposes a JavaScript API, which is documented @(JS-StateGroup:here).
+
 One can also specify the `TransitionType`, which can be either `Exclusive` or `Parallel`.
 `Exclusive` means that each state will have to be fully deactivated before the next state becomes active.
 `Parallel` means that as one state deactivates, the next one will become active and whatever properties they animate will be interpolated between them.
@@ -1364,6 +1366,7 @@ Here is an example of how we can use a timeline to animate several properties on
 </App>
 ```
 
+Timeline also exposes a JavaScript API, which is documented @(JS-Timeline:here).
 
 <!-- ## Advanced trigger usage
 

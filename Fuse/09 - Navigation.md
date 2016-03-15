@@ -57,23 +57,20 @@ For that we @(Creating custom UI components:subclass) @(Panel) and add both an @
 </Panel>
 ```
 
-Now the @(Panel:panels) will move to the side when they are navigate to and from by the width of their parent container.
+Now the @(Panel:panels) will move to the side by the width of their parent container when they are navigated to and from.
 
 ## $(Page)
 
-When a @(Panel) contains a @(Navigation) behavior, all its direct children act as pages in that navigation context. Since we usually want to style our pages a bit differently than the rest of our @(Panel:panels), Fuse comes with a `Page` type which we can use instead. The `Page` type is almost no different than a @(Panel), but comes with a `Title` property for convenience.
-
-It also lets us differentiate between pages and normal panels when styling our app.
+When a @(Panel) contains a @(Navigation) behavior, all its direct children act as pages in that navigation context. Since we usually want to style our pages a bit differently than the rest of our @(Panel:panels), Fuse comes with a `Page` type which we can use instead. The `Page` type is almost no different than a @(Panel), but comes with a `Title` property for convenience and semantic value.
 
 ## $(PageControl)
 
 Since swiping between pages is such a common interaction, Fuse comes with a @(Control) for exactly this.
-In this context, the term "page" does not necessarily mean @(Page), but refers to any child of the `PageControl` that participates in navigation.
 
 ```
 <PageControl>
-	<Page Background="Red"/>
-	<Page Background="Blue"/>
+	<Panel Background="Red"/>
+	<Panel Background="Blue"/>
 </PageControl>
 ```
 
@@ -98,9 +95,9 @@ In the following example, We have three pages and a button that returns the user
 <DockPanel>
 	<JavaScript>
 		var Observable = require("FuseJS/Observable");
-		var currentPage = Observable("Page1");
+		var currentPage = Observable("page1");
 		function clickHandler() {
-			currentPage.value = "Page1";
+			currentPage.value = "page1";
 		}
 		module.exports = {
 			clickHandler: clickHandler,
@@ -108,9 +105,9 @@ In the following example, We have three pages and a button that returns the user
 		};
 	</JavaScript>
 	<PageControl Active="{currentPage}">
-		<Page Name="Page1" Background="Red"/>
-		<Page Name="Page2" Background="Green"/>
-		<Page Name="Page3" Background="Blue"/>
+		<Panel Name="page1" Background="Red"/>
+		<Panel Name="page2" Background="Green"/>
+		<Panel Name="page3" Background="Blue"/>
 	</PageControl>
 	<Button Text="Home" Clicked="{clickHandler}" Dock="Bottom"/>
 </DockPanel>

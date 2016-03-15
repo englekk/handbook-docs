@@ -178,6 +178,36 @@ This is equivalent of the @(BringIntoView) action.
 ```
 -->
 
+### $(JS-StateGroup:StateGroup)
+
+@(StateGroup) can be controlled using the following functions:
+
+#### `goto(state)`
+
+Transitions to a given state. `state` can either be a `State` object, or a string referring to the `Name` of a state in the group.
+
+```
+<JavaScript>
+	// Using a State object
+	exports.gotoState1 = function() { mainState.goto(state1); }
+
+	// Using a Name string
+	exports.gotoState2 = function() { mainState.goto("state2"); }
+</JavaScript>
+<StateGroup ux:Name="mainState">
+	<State ux:Name="state1" />
+	<State Name="state2" />
+</StateGroup>
+```
+
+#### `gotoNext()`
+
+Transitions to the next state in the StateGroup.
+
+#### `State.goto()`
+
+Transitions the parent StateGroup to the state it is called on.
+
 ## Bundle
 
 The bundle API allows you to read files that is bundled with the application defined in the project file (using `<somename.extension>:Bundle`).

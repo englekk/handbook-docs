@@ -208,6 +208,44 @@ Transitions to the next state in the StateGroup.
 
 Transitions the parent StateGroup to the state it is called on.
 
+### $(JS-Timeline:Timeline)
+
+#### `pause()`
+
+Pauses playback of the @(Timeline). Unlike `stop`, `pause` doesn't alter the destination progress (set by `playTo`).
+
+#### `pulse()`
+
+Plays the @(Timeline) to the end, then back to the beginning.
+
+#### `pulseForward()`
+
+Plays the @(Timeline) to the end, then deactivates it.
+
+#### `pulseBackward()`
+
+Plays the @(Timeline) from the end to the beginning.
+
+#### `play()`, `resume()`
+
+Resumes playback of the timeline from a paused or stopped state.
+
+#### `playTo(position)`
+
+Starts playback towards a given position in the @(Timeline). Playback stops when reaching it.
+
+**Note**: `position` is relative and should be in the range of `0..1`, where 0 is the beginning and 1 is the end of the @(Timeline).
+
+#### `seek(position)`
+
+Jumps to a given position in the @(Timeline) and stops playback.
+
+**Note**: `position` is relative and should be in the range of `0..1`, where 0 is the beginning and 1 is the end of the @(Timeline).
+
+#### `stop()`
+
+Stops playback of the @(Timeline) and sets the destination position to the current position.
+
 ## Bundle
 
 The bundle API allows you to read files that is bundled with the application defined in the project file (using `<somename.extension>:Bundle`).

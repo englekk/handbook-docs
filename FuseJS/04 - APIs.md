@@ -150,19 +150,19 @@ All of these take either one or two `Number` arguments.
 If one argument is given, it scrolls by the given amount in the allowed scroll direction.
 If two arguments are given, they are interpreted as X, Y coordinates.
 
-#### `scrollTo`
+#### `goto(position)` or `goto(x, y)`
 
 Scrolls to the desired absolute position.
 
-#### `scrollToRelative`
+#### `gotoRelative(position)` or `gotoRelative(x, y)`
 
 Scrolls to the desired relative position in the range of `0..1`.
 
-#### `seekTo`
+#### `seekTo(position)` or `seekTo(x, y)`
 
 Jumps to the desired absolute position without animating.
 
-#### `seekToRelative`
+#### `seekToRelative` or `seekToRelative(x, y)`
 
 Jumps to the desired relative position in the range of `0..1`, without animating.
 

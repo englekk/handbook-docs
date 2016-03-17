@@ -1081,21 +1081,23 @@ You can set the transparency of objects using the `Opacity`-property.
 
 When the `Opacity` is set to 0.0, the element is fully transparent but will still respond to @(HitTestMode:hit tests). When the `Opacity` is set to 1.0, the element will be at its default state.
 
-> ### Layers
+### $(Layer)
 
-It is often helpful to redefine what existing controls should look like. Elements that are added to containers can be assigned to different layers. If you want a button to appear with a red background, you can redefine its `Background` `Layer`:
+Instead of partaking in layout, elements can function as backgrounds or overlays for their parents by using the `Layer` property.
 
-	<Button Text="Hello!">
-		<Rectangle Fill="#931" Layer="Background" />
-	</Button>
+In the following example, the button's text will appear above the rectangle.
 
-This will not change the layout or behavior of the `Button`, but its appearance will change.
+```
+<Button Text="Hello!">
+	<Rectangle Fill="#931" Layer="Background" />
+</Button>
+```
 
 Valid values for `Layer` are:
 
-- `Background`
-- `Layout`
-- `Overlay`
+- `Layout` _(default)_ – Element partakes in layout as usual, and is drawn between `Background` and `Overlay`
+- `Background` – Element is drawn *behind* the `Layout` layer, and does not affect layout
+- `Overlay` – Element is drawn *on top of* the `Layout` layer, and does not affect layout
 
 > ### $(ZOffset)
 

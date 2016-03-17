@@ -91,6 +91,29 @@ __MainView.ux__:
 
 You can set properties of reference types (such as `Brush`) by using `ux:Binding`. In the above example, we create a `LinearGradient` and use that as `Fill`.
 
+> ### Observable/Array properties
+
+If you want to pass in an Observable or Array as a property, use the `object` type, as illustrated below.
+
+```
+<Panel ux:Class="ListView">
+	<object ux:Property="ListItems" />
+	<StackPanel>
+		<Each Items="{Property this.ListItems}">
+			<Panel Padding="10">
+				<Text Value="{}" />
+			</Panel>
+		</Each>
+	</StackPanel>
+</Panel>
+
+<JavaScript>
+	exports.items = ["Foo", "Bar", "Baz"];
+</JavaScript>
+
+<ListView ListItems="{items}" />
+```
+
 ## ux:InnerClass
 
 An inner class is a class that belongs to a certain scope and has access to `ux:Name`s declared in that scope. An inner class can only be used in the scope where it is declared.

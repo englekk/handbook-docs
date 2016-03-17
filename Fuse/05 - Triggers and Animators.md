@@ -29,6 +29,21 @@ Each trigger knows how to "un-apply" its own animation to return to the rest sta
 This is great because it means animation is completely separated from the logical state of your program, greatly reducing the complexity of dealing with combined animation on
 multiple devices, screen sizes, with real data and real user input.
 
+### Separate forward and backward animations
+
+Some advanced @(Trigger) animations allow separate forward and backward animations.
+To do this, put the backward animation inside a @(TriggerAnimation), and bind it do the `BackwardAnimation` binding on the parent (forward) animation. The below example uses `BackwardAnimation` to animate with a different easing when the animation is going back to its idle state.
+
+```
+<WhilePressed ux:Binding="BackwardAnimation">
+	<Rotate Degrees="90" Duration="0.5" />
+	<TriggerAnimation ux:Binding="BackwardAnimation" >
+		<Rotate Degrees="90" Duration="0.5" Easing="BounceOut" />
+	</TriggerAnimation>
+</WhilePressed>
+```
+
+**Note:** Animations in a `BackwardAnimation` are automatically right-aligned.
 
 ## Animators
 

@@ -87,6 +87,10 @@ We can however customize this behavior with the following properties:
 - `Interaction` controls how user interaction is handled
 	- `Swipe` _(default)_ – The user can swipe between pages.
 	- `None` – The user cannot directly interact with navigation. Use this to implement your own navigation controls/gestures.
+- `AllowedSwipeDirections` limits which direction (in terms of navigation) the user is allowed to swipe
+	- `Both` _(default)_ – User may swipe both forward and backward in navigation
+	- `Forward` – User may only swipe forward in navigation.
+	- `Backward` – User may only swipe backward in navigation.
 
 By using data binding, you can set the currently active page by `Name` using the `Active` property.
 In the following example, We have three pages and a button that returns the user to the first page.
@@ -498,6 +502,7 @@ This will be on as long as the user is currently navigating in between two panel
 * @(ForwardDirection) - Specifies the direction the user has to swipe in order to navigate forwards.
 * @(SwipeEnds) - Decides how the animation handles there not being a next or previous element to navigate to. `Closed` hard-limits the animation to the end of the last element, `Open` lets the user swipe unhindered, `Short` adds resistance to the animation, effectively slowing the animation down the further the user swipes.
 * @(VelocityThreshold) - Minimum velocity required to snap to the next element.
+* @(AllowedDirections) - Limits which direction (in terms of navigation) the user is allowed to swipe.
 
 ### $(ForwardDirection)
 
@@ -515,6 +520,12 @@ Can have the values `Closed`, `Open` and `Short`.
 
 `VelocityThreshold` is used to decide how fast one has to swipe a page in order for it to be interpreted as a navigation. This means that one does not have to swipe the whole page away, but can get away with a short but fast flick gesture.
 
+### $(AllowedDirections)
+
+Can have the values `Forward`, `Backward` and `Both`.
+
+`Both` _(default)_ means that the user may swipe both forward and backward in navigation.
+`Forward` means that the user may only swipe forward, and `Backward` means only backward.
 
 ## Databind active page
 

@@ -464,7 +464,7 @@ When the `LayoutMaster` of an element is changed, any @(LayoutAnimation:LayoutAn
 The above example illustrates how `LayoutMaster` can be used to implement a moving selection rectangle. It consists of two panels that, when clicked, animate the `selection` @(Rectangle) to inherit their size and position.
 
 
-## $(Absolute positioning) $(X:) $(Y:)
+### $(Absolute positioning) $(X:) $(Y:)
 
 If we want to give our elements an explicit position, we can assign their `X` and `Y` properties. The `X` property will move the element relative to the left side of its container, while the `Y` property moves it relative to the top.
 

@@ -1097,6 +1097,23 @@ Valid values for `Layer` are:
 - `Layout`
 - `Overlay`
 
+> ### $(ZOffset)
+
+Normally, elements are drawn in the order they appear in UX.
+You can affect this ordering by using the `ZOffset` property (0 by default).
+Elements with a higher `ZOffset` value are drawn on top of those with a lower value. They do, however, stay in their @(Layer).
+
+In the following example, the blue rectangle will appear above the red one, even though their order tells us otherwise.
+
+```
+<Panel>
+    <Rectangle ZOffset="1" Color="Red" />
+    <Rectangle ZOffset="2" Color="Blue" />
+</Panel>
+```
+
+*Note:* The Z-order of children is completely independent of the Z-axis in 3D. Elements can still be transformed to any Z-axis location, rotated into the Z-dimension, or have actual depth, regardless and independent of their child Z-order.
+
 ## About $(Control:Controls)
 
 In Fuse, we use the word _control_ to describe a UI component that has a semantic function, but could vary largely in visual appearance.

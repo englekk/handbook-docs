@@ -116,6 +116,8 @@ TODO/AUTH: Write about mixop-->
 The `Target` property refers to the property that we intend to animate.
 The `Value` property is the value of the result of the animation.
 
+* Note: You can specify @(Units) with `Value` as long as the unit matches the original unit of the `Target`.
+
 Because the task of setting a target property and value is so common, UX has a special syntax for this. Instead of
 
 ```

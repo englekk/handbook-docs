@@ -107,6 +107,13 @@ It is most often used with single value Observables, although this is not a requ
 	}
 	isSomethingEnabled.value = false;
 
+#### &(Observable.toArray:toArray)
+
+Returns a copy of the Observables internal values array.
+
+	var obs = Observable(1,2,3);
+	var obsArray = obs.toArray(); //obsArray == [1,2,3]
+
 ### List operators
 
 #### $(Observable.length:length)

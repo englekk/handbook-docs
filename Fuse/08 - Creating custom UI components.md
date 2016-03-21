@@ -60,18 +60,20 @@ In most cases, when creating custom classes, we need to be able to define some i
 __MyButton.ux__:
 
 ```
-<Panel ux:Class="MyButton" ux:Name="self" Text="Click me!"
+<Panel ux:Class="MyButton" Text="Click me!"
 	   Fill="#f00" TextColor="#000" CornerRadius="10">
 	<string ux:Property="Text"/>
 	<float4 ux:Property="CornerRadius" />
 	<Brush ux:Property="Fill" />
 	<float4 ux:Property="TextColor"/>
-	<Text Alignment="Center" TextColor="{Property self.TextColor}" Value="{Property self.Text}"/>
-	<Rectangle Layer="Background" CornerRadius="{Property self.CornerRadius}" Fill="{Property self.Fill}" />
+	<Text Alignment="Center" TextColor="{Property this.TextColor}" Value="{Property this.Text}"/>
+	<Rectangle Layer="Background" CornerRadius="{Property this.CornerRadius}" Fill="{Property this.Fill}" />
 </Panel>
 ```
 
-Here we have created a new class called MyButton. We expose four properties (Text, CornerRadius, Fill and TextColor). These properties can then be bound to within our ux:Class using the `{Property self.PropName}` syntax.
+Here we have created a new class called MyButton. We expose four properties (Text, CornerRadius, Fill and TextColor). These properties can then be bound to within our ux:Class using the `{Property this.PropName}` syntax.
+
+* Notice that there exists an implicit name called `this` which we are using inside the `{Property this.PropName}` syntax. This name is used to refer to the root element of our `ux:Class`.
 
 When we instantiate our class, we can then access these properties directly:
 
@@ -120,8 +122,6 @@ An inner class is a class that belongs to a certain scope and has access to `ux:
 
 ### Example
 
-> A known bug causes this example to sometimes crash the compiler in Fuse 0.10. This issue has been fixed, and the fix will roll out in Fuse 0.11 soon. Thanks for your patience, and thanks for reporting bugs in our forums :)
-
 	<App Theme="Basic">
 		<Button ux:InnerClass="ActivateButton" ux:Name="btn" Margin="10">
 			<Clicked>
@@ -141,11 +141,11 @@ An inner class is a class that belongs to a certain scope and has access to `ux:
 			</Rectangle>
 		</StackPanel>
 	</App>
-			
+
 
 ## ux:Include
 
-You can insert the contents of a UX file into another by using `ux:Include`. 
+You can insert the contents of a UX file into another by using `ux:Include`.
 
 The above example, the `ux:InnerClass can be split into a separate file
 
@@ -169,6 +169,3 @@ In `ActivateButton.ux`:
 	</Button>
 
 Note that included files should not have `ux:Class` on the root node, that would create two instances of the class in your project. However, included files can specify `ux:InnerClass`. This will create a local version of the inner class in each location it is included.
-
-
-

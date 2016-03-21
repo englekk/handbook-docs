@@ -79,14 +79,15 @@ or if you want to make all JavaScript files be includes as bundled files:
 Then, you can require using the JavaScript file name:
 
 ```
-var myModule = require('someJavaScriptFile.js');
+var myModule = require('/someJavaScriptFile.js');
 ```
 
-Not that the file name is relative to the project root directory. To name a file relative to the current file, prefix with "./":
+Note that prefixing the file name with a "/" means that we are looking for the file relative to the project root directory. To name a file relative to the current file, prefix with "./". By omitting the prefixes, the file name is relative to the project root, or the global module it's in.
 
 ```
-var someFile = require('Scripts/SomeComponent.js');
+var relativeToProjectRoot = require('/SomeComponent.js');
 var relativeFile = require('./MainView.js');
+var relativeToRootOrGlobalModule = require('SomeOtherComponent.js');
 ```
 
 * Note that you may omit the .js file extension in the file name if you wish

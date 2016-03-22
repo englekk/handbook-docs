@@ -256,7 +256,10 @@ Updates all items in the @(Observable) with the values from `newValues`.
 		},
 		// Map to object with an observable version of text
 		function(newItem){
-			return { id:newItem.id, Observable(newItem.text)
+			return {
+				id: newItem.id,
+				text: Observable(newItem.text)
+			};
 		}
 	);
 

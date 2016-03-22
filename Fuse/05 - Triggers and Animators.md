@@ -1330,6 +1330,62 @@ In the following example, our background changes color when we reach the bottom 
 </ScrollViewer>
 ```
 
+> ### $(PullToReload)
+
+`PullToReload` lets you easily create a "pull to reload" interaction.
+
+It is implemented as a @(ScrollingAnimation), with a set of properties that let you to bind different @(State:states) that should be triggered during different stages of interaction.
+
+```
+<ScrollView>
+	<PullToReload>
+		<State ux:Binding="Pulling">
+			
+		</State>
+		<State ux:Binding="PulledPastThreshold">
+		
+		</State>
+		<State ux:Binding="Loading">
+			
+		</State>
+	</PullToReload>
+</ScrollView>
+```
+
+By using @(Data Binding:data binding), we can respond to the reload being initiated.
+
+```
+<JavaScript>
+	var Observable = require("FuseJS/Observable");
+	
+	var isLoading = Observable(false);
+	function onReload() {
+		somehowFetchData(function() {
+			isLoading.value = false;
+		});
+	}
+	
+	module.exports = { isLoading, onReload };
+</JavaScript>
+
+<ScrollView>
+	<PullToReload IsLoading="{isLoading}" ReloadHandler="{onReload}" />
+</ScrollView>
+```
+
+Since `PullToReload` actually is a @(ScrollingAnimation), we can for instance use it to show a loading indicator as the user pulls downward.
+
+```
+<Panel>
+	<Circle ux:Name="loadingIndicator" Width="50" Height="50" Color="Red" Alignment="Top" Offset="0,-50" />
+	<ScrollView>
+		<PullToReload>
+			<Move Target="loadingIndicator" Y="2" RelativeTo="Size" Duration="1" />
+		</PullToReload>
+	</ScrollView>
+</Panel>
+```
+
 ### $(ProgressAnimation)
 
 `ProgressAnimation` can be used together with a slider to animate elements as one slides its thumb. `ProgressAnimation` always goes from 0 to 1 as one slides the slider from its minimum value to its maximum value.

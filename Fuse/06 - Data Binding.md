@@ -2,6 +2,13 @@
 
 Fuse provides first class support for creating data driven apps with UX tags through direct binding, iteration and branching. UX can also do referencing deep inside complex data structures, so you do not have to do tedious data massaging in code.
 
+## $(Data Context)
+
+At any point in a Fuse `Node` tree, there is a *data context*. A data binding on any node will be relative to the current data context on the node. By default, this data context is `null`, and any data binding will just return null or empty values. The context will also propagate down the tree, meaning that if a child node doesn't provide a data context, it will use the data context of its parent.
+
+To set the data context, you typically add a *behavior* to a node that provides the data context, such as `<JavaScript>`.
+The data context can also be set explicitly using the `DataContext` property.
+
 ## JavaScript module as data source
 
 The simplest way to create a data source is through JavaScript, here is a databound "Hello world" minimal example:
@@ -106,16 +113,6 @@ You can hook up event handlers to call JavaScript functions with similar syntax:
 	<Button Clicked="{clickHandler}" Text="Click me!" />
 
 You can read more about this in the @(FuseJS) section.
-
-
-## $(Data Context)
-
-At any point in a Fuse `Node` tree, there is a *data context*. A data binding on any node will be relative to the current data context on the node. By default, this data context is `null`, and any data binding will just return null or empty values.
-
-To set the data context, you typically add a *behavior* to a node that provides the data context, such as a `<JavaScript>` tag. When using a `<JavaScript>` tag, the `module.exports` from the module specified will become the data context of the node the.
-
-Some behaviors, such as `<Each>` will take objects from the current data context and specify different data
-contexts for each child node.
 
 > ## Other data sources
 

@@ -1299,6 +1299,64 @@ In the following example, we use `ScrollingAnimation` to @(Scale) the @(ScrollVi
 </ScrollView>
 ```
 
+> ### $(PullToReload)
+
+`PullToReload` lets you easily create a "pull to reload" interaction.
+
+It is implemented as a @(ScrollingAnimation), with a set of properties that let you bind different @(State:states) that should be triggered during different stages of interaction.
+
+```
+<ScrollView>
+	<PullToReload>
+		<State ux:Binding="Pulling">
+			<!-- Will be active while the user is pulling downward -->
+		</State>
+		<State ux:Binding="PulledPastThreshold">
+			<!-- Will be active when the user has pulled past the threshold -->
+		</State>
+		<State ux:Binding="Loading">
+			<-- This will be active while IsLoading="true" -->
+		</State>
+	</PullToReload>
+</ScrollView>
+```
+
+By data binding to the `IsLoading` and `ReloadHandler` properties, we can respond to the reload being initiated.
+
+```
+<JavaScript>
+	var Observable = require("FuseJS/Observable");
+	
+	var isLoading = Observable(false);
+	function onReload() {
+		fetchDataSomehow(function() {
+			isLoading.value = false;
+		});
+	}
+	
+	module.exports = { isLoading, onReload };
+</JavaScript>
+
+<ScrollView>
+	<PullToReload IsLoading="{isLoading}" ReloadHandler="{onReload}" />
+</ScrollView>
+```
+
+**Note:** In the above example, `IsLoading` has a two-way data binding to `isLoading`, meaning that both the `PullToReload` itself and the `isLoading` Observable can change its value.
+
+Since `PullToReload` actually is a @(ScrollingAnimation), we can for instance use it to show a loading indicator as the user pulls downward.
+
+```
+<Panel>
+	<Circle ux:Name="loadingIndicator" Width="50" Height="50" Color="Red" Alignment="Top" Offset="0,-50" />
+	<ScrollView>
+		<PullToReload>
+			<Move Target="loadingIndicator" Y="2" RelativeTo="Size" Duration="1" />
+		</PullToReload>
+	</ScrollView>
+</Panel>
+```
+
 ### $(WhileScrollable)
 
 `WhileScrollable` is used to animate based on whether a @(ScrollView) can be scrolled or not. Use the `ScrollDirections` property to filter the activation based which directions we care about.
@@ -1328,62 +1386,6 @@ In the following example, our background changes color when we reach the bottom 
 		<Change color.Color="#ddd" Duration="0.4"/>
 	</WhileScrollable>
 </ScrollViewer>
-```
-
-> ### $(PullToReload)
-
-`PullToReload` lets you easily create a "pull to reload" interaction.
-
-It is implemented as a @(ScrollingAnimation), with a set of properties that let you to bind different @(State:states) that should be triggered during different stages of interaction.
-
-```
-<ScrollView>
-	<PullToReload>
-		<State ux:Binding="Pulling">
-			
-		</State>
-		<State ux:Binding="PulledPastThreshold">
-		
-		</State>
-		<State ux:Binding="Loading">
-			
-		</State>
-	</PullToReload>
-</ScrollView>
-```
-
-By using @(Data Binding:data binding), we can respond to the reload being initiated.
-
-```
-<JavaScript>
-	var Observable = require("FuseJS/Observable");
-	
-	var isLoading = Observable(false);
-	function onReload() {
-		somehowFetchData(function() {
-			isLoading.value = false;
-		});
-	}
-	
-	module.exports = { isLoading, onReload };
-</JavaScript>
-
-<ScrollView>
-	<PullToReload IsLoading="{isLoading}" ReloadHandler="{onReload}" />
-</ScrollView>
-```
-
-Since `PullToReload` actually is a @(ScrollingAnimation), we can for instance use it to show a loading indicator as the user pulls downward.
-
-```
-<Panel>
-	<Circle ux:Name="loadingIndicator" Width="50" Height="50" Color="Red" Alignment="Top" Offset="0,-50" />
-	<ScrollView>
-		<PullToReload>
-			<Move Target="loadingIndicator" Y="2" RelativeTo="Size" Duration="1" />
-		</PullToReload>
-	</ScrollView>
-</Panel>
 ```
 
 ### $(ProgressAnimation)

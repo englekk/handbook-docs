@@ -162,6 +162,8 @@ Arrays are converted to an object of type `id<UnoArray>` which is a wrapper arou
 
  Since Objective-C lacks generics, indexing into the `id<UnoArray>` object to get an element returns `id` regardless of the element type of the array on the Uno side. This `id` is a _boxed_ representation of the element type according to the following table:
 
+$(ForeignObjCTypeTable:)
+
     | Uno                         | Objective-C           | Boxed array element |
     |-----------------------------|-----------------------|---------------------|
     | `int`, `bool`, `char`, etc. | `int`, `bool`, `char` | `NSNumber*`         |
@@ -275,7 +277,8 @@ Action<int[],int> -> com.foreign.Uno.Action_IntArray_int
 
 ## Out/ref parameters
 
-Out and ref parameters are supported in foreign Objective-C functions. The Objective-C type for such a parameter is a pointer to the Objective-C type of the parameter according to the ordinary rules.
+Out and ref parameters are supported in foreign Objective-C functions.
+The Objective-C type for such a parameter is a pointer to the Objective-C type of the parameter according the @(ForeignObjCTypeTable:rules for Objective-C/Uno type conversion).
 
 The following two examples show how it works:
 
@@ -297,7 +300,7 @@ extern(iOS) void StringOutParam(ref string m, out string n)
 @}
 ```
 
-As Java doesnt have out/ref parameters, it is unlikely that we will support this for Java.
+As Java doesn't have out/ref parameters, it is unlikely that we will support this for Java.
 
 
 #### A note on objects from the old bindings

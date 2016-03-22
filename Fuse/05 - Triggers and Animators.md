@@ -1315,7 +1315,7 @@ It is implemented as a @(ScrollingAnimation), with a set of properties that let 
 			<!-- Will be active when the user has pulled past the threshold -->
 		</State>
 		<State ux:Binding="Loading">
-			<-- This will be active while IsLoading="true" -->
+			<!-- Will be active when the pointer is released after pulling past the threshold -->
 		</State>
 	</PullToReload>
 </ScrollView>

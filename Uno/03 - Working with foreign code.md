@@ -164,14 +164,14 @@ Arrays are converted to an object of type `id<UnoArray>` which is a wrapper arou
 
 $(ForeignObjCTypeTable:)
 
-    | Uno                         | Objective-C           | Boxed array element |
-    |-----------------------------|-----------------------|---------------------|
-    | `int`, `bool`, `char`, etc. | `int`, `bool`, `char` | `NSNumber*`         |
-    | `string`                    | `NSString*`           | `NSString*`         |
-    | `ObjC.Object`               | `id`                  | `id`                |
-    | `object`                    | `id<UnoObject>`       | `id<UnoObject>`     |
-    | `Func<string, int>` etc.    | `^ int(NSString*)`    | `^ int(NSString*)`  |
-    | `SomeType[]`                | `id<UnoArray>`        | `id<UnoArray>`      |
+| Uno                         | Objective-C           | Boxed array element |
+|-----------------------------|-----------------------|---------------------|
+| `int`, `bool`, `char`, etc. | `int`, `bool`, `char` | `NSNumber*`         |
+| `string`                    | `NSString*`           | `NSString*`         |
+| `ObjC.Object`               | `id`                  | `id`                |
+| `object`                    | `id<UnoObject>`       | `id<UnoObject>`     |
+| `Func<string, int>` etc.    | `^ int(NSString*)`    | `^ int(NSString*)`  |
+| `SomeType[]`                | `id<UnoArray>`        | `id<UnoArray>`      |
 
 Most types are already boxed, but note that primitive types like `int`, `bool`, and `char` are boxed as `NSNumber*` when accessed in a wrapped array. This means that to update an Uno array argument `int[] x` on the Objective-C side, we have to write e.g. `x[index] = @42;`. When copying an array, the resulting `NSArray*`'s elements are also boxed following the same rules.
 
@@ -207,18 +207,18 @@ First off we try to avoid copying massive ammounts of data by default, so we pas
 
 The conversions look like this (Note: Java does not allow generics of primitives types)
 
-    | Uno Type              | Boxed Java Type      | Unboxed Java Type   |
-    |-----------------------|----------------------|---------------------|
-    | bool[]                | com.uno.BoolArray    | bool[]              |
-    | sbyte[]               | com.uno.ByteArray    | byte[]              |
-    | char[]                | com.uno.CharArray    | char[]              |
-    | short[]               | com.uno.ShortArray   | short[]             |
-    | int[]                 | com.uno.IntArray     | int[]               |
-    | long[]                | com.uno.LongArray    | long[]              |
-    | float[]               | com.uno.FloatArray   | float[]             |
-    | double[]              | com.uno.DoubleArray  | double[]            |
-    | string[]              | com.uno.StringArray  | String[]            |
-    | anyOtherType[]        | com.uno.ObjectArray  | com.uno.UnoObject[] |
+| Uno Type                | Boxed Java Type        | Unboxed Java Type     |
+|-------------------------|------------------------|-----------------------|
+| `bool[]`                | `com.uno.BoolArray`    | `bool[]`              |
+| `sbyte[]`               | `com.uno.ByteArray`    | `byte[]`              |
+| `char[]`                | `com.uno.CharArray`    | `char[]`              |
+| `short[]`               | `com.uno.ShortArray`   | `short[]`             |
+| `int[]`                 | `com.uno.IntArray`     | `int[]`               |
+| `long[]`                | `com.uno.LongArray`    | `long[]`              |
+| `float[]`               | `com.uno.FloatArray`   | `float[]`             |
+| `double[]`              | `com.uno.DoubleArray`  | `double[]`            |
+| `string[]`              | `com.uno.StringArray`  | `String[]`            |
+| `anyOtherType[]`        | `com.uno.ObjectArray`  | `com.uno.UnoObject[]` |
 
 Java also doesn't allow operator overloading so to get the first `int` from an IntArray called `x` use `x.get(0)`. To set first value in the `IntArray` `x` to `10` use `x.set(0, 10)`
 

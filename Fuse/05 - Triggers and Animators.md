@@ -249,10 +249,10 @@ When used in concert with @(LayoutAnimation), `Resize` allows you to animate the
 <Resize RelativeTo="SizeChange" Duration="0.5" Easing="CircularInOut" />
 ```
 
-`Resize` has two options for `RelativeTo` at the moment:
+`Resize` has two options for `RelativeTo`:
 
-* `SizeChange` - resizes relative to the change in size of the element specified by the `RelativeNode` property.
-* `SizeFactor` - resizes the element individually on both axes, relative to an element specified by the `RelativeNode` property. To control the size factors, use the `X` and `Y` properties to set one axis at the time, or use the `Vector` property to set the factor of both axes at once, using a two-dimensional vector.
+* `SizeChange` - resizes relative to the change in size during a @(LayoutAnimation).
+* `Size` - resizes relative to the size of the element specified by `RelativeNode`.
 
 #### $(Spin)
 

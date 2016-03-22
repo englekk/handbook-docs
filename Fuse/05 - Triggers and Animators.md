@@ -1244,7 +1244,7 @@ The `LayoutAnimation` is triggered in response to a layout change. A layout chan
 
 `RemovingAnimation` is similar to @(AddingAnimation), but is triggered whenever an @(Element) is being removed from the visual tree.
 
-`RemoveAnimation` is similar to @(AddingAnimation) but is triggered whenever the element is removed from its parent. `RemoveAnimation` progresses normally from 0 to 1 over the specified @(Duration).
+`RemovingAnimation` is similar to @(AddingAnimation) but is triggered whenever the element is removed from its parent. `RemovingAnimation` progresses normally from 0 to 1 over the specified @(Duration).
 
 In the following example, a rectangle will move in from the right side by the width of its parent container over one second when it is added to the visual tree by the @(Switch). It will move out to the left by the same distance when it is removed.
 

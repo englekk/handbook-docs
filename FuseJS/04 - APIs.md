@@ -81,8 +81,8 @@ The storage API allows you to save text to files in the application directory.
 
 Please note that while debugging inside Windows / OSX machines the files will be stored according to the system application data.
 
-For **Windows**: `C:Users\(user name)\AppData\Local`.
-For **OSX**: `~/.local/share/`.
+* **Windows**: `C:Users\(user name)\AppData\Local`.
+* **OSX**: `~/.local/share/`.
 
 ### $(storage.write:write)
 

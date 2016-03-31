@@ -122,3 +122,32 @@ This also applies to triggers through the `Behaviors` property, and many more.
 
 In this case, `panel2` will not become a child of `panel1`. Instead, it will remain detached from the object tree.
 
+## ux:Generate
+
+`ux:Generate` tells the UX compiler what it should generate from the tag it is set on.
+It is `Instance` by default, which is what you'll be using 99.9% of the time.
+
+### Factory
+
+When a node has `ux:Generate="Factory"` it does not create an instance of the node.
+Instead, it creates a factory that other nodes can use to generate instances of the desired node and its subtree.
+
+For instance, both @(Each) and @(Case) implicitly create factories instead of instances of their children.
+
+> #### Example using PageIndicator
+
+@(PageIndicator) is an example of an element that uses factories.
+
+In the following example, we have a @(Circle) with `ux:Generate="Factory"`, that we bind to the `DotFactory` property of @(PageIndicator).
+`PageIndicator.DotFactory` specifies a factory that should be used to generate a page indicator dot for each page in the navigation context.
+
+```
+<PageIndicator Navigation="nav">
+	<Circle ux:Generate="Factory" ux:Binding="DotFactory"
+	        Width="5" Height="5" Color="White" />
+</PageIndicator>
+
+<PageControl ux:Name="nav">
+	...pages go here...
+</PageControl>
+```

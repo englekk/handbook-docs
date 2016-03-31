@@ -87,6 +87,26 @@ The main benefits of working with `Basic` theme are:
 * Your designs and animations will look and behave identically on all platforms.
 
 
+## ux:Binding
+
+`ux:Binding` binds a Node to a property of its parent.
+
+```
+<Text Value="Hello from Fuse!">
+	<Font ux:Binding="Font" File="Assets/MyFont.ttf" />
+</Text>
+```
+
+However, some properties (such as `Font`) are configured to automatically bind to children of their type, meaning that the above example could be written as:
+
+```
+<Text Value="Hello from Fuse!">
+	<Font File="Assets/MyFont.ttf" />
+</Text>
+```
+
+This behavior can be controlled using `ux:AutoBind`, which is explained below.
+
 ## ux:AutoBind
 
 When you place UI elements inside of each other, what actually happens is that the child elements are implicitly bound to the `Children` property of the parent.

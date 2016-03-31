@@ -86,15 +86,19 @@ The main benefits of working with `Basic` theme are:
   which offers a much smoother experience than the iOS and Android emulators.
 * Your designs and animations will look and behave identically on all platforms.
 
-## $(ux:AutoBind)
 
-@(ux:AutoBind) controls whether an object should automatically be "connected" to the parent node. By default `ux:AutoBind="true"`, so you only need to use this if you want to do something special.
+## ux:AutoBind
 
-For example:
+When you place UI elements inside of each other, what actually happens is that the child elements are implicitly bound to the `Children` property of the parent.
+This also applies to triggers through the `Behaviors` property, and many more.
+
+`ux:AutoBind` controls this behavior, and is set to `true` by default.
+
 ```
 <Panel ux:Name="panel1" >
     <Panel ux:AutoBind="false" ux:Name="panel2" />
 </Panel>
 ```
 
-In this case, `panel2` will not become a child of `panel1`. Instead, it will remain detached from the object tree. This is only meaningful if you intend to add it later, for example by navigating to it in a `HeirarchicalNavigation`.
+In this case, `panel2` will not become a child of `panel1`. Instead, it will remain detached from the object tree.
+

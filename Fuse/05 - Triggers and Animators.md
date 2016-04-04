@@ -1381,6 +1381,39 @@ Here is an example of how we can use a timeline to animate several properties on
 </App>
 ```
 
+## $(RangeAdapter:Range adapter)
+
+The `RangeAdapter` can be used to adjust the range of values used in bindings. This allows finer control over animations such as `Timeline` and `...Animation` triggers.
+
+- `Source` the value to be adapted. This value is always updated directly, the `RangeAdapter` does not store any value internall.
+- `SourceRangeMin` the minimum value to map to on the source
+- `SourceRangeMax` the maximum value to map to on the source
+
+In the following example, two panels are rotated. However, due to one of the panels being animated via a `RangeAdapter`, it will only rotate half of what the other panel is rotated:
+
+```
+<App Theme="Basic" Background="#fff">
+  <StackPanel>
+    <StackPanel Height="200">
+      <Panel ux:Name="animationTarget" Color="#874cff" Width="70" Height="70" Margin="10" />
+      <Panel ux:Name="animationTargetTwo" Color="#d46fff" Width="70" Height="70" Margin="10" />
+    </StackPanel>
+    <Button Text="Run animation" >
+      <Clicked>
+	<Toggle Target="actualAnim" />
+      </Clicked>
+    </Button>
+    <Timeline ux:Name="timeline">
+      <Rotate Target="animationTargetTwo" Degrees="90" Duration="1"/>
+    </Timeline>
+    <RangeAdapter ux:Name="range" Source="timeline.Progress" SourceRangeMin="0" SourceRangeMax="0.5" />
+    <WhileTrue ux:Name="actualAnim">
+      <Rotate Target="animationTarget" Degrees="90" Duration="1"/>
+      <Change range.Value="1" Duration="1" />
+    </WhileTrue>
+  </StackPanel>
+</App>
+```
 
 <!-- ## Advanced trigger usage
 

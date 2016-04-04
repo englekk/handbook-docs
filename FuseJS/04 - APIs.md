@@ -207,7 +207,6 @@ The app start event is implicit as this is when your js code is first evaluated.
 - $(onEnteringBackground) - The app is leaving the running state and is about to be suspended.
 - $(onEnteringInteractive) - The app is entering a state where it is fully focused and receiving events.
 - $(onExitedInteractive) - The app is partially obscured or is no longer the focus (e.g. when you drag open the notification bar)
-- $(onTerminating) - The app is about to shut down.
 
 ## $(Phone)
 

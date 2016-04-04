@@ -913,14 +913,6 @@ WebViews can also be fed raw HTML to display by wrapping an @(HTML) node or via 
 
 `<LoadHtml TargetNode="myWebView" BaseUrl="http://my.domain" Source="{html}"/>`
 
-### JavaScript API
-Certain methods of the WebView are exposed through JavaScript
-
-- `goto("http://myurl.com")`
-- `loadHtml("my html string")`
-- `loadHtml("my html string", "http://my.baseurl.com")`
-- `setBaseUrl("http://my.baseurl.com")`
-
 ### $(HTML)
 `<HTML/>` is a semantic utility node used to feed a @(WebView) component or a @(LoadHtml) action with raw HTML:
 
@@ -957,7 +949,8 @@ Getting a `MapView` included in your app is straight forward: Simply include the
 </NativeViewHost>
 ```
 
-To initialize and manipulate the map camera, use the `Latitude`, `Longitude`, `Zoom`, `Tilt` and `Bearing` properties, all of which are two-way bindable. `Zoom` takes values in platform specific ranges, with meters above ground on iOS and a "zoom factor" on Android.
+To initialize and manipulate the map camera, use the `Latitude`, `Longitude`, `Zoom`, `Tilt` and `Bearing` properties, all of which are two-way bindable. 
+`Zoom` follows Google's "zoom levels", which can be read about in detail [here](https://developers.google.com/maps/documentation/static-maps/intro#Zoomlevels). 
 
 The map can be further customised by setting the rendering style using the `Style` property and the `MapStyle` enum. Options are `Normal`, `Satellite` and `Hybrid`.
 
@@ -976,15 +969,6 @@ Google Maps requires the following:
     }
 }
 ```
-
-### JavaScript API
-Certain methods of the MapView are exposed through JavaScript.
-
-- `setMarkers([ { latitude:0, longitude:0, label:"Zero"} ])`
-- `setLocation(latitude, longitude)`
-- `setTilt(0.0)`
-- `setZoom(1.0)`
-- `setBearing(0.0)`
 
 ### $(MapMarker)
 To annotate the map, you must decorate it with `MapMarker` nodes. `MapMarker` nodes are simple value objects that contain a `Latitude`, a `Longitude` and a `Label`

@@ -961,19 +961,21 @@ To initialize and manipulate the map camera, use the `Latitude`, `Longitude`, `Z
 
 The map can be further customised by setting the rendering style using the `Style` property and the `MapStyle` enum. Options are `Normal`, `Satellite` and `Hybrid`.
 
-> ### Maps on Android
+> ### $(Maps on Android)
 
 Google Maps requires the following:
 
-- A package reference to `Fuse.Maps` in your unoproj
+- A @(Unoproj.Packages:package reference) to `Fuse.Maps` in your unoproj
 - The Google Play libraries. See [this guide](/learn/guides/installing-google-play-services) for installation instructions
-- A valid Google Maps API key. Follow [Google's documentation](https://developers.google.com/maps/android/) to get one set up. Once you have your key it must be added to your project file, as shown below
+- A valid Google Maps API key. Follow [Google's documentation](https://developers.google.com/maps/android/) to get one set up.
 
-```JSON
+Once you have your key it must be added to your project file, as shown below:
+
+```json
 "Android": {
-   "Geo": {
-        "ApiKey": "your_key_here"
-    }
+	"Geo": {
+		"ApiKey": "your_key_here"
+	}
 }
 ```
 

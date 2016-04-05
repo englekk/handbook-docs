@@ -208,6 +208,8 @@ The app start event is implicit as this is when your js code is first evaluated.
 - $(onEnteringInteractive) - The app is entering a state where it is fully focused and receiving events.
 - $(onExitedInteractive) - The app is partially obscured or is no longer the focus (e.g. when you drag open the notification bar)
 
+See a [complete code example](https://github.com/fusetools/fuse-samples/tree/master/Samples/Lifecycle).
+
 ## $(Phone)
 
 You can use the Phone-API to request a $(Phone.call:call) initiation:

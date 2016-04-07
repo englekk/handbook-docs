@@ -1385,9 +1385,12 @@ Here is an example of how we can use a timeline to animate several properties on
 
 The `RangeAdapter` can be used to adjust the range of values used in bindings. This allows finer control over animations such as `Timeline` and `...Animation` triggers.
 
-- `Source` the value to be adapted. This value is always updated directly, the `RangeAdapter` does not store any value internall.
+- `Source` the value to be adapted. This value is always updated directly, the `RangeAdapter` does not store any value internally.
 - `SourceRangeMin` the minimum value to map to on the source
 - `SourceRangeMax` the maximum value to map to on the source
+- `ValueRangeMin` the minimum value to map to on the value. Default 0
+- `ValueRangeMax` the maximum value to map to on the value. Default 1
+- `Value` the value to be translated. Change this to have `Source` updated with the translated value.
 
 In the following example, two panels are rotated. However, due to one of the panels being animated via a `RangeAdapter`, it will only rotate half of what the other panel is rotated:
 

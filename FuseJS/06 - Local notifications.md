@@ -2,7 +2,7 @@
 
 Sometimes you need to alert your user to an event in your app even when your app is not running in the foreground. For this most mobile devices have some concept of Notifications. Here we are going to discuss 'Local Notifications' which are notifications scheduled from the app itself. 'Push Notifications' are notifications sent from a server elsewhere and are covered in the next chapter.
 
-As with many of our bindings over OS features we like to start with a light API and build up, Wwe are very interested in comments & requests so do drop by the forums and let us know.
+As with many of our bindings over OS features we like to start with a light API and build up, We are very interested in comments & requests so do drop by the forums and let us know.
 
 ## Getting Set Up
 

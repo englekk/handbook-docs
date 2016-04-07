@@ -8,11 +8,13 @@ Lets take a look at a simple case: we want a set of @(Page:pages) which we can @
 
 To start off, we make a set of @(Panel:panels) which represents our @(Page:pages).
 
-	<Panel>
-		<Panel Background="Red"/>
-		<Panel Background="Blue"/>
-		<Panel Background="Green"/>
-	</Panel>
+```
+<Panel>
+	<Panel Background="Red"/>
+	<Panel Background="Blue"/>
+	<Panel Background="Green"/>
+</Panel>
+```
 
 Currently this is just a @(Panel) with three @(Panel:panels) inside it. To make our swipe navigation possible, we need to add three things.
 
@@ -23,17 +25,21 @@ Currently this is just a @(Panel) with three @(Panel:panels) inside it. To make 
 We start off by adding a @(LinearNavigation)- and a @(SwipeNavigate) behavior.
 The @(LinearNavigation) is just one of several @(Navigation types:types of navigation) that can be used.
 
-	<Panel>
-		<LinearNavigation Easing="CircularOut"/>
-		<SwipeNavigate SwipeDirection="Left"/>
-		<Panel Background="Red"/>
-		<Panel Background="Blue"/>
-		<Panel Background="Green"/>
-	</Panel>
+```
+<Panel>
+	<LinearNavigation />
+	<SwipeNavigate SwipeDirection="Left"/>
+	<Panel Background="Red"/>
+	<Panel Background="Blue"/>
+	<Panel Background="Green"/>
+</Panel>
+```
 
-This adds all the behavior we need for navigation, but this is not enough to let us swipe between pages. The pages don't know how to animate themselves when they @(EnteringAnimation:enter) or @(ExitingAnimation:exit). For that we use @(EnteringAnimation) and @(ExitingAnimation).
+This adds all the behavior we need for navigation, but this is not enough to let us swipe between pages.
+The pages don't know how to animate themselves when they @(EnteringAnimation:enter) or @(ExitingAnimation:exit).
+For that we @(Creating custom UI components:subclass) @(Panel) and add both an @(EnteringAnimation) and an @(ExitingAnimation).
 
-
+```
 <Panel>
 	<Panel ux:Class="NavPanel">
 		<EnteringAnimation>
@@ -43,63 +49,68 @@ This adds all the behavior we need for navigation, but this is not enough to let
 			<Move X="1" RelativeTo="ParentSize" Duration="0.5"/>
 		</ExitingAnimation>
 	</Panel>
-	<LinearNavigation Easing="CircularOut" />
+	<LinearNavigation />
 	<SwipeNavigate SwipeDirection="Left"/>
-	<NavPanel Background="Blue"/>
 	<NavPanel Background="Red"/>
+	<NavPanel Background="Blue"/>
+	<NavPanel Background="Green"/>
 </Panel>
+```
 
-Now the @(Panel:panels) will move to the side when they are navigate to and from by the width of their parent container.
+Now the @(Panel:panels) will move to the side by the width of their parent container when they are navigated to and from.
 
 ## $(Page)
 
-When a @(Panel) contains a @(Navigation) behavior, all its direct children act as pages in that navigation context. Since we usually want to style our pages a bit differently than the rest of our @(Panel:panels), Fuse comes with a `Page` type which we can use instead. The `Page` type is almost no different than a @(Panel), but comes with a `Title` property for convenience.
-
-It also lets us differentiate between pages and normal panels when styling our app.
+When a @(Panel) contains a @(Navigation) behavior, all its direct children act as pages in that navigation context. Since we usually want to style our pages a bit differently than the rest of our @(Panel:panels), Fuse comes with a `Page` type which we can use instead. The `Page` type is almost no different than a @(Panel), but comes with a `Title` property for convenience and semantic value.
 
 ## $(PageControl)
 
-Since swiping between pages is such a common thing to see in apps, Fuse has a wrapper @(Control) for exactly this.
-
-We actually already built most of the behavior of the `PageControl` from scratch in @(Basic navigation). One difference to note is that the `PageControl` styles @(Page:pages), and not @(Panel:panels), so it should be used like this:
+Since swiping between pages is such a common interaction, Fuse comes with a @(Control) for exactly this.
 
 ```
 <PageControl>
-	<Page Background="Red"/>
-	<Page Background="Blue"/>
+	<Panel Background="Red"/>
+	<Panel Background="Blue"/>
 </PageControl>
 ```
-`PageControl` has a few properties you might be interested in:
 
-* `Active` - The currently active page
-* `PageProgress` - Navigation progress, spanning from 0 to the number of pages minus one
+The above example illustrates the default behavior of `PageControl`, which is to slide the pages in response to swipe gestures.
+We can however customize this behavior with the following properties:
 
+- `InactiveState` controls the `Visibility` and `IsEnabled` status of children when they go off-screen.
+	- `Collapsed` _(default)_ – Sets `Visibility="Collapsed"` so that inactive pages are hidden and no layout is calculated on them.
+	- `Disabled` – Inactive pages are visible, but pointer interaction is disabled by setting `IsEnabled="false"`.
+	- `Unchanged` – Inactive pages are left as-is.
+- `Transition` controls how pages are transitioned during navigation
+	- `Standard` _(default)_ – Performs a standard sideways sliding animation.
+	- `None` – Does not perform animation. Use this to implement your own animation.
+- `Interaction` controls how user interaction is handled
+	- `Swipe` _(default)_ – The user can swipe between pages.
+	- `None` – The user cannot directly interact with navigation. Use this to implement your own navigation controls/gestures.
 
 By using data binding, you can set the currently active page by `Name` using the `Active` property.
 In the following example, We have three pages and a button that returns the user to the first page.
 
 ```
-<App Theme="Basic" Background="#eeeeeeff">
-	<DockPanel>
-		<JavaScript>
-			var Observable = require("FuseJS/Observable");
-			var currentPage = Observable("Page1");
-			function clickHandler() {
-				currentPage.value = "Page1";
-			}
-			module.exports = {
-				clickHandler: clickHandler,
-				currentPage: currentPage
-			};
-		</JavaScript>
-		<PageControl Active="{currentPage}" Dock="Fill">
-			<Page Name="Page1" Background="Red"/>
-			<Page Name="Page2" Background="Green"/>
-			<Page Name="Page3" Background="Blue"/>
-		</PageControl>
-		<Button Text="Home" Clicked="{clickHandler}" Dock="Bottom"/>
-	</DockPanel>
-</App>
+<DockPanel>
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");
+		var currentPage = Observable("page1");
+		function clickHandler() {
+			currentPage.value = "page1";
+		}
+		module.exports = {
+			clickHandler: clickHandler,
+			currentPage: currentPage
+		};
+	</JavaScript>
+	<PageControl Active="{currentPage}">
+		<Panel Name="page1" Background="Red"/>
+		<Panel Name="page2" Background="Green"/>
+		<Panel Name="page3" Background="Blue"/>
+	</PageControl>
+	<Button Text="Home" Clicked="{clickHandler}" Dock="Bottom"/>
+</DockPanel>
 ```
 
 Take a look at the [Pages using JavaScript](https://www.fusetools.com/community/examples/pageslist) example to see how this can be used in practice.
@@ -187,13 +198,9 @@ With these on each page we can create a `PageIndicator` that uses images for the
 
 ## $(Navigation types)
 
-There are several navigation types, and they have quite different behaviors and use cases. Each of them inherit from the `Navigation` base type, and therefore share a few properties:
+There are several navigation types, and they have quite different behaviors and use cases.
 
-* `Active` - The currently active page
-* `CanGoBack` - `true` if it is possible to navigate backward
-* `CanGoForward` - `true` if it is possible to navigate forward
-* `PageCount` - The number of pages
-* `PageProgress` - Progress in the navigation from 0.0 to the amount of pages minus one.
+Each of them inherit from the `Navigation` base type, which exposes the `Active` property, which sets the currently active page. This can be data-bound to the string name of the node.
 
 ### $(LinearNavigation)
 
@@ -214,14 +221,6 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 ```
 <Panel>
 	<HierarchicalNavigation ux:Name="nav" Active="mainPage" />
-	<Panel ux:Class="NavPanel">
-		<EnteringAnimation>
-			<Move X="-1" RelativeTo="ParentSize"/>
-		</EnteringAnimation>
-		<ExitingAnimation>
-			<Move X="1" RelativeTo="ParentSize" Duration="0.5"/>
-		</ExitingAnimation>
-	</Panel>
 
 	<Page ux:Class="MyPage">
 		<EnteringAnimation>
@@ -252,7 +251,7 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 				</Button>
 			</WhileCanGoForward>
 		</StackPanel>
-	</Page>
+	</MyPage>
 
 	<MyPage ux:Name="subPage1" ux:AutoBind="false">
 		<StackPanel>
@@ -263,7 +262,7 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 				</Clicked>
 			</Button>
 		</StackPanel>
-	</Page>
+	</MyPage>
 
 	<MyPage ux:Name="subPage2" ux:AutoBind="false">
 		<StackPanel>
@@ -274,7 +273,7 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 				</Clicked>
 			</Button>
 		</StackPanel>
-	</Page>
+	</MyPage>
 </Panel>
 ```
 
@@ -320,18 +319,39 @@ While @(EdgeNavigator) will do the job in most cases, you might be interested in
 
 Fuse provides several @(Actions:actions) that allow you to perform @(Navigation:navigation).
 
-All navigation-related @(Actions:actions) have a `Target` property that lets you specify the navigation context to perform the action on.
-If `Target` is not specified, it will look for a parent element with a `Navigation` behavior and use that.
+All navigation-related @(Actions:actions) have a `NavigationContext` property that lets you specify the navigation context to perform the action on.
+If `NavigationContext` is not specified, it will look for a parent element with a `Navigation` behavior and use that.
+
+> ### Manually specifying a navigation context
+
+```
+<DockPanel>
+	<PageControl ux:Name="navContext">
+		<Page ux:Name="page1" Background="#f00" />
+		<Page ux:Name="page2" Background="#00f" />
+	</PageControl>
+	<Grid Dock="Bottom" Columns="1*,1*">
+		<Button Text="Go to page 1">
+			<Clicked>
+				<NavigateTo Target="page1" NavigationContext="navContext" />
+			</Clicked>
+		</Button>
+		<Button Text="Go to page 2">
+			<Clicked>
+				<NavigateTo Target="page2" NavigationContext="navContext" />
+			</Clicked>
+		</Button>
+	</Grid>
+</DockPanel>
+```
 
 ### GoBack
 
-The behavior of `GoBack` depends on the type of navigator (`TargetNode`) it's performed on:
+The behavior of `GoBack` depends on the type of navigation context it's performed on:
 
 - @(LinearNavigation) – Navigates to the page occurring before the current page.
 - @(HierarchicalNavigation) – Navigates one level up in the hierarchy, i.e. the page most recently navigated to.
 - @(DirectNavigation) – Does nothing.
-
-*Keep in mind that the `TargetNode` property must be set to the parent Panel which contains a Navigation behavior, not to the behavior itself.*
 
 > ### $(WhileCanGoBack)
 
@@ -345,8 +365,6 @@ As with @(GoBack), `GoForward` is also context-sensitive:
 - @(HierarchicalNavigation) – Navigates one level down in the hierarchy, i.e. the last page the user has @(GoBack:gone back) from.
 - @(DirectNavigation) – Does nothing.
 
-*Keep in mind that the `TargetNode` property must be set to the parent Panel which contains a Navigation behavior, not to the behavior itself.*
-
 > ### $(WhileCanGoForward)
 
 The `WhileCanGoForward` trigger is active whenever navigating forward is possible.
@@ -354,23 +372,24 @@ The `WhileCanGoForward` trigger is active whenever navigating forward is possibl
 
 ### $(NavigateTo)
 
-`NavigateTo` navigates to a specific @(Page:page), specified by the `Target` property. Below is an example using a @(PageControl).
+Navigates to a specific @(Page:page), specified by the `Target` property. Below is an example using a @(PageControl).
 
-	<PageControl ux:Name="nav">
-		<Page ux:Name="page1">
-			<Button Text="Go to page 2" Alignment="Center">
-				<Clicked>
-					<NavigateTo Target="page2" />
-				</Clicked>
-			</Button>
-		</Page>
-		<Page ux:Name="page2">
-			<Text Alignment="Center">
-				Welcome to page 2!
-			</Text>
-		</Page>
-	</PageControl>
-
+```
+<PageControl ux:Name="nav">
+	<Page ux:Name="page1">
+		<Button Text="Go to page 2" Alignment="Center">
+			<Clicked>
+				<NavigateTo Target="page2" />
+			</Clicked>
+		</Button>
+	</Page>
+	<Page ux:Name="page2">
+		<Text Alignment="Center">
+			Welcome to page 2!
+		</Text>
+	</Page>
+</PageControl>
+```
 
 ## $(EnteringAnimation) / $(ExitingAnimation)
 

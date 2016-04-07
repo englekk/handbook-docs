@@ -44,11 +44,16 @@ the app will look and feel. You set it like this:
 
 	<App Theme="..name of theme..">
 
-If not specified, `App` uses a plain `GraphicsTheme` by default.
+`Theme` can have the following settings:
 
-### $(NativeTheme)
+* `Basic` - Reccommended. Uses OpenGL based graphics to render controls with identical appearance on each platform.
+* `Native` - Uses the native iOS and Android platform controls by default. Note that this will not work in local desktop preview.
+* `NativeWithFallback` - Uses `Native` theme on iOS and Android devices, but `Basic` in local desktop preview.
+* *Default* - If nothing is specified, Fuse uses OpenGL based graphics, but provides *no default appearance* for standard controls (such as `Button` and `Slider`).
 
-When using `NativeTheme`, Fuse will use the native controls from the target platform. To use a native theme, do:
+### $(NativeTheme: Native Theme)
+
+When using `Theme="Native"`, Fuse will use the native controls from the target platform. To use a native theme, do:
 
 	<App Theme="Native">
 		<StackPanel>
@@ -62,64 +67,34 @@ In this example, the displayed controls will have native appearance on iOS and A
 
 > If you still want to make use of desktop preview while working with native controls, you can use the `NativeWithFallback` theme. This will give you native controls on iOS and Android, while falling back to a (unspecified) basic theme on desktop.
 
-### $(GraphicsTheme)
+### $(BasicTheme: Basic Theme)
 
-By default, `App` uses a `GraphicsTheme`, which will give your app an identical look on all platforms, with the exception of:
+The `Basic` theme renders controls with OpenGL, gives controls a look and feel inspired by material design.
+
+Example usage:
+
+	<App Theme="Basic">
+
+Using `Theme="Basic"` which will give your app an identical look on all platforms, with the exception of:
 
 * Status bars will behave differently across platforms
-* `TextInput` is a higher-level control and will by default not be rendered since it relies on native platform controls. Either define your own style for this or use a @(BasicTheme) instead.
+* `TextInput` is and other higher level controls will map to the platform-specific controls.
 
-The main benefits of working with `GraphicsTheme` are:
+The main benefits of working with `Basic` theme are:
 
 * You can preview your app on Mac and PC using Fuse's realtime preview window,
   which offers a much smoother experience than the iOS and Android emulators.
 * Your designs and animations will look and behave identically on all platforms.
 
-Since `GraphicsTheme` is the default theme, you don't have to specify this explicitly,
-but if you did, it would look like this:
+## $(ux:AutoBind)
 
-	<App Theme="Graphics">
+@(ux:AutoBind) controls whether an object should automatically be "connected" to the parent node. By default `ux:AutoBind="true"`, so you only need to use this if you want to do something special.
 
-Or like this, which means exactly the same:
+For example:
+```
+<Panel ux:Name="panel1" >
+    <Panel ux:AutoBind="false" ux:Name="panel2" />
+</Panel>
+```
 
-	<App>
-		<GraphicsTheme />
-	</App>
-
-> #### Creating your own GraphicsTheme
-<!-- TODO: Consider moving to Styling and resources chapter -->
-
-It is possible to *extend* `GraphicsTheme` to specify specific
-look and feel for controls like `Slider` and `Button`.
-
-You can make your own `GraphicsTheme` by using it as a base class:
-
-	<GraphicsTheme ux:Class="MyGraphicsTheme">
-		<Button>
-			<!-- how a button looks goes here -->
-		</Button>
-	</GraphicsTheme>
-
-And use it like this:
-
-	<App>
-		<MyGraphicsTheme />
-	</App>
-
-You can also create a global alias for it, like this:
-
-	<MyGraphicsTheme ux:Global="MyGraphics" />
-
-And then this works:
-
-	<App Theme="MyGraphics">
-		...
-	</App>
-
-### $(BasicTheme)
-
-The `BasicTheme` is a `GraphicsTheme` that ships with Fuse and gives controls a
-look and feel inspired by material design. This can be useful when you want a starting
-point for UIs that are supposed to look the same on all platforms.
-
-	<App Theme="Basic">
+In this case, `panel2` will not become a child of `panel1`. Instead, it will remain detached from the object tree. This is only meaningful if you intend to add it later, for example by navigating to it in a `HeirarchicalNavigation`.

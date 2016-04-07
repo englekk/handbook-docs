@@ -107,12 +107,3 @@ Then, instead of specifying the greeting string directly throughout the app, we 
 	<Text Value="{Resource hello}" />
 
 * Note that we here use `ResourceString` instead of `string`. `ResourceString` is actually a behavior, which applies its value as a resource when rooted, which is why we can use it with a `StateGroup`.
-
-
-<!--## The anatomy of controls
-
-TODO: Explain appearances, overlays, child/parent, how
-
-## Tweaking existing styles
-
-- InheritStyle = false ? -->

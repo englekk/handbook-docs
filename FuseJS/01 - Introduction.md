@@ -49,13 +49,49 @@ Each code file (or inline snippet) is a module.
 
 To make a module available to other modules through `$(require)`, mark your `<JavaScript>` tag with the `ux:Global` attribute.
 
-	<JavaScript File="parse-1.5.0.min.js" ux:Global="Parse" />
+	<JavaScript File="someJavaScriptFile.js" ux:Global="MyModule" />
 
 You can then access this module in any other module in the same project like this:
 
-	var Parse = require("Parse").Parse;
+	var myModule = require('MyModule');
 
 > Note: It is currently not possible to include modules from JS just by file path. We're on it, thanks for your patience!
+
+> ## Importing modules by file name
+
+You can also import JavaScript modules by their file name. To do this, make sure your JavaScript files are included in your .unoproj file as "Bundle" files:
+
+```
+"Includes": [
+	"yourJavaScriptFile.js:Bundle"
+	..other files ..
+]
+```
+
+or if you want to make all JavaScript files be includes as bundled files:
+
+```
+"Includes": [
+	"**.js:Bundle"
+]
+```
+
+Then, you can require using the JavaScript file name:
+
+```
+var myModule = require('/someJavaScriptFile.js');
+```
+
+Note that prefixing the file name with a "/" means that we are looking for the file relative to the project root directory. To name a file relative to the current file, prefix with "./". By omitting the prefixes, the file name is relative to the project root, or the global module it's in.
+
+```
+var relativeToProjectRoot = require('/SomeComponent.js');
+var relativeFile = require('./MainView.js');
+var relativeToRootOrGlobalModule = require('SomeOtherComponent.js');
+```
+
+* Note that you may omit the .js file extension in the file name if you wish
+
 
 Examples:
 

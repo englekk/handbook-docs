@@ -126,7 +126,7 @@ In the following example, we are using an `Image` with the `Nearest` resample mo
 ```
 -->
 
-### $(StretchMode)
+> ### $(StretchMode)
 
 When added to a container, an `Image` will by default try to show as much of itself as possible. If the image isn't the same aspect as its container, there will be parts of the container that will not be covered.
 
@@ -140,7 +140,7 @@ There are a number of ways to address this issue. You can set the `StretchMode`-
 - `Uniform` - This will make the picture as large as possible while preserving aspect ratio. This will often make the `Image` not cover the whole parent.
 - `UniformToFill` - Fill the parent container while preserving aspect ratio. This will often mean that parts of the picture are left out, clipped by the parent
 
-### $(StretchDirection)
+#### $(StretchDirection)
 
 You can set which directions you want the image to scale by setting the `StretchDirection`-property:
 
@@ -148,7 +148,7 @@ You can set which directions you want the image to scale by setting the `Stretch
 - `UpOnly` - Only upscale contents
 - `DownOnly` - Only downscale contents
 
-### $(ContentAlignment)
+> ### $(ContentAlignment)
 
 You can set an alignment on Image which will make the image align within its rectangle on screen if it fills more or less of the available space in its rectangle. Which might be common when using @(StretchDirection) and @(StretchMode):
 
@@ -192,10 +192,6 @@ Fuse currently supports the following image source types:
 * @(HttpImageSource) - specifies a single image from a URL and its density
 * @(MultiDensityImageSource) - allows you to specify multiple versions of the same image for use with different screen densities.
 
-In addition, the following classes allow you to configure image sources further:
-
-* `MemoryPolicy` - controls how long the image data is kept in memory when no longer in use.
-
 > ### $(MultiDensityImageSource)
 
 Because devices have widely different pixel densities, Fuse allows you to specify multiple image resources for the same logical `Image`:
@@ -208,11 +204,6 @@ Because devices have widely different pixel densities, Fuse allows you to specif
 	</Image>
 
 Fuse will then pick the resource best suited for the screen, respecting the $(StretchMode) of the image.
-
-<!--
-  ### Memory policy
-
-TODO: Explain @mortoray? -->
 
 > ### $(HttpImageSource)
 
@@ -753,9 +744,9 @@ If you want to accept a password, you might want to mask the user input:
 
 If you want to accept numeric values mainly, you can set an `InputHint`:
 
-	<TextInput InputHint="Number" />
+	<TextInput InputHint="Integer" />
 
-Valid values for `InputHint` are `Default`, `Email`, `Number`, `Phone`, `Url`. These are called "hints" because they might not do anything, depending on which platform you are on. For example, when on the desktop, the keyboard will be the same no matter which hint is added to the `TextInput`.
+Valid values for `InputHint` are `Default`, `Email`, `Integer`, `Decimal`, `Phone`, `Url`. These are called "hints" because they might not do anything, depending on which platform you are on. For example, when on the desktop, the keyboard will be the same no matter which hint is added to the `TextInput`.
 
 `TextInput` also allows you to input contents over multiple lines instead of scrolling off to the right, which it does by default:
 
@@ -922,6 +913,14 @@ WebViews can also be fed raw HTML to display by wrapping an @(HTML) node or via 
 
 `<LoadHtml TargetNode="myWebView" BaseUrl="http://my.domain" Source="{html}"/>`
 
+### JavaScript API
+Certain methods of the WebView are exposed through JavaScript
+
+- `goto("http://myurl.com")`
+- `loadHtml("my html string")`
+- `loadHtml("my html string", "http://my.baseurl.com")`
+- `setBaseUrl("http://my.baseurl.com")`
+
 ### $(HTML)
 `<HTML/>` is a semantic utility node used to feed a @(WebView) component or a @(LoadHtml) action with raw HTML:
 
@@ -943,6 +942,82 @@ WebViews can also be fed raw HTML to display by wrapping an @(HTML) node or via 
 		]]>
 	</HTML>
 </LoadHtml>
+```
+
+## $(MapView)
+The `MapView` allows you to present annotated, interactive world-wide maps to the user using the mapping APIs native to the platform: Google Maps on Android and Apple Maps on iOS.
+
+The `MapView` is a native control, and thus needs to be contained in a @(NativeViewHost) to be displayed with Graphics themes. As with other native mobile controls, there currently isn't a `MapView` available for desktop targets.
+
+Getting a `MapView` included in your app is straight forward: Simply include the node in your UX as you normally would with a native control:
+
+```XML
+<NativeViewHost>
+	<MapView/>
+</NativeViewHost>
+```
+
+To initialize and manipulate the map camera, use the `Latitude`, `Longitude`, `Zoom`, `Tilt` and `Bearing` properties, all of which are two-way bindable. `Zoom` takes values in platform specific ranges, with meters above ground on iOS and a "zoom factor" on Android.
+
+The map can be further customised by setting the rendering style using the `Style` property and the `MapStyle` enum. Options are `Normal`, `Satellite` and `Hybrid`.
+
+> ### Maps on Android
+
+Google Maps requires the following:
+
+- A package reference to `Fuse.Maps` in your unoproj
+- The Google Play libraries. See [this guide](/learn/guides/installing-google-play-services) for installation instructions
+- A valid Google Maps API key. Follow [Google's documentation](https://developers.google.com/maps/android/) to get one set up. Once you have your key it must be added to your project file, as shown below
+
+```JSON
+"Android": {
+   "Geo": {
+        "ApiKey": "your_key_here"
+    }
+}
+```
+
+### JavaScript API
+Certain methods of the MapView are exposed through JavaScript.
+
+- `setMarkers([ { latitude:0, longitude:0, label:"Zero"} ])`
+- `setLocation(latitude, longitude)`
+- `setTilt(0.0)`
+- `setZoom(1.0)`
+- `setBearing(0.0)`
+
+### $(MapMarker)
+To annotate the map, you must decorate it with `MapMarker` nodes. `MapMarker` nodes are simple value objects that contain a `Latitude`, a `Longitude` and a `Label`
+
+```HTML
+<NativeViewHost>
+	<MapView>
+		<MapMarker Label="Fuse HQ" Latitude="59.9115573" Longitude="10.73888" />
+	</MapView>
+</NativeViewHost>
+```
+
+If you need to generate MapMarkers dynamically from JS, data binding and @(Each) are your friends. While we're scripting we might as well hook into the `MarkerTapped` event to detect when the user has selected a marker.
+
+```HTML
+<JavaScript>
+	var Observable = require("FuseJS/Observable");
+
+	exports.markers = Observable({latitude:30.282786, longitude:-97.741736, label:"Austin"});
+
+	exports.onMarkerTapped = function(args)
+	{
+		console.log("Marker press: "+args.label);
+	}
+</JavaScript>
+
+<NativeViewHost>
+	<MapView MarkerTapped={onMarkerTapped} >
+		<Each Items={markers}>
+			<MapMarker Latitude="{latitude}" Longitude="{longitude}" Label="{label}" />
+		</Each>
+	</MapView>
+</NativeViewHost>
 ```
 
 ## $(Element)
@@ -1006,21 +1081,40 @@ You can set the transparency of objects using the `Opacity`-property.
 
 When the `Opacity` is set to 0.0, the element is fully transparent but will still respond to @(HitTestMode:hit tests). When the `Opacity` is set to 1.0, the element will be at its default state.
 
-> ### Layers
+### $(Layer)
 
-It is often helpful to redefine what existing controls should look like. Elements that are added to containers can be assigned to different layers. If you want a button to appear with a red background, you can redefine its `Background` `Layer`:
+Instead of partaking in layout, elements can function as backgrounds or overlays for their parents by using the `Layer` property.
 
-	<Button Text="Hello!">
-		<Rectangle Fill="#931" Layer="Background" />
-	</Button>
+In the following example, the button's text will appear above the rectangle.
 
-This will not change the layout or behavior of the `Button`, but its appearance will change.
+```
+<Button Text="Hello!">
+	<Rectangle Fill="#931" Layer="Background" />
+</Button>
+```
 
 Valid values for `Layer` are:
 
-- `Background`
-- `Layout`
-- `Overlay`
+- `Layout` _(default)_ – Element partakes in layout as usual, and is drawn between `Background` and `Overlay`
+- `Background` – Element is drawn *behind* the `Layout` layer, and does not affect layout
+- `Overlay` – Element is drawn *on top of* the `Layout` layer, and does not affect layout
+
+> ### $(ZOffset)
+
+Normally, elements are drawn in the order they appear in UX.
+You can affect this ordering by using the `ZOffset` property (0 by default).
+Elements with a higher `ZOffset` value are drawn on top of those with a lower value. They do, however, stay in their @(Layer).
+
+In the following example, the blue rectangle will appear above the red one, even though their order tells us otherwise.
+
+```
+<Panel>
+    <Rectangle ZOffset="1" Color="Red" />
+    <Rectangle ZOffset="2" Color="Blue" />
+</Panel>
+```
+
+*Note:* The Z-order of children is completely independent of the Z-axis in 3D. Elements can still be transformed to any Z-axis location, rotated into the Z-dimension, or have actual depth, regardless and independent of their child Z-order.
 
 ## About $(Control:Controls)
 

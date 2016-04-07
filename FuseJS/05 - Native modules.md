@@ -8,7 +8,7 @@ A module is a JavaScript object that can be acquired through the `require` funct
 
 ## Defining a native module
 
-To define a native module, you create an instance of `Fuse.Scripting.NativeModule`.
+To define a native module, you create an instance of `Fuse.Scripting.NativeModule`. Remember to also add a reference to *Fuse.Scripting* in your .unoproj-file if it isn't already added.
 
 To the constructor we can pass a list of members. We can also add additional members in the
 constructor through the `AddMember()` method.

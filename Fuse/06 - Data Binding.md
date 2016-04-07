@@ -1,23 +1,30 @@
 # $(Data Binding)
 
-Fuse provides first class support for creating data driven apps with UX tags through direct binding, iteration and branching. UX can also do referencing deep inside complex data structures, so you do not have to do tedious data massaging in code. 
+Fuse provides first class support for creating data driven apps with UX tags through direct binding, iteration and branching. UX can also do referencing deep inside complex data structures, so you do not have to do tedious data massaging in code.
+
+## $(Data Context)
+
+At any point in a Fuse `Node` tree, there is a *data context*. A data binding on any node will be relative to the current data context on the node. By default, this data context is `null`, and any data binding will just return null or empty values. The context will also propagate down the tree, meaning that if a child node doesn't provide a data context, it will use the data context of its parent.
+
+To set the data context, you typically add a *behavior* to a node that provides the data context, such as `<JavaScript>`.
+The data context can also be set explicitly using the `DataContext` property.
 
 ## JavaScript module as data source
 
 The simplest way to create a data source is through JavaScript, here is a databound "Hello world" minimal example:
 
-	<App>		
-		<JavaScript>	
+	<App>
+		<JavaScript>
 			module.exports = {
 				greeting: "Hello databound world!"
 			};
 		</JavaScript>
-		<Text Value="{greeting}" />			
+		<Text Value="{greeting}" />
 	</App>
 
 Similarly, you can bind to collections:
 
-	<App>		
+	<App>
 		<JavaScript>
 			var data = ["1", "2", "3"];
 
@@ -34,13 +41,13 @@ Similarly, you can bind to collections:
 
 This will predictably list out the text strings 1, 2 and 3. When binding the `Text Value` `{}` means _this data context_. Typically, you will bind to more complex data sources, so each element will have something interesting to bind to:
 
-	<App Theme="Basic">		
+	<App Theme="Basic">
 		<JavaScript>
 			var Observable = require("FuseJS/Observable");
 
 			var data = Observable(
-				{name: "Hubert Cumberdale", age: 12}, 
-				{name: "Marjory Stewart-Baxter", age: 43}, 
+				{name: "Hubert Cumberdale", age: 12},
+				{name: "Marjory Stewart-Baxter", age: 43},
 				{name: "Jeremy Fisher", age: 25});
 
 			module.exports = {
@@ -59,11 +66,11 @@ This will predictably list out the text strings 1, 2 and 3. When binding the `Te
 
 In this case, we have also made the data source @(Observable). This means that it supports propagating changes to the data source at runtime. In this case, the collection itself is `Observable`, but the items are not. You can bind to the children, but if they were to change, these changes would not be reflected in the UI. If you wanted to make the children also propagate their changes to the UI, you would make them `Observable` also:
 
-	<JavaScript>	
+	<JavaScript>
 		var Observable = require("FuseJS/Observable");
 		var data = Observable(
-			{ name: Observable("Hubert") }, 
-			{ name: Observable("Marjory") });		
+			{ name: Observable("Hubert") },
+			{ name: Observable("Marjory") });
 		module.exports = {
 			data: data
 		};
@@ -76,7 +83,7 @@ In this case, we have also made the data source @(Observable). This means that i
 
 You can also bind to a path:
 
-	<JavaScript>	
+	<JavaScript>
 		var complex = {
 			user: {
 				userinfo: {
@@ -88,7 +95,7 @@ You can also bind to a path:
 			complex: complex
 		};
 	</JavaScript>
-	<Text Value="{complex.user.userinfo.name}" />		
+	<Text Value="{complex.user.userinfo.name}" />
 
 This is very useful when binding to arbitrary data sources such as those returned from a REST service as JSON, as it often allows you to bind directly to complex data without processing the data in code first. [See this in-depth example](https://www.fusetools.com/developers/examples/newsfeed).
 
@@ -96,26 +103,16 @@ This is very useful when binding to arbitrary data sources such as those returne
 
 You can hook up event handlers to call JavaScript functions with similar syntax:
 
-	<JavaScript>			
+	<JavaScript>
 		module.exports = {
-			clickHandler: function (args) { 
-				console.log("I was clicked: " + JSON.stringify(args)); 
+			clickHandler: function (args) {
+				console.log("I was clicked: " + JSON.stringify(args));
 			}
 		};
 	</JavaScript>
 	<Button Clicked="{clickHandler}" Text="Click me!" />
-	
+
 You can read more about this in the @(FuseJS) section.
-
-
-## $(Data Context)
-
-At any point in a Fuse `Node` tree, there is a *data context*. A data binding on any node will be relative to the current data context on the node. By default, this data context is `null`, and any data binding will just return null or empty values. 
-
-To set the data context, you typically add a *behavior* to a node that provides the data context, such as a `<JavaScript>` tag. When using a `<JavaScript>` tag, the `module.exports` from the module specified will become the data context of the node the.
-
-Some behaviors, such as `<Each>` will take objects from the current data context and specify different data
-contexts for each child node.
 
 > ## Other data sources
 
@@ -131,7 +128,7 @@ Users who write @(Uno) code can implement `IObservable` by hand to use Fuse's da
 
 The `Each` behavior maintains one copy of its subtree per item in its $(Items) collection, and adds and removes these from the parent node accordingly. The `Items` collection can be an @(Observable) that can be changed dynamically.
 
-When using `Each`, we typically data-bind the `Items` property to an array data source to produce one visual 
+When using `Each`, we typically data-bind the `Items` property to an array data source to produce one visual
 node per object in the data source.
 
 	<Each Items="{items}">
@@ -146,20 +143,20 @@ It is also possible to nest `Each` behaviors:
 <JavaScript>
 	var Observable = require("FuseJS/Observable");
 	module.exports = {
-		items: [ 
-			{ 
-				inner: [ 
+		items: [
+			{
+				inner: [
 					{ child: "John" },
-					{ child: "Paul" } 
+					{ child: "Paul" }
 				]
-			}, 
-			{ 
-				inner: [ 
-					{ child: "Ringo" }, 
+			},
+			{
+				inner: [
+					{ child: "Ringo" },
 					{ child: "George" }
 				]
 			}
-		]			
+		]
 	};
 </JavaScript>
 <ScrollViewer>
@@ -238,7 +235,7 @@ If you have a complex data context and want to narrow the data context down, you
 					subitem1: { name: "Spongebob", age: 32 }
 				}
 			}
-		};	
+		};
 	</JavaScript>
 	<Select Data="{complex.item1.subitem1}">
 		<Text Value="{name}" />
@@ -250,24 +247,19 @@ If you have a complex data context and want to narrow the data context down, you
 
 You can drive which subtree should be active using `Match` and `Case`:
 
-```
-<JavaScript>
-	module.exports = {
-		active: "refjadsuiof"
-	};
-</JavaScript>
-<Match Value="{active}">
-	<Case String="red">
-		<Rectangle Fill="#f00" Height="50" Width="50" />
-	</Case>
-	<Case String="blue">
-		<Rectangle Fill="#00f" Height="50" Width="50" />
-	</Case>
-	<Case IsDefault="true" String="green">
-		<Rectangle Fill="#0f0" Height="50" Width="50" />
-	</Case>
-</Match>
-```
+	<JavaScript>
+		module.exports = {
+			active: "blue"
+		};
+	</JavaScript>
+	<Match Value="{active}">
+		<Case String="red">
+			<Rectangle Fill="#f00" Height="50" Width="50" />
+		</Case>
+		<Case String="blue">
+			<Rectangle Fill="#00f" Height="50" Width="50" />
+		</Case>
+	</Match>
 
 Valid match properties for `Case` are:
 
@@ -276,14 +268,32 @@ Valid match properties for `Case` are:
 - `Bool` - match a boolean
 - `IsDefault` - default case if no other case matches
 
+* Note: Match.Value can be data-bound to any JavaScript-type, but if using property-binding, one has to use the specialized properties `String`, `Number`, `Integer` or `Bool`. This is because property-bindings requires that the types are identical.
+
 ## $(DataToResource)
 
 You can bind to a defined resource using @(DataToResource):
 
-	<FileImageSource ux:Key="picture" File="Pictures/Picture1.jpg" />		
+	<FileImageSource ux:Key="picture" File="Pictures/Picture1.jpg" />
 	<JavaScript>
 		module.exports = {
 			picture: "picture"
 		}
-	</JavaScript>			
+	</JavaScript>
 	<Image Source="{DataToResource picture}" />
+
+> ## Ensuring order
+
+Note that `Each` does not necessarily insert the children at the exact location in the tree where the `Each` node resides. To ensure child order, wrap the `Each` in some sort of @(Panel):
+
+	<StackPanel>
+		<Text>I go first!</Text>
+		<StackPanel>
+			<Each Items="{strings}">
+				<Text Value="{}" />
+			</Each>
+		</StackPanel>
+		<Text>I go last!</Text>
+	</StackPanel>
+
+We are considering adding more tricks to allow more flexibility in this case, but for now this is the recommended approach.

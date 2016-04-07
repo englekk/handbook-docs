@@ -107,6 +107,13 @@ It is most often used with single value Observables, although this is not a requ
 	}
 	isSomethingEnabled.value = false;
 
+#### $(Observable.toArray:toArray)
+
+Returns a copy of the Observables internal values array.
+
+	var obs = Observable(1,2,3);
+	var obsArray = obs.toArray(); //obsArray == [1,2,3]
+
 ### List operators
 
 #### $(Observable.length:length)
@@ -249,7 +256,10 @@ Updates all items in the @(Observable) with the values from `newValues`.
 		},
 		// Map to object with an observable version of text
 		function(newItem){
-			return { id:newItem.id, Observable(newItem.text)
+			return {
+				id: newItem.id,
+				text: Observable(newItem.text)
+			};
 		}
 	);
 
@@ -258,7 +268,7 @@ Updates all items in the @(Observable) with the values from `newValues`.
 
 FuseJS comes with set of reactive operators that return @(Observable:Observables) from other @(Observable:Observables). This means that if the original `Observable` changes, any `Observable`s that are created as a result of applying a reactive operator will also change automatically.
 
-> Note! It is important to understand that the result of a reactive operator will only be computed if the resulting `Observable` is *consumed*, i.e. databound and its value is needed. If you @(map(func)) over an `Observable` collection and try to `console.log` from the mapping function, these contents might not be displayed because the resulting `Observable` is not databound. If you run into this problem, you can manually add a subscriber for debugging purposes, as described @(Observable.addSubscriber:here).
+> Note! It is important to understand that the result of a reactive operator will only be computed if the resulting `Observable` is *consumed*, i.e. databound and its value is needed. If you @(Observable.map:map(func)) over an `Observable` collection and try to `console.log` from the mapping function, these contents might not be displayed because the resulting `Observable` is not databound. If you run into this problem, you can manually add a subscriber for debugging purposes, as described @(Observable.addSubscriber:here).
 
 #### $(Observable.where:where(condition))
 

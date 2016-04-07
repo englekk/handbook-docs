@@ -1,5 +1,10 @@
 # $(Fuse Troubleshooting Guide)
 
+## General tips
+
+### Upgrading Fuse
+- When you have upgraded Fuse since the last time you built a project, clean the project before building (run `uno clean` in a terminal in the project folder).
+
 ## Logs
 When investigating issues it's often useful to check the logs written by Fuse and the editor plugins. These can be be found in:
 
@@ -37,6 +42,7 @@ While previewing on an iOS or Android device, you get the message "Failed to con
 - Make sure your device has WiFi enabled
 - Make sure your device is connected to the same WiFi as the computer running Fuse 
 - If your computer is running a firewall (such as Windows Firewall), make sure Fuse is allowed to accept incoming connections
+- If you have tethering enabled on your Android device (sharing the mobile network over USB), try disabling it
 - If you still have the problem, quit Fuse from the tray / menu bar icon and re-start preview
 
 ## Cannot preview or export to Android

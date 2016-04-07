@@ -79,6 +79,11 @@ The storage API allows you to save text to files in the application directory.
 
 	var storage = require('FuseJS/Storage');
 
+Please note that while debugging inside Windows / OSX machines the files will be stored according to the system application data.
+
+* **Windows**: `C:Users\(user name)\AppData\Local`.
+* **OSX**: `~/.local/share/`.
+
 ### $(storage.write:write)
 
 Write a string value to specified file.
@@ -123,7 +128,7 @@ Synchronously read data from a file in the application folder:
 
 	var data = storage.readSync("filename.txt");
 
-> Warning: This call will block, if you are writing large amounts of data, use @(Storage.read).
+> Warning: This call will block, if you are reading large amounts of data, use @(Storage.read).
 
 ### `deleteSync`
 
@@ -133,9 +138,37 @@ Delete a file from the application folder, returning `true` on a success:
 var wasDeleted = storage.deleteSync("filename.txt");
 ```
 
+## Bundle
+
+The bundle API allows you to read files that is bundled with the application defined in the project file (using `<somename.extension>:Bundle`).
+
+	var bundle = require('FuseJS/Bundle');
+
+### $(Bundle.read:read)
+
+	bundle.read(fileName)
+
+* `fileName` - Name of the bundled file that should be read
+
+Returns a `Promise` with a `string` containing the content of the file.
+
+	bundle.read("bundlename.json").then(function(content) {
+		console.log(content);
+	}, function(error) {
+		console.log(error);
+	});
+
+### `readSync`
+
+Synchronously read data from a bundled file:
+
+	var data = bundle.readSync("bundlename.json");
+
+> Warning: This call will block, if you are reading large amounts of data, use @(Bundle.read).
+
 ## $(Timer)
 
-You can schedule tasks to be run later using the `Timer` API:
+You can schedule tasks to be executed after specific time using the `Timer` API:
 
 ```
 var Timer = require('FuseJS/Timer');
@@ -174,7 +207,8 @@ The app start event is implicit as this is when your js code is first evaluated.
 - $(onEnteringBackground) - The app is leaving the running state and is about to be suspended.
 - $(onEnteringInteractive) - The app is entering a state where it is fully focused and receiving events.
 - $(onExitedInteractive) - The app is partially obscured or is no longer the focus (e.g. when you drag open the notification bar)
-- $(onTerminating) - The app is about to shut down.
+
+See a [complete code example](https://github.com/fusetools/fuse-samples/tree/master/Samples/Lifecycle).
 
 ## $(Phone)
 
@@ -361,4 +395,3 @@ function stop() {
    geoLocation.stopListening();
 }
 ```
-

@@ -19,7 +19,7 @@ simply displays text using the default font.
 
 The `<App>` tag itself bootstraps the app and takes care of application lifecycle and @(Theme).
 
-The $(Background) property controls the color of the root view of the app.
+The $(Background) attribute represents a property that controls the color of the root view of the app. Please note that attributes are case sensitive.
 
 
 ## UX tags
@@ -39,7 +39,7 @@ The available tags (classes) come in these categories:
 
 ## $(Theme:Themes)
 
-`App` offers a setting called `Theme`, which specifies how standard components in
+`App` offers a property called `Theme`, which specifies how standard components in
 the app will look and feel. You set it like this:
 
 	<App Theme="..name of theme..">

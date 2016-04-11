@@ -84,25 +84,27 @@ Being a pulse trigger, means that the @(Animators:animations)/@(Actions:actions)
 
 - `From` & `To` - Number between 0 and 1, 0 being the edge of the forcefield and 1 at the center.
 
-	<Panel>
-		<Panel Alignment="Top">
-			<Rectangle Color="Blue" Width="50" Height="100" Margin="0,100">
-				<Draggable/>
-				<InForceFieldAnimation ForceField="attractor" From="0.5" To="1">
-					<Rotate Degrees="360"/>
-				</InForceFieldAnimation>
-				<InForceFieldAnimation ForceField="attractor" From="0" To="1">
-					<Change circleColor.Color="#f00"/>
-				</InForceFieldAnimation>
-			</Rectangle>
-		</Panel>
-		<Panel Alignment="BottomCenter" MaxHeight="10000" MaxWidth="10000"
-		       Height="800" Width="800" Y="50%">
-			<Panel>
-				<PointAttractor ux:Name="attractor" Radius="400" Strength="200"/>
-			</Panel>
-			<Circle>
-				<SolidColor ux:Name="circleColor" Color="#ddd"/>
-			</Circle>
-		</Panel>
+```
+<Panel>
+	<Panel Alignment="Top">
+		<Rectangle Color="Blue" Width="50" Height="100" Margin="0,100">
+			<Draggable/>
+			<InForceFieldAnimation ForceField="attractor" From="0.5" To="1">
+				<Rotate Degrees="360"/>
+			</InForceFieldAnimation>
+			<InForceFieldAnimation ForceField="attractor" From="0" To="1">
+				<Change circleColor.Color="#f00"/>
+			</InForceFieldAnimation>
+		</Rectangle>
 	</Panel>
+	<Panel Alignment="BottomCenter" MaxHeight="10000" MaxWidth="10000"
+	       Height="800" Width="800" Y="50%">
+		<Panel>
+			<PointAttractor ux:Name="attractor" Radius="400" Strength="200"/>
+		</Panel>
+		<Circle>
+			<SolidColor ux:Name="circleColor" Color="#ddd"/>
+		</Circle>
+	</Panel>
+</Panel>
+```

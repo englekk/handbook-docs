@@ -29,6 +29,7 @@ Here is an example Uno project file with with all possible fields:
 		"Orientations": "Auto"
 	},
 	"Android": {
+		"Package": "com.\$(Name)",
 		"ApplicationLabel": "\$(Title)",
 		"VersionCode": "\$(VersionCount)",
 		"VersionName": "\$(Version)",

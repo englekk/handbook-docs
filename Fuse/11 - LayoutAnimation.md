@@ -55,7 +55,7 @@ The `Placeholder` is used when we want to define two different locations or layo
 		<Rectangle ux:Name="rectangle1" Fill="Red"/>
 	</Placeholder>
 
-	<Placeholder Target="rectangle1" Heigth="100"/>
+	<Placeholder Target="rectangle1" Height="100"/>
 
 Notice that the second `Placeholder` references the @(Rectangle), not the other `Placeholder`.
 

@@ -9,7 +9,7 @@ For example, instead of animating the @(Width) of an @(Element) using @(Change),
 Here is a quick example:
 
 	<Panel>
-		<Panel ux:Name="panel" Width="50" Height="50" Background="Teal">
+		<Panel ux:Name="panel" Width="50" Height="50" Color="Teal">
 			<LayoutAnimation>
 				<Resize X="1" Y="1" RelativeTo="LayoutChange" Duration="0.5"/>
 				<Move X="1" Y="1" RelativeTo="LayoutChange" Duration="0.5"/>
@@ -29,7 +29,7 @@ The @(Panel) has a @(LayoutAnimation) on it with a @(Resize) and @(Move) animato
 @(LayoutAnimation) opens up a whole world of possibilities. We can for example use it to animate an @(Element:elements) alignment:
 
 	<Panel>
-		<Panel ux:Name="panel" Width="50" Height="50" Background="Teal" Alignment="Center">
+		<Panel ux:Name="panel" Width="50" Height="50" Color="Teal" Alignment="Center">
 			<LayoutAnimation>
 				<Move X="1" Y="1" RelativeTo="LayoutChange" Duration="0.5"/>
 			</LayoutAnimation>
@@ -51,8 +51,8 @@ The `Placeholder` element is used to reference other @(Element:elements) in the 
 
 The `Placeholder` is used when we want to define two different locations or layouts for the same @(Element). We use the placeholders `Target` property to reference the @(Element) we want to make a plceholder for. The @(Element) definition itself has to also be wrapped in a `Placeholder`. Think of it as an @(Element) being tossed from one `Placeholder` to another.
 
-	<Placeholder Height="50">
-		<Rectangle ux:Name="rectangle1" Fill="Red"/>
+	<Placeholder Height="50">pp
+		<Rectangle ux:Name="rectangle1" Color="Red"/>
 	</Placeholder>
 
 	<Placeholder Target="rectangle1" Height="100"/>
@@ -64,7 +64,7 @@ To switch between the two placeholder, we need to use @(MultiLayout). We can app
 	<StackPanel>
 		<MultiLayout LayoutElement="placeholder2"/>
 		<Placeholder Name="placeholder1" Height="70">
-			<Rectangle Name="rectangle1" Fill="Red" Margin="25,5"/>
+			<Rectangle Name="rectangle1" Color="Red" Margin="25,5"/>
 		</Placeholder>
 		<Placeholder Name="placeholder2" Target="rectangle1" Height="100"/>
 	</StackPanel>
@@ -78,7 +78,7 @@ Here is a quick example, showing how we can move a @(Rectangle) from one @(Panel
 		<DockLayout/>
 		<Panel ux:Name="panel1">
 			<Placeholder Width="50" Height="50">
-				<Rectangle ux:Name="rect" Fill="Teal">
+				<Rectangle ux:Name="rect" Color="Teal">
 					<LayoutAnimation>
 						<Move X="1" Y="1" RelativeTo="LayoutChange" Duration="1"/>
 						<Resize X="1" Y="1" RelativeTo="LayoutChange" Duration="1"/>

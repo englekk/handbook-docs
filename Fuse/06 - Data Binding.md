@@ -132,7 +132,7 @@ When using `Each`, we typically data-bind the `Items` property to an array data 
 node per object in the data source.
 
 	<Each Items="{items}">
-		<Rectangle Width="{width}" Height="{height}" Fill="#808" />
+		<Rectangle Width="{width}" Height="{height}" Color="#808" />
 	</Each>
 
 Observable add/remove operations on the `Items` collection can be animated using @(AddingAnimation), @(RemovingAnimation) and @(LayoutAnimation)
@@ -180,7 +180,7 @@ You can also just use `Each` as a simple repeater:
 
 	<Grid ColumnCount="3">
 		<Each Count="9">
-			<Rectangle Margin="10" Fill="#610" />
+			<Rectangle Margin="10" Color="#610" />
 		</Each>
 	</Grid>
 
@@ -254,10 +254,10 @@ You can drive which subtree should be active using `Match` and `Case`:
 	</JavaScript>
 	<Match Value="{active}">
 		<Case String="red">
-			<Rectangle Fill="#f00" Height="50" Width="50" />
+			<Rectangle Color="#f00" Height="50" Width="50" />
 		</Case>
 		<Case String="blue">
-			<Rectangle Fill="#00f" Height="50" Width="50" />
+			<Rectangle Color="#00f" Height="50" Width="50" />
 		</Case>
 	</Match>
 

@@ -10,9 +10,9 @@ To start off, we make a set of @(Panel:panels) which represents our @(Page:pages
 
 ```
 <Panel>
-	<Panel Background="Red"/>
-	<Panel Background="Blue"/>
-	<Panel Background="Green"/>
+	<Panel Color="Red"/>
+	<Panel Color="Blue"/>
+	<Panel Color="Green"/>
 </Panel>
 ```
 
@@ -29,9 +29,9 @@ The @(LinearNavigation) is just one of several @(Navigation types:types of navig
 <Panel>
 	<LinearNavigation />
 	<SwipeNavigate SwipeDirection="Left"/>
-	<Panel Background="Red"/>
-	<Panel Background="Blue"/>
-	<Panel Background="Green"/>
+	<Panel Color="Red"/>
+	<Panel Color="Blue"/>
+	<Panel Color="Green"/>
 </Panel>
 ```
 
@@ -51,9 +51,9 @@ For that we @(Creating custom UI components:subclass) @(Panel) and add both an @
 	</Panel>
 	<LinearNavigation />
 	<SwipeNavigate SwipeDirection="Left"/>
-	<NavPanel Background="Red"/>
-	<NavPanel Background="Blue"/>
-	<NavPanel Background="Green"/>
+	<NavPanel Color="Red"/>
+	<NavPanel Color="Blue"/>
+	<NavPanel Color="Green"/>
 </Panel>
 ```
 
@@ -69,8 +69,8 @@ Since swiping between pages is such a common interaction, Fuse comes with a @(Co
 
 ```
 <PageControl>
-	<Panel Background="Red"/>
-	<Panel Background="Blue"/>
+	<Panel Color="Red"/>
+	<Panel Color="Blue"/>
 </PageControl>
 ```
 
@@ -105,9 +105,9 @@ In the following example, We have three pages and a button that returns the user
 		};
 	</JavaScript>
 	<PageControl Active="{currentPage}">
-		<Panel Name="page1" Background="Red"/>
-		<Panel Name="page2" Background="Green"/>
-		<Panel Name="page3" Background="Blue"/>
+		<Panel Name="page1" Color="Red"/>
+		<Panel Name="page2" Color="Green"/>
+		<Panel Name="page3" Color="Blue"/>
 	</PageControl>
 	<Button Text="Home" Clicked="{clickHandler}" Dock="Bottom"/>
 </DockPanel>
@@ -121,14 +121,14 @@ The `PageIndicator` can be used together with @(PageControl) to show clearly whi
 
 	<DockPanel>
 		<PageControl ux:Name="pageControl">
-			<Page Background="Red"/>
-			<Page Background="Blue"/>
-			<Page Background="Green"/>
-			<Page Background="Yellow"/>
+			<Page Color="Red"/>
+			<Page Color="Blue"/>
+			<Page Color="Green"/>
+			<Page Color="Yellow"/>
 		</PageControl>
 		<PageIndicator Navigation="pageControl" Dock="Bottom" Alignment="Center">
 			<Circle ux:Generate="Factory" ux:Binding="DotFactory"
-					Fill="Teal" Margin="5" Width="20" Height="20">
+					Color="Teal" Margin="5" Width="20" Height="20">
 				<ActivatingAnimation>
 					<Scale Factor="1.3"/>
 				</ActivatingAnimation>
@@ -149,14 +149,14 @@ In the following example, we have a @(DockPanel) with a @(Panel) and a @(PageCon
 
 ```
 <DockPanel>
-	<Panel Navigation="myNav" Dock="Top" Height="100" Background="Teal">
+	<Panel Navigation="myNav" Dock="Top" Height="100" Color="Teal">
 		<Text Value="{Page title}" FontSize="22" Alignment="Center"/>
 	</Panel>
 	<PageControl ux:Name="myNav">
-		<Page Background="Red">
+		<Page Color="Red">
 			<string ux:Key="title" ux:Value="First page"/>
 		</Page>
-		<Page Background="Green">
+		<Page Color="Green">
 			<string ux:Key="title" ux:Value="Second page"/>
 		</Page>
 	</PageControl>
@@ -283,8 +283,8 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 
 ```
 <EdgeNavigator>
-	<Panel Width="150" Edge="Left" Background="#f63" />
-	<Panel Background="#fff">
+	<Panel Width="150" Edge="Left" Color="#f63" />
+	<Panel Color="#fff">
 		<Text Alignment="Center">
 			This is an example of EdgeNavigator!
 		</Text>
@@ -293,7 +293,7 @@ This is an example that demonstrates usage of `HierarchicalNavigation` in conjun
 
 ```
 
-Note that setting the @(Background) of the second @(Panel) in this example is of significance, as it enables hit testing of the inner @(Panel). You could alternatively set the @(HitTestMode) of the @(EdgeNavigator) to be @(HitTestMode.LocalBoundsAndChildren). Normally this isn't an issue, as the inner panel will have content that is hit testable.
+Note that setting the @(Color) of the second @(Panel) in this example is of significance, as it enables hit testing of the inner @(Panel). You could alternatively set the @(HitTestMode) of the @(EdgeNavigator) to be @(HitTestMode.LocalBoundsAndChildren). Normally this isn't an issue, as the inner panel will have content that is hit testable.
 
 
 ### $(EdgeNavigation)
@@ -304,12 +304,12 @@ While @(EdgeNavigator) will do the job in most cases, you might be interested in
 <App Theme="Basic">
 	<DockPanel>
 		<EdgeNavigation />
-		<Panel Width="150" Background="#0F0" Edge="Left" Alignment="Left">
+		<Panel Width="150" Color="#0F0" Edge="Left" Alignment="Left">
 			<EnteringAnimation>
 				<Move X="-1" RelativeTo="Size" />
 			</EnteringAnimation>
 		</Panel>
-		<Panel Background="#F00" />
+		<Panel Color="#F00" />
 	</DockPanel>
 </App>
 ```
@@ -327,8 +327,8 @@ If `NavigationContext` is not specified, it will look for a parent element with 
 ```
 <DockPanel>
 	<PageControl ux:Name="navContext">
-		<Page ux:Name="page1" Background="#f00" />
-		<Page ux:Name="page2" Background="#00f" />
+		<Page ux:Name="page1" Color="#f00" />
+		<Page ux:Name="page2" Color="#00f" />
 	</PageControl>
 	<Grid Dock="Bottom" Columns="1*,1*">
 		<Button Text="Go to page 1">
@@ -410,7 +410,7 @@ You can extend `Panel` to apply animation for all pages:
 
 	<Panel>
 		<LinearNavigation />
-		<AnimatedPage Background="Red" />
+		<AnimatedPage Color="Red" />
 	</Panel>
 ```
 

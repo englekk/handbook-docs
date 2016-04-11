@@ -461,7 +461,7 @@ The `Callback` action is used to call a JavaScript function (see @(Data Binding)
 	}
 	module.exports = { someJSFunction: someJSFunction };
 </JavaScript>
-<Rectangle Width="100" Height="50" Alignment="Center" Fill="Red">
+<Rectangle Width="100" Height="50" Alignment="Center" Color="Red">
 	<WhilePressed>
 		<Callback Handler="{someJSFunction}"/>
 	</WhilePressed>
@@ -531,13 +531,13 @@ This example shows how to use `BringIntoView` to make a @(ScrollView) automatica
 		<StatusBarBackground DockPanel.Dock="Top" />
 		<ScrollView ClipToBounds="true">
 			<StackPanel>
-				<Panel ux:Name="panel1" Height="80" Background="#F44336" />
-				<Panel Height="200" Background="#ddd"/>
-				<Panel Height="200" Background="#bbb"/>
-				<Panel Height="200" Background="#999"/>
-				<Panel Height="200" Background="#777"/>
-				<Panel Height="200" Background="#444"/>
-				<Panel ux:Name="panel2" Height="80" Background="#3949AB" />
+				<Panel ux:Name="panel1" Height="80" Color="#F44336" />
+				<Panel Height="200" Color="#ddd"/>
+				<Panel Height="200" Color="#bbb"/>
+				<Panel Height="200" Color="#999"/>
+				<Panel Height="200" Color="#777"/>
+				<Panel Height="200" Color="#444"/>
+				<Panel ux:Name="panel2" Height="80" Color="#3949AB" />
 			</StackPanel>
 		</ScrollView>
 		<StackPanel Dock="Bottom" Height="60" Orientation="Horizontal" Alignment="Center">
@@ -566,8 +566,8 @@ With `BringToFront`, one can bring the element specified by the `Target` propert
 
 ```
 <DockPanel>
-	<Panel Background="#F00" />
-	<Panel ux:Name="bluePanel" Background="#00F" />
+	<Panel Color="#F00" />
+	<Panel ux:Name="bluePanel" Color="#00F" />
 	<Button Text="Blue to front!" Dock="Bottom">
 		<Clicked>
 			<BringToFront Target="bluePanel" />
@@ -690,7 +690,7 @@ We are therefore required to set the `Source` property of all swipe-related trig
 `SwipingAnimation` performs animation in response to an element being swiped.
 The most common use case is to move the element along with the pointer.
 
-	<Panel Width="100" Height="100" Background="#000">
+	<Panel Width="100" Height="100" Color="#000">
 		<SwipeGesture ux:Name="swipe" Direction="Right" Length="200" />
 		<SwipingAnimation Source="swipe">
 			<Move X="200" />
@@ -701,7 +701,7 @@ Instead of using a fixed length for the swipe we may also determine it from the 
 This is achieved using the `LengthNode` property of @(SwipeGesture), and in this case the `RelativeNode` property of @(Move) as well.
 
 	<Panel ux:Name="parentContainer" Margin="40">
-		<Panel Width="60" Height="60" Background="#000" Alignment="Left">
+		<Panel Width="60" Height="60" Color="#000" Alignment="Left">
 			<SwipeGesture ux:Name="swipe" Direction="Right" Type="Active" LengthNode="parentContainer" />
 			<SwipingAnimation Source="swipe">
 				<Move X="1" RelativeTo="Size" RelativeNode="parentContainer" />
@@ -783,10 +783,10 @@ In the following example, we place a red @(Panel) if on an Android device and a 
 ```
 <Panel>
 	<Android>
-		<Panel Background="#f00" Alignment="Center" Width="150" Height="150"/>
+		<Panel Color="#f00" Alignment="Center" Width="150" Height="150"/>
 	</Android>
 	<iOS>
-		<Panel Background="#00f" Alignment="Center" Width="150" Height="150"/>
+		<Panel Color="#00f" Alignment="Center" Width="150" Height="150"/>
 	</iOS>
 </Panel>
 ```
@@ -1028,7 +1028,7 @@ These triggers react to changes in the geometry of the screen.
 The `WhileWindowLandscape` trigger is active whenever the app's viewport width is larger than it's height. The following example changes the App's background color depending on its orientation:
 
 ```
-<App ux:Name="app" Theme="Basic" Background="#FFF">
+<App ux:Name="app" Theme="Basic" Color="#FFF">
      <WhileWindowLandscape>
          <Change app.ClearColor="0,0,1,1" Duration="1" />
      </WhileWindowLandscape>
@@ -1068,7 +1068,7 @@ These properties have to be larger than `0,0`, and are conditions the app viewpo
 The `WhileEnabled` trigger is active whenever its containing @(Element:elements) `IsEnabled` property is set to `True`.
 
 ```
-<Panel  Width="50" Height="50" Background="Red" >
+<Panel  Width="50" Height="50" Color="Red" >
 	<WhileEnabled>
 		<Rotate Degrees="45" Duration="0.5"/>
 	</WhileEnabled>
@@ -1250,14 +1250,14 @@ In the following example, a rectangle will move in from the right side by the wi
 
 ```
 <App Theme="Basic" ClearColor="#eeeeeeff">
-	<StackPanel Background="#ddd" Margin="10">
+	<StackPanel Color="#ddd" Margin="10">
 		<Switch>
 			<WhileTrue>
 				<Change whileTrue.Value="true"/>
 			</WhileTrue>
 		</Switch>
 		<WhileTrue ux:Name="whileTrue">
-			<Panel Height="50" Width="50" Background="Red">
+			<Panel Height="50" Width="50" Color="Red">
 				<AddingAnimation>
 					<Move RelativeTo="ParentSize" X="1" Duration="1" Easing="BounceIn"/>
 				</AddingAnimation>
@@ -1286,12 +1286,12 @@ In the following example, we use `ScrollingAnimation` to @(Scale) the @(ScrollVi
 
 ```
 <ScrollView>
-	<StackPanel Background="#ddd" Margin="10">
-		<Panel Height="200" Background="Red"/>
-		<Panel Height="200" Background="Blue"/>
-		<Panel Height="200" Background="Green"/>
-		<Panel Height="200" Background="Purple"/>
-		<Panel Height="200" Background="Teal"/>
+	<StackPanel Color="#ddd" Margin="10">
+		<Panel Height="200" Color="Red"/>
+		<Panel Height="200" Color="Blue"/>
+		<Panel Height="200" Color="Green"/>
+		<Panel Height="200" Color="Purple"/>
+		<Panel Height="200" Color="Teal"/>
 	</StackPanel>
 	<ScrollingAnimation From="0" To="400">
 		<Scale Factor="0.3" />
@@ -1379,7 +1379,7 @@ In the following example, our background changes color when we reach the bottom 
 	<SolidColor ux:Name="color" Color="#000"/>
 	<StackPanel Margin="10">
 			<Each Count="10">
-				<Panel Height="200" Background="Red" Margin="2"/>
+				<Panel Height="200" Color="Red" Margin="2"/>
 			</Each>
 		</StackPanel>
 	<WhileScrollable ScrollDirections="Down">

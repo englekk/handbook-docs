@@ -12,7 +12,7 @@ This means that the following:
 ```
 <StackPanel>
 	<Style>
-		<Rectangle Background="#f00" Width="100" Height="100">
+		<Rectangle Color="#f00" Width="100" Height="100">
 			<Clicked>
 				<Scale Factor="1.2" Duration="0.2" />
 			</Clicked>
@@ -28,7 +28,7 @@ Should be rewritten as:
 
 ```
 <StackPanel>
-	<Rectangle ux:Class="FancyRectangle" Background="#f00" Width="100" Height="100">
+	<Rectangle ux:Class="FancyRectangle" Color="#f00" Width="100" Height="100">
 		<Clicked>
 			<Scale Factor="1.2" Duration="0.2" />
 		</Clicked>

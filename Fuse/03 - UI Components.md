@@ -3,7 +3,7 @@
 Fuse comes with a number of UI components that can be used to construct a user interface. In UX you can add UI components by enclosing them in tags:
 
     <Image File="MyImage.png" />
-    <Rectangle Width="50" Height="50" Fill="#888" />
+    <Rectangle Width="50" Height="50" Color="#888" />
     <Text>Hello world!</Text>
 
 Note that just because something is enclosed in a tag doesn't necessarily mean it has to be a UI component. UX uses tags for other concepts also, such as @(Trigger:Triggers) and @(Actions).
@@ -277,7 +277,7 @@ Be aware that Windows, OS X, Android and iOS might not share support for some fo
 					<Change progressBar.Width="100" />
 				</ProgressAnimation>
 			</Video>
-			<Rectangle ux:Name="progressBar" Dock="Bottom" Fill="#f00" Width="0%" Height="10" />
+			<Rectangle ux:Name="progressBar" Dock="Bottom" Color="#f00" Width="0%" Height="10" />
 			<Grid Dock="Bottom" ColumnCount="2" RowCount="1">
 				<Button Text="Play">
 					<Clicked>
@@ -302,13 +302,13 @@ Fuse can render `Rectangle`s and `Circle`s. These shapes can have multiple @(Fil
 
 To draw a `Rectangle`:
 
-	<Rectangle Fill="#f00" />
+	<Rectangle Color="#f00" />
 
 In this example, the `Rectangle` will take up as much space as it is allowed by its parent and fill it with a red @(SolidColor).
 
 If you want to have the `Rectangle` limit itself in size, you can add `Width` and `Height`:
 
-	<Rectangle Fill="#f00" Width="50" Height="50" CornerRadius="5" />
+	<Rectangle Color="#f00" Width="50" Height="50" CornerRadius="5" />
 
 This will render a red `Rectangle` with rounded corners. Note that these @(Units:units) are in @(Points), not @(Pixels), and the `Rectangle` will appear to be roughly the same size on most devices, regardless of pixel density and screen size.
 
@@ -317,7 +317,7 @@ This will render a red `Rectangle` with rounded corners. Note that these @(Units
 It is equally simple to draw a `Circle`:
 
 
-	<Circle Fill="#f00" Width="50" Height="50">
+	<Circle Color="#f00" Width="50" Height="50">
 		<Stroke Width="5" Brush="#ff0" />
 	</Circle>
 
@@ -344,13 +344,13 @@ A `RegularPolygon` is a convex shape in which all angles are equal, and all side
 Triangles, hexagons and octagons are all regular polygons.
 The number of sides can be controlled with the `Sides` property.
 
-	<RegularPolygon Sides="6" Fill="#000" Width="50" Height="50" />
+	<RegularPolygon Sides="6" Color="#000" Width="50" Height="50" />
 
 >### $(Ellipse)
 
 Use `Ellipse` when you want a @(Circle) of non-constant radius.
 
-	<Ellipse Width="100" Height="50" Fill="#f00" />
+	<Ellipse Width="100" Height="50" Color="#f00" />
 
 ### Styling a shape
 
@@ -359,9 +359,11 @@ In order to style shapes, we provide two properties:
 * `Fill` - Styles the background of a shape
 * `Stroke` - Styles the border of a shape
 
+However, the property `Color` is also provided as a recommended replacement for Fill, when used for basic coloring. The advantage of `Color` is that the property is a `float4`, allowing it to be animated with @(Change). 
+
 #### $(Fill:Fills)
 
-We've seen that shapes accept simple `Fill` properties:
+In addition to shapes accepting simple `Fill` properties:
 
 	<Rectangle Fill="#f00" />
 
@@ -404,7 +406,7 @@ Strokes accept a brush the same way a @(Fill) does:
 
 It can also be set to be a @(SolidColor:SolidColor-brush) using the `Brush`-property:
 
-	<Rectangle Fill="#f00" Width="50" Height="50">
+	<Rectangle Color="#f00" Width="50" Height="50">
 		<Stroke Width="5" Brush="#ff0" />
 	</Rectangle>
 
@@ -472,6 +474,8 @@ Note that this is equivalent of writing:
 <Rectangle Fill="#00f" />
 ```
 
+However, using the `Fill` property creates a new @(Fill) element with the specified color, and is therefore not animatable. While it is possible, you will find that the color suddently changes midways in the animation. The property `Color` is recommended in `Fill`s place, and exposes a `float4` which you can animate.
+
 > #### $(IsCompletelyTransparent:Finding out if a SolidColor is completely transparent)
 
 The `IsCompletelyTransparent` property will be true if the alpha value of the color is 0.
@@ -525,7 +529,7 @@ This small example will create a `Button` that covers the whole screen. When you
 In Fuse, pretty much anything can easily be made @(Clicked:clickable) (and @(Tapped:tappable), etc). Thus, if you want to design a custom look and feel for a button, any component can be used:
 
 	<App>
-		<Rectangle Fill="#309">
+		<Rectangle Color="#309">
 			<Clicked>
 				<DebugAction Message="Rectangle got clicked" />
 			</Clicked>
@@ -566,7 +570,7 @@ To make it react to being switched on, you can use the @(WhileTrue:WhileTrue-tri
 						Easing="CircularInOut" />
 				</WhileTrue>
 			</Switch>
-			<Rectangle ux:Name="rectangle" Width="70" Height="70" Fill="#909" />
+			<Rectangle ux:Name="rectangle" Width="70" Height="70" Color="#909" />
 		</StackPanel>
 	</App>
 
@@ -633,7 +637,7 @@ To react to the slider being moved, use `ProgressAnimation`. Consider this code 
 				<Rotate Target="rectangle" Degrees="90" />
 			</ProgressAnimation>
 		</Slider>
-		<Rectangle ux:Name="rectangle" Width="100" Height="100" Fill="#808" />
+		<Rectangle ux:Name="rectangle" Width="100" Height="100" Color="#808" />
 	</StackPanel>
 
 You can also listen to the `ValueChanged`-event:
@@ -821,7 +825,7 @@ It is possible to animate properties based on absolute `ScrollView` position. Fo
 		<Panel>
 			<Panel Alignment="Top" Height="50" ux:Name="ledge">
 				<Text Alignment="Center" TextAlignment="Center" TextColor="#fff" Value="TopLedge" />
-				<Rectangle  Fill="#000" />
+				<Rectangle Color="#000" />
 			</Panel>
 			<ScrollView>
 				<ScrollingAnimation From="0" To="50">
@@ -1031,12 +1035,12 @@ When interacting with an element, it is sometimes desirable to be able to differ
 Consider this code:
 
 	<Grid ColumnCount="2">
-		<Rectangle Width="100" Height="100" Fill="#808" >
+		<Rectangle Width="100" Height="100" Color="#808" >
 			<Clicked>
 				<DebugAction Message="Clicked left" />
 			</Clicked>
 		</Rectangle>
-		<Rectangle Width="100" Height="100" Fill="#808" HitTestMode="None" >
+		<Rectangle Width="100" Height="100" Color="#808" HitTestMode="None" >
 			<Clicked>
 				<DebugAction Message="Clicked right" />
 			</Clicked>
@@ -1089,7 +1093,7 @@ In the following example, the button's text will appear above the rectangle.
 
 ```
 <Button Text="Hello!">
-	<Rectangle Fill="#931" Layer="Background" />
+	<Rectangle Color="#931" Layer="Background" />
 </Button>
 ```
 
@@ -1131,20 +1135,20 @@ Fuse has the ability to render a set of visual effects that can be added to most
 
 To add a `DropShadow` to an element:
 
-	<Rectangle Width="50" Height="50" Fill="#808">
+	<Rectangle Width="50" Height="50" Color="#808">
 		<DropShadow />
 	</Rectangle>
 
 To make a soft `DropShadow` from the top down:
 
-	<Rectangle Width="50" Height="50" Fill="#808">
+	<Rectangle Width="50" Height="50" Color="#808">
 		<DropShadow Angle="90" Distance="12" Size="20" Spread="0.1"  />
 	</Rectangle>
 
 It can also be used to create artistic effects like outer glow:
 
-	<Panel Background="#000">
-		<Circle Width="50" Height="50" Fill="#808">
+	<Panel Color="#000">
+		<Circle Width="50" Height="50" Color="#808">
 			<DropShadow Distance="0" Size="50" Spread="0.2" Color="#ff06" />
 		</Circle>
 	</Panel>

@@ -45,9 +45,9 @@ The following example shows three Panels in a `StackPanel`, spaced using the `It
 
 ```
 <StackPanel ItemSpacing="20">
-	<Panel Height="100" Background="Red"/>
-	<Panel Height="100" Background="Green"/>
-	<Panel Height="100" Background="Blue"/>
+	<Panel Height="100" Color="Red"/>
+	<Panel Height="100" Color="Green"/>
+	<Panel Height="100" Color="Blue"/>
 </StackPanel>
 ```
 
@@ -205,7 +205,7 @@ It attempts to keep the height of the columns somewhat balanced by placing child
 
 ```
 <Panel>
-	<Panel ux:Class="MyPanel" Background="#2c3e50" Margin="5" />
+	<Panel ux:Class="MyPanel" Color="#2c3e50" Margin="5" />
 	<Text ux:Class="MyText" TextColor="#fff" Alignment="Center" FontSize="20" />
 
 	<ColumnLayout ColumnCount="3" />
@@ -446,13 +446,13 @@ When the `LayoutMaster` of an element is changed, any @(LayoutAnimation:LayoutAn
 </Rectangle>
 
 <StackPanel>
-	<Panel ux:Name="target1" Margin="10" Height="50" Background="#eee">
+	<Panel ux:Name="target1" Margin="10" Height="50" Color="#eee">
 		<Text Alignment="Center">Click me</Text>
 		<Clicked>
 			<Set selection.LayoutMaster="target1" />
 		</Clicked>
 	</Panel>
-	<Panel ux:Name="target2" Width="150" Height="100" Background="#eee">
+	<Panel ux:Name="target2" Width="150" Height="100" Color="#eee">
 		<Text Alignment="Center">Me too!</Text>
 		<Clicked>
 			<Set selection.LayoutMaster="target2" />
@@ -481,7 +481,7 @@ The `Perspective` property controls how far away the camera is from the `Z = 0` 
 	<App Theme="Basic">
 		<Viewport Perspective="400">
 			<Panel>
-				<Rectangle Width="200" Height="200" Background="#2ecc71">
+				<Rectangle Width="200" Height="200" Color="#2ecc71">
 					<Clicked>
 						<Rotate DegreesX="360" Duration="1.5" Easing="QuadraticInOut" DurationBack="0" />
 					</Clicked>

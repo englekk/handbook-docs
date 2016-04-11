@@ -61,17 +61,17 @@ __MyButton.ux__:
 
 ```
 <Panel ux:Class="MyButton" Text="Click me!"
-	   Fill="#f00" TextColor="#000" CornerRadius="10">
+	   Color="#f00" TextColor="#000" CornerRadius="10">
 	<string ux:Property="Text"/>
 	<float4 ux:Property="CornerRadius" />
-	<Brush ux:Property="Fill" />
+	<float4 ux:Property="Color" />
 	<float4 ux:Property="TextColor"/>
 	<Text Alignment="Center" TextColor="{Property this.TextColor}" Value="{Property this.Text}"/>
-	<Rectangle Layer="Background" CornerRadius="{Property this.CornerRadius}" Fill="{Property this.Fill}" />
+	<Rectangle Layer="Background" CornerRadius="{Property this.CornerRadius}" Color="{Property this.Color}" />
 </Panel>
 ```
 
-Here we have created a new class called MyButton. We expose four properties (Text, CornerRadius, Fill and TextColor). These properties can then be bound to within our ux:Class using the `{Property this.PropName}` syntax.
+Here we have created a new class called MyButton. We expose four properties (Text, CornerRadius, Color and TextColor). These properties can then be bound to within our ux:Class using the `{Property this.PropName}` syntax.
 
 * Notice that there exists an implicit name called `this` which we are using inside the `{Property this.PropName}` syntax. This name is used to refer to the root element of our `ux:Class`.
 
@@ -134,7 +134,7 @@ An inner class is a class that belongs to a certain scope and has access to `ux:
 			<ActivateButton Text="Option A" ux:Name="defaultOption"/>
 			<ActivateButton Text="Option B" />
 			<ActivateButton Text="Option C" />
-			<Rectangle Fill="Red" ux:Name="highlight" Margin="-5" LayoutMaster="defaultOption">
+			<Rectangle Color="Red" ux:Name="highlight" Margin="-5" LayoutMaster="defaultOption">
 				<LayoutAnimation>
 					<Move RelativeTo="PositionChange" X="1" Y="1" Duration="0.4" Easing="BackOut" />
 				</LayoutAnimation>

@@ -14,7 +14,7 @@ The `Draggable` behavior lets you move an @(Element) using the pointer by draggi
 
 ```
 <Panel>
-	<Rectangle Width="100" Height="100" Fill="Red">
+	<Rectangle Width="100" Height="100" Color="Red">
 		<Draggable/>
 	</Rectangle>
 </Panel>
@@ -26,7 +26,7 @@ The `WhileDragging` trigger is active while the @(Element) is being dragged and 
 
 ```
 <Panel>
-	<Rectangle Background="Blue" Width="50" Height="100">
+	<Rectangle Color="Blue" Width="50" Height="100">
 		<Draggable/>
 		<WhileDragging>
 			<Rotate Degrees="90" Duration="0.8"
@@ -86,7 +86,7 @@ Being a pulse trigger, means that the @(Animators:animations)/@(Actions:actions)
 
 	<Panel>
 		<Panel Alignment="Top">
-			<Rectangle Background="Blue" Width="50" Height="100" Margin="0,100">
+			<Rectangle Color="Blue" Width="50" Height="100" Margin="0,100">
 				<Draggable/>
 				<InForceFieldAnimation ForceField="attractor" From="0.5" To="1">
 					<Rotate Degrees="360"/>

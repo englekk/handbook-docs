@@ -4,7 +4,7 @@
 
 Keep track of current and upcoming Fuse features as we evolve through our beta.
 
-This overview is updated for each release. **Latest update: 9th of March 2016.**
+This overview is updated for each release. **Latest update: 12th of April 2016.**
 
 ## Legend
 
@@ -182,11 +182,11 @@ Their features, function and appearance may vary between platforms.
 		</tr>
 		<tr>
 			<td>
-				MapView
+				@(MapView)
 				<p>Display the OS native maps.</p>
 			</td>
 			<td class="feature__experimental">Experimental</td>
-			<td class="feature__planned">Experimental</td>
+			<td class="feature__experimental">Experimental</td>
 		</tr>
 
 		<tr>
@@ -200,11 +200,11 @@ Their features, function and appearance may vary between platforms.
 
 		<tr>
 			<td>
-				Native Modal Dialogs 
-				<p>Display the native OS dialog boxes.</p>
+				Native UI Controls 
+				<p>Other native controls and widgets. Covers modal dialogs, tab bars and more. Detailed feature-list to be published when the underlying tech is ready.</p>
 			</td>
-			<td class="feature__planned">Planned</td>
-			<td class="feature__planned">Planned</td>
+			<td class="feature__planned">In progress</td>
+			<td class="feature__planned">In progress</td>
 		</tr>
 
 		<tr>
@@ -559,7 +559,7 @@ Real-time graphics effects takes advantage of Fuse’s powerful Graphics Mode to
 				<b>Fuse Profiler</b>
 				<p>Visualize performance data in real-time for UX markup nodes to easily identify UI performance bottlenecks.</p>
 			</td>
-			<td class="feature__planned">In progress</td>
+			<td class="feature__planned">Planned</td>
 		</tr>
 		
 		<tr>

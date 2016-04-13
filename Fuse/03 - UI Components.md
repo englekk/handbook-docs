@@ -71,7 +71,7 @@ The following code will render `3.141`:
 
 ## $(Image)
 
-To display an image:
+Fuse supports displaying PNG and JPEG files (in RGB color space) natively. To display an image:
 
 	<App>
 		<Image File="FuseLogo.png" />

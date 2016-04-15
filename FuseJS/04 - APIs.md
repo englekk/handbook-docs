@@ -166,6 +166,20 @@ Synchronously read data from a bundled file:
 
 > Warning: This call will block, if you are reading large amounts of data, use @(Bundle.read).
 
+## Environment
+
+The Environment API let's you check which platform the code is running on and implement different code paths or features accordingly.
+
+```
+var Environment = require('FuseJS/Environment');
+
+if(Environment.iOS)		{console.log("Running on iOS");}
+if(Environment.android)	{console.log("Running on Android");}
+if(Environment.preview)	{console.log("Running in preview mode");}
+if(Environment.mobile)	{console.log("Running on iOS or Android");}
+if(Environment.desktop)	{console.log("Running on desktop");}
+```
+
 ## $(Timer)
 
 You can schedule tasks to be executed after specific time using the `Timer` API:

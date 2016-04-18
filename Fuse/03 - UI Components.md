@@ -1101,13 +1101,13 @@ Valid values for `Layer` are:
 
 ### $(BoxSizing)
 
-`BoxSizing` determines the rules used to position an element within it's available space. It has several possible values:
+`BoxSizing` determines the rules used to position an element within its available space. It has several possible values:
 
 * `Standard` - Standard layout model. Implies that `MaxWidth` and `MaxHeight` is 100%.
 * `NoImplicitMax` - Same as Standard, but without the implicit `MaxWidth` and `MaxHeight` values
 * `Limit` - Applies limits to `Standard`, using `LimitWidth` and `LimitHeight`
 * `LayoutMaster` - Not directly used. Instead, set the `LayoutMaster` property to a node from which the element will inherit its `BoxSizing` mode from.
-* `FillAspect` - Forces the aspect ratio. Set using the `Aspect` property, which is 1 by default. The behaviour of this can be fine-tuned using the `AspectConstraint` property
+* `FillAspect` - Forces the aspect ratio. Set using the `Aspect` property, which is 1 by default. The behavior of this can be fine-tuned using the `AspectConstraint` property
 
 In the following example, two panels are docked side by side. One of them have the `BoxSizing` value `FillAspect`, forcing it to keep an aspect ratio of 0.5:
 

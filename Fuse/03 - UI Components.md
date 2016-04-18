@@ -1099,6 +1099,16 @@ Valid values for `Layer` are:
 - `Background` – Element is drawn *behind* the `Layout` layer, and does not affect layout
 - `Overlay` – Element is drawn *on top of* the `Layout` layer, and does not affect layout
 
+### $(BoxSizing)
+
+`BoxSizing` determines the rules used to position an element within it's available space. It has several possible values:
+
+* `Standard` - Standard layout model. Implies that `MaxWidth` and `MaxHeight` is 100%.
+* `NoImplicitMax` - Same as Standard, but without the implicit `MaxWidth` and `MaxHeight` values
+* `Limit` - Applies limits to `Standard`, using `LimitWidth` and `LimitHeight`
+* `LayoutMaster` - Not directly used. Instead, set the `LayoutMaster` property to a node from which the element will inherit its `BoxSizing` mode from.
+* `FillAspect` - Forces the aspect ratio. Set using the `Aspect` property, which is 1 by default.
+
 > ### $(ZOffset)
 
 Normally, elements are drawn in the order they appear in UX.
@@ -1115,6 +1125,7 @@ In the following example, the blue rectangle will appear above the red one, even
 ```
 
 *Note:* The Z-order of children is completely independent of the Z-axis in 3D. Elements can still be transformed to any Z-axis location, rotated into the Z-dimension, or have actual depth, regardless and independent of their child Z-order.
+
 
 ## About $(Control:Controls)
 

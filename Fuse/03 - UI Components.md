@@ -1107,7 +1107,15 @@ Valid values for `Layer` are:
 * `NoImplicitMax` - Same as Standard, but without the implicit `MaxWidth` and `MaxHeight` values
 * `Limit` - Applies limits to `Standard`, using `LimitWidth` and `LimitHeight`
 * `LayoutMaster` - Not directly used. Instead, set the `LayoutMaster` property to a node from which the element will inherit its `BoxSizing` mode from.
-* `FillAspect` - Forces the aspect ratio. Set using the `Aspect` property, which is 1 by default.
+* `FillAspect` - Forces the aspect ratio. Set using the `Aspect` property, which is 1 by default. The behaviour of this can be fine-tuned using the `AspectConstraint` property
+
+> #### $(AspectConstraint)
+
+You can fine-tune how `FillAspect` works using the `AspectConstraint` property.
+
+* `Preserve` - Sizes according to maximum, then minimum sizes, preserving the ratio. Note that the result might be larger than the minimum/maximum constraints if not everything can be met.
+* `Trim` - Constraints the resulting aspect size to minimum and maximum properties. If trimming happens, the desired aspect ratio may not be upheld.
+* `PreserveTrim` - Has the functionality of both `Preserve` and `Trim`.
 
 > ### $(ZOffset)
 

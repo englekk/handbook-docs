@@ -1109,6 +1109,17 @@ Valid values for `Layer` are:
 * `LayoutMaster` - Not directly used. Instead, set the `LayoutMaster` property to a node from which the element will inherit its `BoxSizing` mode from.
 * `FillAspect` - Forces the aspect ratio. Set using the `Aspect` property, which is 1 by default. The behaviour of this can be fine-tuned using the `AspectConstraint` property
 
+In the following example, two panels are docked side by side. One of them have the `BoxSizing` value `FillAspect`, forcing it to keep an aspect ratio of 0.5:
+
+```
+<App Theme="Basic" Background="#000" >
+  <DockPanel>
+    <Panel Color="#F00" Dock="Left" Width="50%" BoxSizing="FillAspect" Aspect="0.5" />
+    <Panel Color="#0F0" Dock="Right" Width="50%" />
+  </DockPanel>
+</App>
+```
+
 > #### $(AspectConstraint)
 
 You can fine-tune how `FillAspect` works using the `AspectConstraint` property.

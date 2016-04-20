@@ -97,4 +97,4 @@ For example:
 </Panel>
 ```
 
-In this case, `panel2` will not become a child of `panel1`. Instead, it will remain detached from the object tree. This is only meaningful if you intend to add it later, for example by navigating to it in a `HeirarchicalNavigation`.
+In this case, `panel2` will not become a child of `panel1`. Instead, it will remain detached from the object tree. This is only meaningful if you intend to add it later, for example by navigating to it in a `HierarchicalNavigation`.

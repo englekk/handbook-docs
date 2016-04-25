@@ -17,7 +17,7 @@ For a good introductory example to basic layout, take a look [here](https://www.
 
 ## $(Panel)
 
-The most basic type of panel is the `Panel`. Children of a Panel will be default fill its entire space. If a panel contains several children, it simply layers them on top of each other. Combining this behavior with @(Alignment:alignment), @(Margin:margin) and @(Padding:padding) can be quite useful in many situations.
+The most basic type of panel is the `Panel`. Children of a Panel will by default fill its entire space. If a panel contains several children, it simply layers them on top of each other. Combining this behavior with @(Alignment:alignment), @(Margin:margin) and @(Padding:padding) can be quite useful in many situations.
 
 ```
 <Panel>

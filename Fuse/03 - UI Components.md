@@ -474,7 +474,7 @@ Note that this is equivalent of writing:
 <Rectangle Fill="#00f" />
 ```
 
-However, using the `Fill` property creates a new @(Fill) element with the specified color, and is therefore not animatable. While it is possible, you will find that the color suddently changes midways in the animation. The property `Color` is recommended in `Fill`s place, and exposes a `float4` which you can animate.
+However, using the `Fill` property creates a new @(SolidColor) @(Brush) that holds the value specified by `Fill`. While it is possible to animate it, you will find that the color suddently changes midways in the animation. Therefore, the property `Color` is recommended in `Fill`s place, and exposes a `float4` which you can animate. 
 
 > #### $(IsCompletelyTransparent:Finding out if a SolidColor is completely transparent)
 

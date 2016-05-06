@@ -122,7 +122,9 @@ In addition to a file of a certain @(Unoproj.AllowedIncludeTypes:type), you may 
 }
 ```
 
-> ### @(Unoproj.AllowedIncludeTypes:Allowed include types)
+### @(Unoproj.AllowedIncludeTypes:Allowed include types)
+
+The following values may be specified as the type of an included file.
 
 - Glob
 - Folder

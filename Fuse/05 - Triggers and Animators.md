@@ -521,7 +521,7 @@ For more information about `GoBack` in the context of @(Navigation:navigation), 
 
 ### $(BringIntoView)
 
-The `BringIntoView` action is used together with the @(ScrollView) control. By setting its `TargetNode` property, we can instruct the @(ScrollView) to go to a position so that that that `Node` becomes visible.
+The `BringIntoView` action is used together with the @(ScrollView) control. By setting its `TargetNode` property, we can instruct the @(ScrollView) to go to a position, making that `Node` visible.
 
 This example shows how to use `BringIntoView` to make a @(ScrollView) automatically scroll between the top and the bottom by clicking a button:
 

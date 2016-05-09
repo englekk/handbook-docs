@@ -35,10 +35,10 @@ Some advanced @(Trigger) animations allow separate forward and backward animatio
 To do this, put the backward animation inside a `TriggerAnimation`, and bind it do the `BackwardAnimation` binding on the parent (forward) animation. The below example uses `BackwardAnimation` to animate with a different easing when the animation is going back to its idle state.
 
 ```
-<WhilePressed ux:Binding="BackwardAnimation">
+<WhilePressed>
 	<Rotate Degrees="90" Duration="0.5" />
 	<TriggerAnimation ux:Binding="BackwardAnimation" >
-		<Rotate Degrees="90" Duration="0.5" Easing="BounceOut" />
+		<Rotate Degrees="90" Duration="1" Easing="BounceOut" />
 	</TriggerAnimation>
 </WhilePressed>
 ```

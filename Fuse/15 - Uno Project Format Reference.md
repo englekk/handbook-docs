@@ -532,12 +532,12 @@ Corresponds to [CFBundleVersion](https://developer.apple.com/library/ios/documen
 #### $(Unoproj.iOS.DeploymentTarget:iOS.DeploymentTarget)
 
 The minimum iOS version your app can run on.
-Defaults to `7.0`.
+Defaults to `8.0`.
 
 ```
 {
 	"iOS": {
-		"DeploymentTarget": "7.0"
+		"DeploymentTarget": "8.0"
 	}
 }
 ```

@@ -102,6 +102,14 @@ One can however explicitly specify per element which grid cell they should be pl
 </Grid>
 ```
 
+One can also specify the number of rows and columns an elements occupies using the @(RowSpan) and @(ColumnSpan) properties like so:
+
+```
+<Grid RowCount="2" ColumnCount="2">
+	<Rectangle ColumnSpan="2" RowSpan="2" Color="Red"/>
+</Grid>
+```
+
 ## $(WrapPanel)
 
 The `WrapPanel` lays out its children one after the other and wraps around whenever it reaches the end. One can specify which direction the elements are laid out in by assigning the $(FlowDirection) property. FlowDirection can either be `LeftToRight` or `RightToLeft`.

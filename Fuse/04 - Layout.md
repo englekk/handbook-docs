@@ -102,7 +102,7 @@ One can however explicitly specify per element which grid cell they should be pl
 </Grid>
 ```
 
-One can also specify the number of rows and columns an elements occupies using the @(RowSpan) and @(ColumnSpan) properties like so:
+One can also specify the number of rows and columns an elements occupies using the $(RowSpan) and $(ColumnSpan) properties like so:
 
 ```
 <Grid RowCount="2" ColumnCount="2">

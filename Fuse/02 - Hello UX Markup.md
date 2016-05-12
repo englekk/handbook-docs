@@ -6,6 +6,8 @@ UX Markup is used for building components, UI views, designs, prototypes and ful
 
 For an in-depth look at the features of UX Markup, see the [UX Markup Guide](https://www.fusetools.com/learn/guides/uxmarkup).
 
+__Please note__: that all attributes and node names are case sensitive
+
 ## $(Creating apps) : $(App)
 
 When creating stand-alone apps or prototypes in Fuse, we use the `<App>` tag.

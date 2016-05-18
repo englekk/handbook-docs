@@ -100,7 +100,3 @@ The `payload` will be a string in JSON format containing the following keys:
 How your notification is treated by the OS depends on the state of the app. If the app is `Interactive` then the notification does no appear but is instead delivered straight to your running app. If it is not interactive then the OS will create a notification based on the parameters you gave to the `later` or `not` functions. `Interactive` means that not only is your app in the `Foreground` but it is also not being obscured by other windows. One example of being in the `Foreground` and not `Interactive` is when you swipe the status-bar to open the 'Notification Center/Drawer'.
 
 You can try this with the example app above, hit the `Send notification in 4 seconds` button an open the 'Notification Center/Drawer'
-
-## That's all folks!
-
-And with that we have Local Notifications,

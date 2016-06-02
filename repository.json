@@ -3,5 +3,6 @@
 	"generatorType": "handbook",
 	"cssPrefix": "handbook",
 	"uriFormat": "/learn/{0}",
+    "disableSearchIndexing": true,
 	"baseUri": "/learn"
 }

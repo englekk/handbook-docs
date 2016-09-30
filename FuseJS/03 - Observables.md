@@ -1,56 +1,54 @@
 # $(Observable)s
 
-Observables are the key ingredients in a FuseJS application. Observables deal with @(Data Binding), reactive programming and asynchronous programming.
+Observable은 FuseJS 어플리케이션의 아주 중요한 모듈입니다. Observable은 반응형과 비동기 프로그래밍을 처리합니다.
 
-An `Observable` represents a value that can be observed. In Fuse, Observables are primarily used for data-binding between JavaScript and UX Markup.
+또한, `Observable`은 퓨즈에서 UX와 자바스크립트간의 데이터 바인딩에 주로 사용됩니다.
 
-Observables can hold a single value, or be treated as a list of values with 0 or more elements. When the value(s) of the Observable
-changes, subscribers are notified.
+Observable은 단일 값 또는 여러개의 요소를 포함한 리스트를 가질 수 있습니다. Observable의 value 속성이 변경되면 바인딩 된 영역에 그 값을 자동으로 통지합니다.
 
-Observables can be used for asynchronous and reactive programming, greatly simplifying data-driven UI programming.
+Observable로 데이터 주도형 UI 프로그래밍을 쉽게 구현하세요.
 
-> ## Video introduction to Observables
+> ## Observable에 대한 소개 비디오
 
 [YOUTUBE mi8sWErrabI]
 
-### How to import
+### 모듈을 참조하는 방법
 
 	var Observable = require('FuseJS/Observable');
 
-### Basic use
+### 기본적인 사용법
 
-Observables are created by calling the `Observable` function with zero or more initial values.
+Observable 객체는 0 또는 여러개의 값을 이용해 `Observable` 함수를 호출하는 것으로 생성됩니다.
 
-* `Observable(<initial values>)` - constructor
+* `Observable(<initial values>)` - 생성자
 
-Examples:
+예제:
 
 	var emptyObservable = Observable();
 	var isSomethingEnabled = Observable(true);
 
-Empty observables will have `.value === undefined` and `.length === 0`.
+빈 observable 객체의 .value는 undefined이고, .length는 0입니다.
 
-#### Observable value
+#### Observable의 value 속성
 
-If the observable holds exactly one value, we can get or set that value using the `.value`
-property:
+만약 observable이 하나의 값을 가지고 있다면, `.value` 속성을 이용해 값이 변경거나 가져올 수 있습니다:
 
 	var someString = Observable('foobar');
-	Console.Log(someString.value); // prints 'foobar'
-	someString.value = 'barfoo'; // sets the value, notifies subscribers.
+	Console.Log(someString.value); // 'foobar'
+	someString.value = 'barfoo'; // 값 설정
 
-When the `.value` property is set, all subscribers are notified.
+`.value`가 변경되면 바인딩 된 속성들에 자동으로 통지합니다.
 
-#### Observable lists
+#### 리스트형 Observable
 
-If we want to use the observable as a list of values, we manipulate it using methods like `.add(item)` and `.remove(item)`.
-We can also query the number of values in the list through the `.length` property:
+observable을 리스트 형태로 이용하려면, `.add(item)`와 `.remove(item)` 같은 메소드를 이용하면 됩니다.
+또한, 갯수를 알아내기 위해 `.length` 속성도 이용할 수 있습니다:
 
 	var friends = Observable('Jake', 'Jane', 'Joe');
-	Console.Log(friends.length); // prints 3
+	Console.Log(friends.length); // 3
 
 	friends.add('Gina');
-	Console.Log(friends.length); // prints 4
+	Console.Log(friends.length); // 4
 
 See the full list of @(Observable.Members) to see what's possible with observable lists.
 

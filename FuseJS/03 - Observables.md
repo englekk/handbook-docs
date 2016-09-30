@@ -50,33 +50,28 @@ observable을 리스트 형태로 이용하려면, `.add(item)`와 `.remove(item
 	friends.add('Gina');
 	Console.Log(friends.length); // 4
 
-See the full list of @(Observable.Members) to see what's possible with observable lists.
+#### Observable의 데이터 타입
 
-#### Data types with Observables
-
-Observables can be used to supply all the basic types; number, string, boolean, as well as vector types. Number, string and boolean are created using their usual JavaScript literals:
+Observable은 모든 기본적인 데이터 타입(number, string, boolean, array)을 지원합니다:
 
 ```
-var obsNumber = Observable(10.5);
-var obsString = Observable("hello");
-var obsBool = Observable(true);
+var obsNumber = Observable(10.5);// number
+var obsString = Observable("hello");// string
+var obsBool = Observable(true);// boolean
 ```
 
-For data-bindings requiring vector types (e.g. colors), one can use JavaScript arrays:
+배열도 사용할 수 있습니다:
 
 ```
 var obsRedColor = Observable([1,0,0,1]);
 var obsWhiteAndBlack = Observable([1,1,1,1], [0,0,0,1]);
 ```
 
-#### Observable functions
-When an `Observable` is initialized with a function as its only argument, the `.value`
-of the observable is computed by evaluating the function.
+#### Observable의 놀랍고 재밌는 점
 
-Reactive dependencies are automatically generated with all other observables touched while
-evaluating the function.
+열마디 말보다 한 줄의 코딩이 낫죠.
 
-Example:
+예제:
 
 	var firstName = Observable('John');
 	var lastName = Observable('Doe');
@@ -85,9 +80,9 @@ Example:
 		return firstName.value + ' ' + lastName.value;
 	})
 
-If the `firstName` or `lastName` changes, the `fullName` will now update automatically.
+`firstName` 또는 `lastName`이 변경되면, `fullName`이 자동으로 업데이트 됩니다.
 
-Yes, it's magic.
+완전 마법이죠.
 
 ## $(Observable.Members:Members)
 

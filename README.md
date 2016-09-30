@@ -11,8 +11,7 @@
 - Android - 안드로이드에 대한 모든 것.
 - iOS - iOS에 대한 모든 것.
 
-아래 URL에서 렌더링된 버전을 보실 수 있습니다.
-https://www.fusetools.com/learn/fuse
+다음 URL에서 렌더링된 버전을 보실 수 있습니다. https://www.fusetools.com/learn/fuse
 
 # 기여하는 방법
 

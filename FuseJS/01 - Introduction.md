@@ -1,12 +1,12 @@
 <documentProperties pageTitle="Learn FuseJS" />
 
-# Introduction
+# 소개
 
-$(FuseJS) is a $(JavaScript) framework for writing cross-platform mobile app business logic.
+$(FuseJS)는 크로스-플랫폼 모바일 앱의 비즈니스 로직을 작성하기 위한 $(JavaScript) 프레임워크 입니다.
 
-Note: FuseJS is currently [not supported for WebGL exports](/learn/guides/previewandexport/other).
+노트: FuseJS는 현재 [WebGL 퍼블리시를 지원하지 않습니다](/learn/guides/previewandexport/other).
 
-## Getting started
+## 시작하기
 
 FuseJS can be used in @(UX Markup) through the `<JavaScript>` tag, either by pointing to external JavaScript files, like this:
 

@@ -8,21 +8,21 @@ $(FuseJS)는 크로스-플랫폼 모바일 앱의 비즈니스 로직을 작성�
 
 ## 시작하기
 
-FuseJS can be used in @(UX Markup) through the `<JavaScript>` tag, either by pointing to external JavaScript files, like this:
+FuseJS는 `<JavaScript>` 태그를 통해 @(UX Markup)에서 외부 자바스크립트 파일을 이용할 수 있습니다:
 
 	<JavaScript File="SomeCode.js" />
 
-Or by inlining the JavaScript code in the tag, like this:
+인라인으로 작성할 수도 있습니다:
 
 	<JavaScript>
 		console.log("Hello, FuseJS!");
 	</JavaScript>
 
-## Modules
+## 모듈
 
-FuseJS implements the <a href="http://www.commonjs.org/">CommonJS</a> module system. Each code file or inline snippet is a _module_.
+FuseJS는 <a href="http://www.commonjs.org/">CommonJS</a> 모듈 시스템을 구현했습니다. 각 코드 파일 또는 인라인 스니펫은 _module_ 입니다.
 
-For things inside the module to be visible on the outside, we use the `module.exports`-construct:
+모듈 안에 있는 것들은 외부에서 참조 가능합니다. 우리는 `module.exports`를 사용합니다:
 
 	<JavaScript>
 		module.exports = {
@@ -30,7 +30,7 @@ For things inside the module to be visible on the outside, we use the `module.ex
 		};
 	</JavaScript>
 
-Failing to export from modules will make it impossible to reach defined data inside the module:
+모듈내에 정의하지 않으면 외부에서 참조할 수 없습니다:
 
 	<JavaScript>
 		var data = [1, 2, 3];
@@ -41,25 +41,25 @@ Failing to export from modules will make it impossible to reach defined data ins
 		};
 	</JavaScript>
 
-This is good for hiding implementation details from other calling JavaScript modules and UX code.
+이것은 private한 변수로 쓰기에 좋습니다.
 
-> ## Importing modules
+> ## 모듈 가져오기
 
-Each code file (or inline snippet) is a module.
+각 코드 파일(또는 인라인 스니펫)은 모듈입니다.
 
-To make a module available to other modules through `$(require)`, mark your `<JavaScript>` tag with the `ux:Global` attribute.
+`$(require)`를 통해 다른 모듈에서 사용할 수 있는 모듈을 만들려면, `<JavaScript>` 태그의 속성에 `ux:Global` 을 추가하세요.
 
 	<JavaScript File="someJavaScriptFile.js" ux:Global="MyModule" />
 
-You can then access this module in any other module in the same project like this:
+이제 다른 모듈에서 가져다 쓸 수 있습니다:
 
 	var myModule = require('MyModule');
 
-> Note: It is currently not possible to include modules from JS just by file path. We're on it, thanks for your patience!
+> 노트: 위 방법으로 할 경우 직접적으로 파일 경로를 써서 모듈을 가져올 수는 없습니다.
 
-> ## Importing modules by file name
+> ## 파일 경로로 가져오기
 
-You can also import JavaScript modules by their file name. To do this, make sure your JavaScript files are included in your .unoproj file as "Bundle" files:
+파일 경로로 모듈을 가져오는 방법입니다. .unoproj에 아래와 같이 추가하세요. JS 파일명 끝에 ':Buldle'을 주의하세요.
 
 ```
 "Includes": [
@@ -68,7 +68,7 @@ You can also import JavaScript modules by their file name. To do this, make sure
 ]
 ```
 
-or if you want to make all JavaScript files be includes as bundled files:
+또는 모든 JS 파일을 가져올 수 있습니다:
 
 ```
 "Includes": [
@@ -76,13 +76,13 @@ or if you want to make all JavaScript files be includes as bundled files:
 ]
 ```
 
-Then, you can require using the JavaScript file name:
+이제 모듈을 이용할 수 있습니다:
 
 ```
 var myModule = require('/someJavaScriptFile.js');
 ```
 
-Note that prefixing the file name with a "/" means that we are looking for the file relative to the project root directory. To name a file relative to the current file, prefix with "./". By omitting the prefixes, the file name is relative to the project root, or the global module it's in.
+노트. '/'는 루트 디렉토리를 의미합니다. 현재 디렉토리를 참조하려면 './'를 이용하세요.
 
 ```
 var relativeToProjectRoot = require('/SomeComponent.js');
@@ -90,12 +90,12 @@ var relativeFile = require('./MainView.js');
 var relativeToRootOrGlobalModule = require('SomeOtherComponent.js');
 ```
 
-* Note that you may omit the .js file extension in the file name if you wish
+* 노트. 원한다면 .js를 생략할 수 있습니다.
 
 
-Examples:
+예제:
 
-* <a href="https://www.fusetools.com/developers/examples/todoparseexample">TODO App with Parse backend example</a>
+* <a href="https://www.fusetools.com/developers/examples/todoparseexample">Parse를 이용하는 TODO 앱</a>
 
 ## Design and motivation
 
